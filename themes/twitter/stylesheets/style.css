@@ -51,6 +51,16 @@ html, body {
   text-align:left;
 }
 
+.post img {
+  max-width: 300px;
+  height: auto;
+}
+
+.content img {
+  max-width: 600px;
+  height: auto;
+}
+
 /* tag_box ======================================================== */
 
 .tag_box {
