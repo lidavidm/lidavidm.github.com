@@ -51,13 +51,13 @@ html, body {
   text-align:left;
 }
 
-.post img {
-  max-width: 300px;
+.content img {
+  max-width: 600px;
   height: auto;
 }
 
-.content img {
-  max-width: 600px;
+.post img {
+  max-width: 300px;
   height: auto;
 }
 
