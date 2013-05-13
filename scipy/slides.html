@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="David Li" />
-  <meta name="date" content="2013-06-26" />
+  <meta name="date" content="2013-06-27" />
   <title> SymPy Gamma and SymPy Live: Python and Mathematics Online</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
@@ -21,22 +21,28 @@
   <p class="author">
 David Li
   </p>
-  <p class="date">26 June 2013</p>
+  <p class="date">27 June 2013</p>
 </div>
 <div id="background" class="slide section level1">
 <h1>Background</h1>
-<ul class="incremental">
+<ul>
+<li>High school student!</li>
 <li>Google Code-In 2011 – SymPy Live
-<ul class="incremental">
+<ul>
 <li>Mobile site</li>
 <li>Autocompletion</li>
+</ul></li>
+<li>2012…
+<ul>
+<li>Resurrected Gamma</li>
+<li>Misc. improvements for Live</li>
 </ul></li>
 </ul>
 </div>
 <div id="sympy-live" class="slide section level1">
 <h1>SymPy Live</h1>
 <p>http://live.sympy.org</p>
-<p>Try it out!</p>
+<p>What's this? Try it out!</p>
 <pre><code>&gt;&gt;&gt; (1/cos(x)).series(x, 0, 10)
 &gt;&gt;&gt; integrate(x**2 * sin(x))</code></pre>
 <p><strong>http://goo.gl/ijLD4</strong></p>
@@ -47,25 +53,149 @@ David Li
 </div>
 <div class="slide section level1">
 
-<ul class="incremental">
-<li>Where do we use it?
-<ul class="incremental">
-<li>Interactive documentation</li>
-<li>Try SymPy examples with a mouse click</li>
+<h2 id="uses">Uses</h2>
+<ul>
+<li>Interactive documentation
+<ul>
+<li>Play with SymPy with the docs in front of you</li>
+</ul></li>
+<li>&quot;Try-before-you-buy&quot; (though SymPy is free)
+<ul>
+<li>Explore nearly all of SymPy's features online</li>
+<li>http://docs.sympy.org/0.7.2/tutorial.html</li>
+</ul></li>
+</ul>
+<!--
+
+What I could say, using SymPy tutorial/talk as an example
+
+- What if the user wants to play with these examples?
+
+1. Copy-and-paste into a terminal. This is annoying. She would have to
+   delete all the >>> blocks manually, get rid of example output, etc...
+
+   We could improve this by adding a button to do this for her, or...
+2. Leverage SymPy Live. Click a button, and the terminal appears in the
+   browser.
+
+-->
+
+<ul>
+<li>Other projects can benefit too!
+<ul>
+<li>Sphinx extension</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level1">
+
+<div class="figure">
+<img src="images/sphinx.png" alt="Sphinx Extension" /><p class="caption">Sphinx Extension</p>
+</div>
+</div>
+<div class="slide section level1">
+
+<h2 id="implementation">Implementation</h2>
+<ul>
+<li>Python 2.7 on Google App Engine</li>
+<li>Complications
+<ul>
+<li>No persistent interpreter</li>
+<li>Can't pickle everything</li>
+<li>Execution time limit</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level1">
+
+<h2 id="how-we-handle-it">How we handle it</h2>
+<ol>
+<li>Reinitialize globals
+<ul>
+<li>Reevaluate any statement that created an unpickable</li>
+<li>Unpickle everything else</li>
+</ul></li>
+<li>Evaluate the statement(s)</li>
+<li>Look at the new globals
+<ul>
+<li>If any are unpicklable, store the statement itself</li>
+<li>Else just pickle and store the globals</li>
+</ul></li>
+</ol>
+<p>(There are some other complications relating to <code>exec</code>-vs-<code>eval</code> and so on)</p>
+</div>
+<div class="slide section level1">
+
+<ul>
+<li>Problems
+<ul>
+<li><p>What if (an expression involving) <code>_</code> created an unpicklable?</p>
+<p>(I'm not sure, either.)</p></li>
+</ul></li>
+<li>Improvements?
+<ul>
+<li>Retain shell session when navigating between pages</li>
 </ul></li>
 </ul>
 </div>
 <div id="sympy-gamma" class="slide section level1">
 <h1>SymPy Gamma</h1>
-<p>http://gamma.sympy.org</p>
+<p>http://www.sympygamma.com</p>
 <div class="figure">
 <img src="images/gamma.png" alt="SymPy Gamma" /><p class="caption">SymPy Gamma</p>
 </div>
-<h2 id="purpose-features">Purpose &amp; Features</h2>
 </div>
 <div class="slide section level1">
 
-<h2 id="implementation">Implementation</h2>
+<h2 id="features">Features</h2>
+<ul>
+<li>Enter an expression, get information about it</li>
+</ul>
+<div class="figure">
+<img src="images/gamma_example.png" alt="SymPy Gamma" /><p class="caption">SymPy Gamma</p>
+</div>
+</div>
+<div class="slide section level1">
+
+<ul>
+<li>Integrals: get steps, solution</li>
+<li>Trigonometric expression: alternate forms</li>
+<li>Most expressions: 2D graph</li>
+<li>Numerical expressions: floating-point approximations</li>
+<li>Function: documentation</li>
+<li>Purpose
+<ul>
+<li>Showcase what SymPy can do</li>
+<li>Because Wolfram has it</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level1">
+
+<h2 id="implementation-1">Implementation</h2>
+<ol>
+<li>Determine which &quot;cards&quot; to use based on the type of the input</li>
+<li>Return these (with some HTML scaffolding) to the browser</li>
+<li>Browser loads the result from the server via JavaScript</li>
+</ol>
+</div>
+<div class="slide section level1">
+
+<ul>
+<li>Quite simple</li>
+<li>Most interesting features implemented in JavaScript:
+<ul>
+<li>2D plotting with SVG</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level1">
+
+<h2 id="todos">ToDos</h2>
+<ul>
+<li>Some way to unit test</li>
+<li>More result types!</li>
+</ul>
 </div>
 </body>
 </html>
