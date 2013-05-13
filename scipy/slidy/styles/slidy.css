@@ -24,7 +24,6 @@ body
   color: black;
   background-color: white;
   font-family: "Open Sans", sans-serif;
-  font-size: 32pt;
 }
 
 div.toolbar {
@@ -94,6 +93,7 @@ div.slidy_toc .toc_heading {
 }
 
 div.slide {
+  overflow: hidden;
   z-index: 20;
   margin: 0 0 0 0;
   padding-top: 0;
@@ -110,7 +110,7 @@ div.slide {
   background-color: transparent;
   background-color: #3B5526;
   color: #FFF;
-  font-size: 1.25em;
+  font-size: 1.5em;
 }
 
 div.background {
@@ -131,13 +131,14 @@ div.slide.titlepage h1 {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
-  text-align: left;
+  text-align: center;
 }
 
 div.slide.titlepage h1 img {
   float: left;
-  margin-right: 0.5em;
+  margin-top: 0.25em;
   height: 3em;
+  margin-bottom: 2em;
 }
 
 div.slide h1 {
@@ -377,6 +378,10 @@ ul.outline li.folded:hover {
   background: transparent url(../graphics/unfold.gif) no-repeat 0px 0.5em;
 }
 
+p.caption {
+  display: none;
+}
+
 /* for slides with class "title" in table of contents */
 a.titleslide { font-weight: bold; font-style: italic }
 
@@ -430,6 +435,10 @@ div.initial_prompt { display: none; visibility: hidden }
 }
 
 #sympy-gamma {
-  background: #555;
+  background: #333;
   overflow: hidden;
+}
+
+#sympy-gamma ~ div {
+  background: #333;
 }
