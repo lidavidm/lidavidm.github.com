@@ -442,3 +442,17 @@ div.initial_prompt { display: none; visibility: hidden }
 #sympy-gamma ~ div {
   background: #333;
 }
+
+div.horizontal p {
+  display: inline-block;
+  float: left;
+}
+
+#gamma-graph {
+  background-color: white;
+  width: 50%;
+}
+
+.MathJax_Display {
+  display: inline !important;
+}

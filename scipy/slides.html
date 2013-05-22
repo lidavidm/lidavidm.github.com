@@ -12,6 +12,7 @@
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
     href="slidy/styles/slidy.css" />
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
   <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js.gz"
     charset="utf-8" type="text/javascript"></script>
 </head>
@@ -37,6 +38,7 @@ David Li
 <li>Resurrected Gamma</li>
 <li>Misc. improvements for Live</li>
 </ul></li>
+<li>Contributing experiences</li>
 </ul>
 </div>
 <div id="sympy-live" class="slide section level1">
@@ -64,23 +66,6 @@ David Li
 <li>Explore nearly all of SymPy's features online</li>
 <li>http://docs.sympy.org/0.7.2/tutorial.html</li>
 </ul></li>
-</ul>
-<!--
-
-What I could say, using SymPy tutorial/talk as an example
-
-- What if the user wants to play with these examples?
-
-1. Copy-and-paste into a terminal. This is annoying. She would have to
-   delete all the >>> blocks manually, get rid of example output, etc...
-
-   We could improve this by adding a button to do this for her, or...
-2. Leverage SymPy Live. Click a button, and the terminal appears in the
-   browser.
-
--->
-
-<ul>
 <li>Other projects can benefit too!
 <ul>
 <li>Sphinx extension</li>
@@ -89,9 +74,16 @@ What I could say, using SymPy tutorial/talk as an example
 </div>
 <div class="slide section level1">
 
-<div class="figure">
-<img src="images/sphinx.png" alt="Sphinx Extension" /><p class="caption">Sphinx Extension</p>
+<p><a href="http://live.sympy.org"><img src="images/sphinx.png" alt="Sphinx Extension" /></a></p>
 </div>
+<div class="slide section level1">
+
+<h2 id="case-study-sphinx-extension">Case Study: Sphinx Extension</h2>
+<ul>
+<li>Built on a SciPy 2011 presentation!</li>
+<li>Sphinx extension adds script/link tags to docs</li>
+<li>Live server provides these resources</li>
+</ul>
 </div>
 <div class="slide section level1">
 
@@ -122,19 +114,19 @@ What I could say, using SymPy tutorial/talk as an example
 <li>Else just pickle and store the globals</li>
 </ul></li>
 </ol>
-<p>(There are some other complications relating to <code>exec</code>-vs-<code>eval</code> and so on)</p>
 </div>
 <div class="slide section level1">
 
 <ul>
 <li>Problems
 <ul>
-<li><p>What if (an expression involving) <code>_</code> created an unpicklable?</p>
-<p>(I'm not sure, either.)</p></li>
+<li>What if (an expression involving) <code>_</code> created an unpicklable?</li>
+<li>Function definitions</li>
 </ul></li>
 <li>Improvements?
 <ul>
-<li>Retain shell session when navigating between pages</li>
+<li>Retain session when navigating between pages (Sphinx)</li>
+<li>Fixing bugs!</li>
 </ul></li>
 </ul>
 </div>
@@ -159,16 +151,49 @@ What I could say, using SymPy tutorial/talk as an example
 
 <ul>
 <li>Integrals: get steps, solution</li>
-<li>Trigonometric expression: alternate forms</li>
-<li>Most expressions: 2D graph</li>
-<li>Numerical expressions: floating-point approximations</li>
-<li>Function: documentation</li>
-<li>Purpose
-<ul>
-<li>Showcase what SymPy can do</li>
-<li>Because Wolfram has it</li>
-</ul></li>
 </ul>
+<div class="horizontal">
+
+<p><a href="http://www.sympygamma.com/input/?i=integrate%28exp%28x%29%2F%281+%2B+exp%282x%29%29%29"><img src="images/qr_gamma_integral.png" /></a></p>
+<div class="figure">
+<img src="images/example_gamma_integral.png" />
+</div>
+</div>
+
+</div>
+<div class="slide section level1">
+
+<ul>
+<li>Trigonometric expression: alternate forms</li>
+</ul>
+<p><a href="http://www.sympygamma.com/input/?i=sin%282x%29+%2F+%281+-+cos%5E2%282x%29%29"><img src="images/qr_gamma_trig.png" /></a></p>
+</div>
+<div class="slide section level1">
+
+<ul>
+<li>Most expressions: 2D graph. Here: <span class="math">\[ sin(2 sin(2 sin(x))) \]</span></li>
+</ul>
+<p>Can export to SVG, used here; no link provided (it's rather slow).</p>
+<p><img src="images/example_gamma_graph.svg" id="gamma-graph" /></p>
+</div>
+<div class="slide section level1">
+
+<ul>
+<li>Numerical expressions: floating-point approximations</li>
+</ul>
+</div>
+<div class="slide section level1">
+
+<!--
+
+Demonstrate:
+
+- Various result types
+    - (put inputs here)
+- Graphing (zoom, pan, export, resize)
+
+-->
+
 </div>
 <div class="slide section level1">
 
@@ -183,18 +208,10 @@ What I could say, using SymPy tutorial/talk as an example
 
 <ul>
 <li>Quite simple</li>
-<li>Most interesting features implemented in JavaScript:
+<li>Interesting features implemented in JavaScript:
 <ul>
 <li>2D plotting with SVG</li>
 </ul></li>
-</ul>
-</div>
-<div class="slide section level1">
-
-<h2 id="todos">ToDos</h2>
-<ul>
-<li>Some way to unit test</li>
-<li>More result types!</li>
 </ul>
 </div>
 </body>
