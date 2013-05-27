@@ -48,7 +48,6 @@ David Li
 <pre><code>&gt;&gt;&gt; (1/cos(x)).series(x, 0, 10)
 &gt;&gt;&gt; integrate(x**2 * sin(x))</code></pre>
 <p><strong>http://goo.gl/ijLD4</strong></p>
-<!-- TODO: seems to hang Live site when visited from mobile -->
 <div class="figure">
 <img src="images/live_example_qr.png" alt="Scan to evaluate" /><p class="caption">Scan to evaluate</p>
 </div>
@@ -56,24 +55,6 @@ David Li
 <div class="slide section level1">
 
 <h2 id="uses">Uses</h2>
-<ul>
-<li>Interactive documentation
-<ul>
-<li>Play with SymPy with the docs in front of you</li>
-</ul></li>
-<li>&quot;Try-before-you-buy&quot; (though SymPy is free)
-<ul>
-<li>Explore nearly all of SymPy's features online</li>
-<li>http://docs.sympy.org/0.7.2/tutorial.html</li>
-</ul></li>
-<li>Other projects can benefit too!
-<ul>
-<li>Sphinx extension</li>
-</ul></li>
-</ul>
-</div>
-<div class="slide section level1">
-
 <p><a href="http://live.sympy.org"><img src="images/sphinx.png" alt="Sphinx Extension" /></a></p>
 </div>
 <div class="slide section level1">
@@ -83,6 +64,7 @@ David Li
 <li>Built on a SciPy 2011 sprint</li>
 <li>Sphinx extension adds script/link tags to docs</li>
 <li>Live server provides these resources</li>
+<li>Other projects can use this too!</li>
 </ul>
 </div>
 <div class="slide section level1">
@@ -93,7 +75,6 @@ David Li
 <li>Complications
 <ul>
 <li>No persistent interpreter</li>
-<li>Can't pickle everything</li>
 <li>Execution time limit</li>
 </ul></li>
 </ul>
@@ -181,6 +162,12 @@ David Li
 <ul>
 <li>Numerical expressions: floating-point approximations</li>
 </ul>
+<div class="horizontal">
+
+<p><a href="http://www.sympygamma.com/input/?i=1.%5B235%5D"><img src="images/qr_gamma_rationalize.png" /> Fraction from repeating decimal</a></p>
+<p><a href="http://www.sympygamma.com/input/?i=exp%28pi**exp%28pi%29%29"><img src="images/qr_gamma_approximate.png" /> Arbitrary-precision numerical approximation</a></p>
+</div>
+
 </div>
 <div class="slide section level1">
 
@@ -190,16 +177,6 @@ David Li
 <li>Return these (with some HTML scaffolding) to the browser</li>
 <li>Browser loads the result from the server via JavaScript</li>
 </ol>
-</div>
-<div class="slide section level1">
-
-<ul>
-<li>Quite simple</li>
-<li>Interesting features implemented in JavaScript:
-<ul>
-<li>2D plotting with SVG</li>
-</ul></li>
-</ul>
 </div>
 <div id="thanks-to" class="slide section level1">
 <h1>Thanks To</h1>
