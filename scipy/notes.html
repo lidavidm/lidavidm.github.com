@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<h1 id="background">Background</h1>
+<ul>
+<li>SymPy: Python CAS/symbolic algebra library</li>
+<li>Web applications: demonstrate the library, help out users</li>
+<li><p>Others contributed website design, etc</p></li>
+<li>Experiences
+<ul>
+<li>Very good about reviewing code &amp; providing feedback</li>
+</ul></li>
+</ul>
+<h1 id="live">Live</h1>
+<ul>
+<li>Online shell, akin to Python console in browser (+ limitations)</li>
+</ul>
+<h2 id="uses">Uses</h2>
+<ul>
+<li>So you're looking at the documentation, and you want to play with the examples. Two options:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Copy-and-paste into a terminal. This is annoying. You have to delete all the &gt;&gt;&gt; blocks manually, get rid of example output, etc...</li>
+</ol>
+<p>We could improve this by adding a button to reformat the block for you, or...</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Leverage SymPy Live. Click a button, and the terminal appears in the browser.</li>
+</ol>
+<ul>
+<li>For the main Live shell...
+<ul>
+<li>Don't need anything installed - play with Python from a Chromebook!</li>
+<li>Share sessions with others (bug reports, examples)</li>
+</ul></li>
+</ul>
+<p>Nice features:</p>
+<ul>
+<li>LaTeX output - for users who are more familiar with math than Python</li>
+<li>Tab completion (present in normal shell too)</li>
+<li>Save a session as a URL</li>
+</ul>
+<p>Demo session?</p>
+<ul>
+<li>Use the mobile interface and zoom in so everyone can see (~ 300%?)</li>
+<li>Use a session URL to save typing time</li>
+</ul>
+<p><a href="http://live.sympy.org/shellmobile?evaluate=expr%20%3D%20x%20%2B%202*y%0A%23--%0Ax%20*%20expr%0A%23--%0Aexpand(x%20*%20expr)%0A%23--%0Aexpr%20%3D%20exp(x*y*z)%0A%23--%0Adiff(expr%2C%20x%2C%20y%2C%20y%2C%20z%2C%20z%2C%20z)%0A%23--%0Aintegrate(diff(expr%2C%20x)%2C%20x)%0A%23--%0A">URL</a></p>
+<p>(This is based on the new tutorial)</p>
+<pre><code>&gt;&gt;&gt; expr = x + 2*y  # note Live defines x, y for us by default
+&gt;&gt;&gt; x * expr
+&gt;&gt;&gt; expand(x * expr)  # we have LaTeX by default, vs normal console
+&gt;&gt;&gt;                   # Unicode has to be explicitly enabled
+&gt;&gt;&gt; expr = exp(x*y*z)
+&gt;&gt;&gt; diff(expr, x, y, y, z, z, z)
+&gt;&gt;&gt; integrate(_)</code></pre>
+<h2 id="sphinx-extension">Sphinx Extension</h2>
+<ul>
+<li>Other projects: set up Live instance on GAE (probably want to s/SymPy/YourProject first)</li>
+</ul>
+<h2 id="implementation">Implementation</h2>
+<ul>
+<li>Security?</li>
+</ul>
+<h2 id="how-we-handle-it">How we handle it</h2>
+<ul>
+<li>Pickle results of each statement...but not everything can be pickled</li>
+<li>Security: GAE is sandboxed, so if someone gets out of the sandbox that's Google's problem</li>
+</ul>
+<h1 id="gamma">Gamma</h1>
+<p>Uses</p>
+<ul>
+<li>Clone of Wolfram|Alpha, but intended more to demonstrate SymPy's features</li>
+<li>Eventually will be used to show examples on homepage</li>
+<li>Limited &quot;implicit&quot; parsing makes it more familiar to users not experienced with Python</li>
+</ul>
+<h2 id="features">Features</h2>
+<p>Integrals</p>
+<hr />
+<p>Trig</p>
+<hr />
+<p>Graph</p>
+<p>Why it's slow: currently code is structured so that all data has to be loaded before graphs will render. Unfortunately for this particular expression trying to get the integral/series expansion is quite slow.</p>
+<h2 id="implementation-1">Implementation</h2>
+<ul>
+<li><p>Reason why AJAX is used: get around the 60-second time limit</p></li>
+<li>Interesting features are JavaScript or SymPy</li>
+<li>Implicit parsing
+<ul>
+<li>Makes it easier for users</li>
+<li>Toolbar on mobile helps as well</li>
+</ul></li>
+<li>2D plotting
+<ul>
+<li>JavaScript based; server computes values, but client renders them -&gt; more interactive</li>
+</ul></li>
+</ul>
+</body>
+</html>
