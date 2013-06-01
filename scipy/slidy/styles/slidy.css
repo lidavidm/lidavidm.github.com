@@ -466,3 +466,26 @@ div.horizontal a {
 .MathJax_Display {
   display: inline !important;
 }
+
+#thanks-to h1 {
+  font-size: 125%;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+div.small {
+  font-size: 0.9em;
+}
+
+div.small .col {
+  float: left;
+  width: 50%;
+}
+
+div.small .col:last-child {
+  float: right;
+}
+
+div.small ul li {
+  line-height: 100%;
+}

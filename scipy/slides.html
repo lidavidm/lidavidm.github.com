@@ -50,7 +50,7 @@ David Li
 <div class="slide section level1">
 
 <h2 id="uses">Uses</h2>
-<p><a href="http://goo.gl/2usJk">Demo URL</a></p>
+<p><a href="http://localhost:8082/shellmobile?evaluate=expr%20%3D%20x%20%2B%202*y%0A%23--%0Ax%20*%20expr%0A%23--%0Aexpand(x%20*%20expr)%0A%23--%0Aexpr%20%3D%20exp(x*y*z)%0A%23--%0Adiff(expr%2C%20x%2C%20y%2C%20y%2C%20z%2C%20z%2C%20z)%0A%23--%0Aintegrate(diff(expr%2C%20x)%2C%20x)%0A%23--%0A">Demo: http://goo.gl/2usJk</a></p>
 <p><a href="http://live.sympy.org"><img src="images/sphinx.png" alt="Sphinx Extension" /></a></p>
 </div>
 <div class="slide section level1">
@@ -101,21 +101,6 @@ It's Google's problem :)
 </h1>
 
 </div>
-<div class="slide section level1">
-
-<ul>
-<li>Problems
-<ul>
-<li>What if (an expression involving) <code>_</code> created an unpicklable?</li>
-<li>Function definitions</li>
-</ul></li>
-<li>Improvements?
-<ul>
-<li>Retain session when navigating between pages (Sphinx)</li>
-<li>Fixing bugs!</li>
-</ul></li>
-</ul>
-</div>
 <div id="sympy-gamma" class="slide section level1">
 <h1>SymPy Gamma</h1>
 <p>http://www.sympygamma.com</p>
@@ -138,7 +123,7 @@ It's Google's problem :)
 </ul>
 <div class="horizontal">
 
-<p><a href="http://www.sympygamma.com/input/?i=integrate%28exp%28x%29%2F%281+%2B+exp%282x%29%29%29"><img src="images/qr_gamma_integral.png" /></a></p>
+<p><a href="http://localhost:8081/input/?i=integrate%28exp%28x%29%2F%281+%2B+exp%282x%29%29%29"><img src="images/qr_gamma_integral.png" /></a></p>
 <div class="figure">
 <img src="images/example_gamma_integral.png" />
 </div>
@@ -150,7 +135,7 @@ It's Google's problem :)
 <ul>
 <li>Trigonometric expression: alternate forms</li>
 </ul>
-<p><a href="http://www.sympygamma.com/input/?i=sin%282x%29+%2F+%281+-+cos%5E2%282x%29%29"><img src="images/qr_gamma_trig.png" /></a></p>
+<p><a href="http://localhost:8081/input/?i=sin%282x%29+%2F+%281+-+cos%5E2%282x%29%29"><img src="images/qr_gamma_trig.png" /></a></p>
 </div>
 <div class="slide section level1">
 
@@ -169,8 +154,26 @@ It's Google's problem :)
 <li>Browser loads the result from the server via JavaScript</li>
 </ol>
 </div>
+<div id="future-improvements" class="slide section level1">
+<h1>Future Improvements</h1>
+<ul>
+<li>Live
+<ul>
+<li>Retain session when navigating between pages (Sphinx)</li>
+<li>Fixing bugs!</li>
+</ul></li>
+<li>Gamma
+<ul>
+<li>More result sets</li>
+<li>3D plotting?</li>
+</ul></li>
+<li>Automated testing</li>
+</ul>
+</div>
 <div id="thanks-to" class="slide section level1">
 <h1>Thanks To</h1>
+<div class="small">
+<div class="col">
 <ul>
 <li>SymPy team, in particular, Aaron Meurer and Ondrej Certik</li>
 <li>Other SymPy Live authors:
@@ -181,16 +184,12 @@ It's Google's problem :)
 <li>Mateusz Paprocki</li>
 <li>Vinzent Steinberg</li>
 <li>Aaron Meurer</li>
+<li>Alex Houlton</li>
+<li>Stefan Krastanov
+</div><div class="col"></li>
 </ul></li>
-</ul>
-</div>
-<div class="slide section level1">
-
-<ul>
 <li>(continued)
 <ul>
-<li>Alex Houlton</li>
-<li>Stefan Krastanov</li>
 <li>Kshitij Aranke</li>
 <li>Tristan Hume</li>
 <li>Grzegorz Świrski</li>
@@ -198,20 +197,16 @@ It's Google's problem :)
 <li>Mateusz Kmiecik</li>
 <li>Steve Anton</li>
 </ul></li>
-</ul>
-</div>
-<div class="slide section level1">
-
-<ul>
 <li>Other SymPy Gamma authors:
 <ul>
 <li>Ondrej Certik</li>
 <li>André Luiz Guimarães de Souza Leite</li>
-<li>Aaron Meurer</li>
+<li>Aaron Meurer
+</div>
+</div>
+
+</li>
 </ul></li>
-<li>https://github.com/sympy/sympy/blob/master/AUTHORS</li>
-<li>https://github.com/sympy/sympy_gamma/blob/master/AUTHORS</li>
-<li>https://github.com/sympy/sympy-live/blob/master/AUTHORS</li>
 </ul>
 </div>
 </body>
