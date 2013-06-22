@@ -219,10 +219,10 @@ p.copyright { font-size: smaller }
 
 a img { border-width: 0; border-style: none }
 
-a:visited { color: navy }
-a:link { color: navy }
-a:hover { color: red; text-decoration: underline }
-a:active { color: red; text-decoration: underline }
+a:visited { color: white; }
+a:link { color: #fff; }
+a:hover { color: white; text-decoration: underline }
+a:active { color: #999; }
 
 a {text-decoration: none}
 .navbar a:link {color: white}
