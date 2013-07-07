@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <title>SymPy</title>
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
         <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" />
         <link rel="stylesheet" id="current-theme" href="/static/css/style.css" type="text/css" media="screen" />
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Gentium+Basic" rel="stylesheet" type="text/css" />
@@ -16,18 +17,18 @@
         <div id="container">
             <div id="header">
                 <h1><a href="index.html"> <img src="/static/images/logo.png" alt="SymPy Logo" /> SymPy</a></h1>
-                <div id="mobile-menu"></div>
+                <div id="mobile-menu"><i class="icon-ellipsis-vertical"></i></div>
                 <div id="main-navigation">
                     
                     
                     <ul>
                         <li class="active"><a href="index.html">Hlavní stránka</a></li>
                         <li class=""><a href="download.html">Stáhnout</a></li>
-                        <li class=""><a href="http://docs.sympy.org">Dokumentace</a></li>
+                        <li class=""><a href="http://docs.sympy.org">Dokumentace <i class="icon-external-link-sign"></i></a></li>
                         <li class=""><a href="support.html">Podpora</a></li>
                         <li class=""><a href="development.html">Vývoj</a></li>
                         <li class=""><a href="donate.html">Donate</a></li>
-                        <li><a href="http://live.sympy.org/">Online Konzole</a></li>
+                        <li><a href="http://live.sympy.org/">Online Konzole <i class="icon-external-link-sign"></i></a></li>
                     </ul>
                     
                     <div class="clear"></div>
@@ -231,56 +232,55 @@
                             <button> Compute </button>
                         </form>
                     </div>
+                    <div id="about" class="sidebar_card">
+                        <h3>Ihned stáhnout</h3>
+                        <p>
+                            Jednotlivá vydání: <a href="http://code.google.com/p/sympy/downloads/list">Google Code downloads</a><br/>
+                            Nejnovější git verze: <a href="http://github.com/sympy/sympy">github.com/sympy/sympy</a>
+                        </p>
+                    </div>
+                    <div id="quick_links" class="sidebar_card">
+                        <h3>Rychlé Odkazy</h3>
+                        <ul>
+                            <li><a href="http://docs.sympy.org/">Dokumentace</a></li>
+                            <li><a href="http://code.google.com/p/sympy/downloads/list">Stáhnout (zdrojový kód tarballs)</a></li>
+                            <li><a href="http://code.google.com/p/sympy/wiki/DownloadInstallation?tm=2">Stáhnout (balíčky pro distribuce)</a></li>
+                            <li><a href="http://groups.google.com/group/sympy">Mailing list</a></li>
+                            <li><a href="http://github.com/sympy/sympy">Zdrojový kód</a></li>
+                            <li><a href="http://code.google.com/p/sympy/issues/list">Sledování problémů</a></li>
+                            <li><a href="http://code.google.com/p/sympy/">Google Code page</a></li>
+                            <li><a href="http://github.com/sympy/sympy/wiki">Wiki</a></li>
+                            <li><a href="http://live.sympy.org/">Zkuste SymPy online</a></li>
+                            <li><a href="http://sympy.blogspot.com/">Oficiální SymPy blog</a></li>
+                            <li><a href="http://planet.sympy.org/">Planeta SymPy</a></li>
+                            <li><a href="http://colabti.org/irclogger/irclogger_logs/sympy">IRC channel logs</a></li>
+                        </ul>
+                    </div>
                     
-<div id="about" class="sidebar_card">
-    <h3>Ihned stáhnout</h3>
-    <p>
-        Jednotlivá vydání: <a href="http://code.google.com/p/sympy/downloads/list">Google Code downloads</a><br/>
-        Nejnovější git verze: <a href="http://github.com/sympy/sympy">github.com/sympy/sympy</a>
-    </p>
-</div>
-<div id="quick_links" class="sidebar_card">
-    <h3>Rychlé Odkazy</h3>
-    <ul>
-        <li><a href="http://docs.sympy.org/">Dokumentace</a></li>
-        <li><a href="http://code.google.com/p/sympy/downloads/list">Stáhnout (zdrojový kód tarballs)</a></li>
-        <li><a href="http://code.google.com/p/sympy/wiki/DownloadInstallation?tm=2">Stáhnout (balíčky pro distribuce)</a></li>
-        <li><a href="http://groups.google.com/group/sympy">Mailing list</a></li>
-        <li><a href="http://github.com/sympy/sympy">Zdrojový kód</a></li>
-        <li><a href="http://code.google.com/p/sympy/issues/list">Sledování problémů</a></li>
-        <li><a href="http://code.google.com/p/sympy/">Google Code page</a></li>
-        <li><a href="http://github.com/sympy/sympy/wiki">Wiki</a></li>
-        <li><a href="http://live.sympy.org/">Zkuste SymPy online</a></li>
-        <li><a href="http://sympy.blogspot.com/">Oficiální SymPy blog</a></li>
-        <li><a href="http://planet.sympy.org/">Planeta SymPy</a></li>
-        <li><a href="http://colabti.org/irclogger/irclogger_logs/sympy">IRC channel logs</a></li>
-    </ul>
-</div>
-
 <div class="sidebar_card">
     <h3>Novinky</h3>
     <p>
-        <span class="date">8 Apr 2013</span>  SymPy is accepted as a <a href="http://www.google-melange.com/gsoc/org/show/google/gsoc2013/sympy">mentoring organization</a> for Google Summer of Code 2013  <br/>
+        <span class="date">8.4.2013</span>  SymPy is accepted as a <a href="http://www.google-melange.com/gsoc/org/show/google/gsoc2013/sympy">mentoring organization</a> for Google Summer of Code 2013  <br/>
     </p><p>
-        <span class="date">16 Oct 2012</span> Vydaná verze 0.7.2 (<a href="https://github.com/sympy/sympy/wiki/Release-Notes-for-0.7.2">změny</a>)<br/>
+        <span class="date">16.10.2012</span> Vydaná verze 0.7.2 (<a href="https://github.com/sympy/sympy/wiki/Release-Notes-for-0.7.2">změny</a>)<br/>
     </p><p>
-        <span class="date">17 Mar 2012</span>  SymPy is accepted as a <a href="http://www.google-melange.com/gsoc/org/show/google/gsoc2012/sympy">mentoring organization</a> for Google Summer of Code 2012  <br/>
+        <span class="date">17.3.2012</span>  SymPy is accepted as a <a href="http://www.google-melange.com/gsoc/org/show/google/gsoc2012/sympy">mentoring organization</a> for Google Summer of Code 2012  <br/>
     </p><p>
-        <span class="date">29 Jul 2011</span> Vydaná verze 0.7.1 (<a href="https://github.com/sympy/sympy/wiki/Release-Notes-for-0.7.1">změny</a>)<br/>
+        <span class="date">29.7.2011</span> Vydaná verze 0.7.1 (<a href="https://github.com/sympy/sympy/wiki/Release-Notes-for-0.7.1">změny</a>)<br/>
     </p><p>
-        <span class="date">28 Jun 2011</span> Vydaná verze 0.7.0 (<a href="https://github.com/sympy/sympy/wiki/Release-Notes-for-0.7.0">změny</a>)<br/>
+        <span class="date">28.6.2011</span> Vydaná verze 0.7.0 (<a href="https://github.com/sympy/sympy/wiki/Release-Notes-for-0.7.0">změny</a>)<br/>
     </p><p>
-        <span class="date">18 Mar 2011</span> SymPy je přijato jako <a href="http://www.google-melange.com/gsoc/org/show/google/gsoc2011/sympy">mentorující organizace</a> pro Google Summer of Code 2011<br/>
+        <span class="date">18.3.2011</span> SymPy je přijato jako <a href="http://www.google-melange.com/gsoc/org/show/google/gsoc2011/sympy">mentorující organizace</a> pro Google Summer of Code 2011<br/>
     </p><p>
-        <span class="date">23 Oct 2010</span> Spuštěn nový web na sympy.org<br/>
+        <span class="date">23.10.2010</span> Spuštěn nový web na sympy.org<br/>
     </p><p>
-        <span class="date">18 Oct 2010</span> Final page about the <a href="https://github.com/sympy/sympy/wiki/GSoC-2010-report">2010 Google Summer of Code in SymPy</a> is available.<br/>
+        <span class="date">18.10.2010</span> Final page about the <a href="https://github.com/sympy/sympy/wiki/GSoC-2010-report">2010 Google Summer of Code in SymPy</a> is available.<br/>
     </p><p>
-        <span class="date">17 Mar 2010</span> Vydaná verze 0.6.7 (<a href="http://code.google.com/p/sympy/wiki/Changes">změny</a>)<br/>
+        <span class="date">17.3.2010</span> Vydaná verze 0.6.7 (<a href="http://code.google.com/p/sympy/wiki/Changes">změny</a>)<br/>
     </p><p>
-        <span class="date">20 Dec 2009</span> Vydaná verze 0.6.6 (<a href="http://code.google.com/p/sympy/wiki/Changes">změny</a>)<br/>
+        <span class="date">20.12.2009</span> Vydaná verze 0.6.6 (<a href="http://code.google.com/p/sympy/wiki/Changes">změny</a>)<br/>
     </p><p>
-        <span class="date">26 Sep 2009</span> Je dostupná závěrečná stránka o <a href="https://github.com/sympy/sympy/wiki/GSoC-2009-report">2009 Google Summer of Code - SymPy</a>.
+        <span class="date">26.9.2009</span> Je dostupná závěrečná stránka o <a href="https://github.com/sympy/sympy/wiki/GSoC-2009-report">2009 Google Summer of Code - SymPy</a>.
     </p>
 </div>
 
