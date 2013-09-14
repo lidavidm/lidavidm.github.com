@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>lidavidm’s blog: {{ page.title }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{{ site.baseurl }}/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="{{ site.baseurl }}/css/custom.css" rel="stylesheet" media="screen">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="../../assets/js/html5shiv.js"></script>
+        <script src="../../assets/js/respond.min.js"></script>
+        <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only"></span>
+        </button>
+        <a class="navbar-brand" href="#">lidavidm’s blog</a>
+      </div>
+
+      <ul class="nav navbar-nav">
+        <li><a href="{{ site.baseurl }}">Home</a></li>
+        <li><a href="{{ site.baseurl }}/about">About &amp; Projects</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <div class="page-header">
+        <h1>{{ page.title }} <small>{{ page.subtitle }}</small></h1>
+      </div>
+
+      <div class="row">
+        {{ content }}
+      </div>
+
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Copyright &copy; 2013 David Li.</p>
+        <p class="text-muted credit">Icons courtesy <a href="http://glyphicons.com/">Glpyhicons</a> as part of Bootstrap.</p>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ site.baseurl }}/js/bootstrap.min.js"></script>
+  </body>
+</html>
