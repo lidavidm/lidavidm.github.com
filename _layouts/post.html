@@ -2,4 +2,16 @@
 layout: base
 ---
 
-{{ content }}
+<div class="col-md-8" id="content">
+  {{ content }}
+</div>
+<div class="col-md-4">
+  <p><span class="glyphicon glyphicon-calendar"></span> Published {{ page.date | date_to_string }}</p>
+  {% unless page.tags == empty %}
+  <p><span class="glyphicon glyphicon-tag"></span> Tags
+  {% for tag in page.tags %}
+  <span class="label label-info">{{ tag }}</span>
+  {% endfor %}
+  </p>
+  {% endunless %}
+</div>

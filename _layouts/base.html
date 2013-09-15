@@ -21,18 +21,18 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
           <span class="sr-only"></span>
         </button>
-        <a class="navbar-brand" href="#">lidavidm’s blog</a>
+        <a class="navbar-brand" href="{{ site.baseurl }}/">lidavidm’s blog</a>
       </div>
 
       <ul class="nav navbar-nav">
-        <li><a href="{{ site.baseurl }}">Home</a></li>
+        <li><a href="{{ site.baseurl }}/">Home</a></li>
         <li><a href="{{ site.baseurl }}/about">About &amp; Projects</a></li>
       </ul>
     </nav>
 
     <div class="container">
       <div class="page-header">
-        <h1>{{ page.title }} <small>{{ page.subtitle }}</small></h1>
+        <h1><a href="{{ page.url }}">{{ page.title }}</a> <small>{{ page.subtitle }}</small></h1>
       </div>
 
       <div class="row">
@@ -52,5 +52,6 @@
     <script src="//code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ site.baseurl }}/js/bootstrap.min.js"></script>
+    <script src="{{ site.baseurl }}/js/headers.js"></script>
   </body>
 </html>

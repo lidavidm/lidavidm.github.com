@@ -1,4 +1,4 @@
 #!/bin/sh
 
-jekyll serve --baseurl= --drafts
+jekyll serve --baseurl= --drafts --watch
 
