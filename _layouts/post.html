@@ -9,9 +9,35 @@ layout: base
   <p><span class="glyphicon glyphicon-calendar"></span> Published {{ page.date | date_to_string }}</p>
   {% unless page.tags == empty %}
   <p><span class="glyphicon glyphicon-tag"></span> Tags
-  {% for tag in page.tags %}
-  <span class="label label-info">{{ tag }}</span>
-  {% endfor %}
+    {% for tag in page.tags %}
+    <span class="label label-info">{{ tag }}</span>
+    {% endfor %}
   </p>
   {% endunless %}
+  <p>
+    <!-- Place this tag where you want the +1 button to render. -->
+    <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>
+
+    <!-- Place this tag after the last +1 button tag. -->
+    <script type="text/javascript">
+      (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+  </p>
+  <p>
+    <!-- Place this tag where you want the share button to render. -->
+    <div class="g-plus" data-action="share" data-annotation="none"></div>
+
+    <!-- Place this tag after the last share tag. -->
+    <script type="text/javascript">
+      (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+  </p>
 </div>
