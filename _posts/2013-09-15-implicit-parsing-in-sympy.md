@@ -2,9 +2,6 @@
 layout: post
 title: Parsing & Implicit Parsing in SymPy
 tags: SymPy Python parsing
-excerpt: One of the annoyances of entering mathematics on the computer is the
-rigidity of the format the computer generally expects. In SymPy, `sympify()`
-won’t accept any of the following, though a human would
 ---
 
 <div class="toc"></div>
