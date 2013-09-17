@@ -39,6 +39,10 @@ code {
   border-bottom: 1px solid rgb(238, 238, 238);
 }
 
+#posts-list li p:first-of-type:after {
+  content: "…";
+}
+
 #footer {
   margin-top: 5em;
   padding-top: 1em;
