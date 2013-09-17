@@ -21,8 +21,10 @@ $(function() {
         var superToc = [];
         var toc = $('<ol/>');
         var panel = $('<div>').addClass('panel-body');
-        panel.appendTo($('<div>').addClass('panel').addClass('panel-default').appendTo($('#content .toc')));
-        toc.appendTo(panel);
+        var html = '<div class="toc"><div class="panel panel-default"><div class="panel-body">';
+        html += '</div></div></div>';
+        var panel = $(html).prependTo($('#content'));
+        toc.appendTo(panel.find('.panel-body'));
 
         var currentLevel = levelOf(headers[0]);
         for (var i = 0; i < headers.length; i++) {
