@@ -5,31 +5,51 @@ tags: [patents, essay]
 excerpt: <p>A non-technical look on what software patents mean for you</p>
 ---
 
-Say you’re an aspiring writer[^1]. You’ve toiled endless hours working on
-your book, picking each word carefully, giving your sentences that twist,
-perfectly capturing the spring vista outside your window. You publish your
-book and immediately make it onto the *New York Times* bestseller list.
+Say you’re an aspiring writer. You’ve toiled endless hours working on your
+book telling the tale of a lieutenant and his betrayal of his general,
+picking each word carefully, giving your sentences that twist, perfectly
+capturing the image of the spring vista outside your window. You publish
+your book and immediately make it onto the *New York Times* bestseller
+list. Time to sit back and relax…
 
-But there’s that other writer, William Shakespeare. And he has a bone to
-pick with you. While you haven’t *plagarized* him per se, he noticed your
-clever sentence structure – and he has a patent on it. Shakespeare demands
-you pay up.
+Then you open your mail one day and see a legal notice[^1]. Another writer,
+someone named William Shakespeare, says he has a patent on stories
+[about lieutenants who betray their masters](http://en.wikipedia.org/wiki/Othello).
+*That’s ridiculous*, you say. *Plots are ideas and that Shakespeare can’t
+patent them! [^2]*
 
-You haven’t copied his work – the Bard has not yet published a single word!
-– but you have no choice.
+What are your options?
 
-And it gets worse, like everything else in life. Another person, somewhat
-short of stature, bent over a bit, approaches you, bearing *another* dreaded
-patent. The title: “A means of communication using subjects followed by
-conjugated verbs”.
+Well, you remember reading a
+[story similar to Shakespeare’s](http://en.wikipedia.org/wiki/Othello#Cinthio_source),
+published long before the Bard received his patent. Perhaps you could
+challenge him in court and invalidate the patent? How much would that cost?
 
-Stop. __Stop__. This is *ridiculous*, right? Just some academic nightmare
-that has no real-world bearing.
+$500,000. In legal fees[^3]. That’s not counting the settlement you’d have
+to pay if you lose.
 
-Well, you’re __wrong__.
+Pick yourself up off that floor. There’s more to that legal notice.
+
+*But*, you whine, *how am I supposed to know?*
+
+Good question. Here’s another one: what’s the difference between a patent
+on—let’s get the fancy pseudo-legal wording out here—“a means of
+communicating a story in which an official betrays his superior” and a
+patent on “a method of communicating a story about the betrayal of a general
+by a subordinate”? If both of those cover your story
+
+(MORE EXAMPLES)
+
+Let’s back up here: *what is the purpose of patents?*
 
 *For more analogies, check out the* [End Software Patents *wiki*](http://en.swpat.org/wiki/Analogies).
 
 [^1]: This analogy comes
       [by way of Richard Stallman](http://www.gnu.org/philosophy/software-literary-patents.html),
       by the way.
+
+[^2]: See the
+      [USPTO’s website](http://www.uspto.gov/patents/resources/general_info_concerning_patents.jsp#heading-4):
+      “A patent cannot be obtained upon a mere idea or suggestion.”
+
+[^3]: “The Private Costs of Patent Litigation” (2008), page 16.
