@@ -75,7 +75,7 @@ We’d like to be able to parse these expressions:
 Note that the last example is valid Python—it’s equivalent to
 `(0.)[123]`. But that’s not what we wanted, so we modified the tokenizer:
 
-```python
+{% highlight python %}
 # Standard library
 >>> tokenize.tokenize(StringIO('0.[123]').readline)
 1,0-1,2:	NUMBER	'0.'
@@ -88,11 +88,11 @@ Note that the last example is valid Python—it’s equivalent to
 >>> sympy.parsing.sympy_tokenize.tokenize(StringIO('0.[123]').readline)
 1,0-1,7:	NUMBER	'0.[123]'
 2,0-2,0:	ENDMARKER	''
-```
+{% endhighlight %}
 
 `!` and `!!` are operators now:
 
-```python
+{% highlight python %}
 >>> sympy.parsing.sympy_tokenize.tokenize(StringIO('x!!').readline)
 1,0-1,1:	NAME	'x'
 1,1-1,3:	OP	'!!'
@@ -101,7 +101,7 @@ Note that the last example is valid Python—it’s equivalent to
 1,0-1,1:	NAME	'x'
 1,1-1,2:	OP	'!'
 2,0-2,0:	ENDMARKER	''
-```
+{% endhighlight %}
 
 Unfortunately, since this is based on an older tokenizer, it doesn’t support
 Python 3 features, such as bytestrings, and it’ll
@@ -114,15 +114,15 @@ not to mention it
 Say you’re making a SymPy calculator/grapher/what-have-you. The user inputs
 this expression:
 
-```python
+{% highlight python %}
 sin(x) + 3
-```
+{% endhighlight %}
 
 and your app spits out this error message:
 
-```python
+{% highlight python %}
 NameError: name 'x' is not defined
-```
+{% endhighlight %}
 
 Not a very good calculator. SymPy handles this by transforming the token
 stream; in this case, undefined variables are wrapped in `Symbol()` calls to
@@ -149,7 +149,7 @@ we’re not modifying the parser.
 
 The API for this is a bit hidden. Here’s an example:
 
-```python
+{% highlight python %}
 >>> from sympy.parsing.sympy_parser import parse_expr
 >>> parse_expr("1/2")
 1/2
@@ -164,7 +164,7 @@ The API for this is a bit hidden. Here’s an example:
 >>> transformations = (standard_transformations + (convert_xor,))
 >>> parse_expr("x^3", transformations=transformations)
 x**3
-```
+{% endhighlight %}
 
 How do the implicit parsing transformations work? They’re split into four
 transformations: symbol splitting, multiplication, application, and
@@ -212,16 +212,16 @@ To implement function exponentiation, think about how the token stream would
 look at this point. All functions are applied, so for `sin**2 x`, we would
 have something like this:
 
-```python
+{% highlight python %}
 ['sin', '**', 'Integer', '(', '2', ')', '(', 'Symbol', '(', "'x'", ')', ')']
-```
+{% endhighlight %}
 
 If you have implicit multiplication enabled, it’ll actually look like this
 (note the extraneous multiplication):
 
-```python
+{% highlight python %}
 ['sin', '**', 'Integer', '(', '2', ')', '*', '(', 'Symbol', '(', "'x'", ')', ')']
-````
+{% endhighlight %}
 
 The transformation has to figure out what constitutes the exponent and what
 constitutes the function call. The rule SymPy uses is, essentially, the
@@ -233,9 +233,9 @@ multiplication if it exists, to find the closing parenthesis of the function
 call (this correctly handles nested parentheses), and moves the tokens for
 the exponent to the end. So what the parser ends up seeing is
 
-```python
+{% highlight python %}
 ['sin', '(', 'Symbol', '(', "'x'", ')', ')', '**', 'Integer', '(', '2', ')']
-```
+{% endhighlight %}
 
 which is equivalent to `sin(Symbol(x))**2`.
 
@@ -244,7 +244,7 @@ which is equivalent to `sin(Symbol(x))**2`.
 One final note: SymPy uses a an evaluation trick for the final result. SymPy
 defines `Symbol.__call__` so that this works:
 
-```python
+{% highlight python %}
 >>> spam = sympify('f(x)')
 f(x)
 >>> x = Symbol('x')
@@ -252,7 +252,7 @@ f(x)
 f(x)
 >>> spam == eggs
 True
-```
+{% endhighlight %}
 
 However, it’s a
 [point of contention](https://code.google.com/p/sympy/issues/detail?id=440)

@@ -15,26 +15,31 @@
         <![endif]-->
   </head>
   <body>
-    <nav class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-          <span class="sr-only"></span>
-        </button>
-        <a class="navbar-brand" href="{{ site.baseurl }}/">lidavidm’s blog</a>
+    <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="{{ site.baseurl }}/" class="navbar-brand">lidavidm’s blog</a>
+        </div>
+        <nav class="collapse navbar-collapse navbar-collapse-1" role="navigation">
+          <ul class="nav navbar-nav">
+            <li><a href="{{ site.baseurl }}/">Home</a></li>
+            <li><a href="{{ site.baseurl }}/about">About &amp; Projects</a></li>
+        </nav>
       </div>
-
-      <ul class="nav navbar-nav">
-        <li><a href="{{ site.baseurl }}/">Home</a></li>
-        <li><a href="{{ site.baseurl }}/about">About &amp; Projects</a></li>
-      </ul>
-    </nav>
+    </header>
+    <header class="page-title">
+      <div class="container">
+          <h1><a href="{{ page.url }}">{{ page.title }}</a> <small>{{ page.subtitle }}</small></h1>
+      </div>
+    </header>
 
     <div class="container">
-      <div class="page-header">
-        <h1><a href="{{ page.url }}">{{ page.title }}</a> <small>{{ page.subtitle }}</small></h1>
-      </div>
-
       <div class="row">
         {{ content }}
       </div>
