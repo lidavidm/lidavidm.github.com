@@ -49,3 +49,7 @@ $(function() {
         }
     }
 });
+
+$(function() {
+    $('.footnotes').appendTo($('.col-md-8'));
+});

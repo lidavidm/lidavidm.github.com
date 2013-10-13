@@ -1,2 +1,16 @@
 baseurl: "http://lidavidm.github.io"
 markdown: maruku
+
+patent_articles:
+  - title: "“Shopping cart” patent troll tries to save itself, gets pounded by Newegg"
+    url: "http://arstechnica.com/tech-policy/2013/09/shopping-cart-patent-troll-tries-to-save-itself-gets-pounded-by-newegg/"
+    summary: "Summary"
+  - title: "Ask Patents"
+    url: "http://patents.stackexchange.com"
+    summary: "StackExchange’s effort to take down patents by crowdsourcing the discovery of relevant prior art"
+  - title: "Patent Office asks the public for advice on software patents"
+    url: "http://www.theverge.com/2013/1/4/3835118/patent-office-asks-public-advice-on-software-patents"
+    summary: 'The US Patent Office <a href=\"http://www.uspto.gov/patents/init_events/software_partnership.jsp\">wants feedback</a> on how to deal with software patents'
+  - title: "Talking Software Patents with the Patent Office: A Sign of Reform to Come?"
+    url: "https://www.eff.org/deeplinks/2013/02/talking-software-patents-patent-office-sign-reform-come"
+    summary: "One organization’s solution to overly broad patents"
