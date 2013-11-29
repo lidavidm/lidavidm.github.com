@@ -7,6 +7,27 @@
     <!-- Bootstrap -->
     <link href="{{ site.baseurl }}/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="{{ site.baseurl }}/css/custom.css" rel="stylesheet" media="screen">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [ ['$','$'] ],
+          displayMath: [ ['$$','$$'] ],
+          processEscapes: true
+        },
+        "HTML-CSS": {
+          availableFonts: [],
+          preferredFont: null,
+          webFont: "Gyre-Pagella",
+          scale: 90
+        }
+      });
+    </script>
+    <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js">
+    </script>
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

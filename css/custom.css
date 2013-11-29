@@ -110,6 +110,7 @@ https://gist.github.com/nicolashery/5765395
 */
  
 pre,code { background-color: #fdf6e3; color: #586e75 }
+a code { color: inherit; }
 .highlight .c { color: #93a1a1 } /* Comment */
 .highlight .err { color: #586e75 } /* Error */
 .highlight .g { color: #586e75 } /* Generic */
