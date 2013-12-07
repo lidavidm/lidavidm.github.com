@@ -1,10 +1,12 @@
 import sys
+import ast
 import new
 import traceback
 from cStringIO import StringIO
 import tokenize
 import contextlib
 from sympy import latex
+from sympy.interactive.session import int_to_Integer
 
 @contextlib.contextmanager
 def latex_output():
@@ -46,6 +48,15 @@ def split(source):
     else:
         return None, source
 
+def get_input(terminator="END_MESSAGE"):
+    buf = []
+    while True:
+        line = raw_input()
+        if line.strip() == terminator:
+            break
+        buf.append(line)
+    return ''.join(buf)
+
 PREEXEC = """\
 from __future__ import division
 from sympy import *
@@ -59,41 +70,48 @@ exec PREEXEC in statement_module.__dict__
 
 print("READY")
 while True:
-    buf = []
-    while True:
-        line = raw_input()
-        if line.strip() == "END_MESSAGE":
-            break
-        buf.append(line)
-    source = ''.join(buf)
-
-    # split source code into 'exec' and 'eval' parts
-    exec_source, eval_source = split(source)
-
-    try:
-        compile(eval_source, '<input>', 'eval')
-    except (OverflowError, SyntaxError, ValueError):
-        exec_source, eval_source = source, None
-
-    if exec_source is not None:
-        exec_source += '\n'
-    if eval_source is not None:
-        eval_source += '\n'
-
+    source = get_input()
     stream = StringIO()
-    with redirect(stream), latex_output():
+    try:
         try:
-            if exec_source is not None:
-                try:
-                    exec_code = compile(exec_source, '<input>', 'exec')
-                    eval(exec_code, statement_module.__dict__)
-                except (OverflowError, SyntaxError, ValueError):
-                    stream.write(traceback.format_exc())
-
-            if eval_source is not None:
-                result = eval(eval_source, statement_module.__dict__)
-                sys.displayhook(result)
-        except:
+            # check for a SyntaxError now; this way the user will see their
+            # original statement and not the transformed one
+            ast.parse(source)
+        except SyntaxError:
             stream.write(traceback.format_exc())
-    print('OUTPUT' + stream.getvalue())
-    print('ENDOUTPUT')
+            raise
+
+        # convert int to Integer (1/2 -> Integer(1)/Integer(2))
+        source = int_to_Integer(source)
+
+        # split source code into 'exec' and 'eval' parts
+        exec_source, eval_source = split(source)
+
+        try:
+            compile(eval_source, '<input>', 'eval')
+        except (OverflowError, SyntaxError, ValueError):
+            exec_source, eval_source = source, None
+
+        if exec_source is not None:
+            exec_source += '\n'
+        if eval_source is not None:
+            eval_source += '\n'
+
+        with redirect(stream), latex_output():
+            try:
+                if exec_source is not None:
+                    try:
+                        exec_code = compile(exec_source, '<input>', 'exec')
+                        eval(exec_code, statement_module.__dict__)
+                    except (OverflowError, SyntaxError, ValueError):
+                        stream.write(traceback.format_exc())
+
+                if eval_source is not None:
+                    result = eval(eval_source, statement_module.__dict__)
+                    sys.displayhook(result)
+                    statement_module._ = result
+            except:
+                stream.write(traceback.format_exc())
+    finally:
+        print('OUTPUT' + stream.getvalue())
+        print('ENDOUTPUT')

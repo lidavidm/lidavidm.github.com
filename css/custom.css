@@ -60,17 +60,21 @@ code {
   margin-top: 1em;
 }
 
-#posts-list {
+.posts-list {
   list-style-type: none;
   padding: 0;
 }
 
-#posts-list li {
+.posts-list li {
   margin-bottom: 1em;
   border-bottom: 1px solid rgb(238, 238, 238);
 }
 
-#posts-list li p:first-of-type:after {
+.posts-list li:last-child {
+  border-bottom: 0;
+}
+
+.posts-list li p:first-of-type:after {
   content: "…";
 }
 

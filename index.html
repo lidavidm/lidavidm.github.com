@@ -4,7 +4,7 @@ title: Home
 ---
 
 <div class="col-md-8">
-  <ul id="posts-list">
+  <ul class="posts-list">
     {% for post in site.posts %}
     {% if post.tags and post.tags[0] == 'patents' %}
     {% continue %}
@@ -20,7 +20,6 @@ title: Home
             <span class="label label-info">{{ tag }}</span>
           {% endfor %}
         {% endunless %}
-        | <a href="{{ post.url }}">Read More…</a>
       </p>
     </li>
     {% endfor %}

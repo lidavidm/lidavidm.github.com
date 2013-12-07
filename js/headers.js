@@ -51,5 +51,5 @@ $(function() {
 });
 
 $(function() {
-    $('.footnotes').appendTo($('.col-md-8'));
+    $('.footnotes').appendTo($('.col-md-8 > div:first-child'));
 });

@@ -209,8 +209,8 @@ SymPy.Shell = Class.$extend({
         embed.data = 'python.nmf';
         embed.type = mimetype;
         embed.addEventListener('message', this.handleNaClMessage.bind(this));
-        // embed.addEventListener('progress', this.handleProgress_.bind(this));
-        // embed.addEventListener('load', this.handleLoad_.bind(this));
+        embed.addEventListener('progress', this.handleNaClProgress.bind(this));
+        // embed.addEventListener('load', this.handleNaClLoad.bind(this));
         // embed.addEventListener('error', this.handleLoadError_.bind(this));
         // embed.addEventListener('abort', this.handleLoadAbort_.bind(this));
         // embed.addEventListener('crash', this.handleCrash_.bind(this));
@@ -237,7 +237,16 @@ SymPy.Shell = Class.$extend({
         this._handlingData = false;
         this._ready = false;
         this._hasNaCl = true;
+        this._naClReady = [];
         this.embed = embed;
+    },
+
+    _onNaClReady: function(f) {
+        this._naClReady.push(f);
+    },
+
+    handleNaClProgress: function(e) {
+        console.log(e);
     },
 
     handleNaClMessage: function(e) {
@@ -251,6 +260,8 @@ SymPy.Shell = Class.$extend({
                 if (this.banner) {
                     this.outputEl.append($('<div>'+this.banner+'</div>'));
                 }
+
+                this._naClReady.forEach(function(f) { f(); });
             }
             else {
                 this.outputEl.append($('<div/>').html('Loading: ' + data));
@@ -955,6 +966,10 @@ SymPy.Shell = Class.$extend({
     },
 
     evaluate: function() {
+        if (this._hasNaCl && !this._ready) {
+            this._onNaClReady(this.evaluate.bind(this));
+            return;
+        }
         var statement = this.getValue();
         this.updateHistory(statement);
         // make sure the statement is not only whitespace
