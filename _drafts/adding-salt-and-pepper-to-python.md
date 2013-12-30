@@ -1,5 +1,5 @@
 ---
-title: Adding Salt and Pepper to Python (Or, Python under Native Client)
+title: Adding Salt to Python (Or, Python under Native Client)
 layout: post
 tags: [Python, Native Client, SymPy, Live]
 ---
@@ -55,7 +55,9 @@ their tab? How long do we wait before killing their process? How do we
 preserve their session? Services like [Wakiri](http://www.wakiri.io) provide
 this – but they’re a business, and we’re a project.
 
-One solution comes from Google itself: Native Client.
+One solution comes from Google itself: Native Client. This allows native
+code (C, C++) to be compiled into a portable intermediate language[^3],
+which Google Chrome will then compile and execute on the end-user’s machine.
 
 
 [^1]: We could do something like make a module for each user, and just
@@ -65,3 +67,6 @@ One solution comes from Google itself: Native Client.
 [^2]: App Engine does have
       [backends](https://developers.google.com/appengine/docs/python/backends/),
       but these cost extra and don’t have guaranteed uptime.
+
+[^3]: At least, for Portable Native Client (PNaCl). Normal Native Client
+      requires separate builds for each architecture targeted.

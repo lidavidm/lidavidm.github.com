@@ -8,15 +8,15 @@ excerpt: <p>A non-technical look on what software patents mean for you</p>
 Say you’re an aspiring writer. You’ve toiled endless hours working on your
 book, telling the tale of a lieutenant and his betrayal of his general,
 picking each word carefully, giving your sentences that twist, perfectly
-capturing the image of the spring vista outside your window. You publish
-your book and immediately make it onto the *New York Times* bestseller
-list. Time to sit back and relax…
+capturing the image of the spring vista outside your window, the backdrop of
+your epic. You publish your book and immediately make it onto the *New York
+Times* bestseller list. Time to sit back and relax…
 
-Then you open your mail one day and see a legal notice[^1]. Another writer,
+One day, you open your mail and see a legal notice[^1]. Another writer,
 someone named William Shakespeare, says he has a patent on stories
 [about lieutenants who betray their masters](http://en.wikipedia.org/wiki/Othello).
 *That’s ridiculous*, you say. *Plots are ideas and that Shakespeare can’t
-patent them! [^2]*
+patent them!*[^2]
 
 What are your options?
 
@@ -25,26 +25,26 @@ Well, you remember reading a
 published long before the Bard received his patent. Perhaps you could
 challenge him in court and invalidate the patent? How much would that cost?
 
-__$500,000__. In legal fees[^3]. That’s not counting the settlement you’d have
+__$500,000__—in legal fees[^3]. That’s not counting the settlement you’d have
 to pay if you lose.
 
 Pick yourself up off that floor. There’s more to that legal notice.
 
 *But*, you whine, *how am I supposed to know?*
 
-Good question. Here’s another one: what’s the difference between a patent
-on—let’s get the fancy pseudo-legal wording out here—“a means of
-communicating a story in which an official betrays his superior” and a
-patent on “a method of communicating a tale about the betrayal of a general
-by a subordinate”? How are you supposed to search for patents that could
-cover your story, given that you could word and reword and reword the same
-idea multiple ways? Or that you could have multiple slightly different ideas
-that still cover your story?
+Good question. Here’s another one: what’s the difference between a patent on
+“a means of communicating a story in which an official betrays his superior”
+and a patent on “a method of communicating a tale about the betrayal of a
+general by a subordinate”? How are you supposed to search for patents that
+could cover your story, given that you could word and reword and reword the
+same idea multiple ways? Or that you could have multiple slightly different
+ideas that still cover your story?
 
-Now. Let’s consider what Shakespeare could demand from you. He could ask
-that you __license__ his patent—in effect, that you pay him money to use his
-idea. He could ask for an __injunction__—censor your book. Or you could
-refuse, and __rewrite__ your book.
+And let’s consider what Shakespeare could demand from you. He could ask that
+you __license__ his patent—in effect, that you pay him money to use his
+“invention”. He could ask for an __injunction__—that you censor your book
+and not publish or sell it. Or you could refuse, and __rewrite__ your book
+to avoid his patent.
 
 *This is still ridiculous. You can’t actually patent stories!* And indeed
 you can’t. But this is just an allegory—now consider this real-life example.
@@ -59,11 +59,10 @@ the physical world.
 And one day you (i.e., some drone in your legal office) receive a legal
 notice from Soverain Software. They
 [claim to own the idea of a shopping cart](https://www.google.com/patents/US5715314). Of
-course, they refer to it as a “network sales system”, and want their share
-of your profits.
-[Amazon has already agreed to pay $40 million](http://www.zdnet.com/news/amazon-pays-40-million-to-settle-patent-dispute/144171).
-
-Soverain wants $34 million from you. Every other company targeted has
+course, they refer to it as a “network sales system”, and want their
+*rightful* share of your profits.
+[Amazon has already agreed to pay $40 million](http://www.zdnet.com/news/amazon-pays-40-million-to-settle-patent-dispute/144171). Soverain
+wants $34 million from you. Every other company targeted has
 [agreed to settle](http://arstechnica.com/tech-policy/2013/01/how-newegg-crushed-the-shopping-cart-patent-and-saved-online-retail/). What
 would you do in Newegg’s shoes?
 
@@ -78,22 +77,25 @@ But in the real world, not every story has a happy ending. And not every
 aggressor is an obvious troll. Let’s look at Samsung vs Apple, the two
 titans on the sides of the Android phone vs iPhone battle.
 
-In 2011, Apple filed suit against Samsung claiming that Samsung’s products
+In 2011, Apple filed suit against Samsung, claiming that Samsung’s products
 infringed upon Apple patents for such features as double-tap-to-zoom and
-pinch-to-zoom, seeing __$2.75 billion__ in damages[^4]. Apple was originally
-awarded $1.05 billion, still a staggering sum, and of course Samsung has
-appealed, the award has been changed, etc. As of this writing, the
+pinch-to-zoom, seeking __$2.75 billion__ in damages[^4]. Apple was
+originally awarded $1.05 billion, still a staggering sum, and of course
+Samsung has appealed, the award has been changed, etc. As of this writing,
+the
 [retrial is still dragging on](http://news.cnet.com/8301-13579_3-57613382-37/jury-reaches-verdict-in-apple-v-samsung-damages-retrial/). Samsung
 could easily see its products banned from the US market, leaving consumers
 with less competition in the smartphone market. And what products remain
 could face price increases, as manufacturers must then license Apple’s
-patents or face litigation.
+patents or face litigation. In fact,
+[HTC has already agreed to license from Apple](http://www.apple.com/pr/library/2012/11/11HTC-and-Apple-Settle-Patent-Dispute.html),
+under unknown but likely onerous terms.
 
-Let’s back up here: *what is the purpose of patents?* To protect inventions
-from copycats. Is an online shopping cart an invention? (Yes, said
-Soverain.)  Is [slide-to-unlock](http://9gag.com/gag/219293) (warning:
-Internet meme) an invention? (Yes, says Apple.) Is a little tray that holds
-all your notifications an invention? (Yes, says Google.)
+What is the purpose of patents? To protect inventions from copycats. Is an
+online shopping cart an invention? (Yes, said Soverain.)  Is
+[slide-to-unlock](http://9gag.com/gag/219293) (warning: Internet meme) an
+invention? (Yes, says Apple.) Is a little tray that holds all your
+notifications an invention? (Yes, says Google.)
 
 But are these *inventions*? Or are they *ideas*?
 
@@ -102,8 +104,8 @@ patents. [Lawsuits are only increasing](http://www.washingtonpost.com/blogs/the-
 the number of software patents is steadily climbing, and the damages are now
 in the billions. Is there a solution? Any number of academics, policymakers,
 and others have proposed reforms, laws, bans. But ultimately, it remains up
-to us—the consumers, the citizens—to make this problem a priority, not just
-an abstruse debate.
+to us—the consumers—to make this problem a priority, not just an abstruse
+debate.
 
 *For more analogies, check out the* [End Software Patents *wiki*](http://en.swpat.org/wiki/Analogies).
 

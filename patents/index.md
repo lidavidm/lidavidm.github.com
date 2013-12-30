@@ -25,13 +25,20 @@ Historically, no: the U.S. Patent Office gives “abstract ideas” as an
 example of what does not qualify for a patent[^2]. Then the natural question
 is, does an *implementation* of an idea count as an invention?
 
-Now the waters become murky. The Supreme Court has struggled with this
-difference before—and in *In re Bilski*, ruled that yes, an abstract
-algorithm implemented on a physical computer qualifies for a patent, if “(1)
-it is tied to a particular machine or apparatus, or (2) it transforms a
-particular article into a different state or thing”, leaving what qualified
-as a “transformation” undefined[^3], never mind the habit of lawyers to
-twist wording to suit their purposes.
+Now the waters become murky. For physical inventions, the answer is
+obvious—your device carries out the idea and is therefore new. But in
+software, the difference is not so clear; every piece of software builds on
+others’ algorithms, libraries, and ideas, and two people working
+independently can often come upon similar or even identical implementations,
+as a
+[judge who taught himself programming to prepare for a trial](http://news.cnet.com/8301-1035_3-57445082-94/judge-william-alsup-master-of-the-court-and-java/)
+found. The Supreme Court has struggled with this difference before—and in
+*In re Bilski*, ruled that yes, an abstract algorithm implemented on a
+physical computer qualifies for a patent, if “(1) it is tied to a particular
+machine or apparatus, or (2) it transforms a particular article into a
+different state or thing”, leaving what qualified as a “transformation”
+undefined[^3], never mind the habit of lawyers to twist wording to suit
+their purposes.
 
 In any case, the end result is that software patents exist. How do they
 affect you and me?
@@ -41,14 +48,21 @@ affect you and me?
   the idea of
   [searching multiple data sources at once](http://patft.uspto.gov/netacgi/nph-Parser?Sect2=PTO1&Sect2=HITOFF&p=1&u=/netahtml/PTO/search-bool.html&r=1&f=G&l=50&d=PALL&RefSrch=yes&Query=PN/8086604),
   and built-in spell check, and then
-  [sued Samsung](http://www.businessinsider.com/apple-sues-samsumg-for-slide-to-unlock-2012-2). (The
-  article is rather one-sided, however.) And there’s even
+  [sued Samsung](http://www.businessinsider.com/apple-sues-samsumg-for-slide-to-unlock-2012-2) (Note:
+  the linked article is rather one-sided.), even though there’s
   [some prior art](http://patents.stackexchange.com/questions/699/prior-art-for-apples-unified-search-patent)
   for the search patent!
 - On the other side of the smartphone wars, Google patented
   [the notification shade/center](http://www.google.com/patents/US20090249247). No
   lawsuit yet, however—but imagine if Apple had to remove its notification
-  center from your iPhone. (No worries, though, [Apple applied for its own patent](https://www.google.com/patents/WO2012170446A3)!)
+  center from your iPhone. (No worries, though,
+  [Apple applied for its own patent](https://www.google.com/patents/WO2012170446A3)!)
+- Back when Blackberries were still popular, a company that made no products
+  nearly shut down email service for all Blackberry users by claiming they
+  had patented wireless
+  email. [RIM ended up paying $600 million](http://money.cnn.com/2006/03/03/technology/rimm_ntp/)
+  for the invention of sending email over a wireless network instead of a
+  wire—a patent later rejected as invalid.
 
 <!--I couldn't have told you the first thing about Java before this problem. I -->
 <!--have done, and still do, a significant amount of programming in other -->
