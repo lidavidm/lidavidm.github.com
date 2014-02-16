@@ -13,10 +13,34 @@ software invention.
 
 ## Why should I care?
 
-That’s a great question! See
-[my post on software patents]({% post_url 2013-12-07-software-patents %})
-for an explanation, or look at the list
-below for a selection of articles about the problems with software patents.
+Here’s an example: back when Blackberries were still popular, a company that
+made no products nearly shut down email service for all Blackberry users by
+claiming they had patented wireless email.
+[RIM ended up paying $600 million](http://money.cnn.com/2006/03/03/technology/rimm_ntp/)
+for the invention of sending email over a wireless network instead of a
+wire—a patent later rejected as invalid.
+
+Now, Apple has patented
+[slide-to-unlock](http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=%2Fnetahtml%2FPTO%2Fsrchnum.htm&r=1&f=G&l=50&s1=8,046,721.PN.&OS=PN/8,046,721&RS=PN/8,046,721),
+the idea of
+[searching multiple data sources at once](http://patft.uspto.gov/netacgi/nph-Parser?Sect2=PTO1&Sect2=HITOFF&p=1&u=/netahtml/PTO/search-bool.html&r=1&f=G&l=50&d=PALL&RefSrch=yes&Query=PN/8086604),
+and built-in spell check, while
+[suing Samsung](http://www.businessinsider.com/apple-sues-samsumg-for-slide-to-unlock-2012-2).
+(There's even
+[some prior art](http://patents.stackexchange.com/questions/699/prior-art-for-apples-unified-search-patent)
+for the search patent—evidence that the “invention” isn’t new.) On the other
+side of the smartphone wars, Google patented
+[the notification shade/center](http://www.google.com/patents/US20090249247). No
+lawsuit yet, however—but imagine if Apple had to remove its notification
+center from your iPhone. (No worries, though,
+[Apple applied for its own patent](https://www.google.com/patents/WO2012170446A3)!)
+
+And beyond the battles of corporate titans, software patents affect us, the
+consumers, directly.
+[HTC faced a ban on its products](http://news.cnet.com/8301-13579_3-57345291-37/apple-wins-patent-victory-over-htc-which-faces-looming-import-ban/)
+for a feature that recognized phone numbers and addresses in phones. And
+[there are more examples]({% post_url 2013-12-07-software-patents %}) in the
+smartphone space, in online shopping, and beyond.
 
 Software represents ideas: if you have an idea, you write the algorithm to
 make the computer carry that idea out. Thus, patenting software means trying
@@ -40,29 +64,13 @@ different state or thing”, leaving what qualified as a “transformation”
 undefined[^3], never mind the habit of lawyers to twist wording to suit
 their purposes.
 
-In any case, the end result is that software patents exist. How do they
-affect you and me?
-
-- Apple has patented
-  [slide-to-unlock](http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=%2Fnetahtml%2FPTO%2Fsrchnum.htm&r=1&f=G&l=50&s1=8,046,721.PN.&OS=PN/8,046,721&RS=PN/8,046,721),
-  the idea of
-  [searching multiple data sources at once](http://patft.uspto.gov/netacgi/nph-Parser?Sect2=PTO1&Sect2=HITOFF&p=1&u=/netahtml/PTO/search-bool.html&r=1&f=G&l=50&d=PALL&RefSrch=yes&Query=PN/8086604),
-  and built-in spell check, and then
-  [sued Samsung](http://www.businessinsider.com/apple-sues-samsumg-for-slide-to-unlock-2012-2) (Note:
-  the linked article is rather one-sided.), even though there’s
-  [some prior art](http://patents.stackexchange.com/questions/699/prior-art-for-apples-unified-search-patent)
-  for the search patent!
-- On the other side of the smartphone wars, Google patented
-  [the notification shade/center](http://www.google.com/patents/US20090249247). No
-  lawsuit yet, however—but imagine if Apple had to remove its notification
-  center from your iPhone. (No worries, though,
-  [Apple applied for its own patent](https://www.google.com/patents/WO2012170446A3)!)
-- Back when Blackberries were still popular, a company that made no products
-  nearly shut down email service for all Blackberry users by claiming they
-  had patented wireless
-  email. [RIM ended up paying $600 million](http://money.cnn.com/2006/03/03/technology/rimm_ntp/)
-  for the invention of sending email over a wireless network instead of a
-  wire—a patent later rejected as invalid.
+In the end, software patents exist—and they cause headaches for businesses
+who would rather focus on their next product and for consumers who have
+features taken away from them because someone else thought of that idea and
+patented it. Thus, software patents hinder innovation and reduce
+competition—why try to invent new features, working around a minefield of
+software patents, when you can sue others instead?—and need reform, which
+will only come with awareness.
 
 <!--I couldn't have told you the first thing about Java before this problem. I -->
 <!--have done, and still do, a significant amount of programming in other -->

@@ -107,7 +107,7 @@ and others have proposed reforms, laws, bans. But ultimately, it remains up
 to us—the consumers—to make this problem a priority, not just an abstruse
 debate.
 
-*For more analogies, check out the* [End Software Patents *wiki*](http://en.swpat.org/wiki/Analogies).
+*For more information, check out the* [End Software Patents *wiki*](http://en.swpat.org/wiki).
 
 [^1]: This analogy comes
       [by way of Richard Stallman](http://www.gnu.org/philosophy/software-literary-patents.html),
