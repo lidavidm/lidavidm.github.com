@@ -93,6 +93,50 @@ code {
   list-style-type: none;
 }
 
+label {
+  font-weight: normal;
+  display: block;
+}
+
+.radio {
+  list-style-type: none;
+}
+
+.explanation {
+  display: none;
+  border-radius: 5px;
+  padding: 0.25em 0.5em;
+}
+
+.explanation.right, .explanation.wrong, .explanation.neutral {
+  display: block;
+}
+
+.explanation.right, .radio li.right {
+  border: 1px solid #060;
+  background: #AFA;
+}
+
+.explanation.right:before {
+  font-weight: bold;
+  content: "Correct! ";
+}
+
+.explanation.wrong, .radio li.wrong {
+  border: 1px solid #600;
+  background: #FAA;
+}
+
+.explanation.wrong:before {
+  font-weight: bold;
+  content: "Wrong… ";
+}
+
+.explanation.neutral {
+  border: 1px solid #666;
+  background: #CCC;
+}
+
 /* Solarized Light 
  
 For use with Jekyll and Pygments

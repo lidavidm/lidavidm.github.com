@@ -11,6 +11,8 @@ invention for a limited time in return for publicly disclosing the invention
 by applying for a patent. So a <dfn>software patent</dfn> is a patent on a
 software invention.
 
+[Take the software patent quiz](/patentquiz)
+
 ## Why should I care?
 
 Here’s an example: back when Blackberries were still popular, a company that
