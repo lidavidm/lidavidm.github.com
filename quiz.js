@@ -10,11 +10,10 @@ function checkQuiz(e) {
         }
     });
 
-    $.post('http://lidavidm-senior-project.appspot.com/submit', JSON.stringify(answers));
+    //$.post('http://lidavidm-senior-project.appspot.com/submit', JSON.stringify(answers));
     //$.post('http://localhost:8080/submit', JSON.stringify(answers));
 
-    console.log(answers)
-    var correct = [0,1,2,1,3,2,1,3,0,2];
+    var correct = [1,3,3,3,3,0,0,2,0,0];
     var numCorrect = 0;
 
     for (var i = 0; i < answers.length; i++) {
