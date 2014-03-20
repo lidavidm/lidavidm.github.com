@@ -13,8 +13,8 @@ title: Software Patent Quiz
         <ul class="radio">
           <li><input type="radio" name="question1" id="question1-answer1" value="answer1" /> <label for="question1-answer1">A patent protects an idea that you have so others can’t copy it.</label></li>
           <li><input type="radio" name="question1" id="question1-answer2" value="answer2" /> <label for="question1-answer2">A patent protects an invention from being copied in return for publicly detailing it.</label></li>
-          <li><input type="radio" name="question1" id="question1-answer3" value="answer3" /> <label for="question1-answer3">A patent</label></li>
-          <li><input type="radio" name="question1" id="question1-answer4" value="answer4" /> <label for="question1-answer4">Test</label></li>
+          <li><input type="radio" name="question1" id="question1-answer3" value="answer3" /> <label for="question1-answer3">A patent is a license to use a particular technology.</label></li>
+          <li><input type="radio" name="question1" id="question1-answer4" value="answer4" /> <label for="question1-answer4">A patent protects a new technology from being copied.</label></li>
         </ul>
         <p class="explanation"> <a href="http://www.uspto.gov/main/glossary/#patent">According
           to the U.S. Patent Office</a>, a patent is a right granted to an
@@ -24,14 +24,14 @@ title: Software Patent Quiz
 
       <li>
         <!-- Make this clearer -->
-        <label for="question2">Suppose someone claims you infringed upon their patent (copied them). How much would it cost to challenge their claim?</label>
+        <label for="question2">Suppose someone claims you infringed upon their patent (copied them). How much would it cost to challenge them in court?</label>
         <ul class="radio">
           <li><input type="radio" name="question2" id="question2-answer1" value="answer1" /> <label for="question2-answer1">$1,000</label></li>
           <li><input type="radio" name="question2" id="question2-answer2" value="answer2" /> <label for="question2-answer2">$50,000</label></li>
           <li><input type="radio" name="question2" id="question2-answer3" value="answer3" /> <label for="question2-answer3">$100,000</label></li>
           <li><input type="radio" name="question2" id="question2-answer4" value="answer4" /> <label for="question2-answer4">$500,000</label></li>
         </ul>
-        <p class="explanation">“The Private Costs of Patent Litigation” (2008), page 16.</p>
+        <p class="explanation">See “The Private Costs of Patent Litigation” (2008), page 16. This figure only includes legal fees and not the cost of a settlement.</p>
       </li>
 
       <li>
@@ -82,7 +82,7 @@ title: Software Patent Quiz
           <li><input type="radio" name="question7" id="question7-answer1" value="answer1" /> <label for="question7-answer1">True</label></li>
           <li><input type="radio" name="question7" id="question7-answer2" value="answer2" /> <label for="question7-answer2">False</label></li>
         </ul>
-        <p class="explanation">Unfortunately, this is also true. An algorithm or formula isn’t patentable (imagine patenting E=mc²—would you then own the universe?), but applying it on a machine is because that is “novel”.</p>
+        <p class="explanation">Unfortunately, this is also true. An algorithm or formula isn’t patentable (imagine patenting $E=mc²$—would you then own the universe?), but applying it on a machine is because that is “novel”.</p>
       </li>
 
       <li>
@@ -97,15 +97,15 @@ title: Software Patent Quiz
       </li>
 
       <li>
-        <label for="question9">How much would it theoretically cost for a company to make sure it doesn’t infringe upon any software patents? (infringe—copy, intentionally or not, an invention in a patent)</label>
+        <label for="question9">How much would it theoretically cost for a company to make sure a product doesn’t infringe upon any software patents? (infringe—copy, intentionally or not, an invention in a patent)</label>
         <ul class="radio">
-          <li><input type="radio" name="question9" id="question9-answer1" value="answer1" /> <label for="question9-answer1">Test</label></li>
-          <li><input type="radio" name="question9" id="question9-answer2" value="answer2" /> <label for="question9-answer2">Test</label></li>
+          <li><input type="radio" name="question9" id="question9-answer1" value="answer1" /> <label for="question9-answer1">$400 million</label></li>
+          <li><input type="radio" name="question9" id="question9-answer2" value="answer2" /> <label for="question9-answer2">$100 billion</label></li>
           <li><input type="radio" name="question9" id="question9-answer3" value="answer3" /> <label for="question9-answer3">$400 billion</label></li>
-          <li><input type="radio" name="question9" id="question9-answer4" value="answer4" /> <label for="question9-answer4">Test</label></li>
+          <li><input type="radio" name="question9" id="question9-answer4" value="answer4" /> <label for="question9-answer4">$500 billion</label></li>
         </ul>
 
-        <p class="explanation">“Scaling the Patent System” (2012), pages
+        <p class="explanation">See “Scaling the Patent System” (2012), pages
         14–15. Or in other words, a single single company paying lawyers to
         check each patent for 10 minutes would need to hire 2
         <em>million</em> full-time patent attorneys at $100 an hour.</p>
@@ -119,7 +119,7 @@ title: Software Patent Quiz
           <li><input type="radio" name="question10" id="question10-answer2" value="answer2" /> <label for="question10-answer2">False</label></li>
         </ul>
 
-        <p class="explanation">Also <a href="http://arstechnica.com/tech-policy/2013/02/wi-fi-patent-troll-hit-with-novel-anti-racketeering-charges-emerges-unscathed/">from ArsTechnica</a>. A company named Innovatio IP Ventures targets coffee shops, hotels, and others using Wi-Fi, demanding between $2,000 and $5,000 from each, and says it could sue private households as well. Eventually <a href="http://arstechnica.com/tech-policy/2014/02/cisco-strikes-deal-to-pay-wi-fi-patent-troll-3-2-cents-per-router/">Cisco agreed to pay the company $2.7 million</a>, but then another company began to make claims using a different set of patents.</p>
+        <p class="explanation">Also <a href="http://arstechnica.com/tech-policy/2013/02/wi-fi-patent-troll-hit-with-novel-anti-racketeering-charges-emerges-unscathed/">from ArsTechnica</a>. A company named Innovatio IP Ventures targets coffee shops, hotels, and others using Wi-Fi, demanding between \$2,000 and \$5,000 from each, and says it could sue private households as well. Eventually <a href="http://arstechnica.com/tech-policy/2014/02/cisco-strikes-deal-to-pay-wi-fi-patent-troll-3-2-cents-per-router/">Cisco agreed to pay the company $2.7 million</a>, but then another company began to make claims using a different set of patents.</p>
       </li>
     </ol>
     <button id="submit-quiz">See Results</button>

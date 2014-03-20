@@ -10,10 +10,13 @@ function checkQuiz(e) {
         }
     });
 
-    //$.post('http://lidavidm-senior-project.appspot.com/submit', JSON.stringify(answers));
-    //$.post('http://localhost:8080/submit', JSON.stringify(answers));
+    var server = answers.slice(0);
+    server.push(document.referrer);
 
-    var correct = [1,3,3,3,3,0,0,2,0,0];
+    //$.post('http://lidavidm-senior-project.appspot.com/submit', JSON.stringify(server));
+    $.post('http://localhost:8080/submit', JSON.stringify(server));
+
+    var correct = [1,3,3,3,3,0,0,3,2,0];
     var numCorrect = 0;
 
     for (var i = 0; i < answers.length; i++) {
