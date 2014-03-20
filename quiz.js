@@ -35,5 +35,7 @@ function checkQuiz(e) {
         $('.radio').eq(i).find('li').eq(rightAnswer).removeClass('wrong').addClass('right');
     }
 
+    $('#submit-quiz').attr('disabled', 'true').html('Thanks for your submission!');
+
     return false;
 }
