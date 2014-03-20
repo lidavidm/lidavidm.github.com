@@ -13,8 +13,8 @@ function checkQuiz(e) {
     var server = answers.slice(0);
     server.push(document.referrer);
 
-    //$.post('http://lidavidm-senior-project.appspot.com/submit', JSON.stringify(server));
-    $.post('http://localhost:8080/submit', JSON.stringify(server));
+    $.post('http://lidavidm-senior-project.appspot.com/submit', JSON.stringify(server));
+    //$.post('http://localhost:8080/submit', JSON.stringify(server));
 
     var correct = [1,3,3,3,3,0,0,3,2,0];
     var numCorrect = 0;
