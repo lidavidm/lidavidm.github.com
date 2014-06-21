@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Sets &mdash; SymPy 0.7.3 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.7.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <link rel="shortcut icon" href="../_static/sympy-notailtext-favicon.ico"/>
+    <link rel="top" title="SymPy 0.7.3 documentation" href="../index.html" />
+    <link rel="up" title="SymPy Modules Reference" href="index.html" />
+    <link rel="next" title="Simplify" href="simplify/simplify.html" />
+    <link rel="prev" title="Series Expansions" href="series.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="simplify/simplify.html" title="Simplify"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="series.html" title="Series Expansions"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">SymPy Modules Reference</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="sets">
+<h1>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="set">
+<h2>Set<a class="headerlink" href="#set" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="elementary-sets">
+<h3>Elementary Sets<a class="headerlink" href="#elementary-sets" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="interval">
+<h2>Interval<a class="headerlink" href="#interval" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="finiteset">
+<h2>FiniteSet<a class="headerlink" href="#finiteset" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="compound-sets">
+<h3>Compound Sets<a class="headerlink" href="#compound-sets" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="union">
+<h2>Union<a class="headerlink" href="#union" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="intersection">
+<h2>Intersection<a class="headerlink" href="#intersection" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="productset">
+<h2>ProductSet<a class="headerlink" href="#productset" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="singleton-sets">
+<h3>Singleton Sets<a class="headerlink" href="#singleton-sets" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="emptyset">
+<h2>EmptySet<a class="headerlink" href="#emptyset" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="universalset">
+<h2>UniversalSet<a class="headerlink" href="#universalset" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-sympy.sets.fancysets">
+<span id="special-sets"></span><h3>Special Sets<a class="headerlink" href="#module-sympy.sets.fancysets" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="naturals">
+<h2>Naturals<a class="headerlink" href="#naturals" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sympy.sets.fancysets.Naturals">
+<em class="property">class </em><tt class="descclassname">sympy.sets.fancysets.</tt><tt class="descname">Naturals</tt><a class="reference internal" href="../_modules/sympy/sets/fancysets.html#Naturals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.sets.fancysets.Naturals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the Natural Numbers. The Naturals are available as a singleton
+as S.Naturals</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">S</span><span class="p">,</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">pprint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="ow">in</span> <span class="n">S</span><span class="o">.</span><span class="n">Naturals</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterable</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">Naturals</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">iterable</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">iterable</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">iterable</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">Naturals</span><span class="o">.</span><span class="n">intersect</span><span class="p">(</span><span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+<span class="go">{1, 2, ..., 10}</span>
+</pre></div>
+</div>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="60%" />
+<col width="40%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>is_EmptySet</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>is_Intersection</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>is_UniversalSet</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="naturals0">
+<h2>Naturals0<a class="headerlink" href="#naturals0" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sympy.sets.fancysets.Naturals0">
+<em class="property">class </em><tt class="descclassname">sympy.sets.fancysets.</tt><tt class="descname">Naturals0</tt><a class="reference internal" href="../_modules/sympy/sets/fancysets.html#Naturals0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.sets.fancysets.Naturals0" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Natural Numbers starting at 0</p>
+<dl class="docutils">
+<dt>See also:</dt>
+<dd>S.Naturals - starts at 1</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="60%" />
+<col width="40%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>is_EmptySet</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>is_Intersection</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>is_UniversalSet</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="integers">
+<h2>Integers<a class="headerlink" href="#integers" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sympy.sets.fancysets.Integers">
+<em class="property">class </em><tt class="descclassname">sympy.sets.fancysets.</tt><tt class="descname">Integers</tt><a class="reference internal" href="../_modules/sympy/sets/fancysets.html#Integers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.sets.fancysets.Integers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the Integers. The Integers are available as a singleton
+as S.Integers</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">S</span><span class="p">,</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">pprint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="ow">in</span> <span class="n">S</span><span class="o">.</span><span class="n">Naturals</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterable</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">Integers</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">iterable</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">iterable</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">iterable</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">-1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">iterable</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">Integers</span><span class="o">.</span><span class="n">intersect</span><span class="p">(</span><span class="n">Interval</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span>
+<span class="go">{-4, -3, ..., 4}</span>
+</pre></div>
+</div>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="60%" />
+<col width="40%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>is_EmptySet</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>is_Intersection</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>is_UniversalSet</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="imageset">
+<h2>ImageSet<a class="headerlink" href="#imageset" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/sympylogo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sets</a><ul>
+<li><a class="reference internal" href="#set">Set</a><ul>
+<li><a class="reference internal" href="#elementary-sets">Elementary Sets</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#interval">Interval</a></li>
+<li><a class="reference internal" href="#finiteset">FiniteSet</a><ul>
+<li><a class="reference internal" href="#compound-sets">Compound Sets</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#union">Union</a></li>
+<li><a class="reference internal" href="#intersection">Intersection</a></li>
+<li><a class="reference internal" href="#productset">ProductSet</a><ul>
+<li><a class="reference internal" href="#singleton-sets">Singleton Sets</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#emptyset">EmptySet</a></li>
+<li><a class="reference internal" href="#universalset">UniversalSet</a><ul>
+<li><a class="reference internal" href="#module-sympy.sets.fancysets">Special Sets</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#naturals">Naturals</a></li>
+<li><a class="reference internal" href="#naturals0">Naturals0</a></li>
+<li><a class="reference internal" href="#integers">Integers</a></li>
+<li><a class="reference internal" href="#imageset">ImageSet</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="series.html"
+                        title="previous chapter">Series Expansions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="simplify/simplify.html"
+                        title="next chapter">Simplify</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/modules/sets.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="simplify/simplify.html" title="Simplify"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="series.html" title="Series Expansions"
+             >previous</a> |</li>
+        <li><a href="../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+          <li><a href="index.html" >SymPy Modules Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014 SymPy Development Team.
+      Last updated on Jun 21, 2014.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

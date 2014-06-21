@@ -1,0 +1,582 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Diophantine &mdash; SymPy 0.7.3 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.7.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="../../_static/sidebar.js"></script>
+    <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
+    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="up" title="SymPy Modules Reference" href="../index.html" />
+    <link rel="next" title="Inequality Solvers" href="inequalities.html" />
+    <link rel="prev" title="Solvers" href="solvers.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="inequalities.html" title="Inequality Solvers"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="solvers.html" title="Solvers"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">SymPy Modules Reference</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="diophantine">
+<span id="diophantine-docs"></span><h1>Diophantine<a class="headerlink" href="#diophantine" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="diophantine-equations">
+<h2>Diophantine equations<a class="headerlink" href="#diophantine-equations" title="Permalink to this headline">¶</a></h2>
+<p>The word &#8220;Diophantine&#8221; comes with the name Diophantus, a mathematician lived
+in the great city of Alexandria sometime around 250 AD. Often referred to as
+the &#8220;father of Algebra&#8221;, Diophantus in his famous work &#8220;Arithmetica&#8221;
+presented 150 problems that marked the early beginnings of number theory, the
+field of study about integers and their properties. Diophantine equations play
+a central and an important part in number theory.</p>
+<p>We call a &#8220;Diophantine equation&#8221; to an equation of the form,
+<span class="math">\(f(x_1, x_2, \ldots x_n) = 0\)</span> where <span class="math">\(n \geq 2\)</span> and <span class="math">\(x_1, x_2, \ldots x_n\)</span> are
+integer variables. If we can find <span class="math">\(n\)</span> integers <span class="math">\(a_1, a_2, \ldots a_n\)</span> such that
+<span class="math">\(x_1 = a_1, x_2 = a_2, \ldots x_n = a_n\)</span> satisfies the above equation, we say
+that the equation is solvable. You can read more about Diophantine equations in
+<a class="footnote-reference" href="#id5" id="id1">[1]</a> and <a class="footnote-reference" href="#id6" id="id2">[2]</a>.</p>
+<p>Currently, following five types of Diophantine equations can be solved using
+<tt class="xref py py-meth docutils literal"><span class="pre">diophantine()</span></tt> and other helper functions of
+the Diophantine module.</p>
+<ul class="simple">
+<li>Linear Diophantine equations: <span class="math">\(a_1x_1 + a_2x_2 + \ldots + a_nx_n = b\)</span>.</li>
+<li>General binary quadratic equation: <span class="math">\(ax^2 + bxy + cy^2 + dx + ey + f = 0\)</span></li>
+<li>Homogeneous ternary quadratic equation: <span class="math">\(ax^2 + by^2 + cz^2 + dxy + eyz + fzx = 0\)</span></li>
+<li>Extended Pythagorean equation: <span class="math">\(a_{1}x_{1}^2 + a_{2}x_{2}^2 + \ldots + a_{n}x_{n}^2 = a_{n+1}x_{n+1}^2\)</span></li>
+<li>General sum of squares: <span class="math">\(x_{1}^2 + x_{2}^2 + \ldots + x_{n}^2 = k\)</span></li>
+</ul>
+</div>
+<div class="section" id="module-structure">
+<h2>Module structure<a class="headerlink" href="#module-structure" title="Permalink to this headline">¶</a></h2>
+<p>This module contains <tt class="xref py py-meth docutils literal"><span class="pre">diophantine()</span></tt> and
+helper functions that are needed to solve certain Diophantine equations. It&#8217;s
+structured in the following manner.</p>
+<ul class="simple">
+<li><tt class="xref py py-meth docutils literal"><span class="pre">diophantine()</span></tt><ul>
+<li><tt class="xref py py-meth docutils literal"><span class="pre">diop_solve()</span></tt><ul>
+<li><tt class="xref py py-meth docutils literal"><span class="pre">classify_diop()</span></tt></li>
+<li><tt class="xref py py-meth docutils literal"><span class="pre">diop_linear()</span></tt></li>
+<li><tt class="xref py py-meth docutils literal"><span class="pre">diop_quadratic()</span></tt></li>
+<li><tt class="xref py py-meth docutils literal"><span class="pre">diop_ternary_quadratic()</span></tt></li>
+<li><tt class="xref py py-meth docutils literal"><span class="pre">diop_general_pythagorean()</span></tt></li>
+<li><tt class="xref py py-meth docutils literal"><span class="pre">diop_general_sum_of_squares()</span></tt></li>
+</ul>
+</li>
+<li><tt class="xref py py-meth docutils literal"><span class="pre">merge_solution()</span></tt></li>
+</ul>
+</li>
+</ul>
+<p>When an equation is given to <tt class="xref py py-meth docutils literal"><span class="pre">diophantine()</span></tt>,
+it factors the equation(if possible) and solves the equation given by each
+factor by calling <tt class="xref py py-meth docutils literal"><span class="pre">diop_solve()</span></tt> separately.
+Then all the results are combined using <tt class="xref py py-meth docutils literal"><span class="pre">merge_solution()</span></tt>.</p>
+<p><tt class="xref py py-meth docutils literal"><span class="pre">diop_solve()</span></tt> internally uses
+<tt class="xref py py-meth docutils literal"><span class="pre">classify_diop()</span></tt>
+to find the type of the equation(and some other details) given to it and then
+calls the appropriate solver function based on the type returned. For example,
+if <tt class="xref py py-meth docutils literal"><span class="pre">classify_diop()</span></tt> returned &#8220;linear&#8221; as the
+type of the equation, then <tt class="xref py py-meth docutils literal"><span class="pre">diop_solve()</span></tt>
+calls <tt class="xref py py-meth docutils literal"><span class="pre">diop_linear()</span></tt> to solve the equation.</p>
+<p>Each of the functions, <tt class="xref py py-meth docutils literal"><span class="pre">diop_linear()</span></tt>,
+<tt class="xref py py-meth docutils literal"><span class="pre">diop_quadratic()</span></tt>,
+<tt class="xref py py-meth docutils literal"><span class="pre">diop_ternary_quadratic()</span></tt>,
+<tt class="xref py py-meth docutils literal"><span class="pre">diop_general_pythagorean()</span></tt>
+and <tt class="xref py py-meth docutils literal"><span class="pre">diop_general_sum_of_squares()</span></tt> solves a
+specific type of equations and the type can be easily guessed by it&#8217;s name.</p>
+<p>Apart from these functions, there are a considerable number of other functions
+in the &#8220;Diophantine Module&#8221; and all of them are listed under User functions
+and Internal functions.</p>
+</div>
+<div class="section" id="tutorial">
+<h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h2>
+<p>First, let&#8217;s import the highest API of the Diophantine module.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.solvers.diophantine</span> <span class="kn">import</span> <span class="n">diophantine</span>
+</pre></div>
+</div>
+<p>Before we start solving the equations, we need to define the variables.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">&quot;x, y, z&quot;</span><span class="p">,</span> <span class="n">integer</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let&#8217;s start by solving the easiest type of Diophantine equations, i.e. linear
+Diophantine equations. Let&#8217;s solve <span class="math">\(2x + 3y = 5\)</span>. Note that although we
+write the equation in the above form, when we input the equation to any of the
+functions in Diophantine module, it needs to be in the form <span class="math">\(eq = 0\)</span>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diophantine</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">set([(3*t - 5, -2*t + 5)])</span>
+</pre></div>
+</div>
+<p>Note that stepping one more level below the highest API, we can solve the very
+same equation by calling <tt class="xref py py-meth docutils literal"><span class="pre">diop_solve()</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.solvers.diophantine</span> <span class="kn">import</span> <span class="n">diop_solve</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diop_solve</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">(3*t - 5, -2*t + 5)</span>
+</pre></div>
+</div>
+<p>Note that it returns a tuple rather than a set.
+<tt class="xref py py-meth docutils literal"><span class="pre">diophantine()</span></tt> always return a set of tuples.
+But <tt class="xref py py-meth docutils literal"><span class="pre">diop_solve()</span></tt> may return a single tuple
+or a set of tuples depending on the type of the equation given.</p>
+<p>We can also solve this equation by calling <tt class="xref py py-meth docutils literal"><span class="pre">diop_linear()</span></tt>,
+which is what <tt class="xref py py-meth docutils literal"><span class="pre">diop_solve()</span></tt> calls internally.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.solvers.diophantine</span> <span class="kn">import</span> <span class="n">diop_linear</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diop_linear</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">(3*t - 5, -2*t + 5)</span>
+</pre></div>
+</div>
+<p>If the given equation has no solutions then the outputs will look like below.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diophantine</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">set()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diop_solve</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">(None, None)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diop_linear</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">(None, None)</span>
+</pre></div>
+</div>
+<p>Note that except for the highest level API, in case of no solutions, a tuple of
+<span class="math">\(None\)</span> are returned. Size of the tuple is the same as the number of variables.
+Also, one can specifically set the parameter to be used in the solutions by
+passing a customized parameter. Consider the following example.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">&quot;m&quot;</span><span class="p">,</span> <span class="n">integer</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diop_solve</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+<span class="go">(3*m - 5, -2*m + 5)</span>
+</pre></div>
+</div>
+<p>Please note that for the moment, user can set the parameter only for linear
+Diophantine equations and binary quadratic equations.</p>
+<p>Let&#8217;s try solving a binary quadratic equation which is an equation with two
+variables and has a degree of two. Before trying to solve these equations, an
+idea about various cases associated with the equation would help a lot. Please
+refer <a class="footnote-reference" href="#id7" id="id3">[3]</a> and <a class="footnote-reference" href="#id8" id="id4">[4]</a> for detailed analysis of different cases and the nature
+of the solutions. Let us define <span class="math">\(\Delta = b^2 - 4ac\)</span> w.r.t. the binary quadratic
+<span class="math">\(ax^2 + bxy + cy^2 + dx + ey + f = 0\)</span>.</p>
+<p>When <span class="math">\(\Delta &lt; 0\)</span>, there are either no solutions or only a finite number of solutions.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diophantine</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">8</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">7</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">set([(2, 1), (5, 1)])</span>
+</pre></div>
+</div>
+<p>In the above equation <span class="math">\(\Delta = (-4)^2 - 4*1*8 = -16\)</span> and hence only a finite
+number of solutions exist.</p>
+<p>When <span class="math">\(\Delta = 0\)</span> we might have either no solutions or parameterized solutions.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diophantine</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">6</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">7</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">set()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diophantine</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">7</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">set([(-2*t**2 - 7*t + 10, -t**2 - 3*t + 5)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diophantine</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+<span class="go">set([(t, -t), (t, -t + 3)])</span>
+</pre></div>
+</div>
+<p>The most interesting case is when <span class="math">\(\Delta &gt; 0\)</span> and it is not a perfect square.
+In this case, the equation has either no solutions or an infinte number of
+solutions. Consider the below cases where <span class="math">\(\Delta = 8\)</span>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diophantine</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">7</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">set()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">expand</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">&quot;n&quot;</span><span class="p">,</span> <span class="n">integer</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">diophantine</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span>  <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x_n</span><span class="p">,</span> <span class="n">y_n</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">expand</span><span class="p">(</span><span class="n">x_n</span><span class="p">)</span>
+<span class="go">-(-2*sqrt(2) + 3)**n/2 + sqrt(2)*(-2*sqrt(2) + 3)**n/2 - sqrt(2)*(2*sqrt(2) + 3)**n/2 - (2*sqrt(2) + 3)**n/2 + 1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">expand</span><span class="p">(</span><span class="n">y_n</span><span class="p">)</span>
+<span class="go">-sqrt(2)*(-2*sqrt(2) + 3)**n/4 + (-2*sqrt(2) + 3)**n/2 + sqrt(2)*(2*sqrt(2) + 3)**n/4 + (2*sqrt(2) + 3)**n/2 - 1</span>
+</pre></div>
+</div>
+<p>Here <span class="math">\(n\)</span> is an integer. Although x_n and y_n may not look like
+integers, substituting in specific values for n (and simplifying) shows that they
+are. For example consider the following example where we set n equal to 9.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">simplify</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">simplify</span><span class="p">(</span><span class="n">x_n</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">n</span><span class="p">:</span> <span class="mi">9</span><span class="p">}))</span>
+<span class="go">-9369318</span>
+</pre></div>
+</div>
+<p>Any binary quadratic of the form <span class="math">\(ax^2 + bxy + cy^2 + dx + ey + f = 0\)</span> can be
+transformed to an equivalent form <span class="math">\(X^2 - DY^2 = N\)</span>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.solvers.diophantine</span> <span class="kn">import</span> <span class="n">find_DN</span><span class="p">,</span> <span class="n">diop_DN</span><span class="p">,</span> <span class="n">transformation_to_DN</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">find_DN</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">7</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">(5, 920)</span>
+</pre></div>
+</div>
+<p>So, the above equation is equivalent to the equation <span class="math">\(X^2 - 5Y^2 = 920\)</span> after
+a linear transformation. If we want to find the linear transformation, we can
+use <tt class="xref py py-meth docutils literal"><span class="pre">transformation_to_DN()</span></tt></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">transformation_to_DN</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">7</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here A is a 2 X 2 matrix and B is a 2 X 1 matrix such that the transformation</p>
+<div class="math">
+\[\begin{split}\begin{bmatrix} X\\Y \end{bmatrix} = A \begin{bmatrix} x\\y \end{bmatrix} + B\end{split}\]</div>
+<p>gives the equation <span class="math">\(X^2 -5Y^2 = 920\)</span>. Values of <span class="math">\(A\)</span> and <span class="math">\(B\)</span> are as belows.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
+<span class="go">Matrix([</span>
+<span class="go">[1/10, 3/10],</span>
+<span class="go">[   0,  1/5]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span>
+<span class="go">Matrix([</span>
+<span class="go">[  1/5],</span>
+<span class="go">[-11/5]])</span>
+</pre></div>
+</div>
+<p>We can solve an equation of the form <span class="math">\(X^2 - DY^2 = N\)</span> by passing <span class="math">\(D\)</span> and <span class="math">\(N\)</span> to
+<tt class="xref py py-meth docutils literal"><span class="pre">diop_DN()</span></tt></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diop_DN</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">920</span><span class="p">)</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<p>Unfortunately, our equation does not have solutions.</p>
+<p>Now let&#8217;s turn to homogeneous ternary quadratic equations. These equations are
+of the form <span class="math">\(ax^2 + by^2 + cz^2 + dxy + eyz + fzx = 0\)</span>. These type of equations
+either have infinitely many solutions or no solutions (except the obvious
+solution (0, 0, 0))</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diophantine</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="mi">7</span><span class="o">*</span><span class="n">z</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="go">set()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diophantine</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">7</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="mi">7</span><span class="o">*</span><span class="n">z</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="go">set([(-16*p**2 + 28*p*q + 20*q**2, 3*p**2 + 38*p*q - 25*q**2, 4*p**2 - 24*p*q + 68*q**2)])</span>
+</pre></div>
+</div>
+<p>If you are only interested about a base solution rather than the parameterized
+general solution (to be more precise, one of the general solutions), you can
+use <tt class="xref py py-meth docutils literal"><span class="pre">diop_ternary_quadratic()</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.solvers.diophantine</span> <span class="kn">import</span> <span class="n">diop_ternary_quadratic</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diop_ternary_quadratic</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">7</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="mi">7</span><span class="o">*</span><span class="n">z</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="go">(-4, 5, 1)</span>
+</pre></div>
+</div>
+<p><tt class="xref py py-meth docutils literal"><span class="pre">diop_ternary_quadratic()</span></tt> first converts the
+given equation to an equivalent equation of the form <span class="math">\(w^2 = AX^2 + BY^2\)</span> and
+then it uses <tt class="xref py py-meth docutils literal"><span class="pre">descent()</span></tt> to solve the latter
+equation. You can refer to the docs of
+<tt class="xref py py-meth docutils literal"><span class="pre">transformation_to_normal()</span></tt> to find more on
+this. The equation <span class="math">\(w^2 = AX^2 + BY^2\)</span> can be solved more easily by using the
+Aforementioned <tt class="xref py py-meth docutils literal"><span class="pre">descent()</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.solvers.diophantine</span> <span class="kn">import</span> <span class="n">descent</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">descent</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c"># solves the equation w**2 = 3*Y**2 + Z**2</span>
+<span class="go">(1, 0, 1)</span>
+</pre></div>
+</div>
+<p>Here the solution tuple is in the order (w, Y, Z)</p>
+<p>The extended Pythagorean equation,
+<span class="math">\(a_{1}x_{1}^2 + a_{2}x_{2}^2 + \ldots + a_{n}x_{n}^2 = a_{n+1}x_{n+1}^2\)</span> and the
+general sum of squares equation, <span class="math">\(x_{1}^2 + x_{2}^2 + \ldots + x_{n}^2 = k\)</span> can
+also be solved using the Diophantine module.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diophantine</span><span class="p">(</span><span class="mi">9</span><span class="o">*</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">16</span><span class="o">*</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">49</span><span class="o">*</span><span class="n">d</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">e</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">25</span><span class="o">*</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">set([(70*t1**2 + 70*t2**2 + 70*t3**2 + 70*t4**2 - 70*t5**2, 105*t1*t5, 420*t2*t5, 60*t3*t5, 210*t4*t5, 42*t1**2 + 42*t2**2 + 42*t3**2 + 42*t4**2 + 42*t5**2)])</span>
+</pre></div>
+</div>
+<p>function <tt class="xref py py-meth docutils literal"><span class="pre">diop_general_pythagorean()</span></tt> can
+also be called directly to solve the same equation. This is true about the
+general sum of squares too. Either you can call
+<tt class="xref py py-meth docutils literal"><span class="pre">diop_general_pythagorean()</span></tt> or use the high
+level API.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diophantine</span><span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">d</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">e</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">f</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">112</span><span class="p">)</span>
+<span class="go">set([(8, 4, 4, 4, 0, 0)])</span>
+</pre></div>
+</div>
+<p>If you want to get a more thorough idea about the the Diophantine module please
+refer to the following blog.</p>
+<p><a class="reference external" href="http://thilinaatsympy.wordpress.com/">http://thilinaatsympy.wordpress.com/</a></p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Andreescu, Titu. Andrica, Dorin. Cucurezeanu, Ion. An Introduction to
+Diophantine Equations</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Diophantine Equation, Wolfram Mathworld, [online]. Available:
+<a class="reference external" href="http://mathworld.wolfram.com/DiophantineEquation.html">http://mathworld.wolfram.com/DiophantineEquation.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Methods to solve Ax^2 + Bxy + Cy^2 + Dx + Ey + F = 0,[online],
+Available: <a class="reference external" href="http://www.alpertron.com.ar/METHODS.HTM">http://www.alpertron.com.ar/METHODS.HTM</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>Solving the equation ax^2+ bxy + cy^2 + dx + ey + f= 0, [online],
+Available: <a class="reference external" href="http://www.jpr2718.org/ax2p.pdf">http://www.jpr2718.org/ax2p.pdf</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="user-functions">
+<h2>User Functions<a class="headerlink" href="#user-functions" title="Permalink to this headline">¶</a></h2>
+<p>These are functions that are imported into the global namespace with <tt class="docutils literal"><span class="pre">from</span>
+<span class="pre">sympy</span> <span class="pre">import</span> <span class="pre">*</span></tt>. These functions are intended for use by ordinary users of SymPy.</p>
+<div class="section" id="id9">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">diophantine()</span></tt><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="diop-solve">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">diop_solve()</span></tt><a class="headerlink" href="#diop-solve" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="classify-diop">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">classify_diop()</span></tt><a class="headerlink" href="#classify-diop" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="diop-linear">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">diop_linear()</span></tt><a class="headerlink" href="#diop-linear" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="base-solution-linear">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">base_solution_linear()</span></tt><a class="headerlink" href="#base-solution-linear" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="diop-quadratic">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">diop_quadratic()</span></tt><a class="headerlink" href="#diop-quadratic" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="diop-dn">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">diop_DN()</span></tt><a class="headerlink" href="#diop-dn" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="cornacchia">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">cornacchia()</span></tt><a class="headerlink" href="#cornacchia" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="diop-bf-dn">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">diop_bf_DN()</span></tt><a class="headerlink" href="#diop-bf-dn" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="transformation-to-dn">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">transformation_to_DN()</span></tt><a class="headerlink" href="#transformation-to-dn" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="find-dn">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">find_DN()</span></tt><a class="headerlink" href="#find-dn" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="diop-ternary-quadratic">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">diop_ternary_quadratic()</span></tt><a class="headerlink" href="#diop-ternary-quadratic" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="square-factor">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">square_factor()</span></tt><a class="headerlink" href="#square-factor" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="descent">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">descent()</span></tt><a class="headerlink" href="#descent" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="diop-general-pythagorean">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">diop_general_pythagorean()</span></tt><a class="headerlink" href="#diop-general-pythagorean" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="diop-general-sum-of-squares">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">diop_general_sum_of_squares()</span></tt><a class="headerlink" href="#diop-general-sum-of-squares" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="partition">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">partition()</span></tt><a class="headerlink" href="#partition" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="sum-of-three-squares">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">sum_of_three_squares()</span></tt><a class="headerlink" href="#sum-of-three-squares" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="sum-of-four-squares">
+<h3><tt class="xref py py-func docutils literal"><span class="pre">sum_of_four_squares()</span></tt><a class="headerlink" href="#sum-of-four-squares" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="internal-functions">
+<h2>Internal Functions<a class="headerlink" href="#internal-functions" title="Permalink to this headline">¶</a></h2>
+<p>These functions are intended for the internal use in Diophantine module.</p>
+<div class="section" id="merge-solution">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">merge_solution</span></tt><a class="headerlink" href="#merge-solution" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="divisible">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">divisible</span></tt><a class="headerlink" href="#divisible" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="extended-euclid">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">extended_euclid</span></tt><a class="headerlink" href="#extended-euclid" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="pqa">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">PQa</span></tt><a class="headerlink" href="#pqa" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="equivalent">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">equivalent</span></tt><a class="headerlink" href="#equivalent" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="simplified">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">simplified</span></tt><a class="headerlink" href="#simplified" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="parametrize-ternary-quadratic">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">parametrize_ternary_quadratic</span></tt><a class="headerlink" href="#parametrize-ternary-quadratic" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="diop-ternary-quadratic-normal">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">diop_ternary_quadratic_normal</span></tt><a class="headerlink" href="#diop-ternary-quadratic-normal" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="ldescent">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">ldescent</span></tt><a class="headerlink" href="#ldescent" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="gaussian-reduce">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">gaussian_reduce</span></tt><a class="headerlink" href="#gaussian-reduce" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="holzer">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">holzer</span></tt><a class="headerlink" href="#holzer" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="prime-as-sum-of-two-squares">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">prime_as_sum_of_two_squares</span></tt><a class="headerlink" href="#prime-as-sum-of-two-squares" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="pairwise-prime">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">pairwise_prime</span></tt><a class="headerlink" href="#pairwise-prime" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="make-prime">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">make_prime</span></tt><a class="headerlink" href="#make-prime" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="reconstruct">
+<h3><tt class="xref py py-obj docutils literal"><span class="pre">reconstruct</span></tt><a class="headerlink" href="#reconstruct" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/sympylogo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Diophantine</a><ul>
+<li><a class="reference internal" href="#diophantine-equations">Diophantine equations</a></li>
+<li><a class="reference internal" href="#module-structure">Module structure</a></li>
+<li><a class="reference internal" href="#tutorial">Tutorial</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+<li><a class="reference internal" href="#user-functions">User Functions</a><ul>
+<li><a class="reference internal" href="#id9"><tt class="docutils literal"><span class="pre">diophantine()</span></tt></a></li>
+<li><a class="reference internal" href="#diop-solve"><tt class="docutils literal"><span class="pre">diop_solve()</span></tt></a></li>
+<li><a class="reference internal" href="#classify-diop"><tt class="docutils literal"><span class="pre">classify_diop()</span></tt></a></li>
+<li><a class="reference internal" href="#diop-linear"><tt class="docutils literal"><span class="pre">diop_linear()</span></tt></a></li>
+<li><a class="reference internal" href="#base-solution-linear"><tt class="docutils literal"><span class="pre">base_solution_linear()</span></tt></a></li>
+<li><a class="reference internal" href="#diop-quadratic"><tt class="docutils literal"><span class="pre">diop_quadratic()</span></tt></a></li>
+<li><a class="reference internal" href="#diop-dn"><tt class="docutils literal"><span class="pre">diop_DN()</span></tt></a></li>
+<li><a class="reference internal" href="#cornacchia"><tt class="docutils literal"><span class="pre">cornacchia()</span></tt></a></li>
+<li><a class="reference internal" href="#diop-bf-dn"><tt class="docutils literal"><span class="pre">diop_bf_DN()</span></tt></a></li>
+<li><a class="reference internal" href="#transformation-to-dn"><tt class="docutils literal"><span class="pre">transformation_to_DN()</span></tt></a></li>
+<li><a class="reference internal" href="#find-dn"><tt class="docutils literal"><span class="pre">find_DN()</span></tt></a></li>
+<li><a class="reference internal" href="#diop-ternary-quadratic"><tt class="docutils literal"><span class="pre">diop_ternary_quadratic()</span></tt></a></li>
+<li><a class="reference internal" href="#square-factor"><tt class="docutils literal"><span class="pre">square_factor()</span></tt></a></li>
+<li><a class="reference internal" href="#descent"><tt class="docutils literal"><span class="pre">descent()</span></tt></a></li>
+<li><a class="reference internal" href="#diop-general-pythagorean"><tt class="docutils literal"><span class="pre">diop_general_pythagorean()</span></tt></a></li>
+<li><a class="reference internal" href="#diop-general-sum-of-squares"><tt class="docutils literal"><span class="pre">diop_general_sum_of_squares()</span></tt></a></li>
+<li><a class="reference internal" href="#partition"><tt class="docutils literal"><span class="pre">partition()</span></tt></a></li>
+<li><a class="reference internal" href="#sum-of-three-squares"><tt class="docutils literal"><span class="pre">sum_of_three_squares()</span></tt></a></li>
+<li><a class="reference internal" href="#sum-of-four-squares"><tt class="docutils literal"><span class="pre">sum_of_four_squares()</span></tt></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#internal-functions">Internal Functions</a><ul>
+<li><a class="reference internal" href="#merge-solution"><tt class="docutils literal"><span class="pre">merge_solution</span></tt></a></li>
+<li><a class="reference internal" href="#divisible"><tt class="docutils literal"><span class="pre">divisible</span></tt></a></li>
+<li><a class="reference internal" href="#extended-euclid"><tt class="docutils literal"><span class="pre">extended_euclid</span></tt></a></li>
+<li><a class="reference internal" href="#pqa"><tt class="docutils literal"><span class="pre">PQa</span></tt></a></li>
+<li><a class="reference internal" href="#equivalent"><tt class="docutils literal"><span class="pre">equivalent</span></tt></a></li>
+<li><a class="reference internal" href="#simplified"><tt class="docutils literal"><span class="pre">simplified</span></tt></a></li>
+<li><a class="reference internal" href="#parametrize-ternary-quadratic"><tt class="docutils literal"><span class="pre">parametrize_ternary_quadratic</span></tt></a></li>
+<li><a class="reference internal" href="#diop-ternary-quadratic-normal"><tt class="docutils literal"><span class="pre">diop_ternary_quadratic_normal</span></tt></a></li>
+<li><a class="reference internal" href="#ldescent"><tt class="docutils literal"><span class="pre">ldescent</span></tt></a></li>
+<li><a class="reference internal" href="#gaussian-reduce"><tt class="docutils literal"><span class="pre">gaussian_reduce</span></tt></a></li>
+<li><a class="reference internal" href="#holzer"><tt class="docutils literal"><span class="pre">holzer</span></tt></a></li>
+<li><a class="reference internal" href="#prime-as-sum-of-two-squares"><tt class="docutils literal"><span class="pre">prime_as_sum_of_two_squares</span></tt></a></li>
+<li><a class="reference internal" href="#pairwise-prime"><tt class="docutils literal"><span class="pre">pairwise_prime</span></tt></a></li>
+<li><a class="reference internal" href="#make-prime"><tt class="docutils literal"><span class="pre">make_prime</span></tt></a></li>
+<li><a class="reference internal" href="#reconstruct"><tt class="docutils literal"><span class="pre">reconstruct</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="solvers.html"
+                        title="previous chapter">Solvers</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="inequalities.html"
+                        title="next chapter">Inequality Solvers</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/modules/solvers/diophantine.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="inequalities.html" title="Inequality Solvers"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="solvers.html" title="Solvers"
+             >previous</a> |</li>
+        <li><a href="../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >SymPy Modules Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014 SymPy Development Team.
+      Last updated on Jun 21, 2014.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
