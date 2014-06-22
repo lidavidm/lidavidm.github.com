@@ -46,9 +46,9 @@ transformation.
 >tokenizer generates a token stream or parse tree; the parser generates an
 >abstract syntax tree.
 
-Why not mess around tokenization? Well, we’re not adding any new syntax,
-just redefining existing syntax—no need for a hammer when all we need is a
-flyswatter. The transformation lets us “change the code” after it’s been
-parsed
+Why not mess around with tokenization? Well, we’re not adding any new
+syntax, just redefining existing syntax—no need for a hammer when all we
+need is a flyswatter. The transformation lets us “change the code” after
+it’s been parsed
 
 ## Tokenization

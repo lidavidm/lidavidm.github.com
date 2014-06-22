@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Parsing & Implicit Parsing in SymPy
 tags: SymPy Python parsing
 ---
@@ -29,13 +28,14 @@ y)`, or `sin(x)^3 + y`? The last one, to a human, wouldn't make much sense,
 but the other two are perfectly valid. For SymPy, we’ve arbitrarily chosen
 the first interpretation.
 
-That’s not all. Let’s look at the last case more: `xyz`. So we should just
-split variable names, right? Well, what about these:
+That’s not all. Let’s look at the last case more: `xyz`. To a human, this
+represents `x*y*z`, so naturally to handle this SymPy should simply split
+the name into three. But we can’t split every token; consider these:
 
 - `x_2`
 - `alpha`
 
-Obviously we shouldn’t split these.
+Splitting these names would not match user expectations at all.
 
 So taking these considerations into account, how should we implement
 implicit parsing? We have a few options:
@@ -59,24 +59,28 @@ parsing, jump to the section about [token transformations](#transformations).
 Overall, SymPy follows these steps. You can follow along in
 [`sympy_parser.py`](https://github.com/sympy/sympy/blob/master/sympy/parsing/sympy_parser.py):
 
-1. Tokenize the input using a modified Python 2 tokenizer.
+1. Tokenize the input (which is not necessarily valid Python) using a
+   modified Python 2 tokenizer.
 2. Run the tokens through a series of transformations.
-3. Untokenize the tokens, generating valid Python code that is equivalent to
-   the original input.
+3. Untokenize the tokens, generating valid Python code.
 4. Evaluate the string.
 
-Yes, we use `eval()`. It’s not safe.
+Yes, we use `eval()`. It’s not safe. (SymPy Live and SymPy Gamma deal with
+this by ignoring the problem: they run on Google App Engine, which is
+sandboxed.)
 
 ### The SymPy Tokenizer
 
-We’d like to be able to parse these expressions:
+The tokenizer handles some syntax not in vanilla Python. In particular, we’d
+like to be able to parse expressions like these:
 
 - `x!` ($x$ factorial)
 - `x!!` ($x$ double factorial)
 - `0.[123]` ($0.\overline{123}$)
 
 Note that the last example is valid Python—it’s equivalent to
-`(0.)[123]`. But that’s not what we wanted, so we modified the tokenizer:
+`(0.)[123]`. But to make it easier to recognize and transform, we modified
+the tokenizer to handle it as a special case:
 
 ```python
 # Standard library
@@ -93,7 +97,7 @@ Note that the last example is valid Python—it’s equivalent to
 2,0-2,0:	ENDMARKER	''
 ```
 
-`!` and `!!` are operators now:
+`!` and `!!` are simply operators now:
 
 ```python
 >>> sympy.parsing.sympy_tokenize.tokenize(StringIO('x!!').readline)
