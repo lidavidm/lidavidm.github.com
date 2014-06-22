@@ -2,11 +2,18 @@
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
 import           Hakyll
+import           Text.Pandoc.Options
 
 
 --------------------------------------------------------------------------------
 
 customConfiguration = defaultConfiguration { destinationDirectory = "blog" }
+
+pandocWriterOptions = (def :: WriterOptions) {
+  writerHTMLMathMethod = MathJax "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML",
+  writerHighlight = True
+  }
+
 srcRoute = gsubRoute "src/" (const "")
 
 main :: IO ()
@@ -19,6 +26,14 @@ main = hakyllWith customConfiguration $ do
         route   srcRoute
         compile compressCssCompiler
 
+    match "src/css/crimson/*" $ do
+        route   srcRoute
+        compile copyFileCompiler
+
+    match "src/js/*" $ do
+        route   srcRoute
+        compile copyFileCompiler
+
     match (fromList ["src/about.md", "src/contact.md"]) $ do
         route   $ srcRoute `composeRoutes` setExtension "html"
         compile $ pandocCompiler
@@ -27,25 +42,23 @@ main = hakyllWith customConfiguration $ do
 
     match "src/posts/*" $ do
         route $ srcRoute `composeRoutes` setExtension "html"
-        compile $ pandocCompiler
+        compile $ pandocCompilerWith (def :: ReaderOptions) (pandocWriterOptions)
             >>= loadAndApplyTemplate "src/templates/post.html"    postCtx
             >>= loadAndApplyTemplate "src/templates/default.html" postCtx
             >>= relativizeUrls
 
-    create ["archive.html"] $ do
+    match "src/archive.html" $ do
         route srcRoute
         compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
-            let archiveCtx =
+            posts <- recentFirst =<< loadAll "src/posts/*"
+            let indexCtx =
                     listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Archives"            `mappend`
                     defaultContext
 
-            makeItem ""
-                >>= loadAndApplyTemplate "src/templates/archive.html" archiveCtx
-                >>= loadAndApplyTemplate "src/templates/default.html" archiveCtx
+            getResourceBody
+                >>= applyAsTemplate indexCtx
+                >>= loadAndApplyTemplate "src/templates/default.html" indexCtx
                 >>= relativizeUrls
-
 
     match "src/index.html" $ do
         route srcRoute
