@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>My Hakyll Blog - Parsing &amp; Implicit Parsing in SymPy</title>
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">My Hakyll Blog</a>
+            </div>
+            <div id="navigation">
+                <a href="../">Home</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../archive.html">Archive</a>
+            </div>
+        </div>
+
+        <div id="content">
+            <h1>Parsing &amp; Implicit Parsing in SymPy</h1>
+
+            <div class="info">
+    Posted on September 15, 2013
+    
+</div>
+
+<p>One of the annoyances of entering mathematics on the computer is the rigidity of the format the computer generally expects. In SymPy, <code>sympify()</code> won’t accept any of the following, though a human would:</p>
+<ul>
+<li><code>2x</code></li>
+<li><code>5 sin x</code></li>
+<li><code>6(9)</code></li>
+<li><code>sin x^3 + y</code></li>
+<li><code>ln sin x</code></li>
+<li><code>sin^2 x</code></li>
+<li><code>xyz</code></li>
+</ul>
+<p>SymPy’s implicit parsing aims to fix this. Implicit multiplication takes care of statements like <code>2x</code>, symbol splitting allows for <code>xyz</code>, implicit application enables <code>sin x</code>, and function exponentiation allows <code>sin^2 x</code>.</p>
+<p>But first, we have a problem: some of these statements are ambiguous. For instance, should <code>sin x^3 + y</code> be interpreted as <code>sin(x^3) + y</code>, <code>sin(x^3 + y)</code>, or <code>sin(x)^3 + y</code>? The last one, to a human, wouldn’t make much sense, but the other two are perfectly valid. For SymPy, we’ve arbitrarily chosen the first interpretation.</p>
+<p>That’s not all. Let’s look at the last case more: <code>xyz</code>. So we should just split variable names, right? Well, what about these:</p>
+<ul>
+<li><code>x_2</code></li>
+<li><code>alpha</code></li>
+</ul>
+<p>Obviously we shouldn’t split these.</p>
+<p>So taking these considerations into account, how should we implement implicit parsing? We have a few options:</p>
+<ul>
+<li>Transform the input string (regular expression). <a href="https://github.com/sagemath/sage/blob/master/src/sage/misc/preparser.py">This is what Sage does</a>.</li>
+<li>Transform the token stream. <a href="https://github.com/sympy/sympy/blob/master/sympy/parsing/sympy_parser.py">This is what SymPy does</a>.</li>
+<li>Use a custom parser.</li>
+</ul>
+<p>(AST transforms aren’t an option because this syntax isn’t valid Python syntax.)</p>
+<p>Let’s look at the SymPy parser. If you just want to read about implicit parsing, jump to the section about <a href="#transformations">token transformations</a>.</p>
+<h2 id="the-sympy-parser">The SymPy Parser</h2>
+<p><em>Note: all data here is based on SymPy 0.7.3</em></p>
+<p>Overall, SymPy follows these steps. You can follow along in <a href="https://github.com/sympy/sympy/blob/master/sympy/parsing/sympy_parser.py"><code>sympy_parser.py</code></a>:</p>
+<ol style="list-style-type: decimal">
+<li>Tokenize the input using a modified Python 2 tokenizer.</li>
+<li>Run the tokens through a series of transformations.</li>
+<li>Untokenize the tokens, generating valid Python code that is equivalent to the original input.</li>
+<li>Evaluate the string.</li>
+</ol>
+<p>Yes, we use <code>eval()</code>. It’s not safe.</p>
+<h3 id="the-sympy-tokenizer">The SymPy Tokenizer</h3>
+<p>We’d like to be able to parse these expressions:</p>
+<ul>
+<li><code>x!</code></li>
+<li><code>x!!</code></li>
+<li><code>0.[123]</code></li>
+</ul>
+<p>Note that the last example is valid Python—it’s equivalent to <code>(0.)[123]</code>. But that’s not what we wanted, so we modified the tokenizer:</p>
+<p>{% highlight python %} # Standard library &gt;&gt;&gt; tokenize.tokenize(StringIO(‘0.[123]’).readline) 1,0-1,2: NUMBER ‘0.’ 1,2-1,3: OP ‘[’ 1,3-1,6: NUMBER ’123’ 1,6-1,7: OP ’]’]’ 2,0-2,0: ENDMARKER ’’</p>
+<h1 id="sympy">SymPy</h1>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>sympy.parsing.sympy_tokenize.tokenize(StringIO(‘0.[123]’).readline) 1,0-1,7: NUMBER ‘0.[123]’ 2,0-2,0: ENDMARKER ’’ {% endhighlight %}</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><code>!</code> and <code>!!</code> are operators now:</p>
+<p>{% highlight python %} &gt;&gt;&gt; sympy.parsing.sympy_tokenize.tokenize(StringIO(‘x!!’).readline) 1,0-1,1: NAME ‘x’ 1,1-1,3: OP ‘!!’ 2,0-2,0: ENDMARKER ‘’ &gt;&gt;&gt; sympy.parsing.sympy_tokenize.tokenize(StringIO(’x!’).readline) 1,0-1,1: NAME ‘x’ 1,1-1,2: OP ‘!’ 2,0-2,0: ENDMARKER ’’ {% endhighlight %}</p>
+<p>Unfortunately, since this is based on an older tokenizer, it doesn’t support Python 3 features, such as bytestrings, and it’ll <a href="https://code.google.com/p/sympy/issues/detail?id=3986">incorrectly parse longs in Python 3</a>, not to mention it <a href="https://code.google.com/p/sympy/issues/detail?id=1763">doesn’t support Unicode</a>.</p>
+<h3 id="transformations">Transformations</h3>
+<p>Say you’re making a SymPy calculator/grapher/what-have-you. The user inputs this expression:</p>
+<p>{% highlight python %} sin(x) + 3 {% endhighlight %}</p>
+<p>and your app spits out this error message:</p>
+<p>{% highlight python %} NameError: name ‘x’ is not defined {% endhighlight %}</p>
+<p>Not a very good calculator. SymPy handles this by transforming the token stream; in this case, undefined variables are wrapped in <code>Symbol()</code> calls to turn them into SymPy symbols. By default, parsing uses these transformations:</p>
+<ol style="list-style-type: decimal">
+<li>Undefined variables become <code>Symbol</code>s.</li>
+<li>Complex numbers become SymPy complex numbers (<code>3 + 4j</code> becomes <code>3 + 4*I</code>)</li>
+<li>Repeating decimals become <code>Rational</code>s (<code>0.[123]</code> becomes <code>Rational(123,    999)</code>).</li>
+<li>Floating-point constants become <code>Float</code>s.</li>
+<li>Integer constants become <code>Integer</code>s.</li>
+<li>Factorial notation becomes calls to <code>factorial</code> or <code>factorial2</code> as appropriate.</li>
+</ol>
+<p>SymPy also provides other useful transformations:</p>
+<ul>
+<li>XOR, <code>^</code>, becomes exponentiation.</li>
+<li>Floats become rational numbers.</li>
+<li>Implicit parsing.</li>
+</ul>
+<p>Note that <em>SymPy’s transformations always produce valid Python code</em>, since we’re not modifying the parser.</p>
+<p>The API for this is a bit hidden. Here’s an example:</p>
+<p>{% highlight python %} &gt;&gt;&gt; from sympy.parsing.sympy_parser import parse_expr &gt;&gt;&gt; parse_expr(“1/2”) 1/2 &gt;&gt;&gt; type(<em>) <class 'sympy.core.numbers.Half'> &gt;&gt;&gt; from sympy.parsing.sympy</em>parser import standard_transformations,<br />… implicit_multiplication_application, convert_xor &gt;&gt;&gt; transformations = (standard_transformations + … (implicit_multiplication_application,)) &gt;&gt;&gt; parse_expr(“2x”, transformations=transformations) 2*x &gt;&gt;&gt; transformations = (standard_transformations + (convert_xor,)) &gt;&gt;&gt; parse_expr(“x^3”, transformations=transformations) x**3 {% endhighlight %}</p>
+<p>How do the implicit parsing transformations work? They’re split into four transformations: symbol splitting, multiplication, application, and exponentiation, which must be run in that order, though not all need to be run.</p>
+<p>Symbol splitting is quite simple: for each name in the token stream, the transformation checks if it 1) is part of a <code>Symbol</code>, so that it doesn’t split function names 2) is not a Greek letter, and 3) does not contain an underscore. If so, it makes one <code>Symbol</code> for each letter in the original name.</p>
+<p>Implicit multiplication scans the tokens two at a time, looking for one of these conditions:</p>
+<ul>
+<li>Closing parenthesis followed by opening parenthesis (<code>(x + 2)(x + 3)</code>)</li>
+<li>Closing parenthesis followed by variable name (<code>(x + 2) sin(x)</code>)</li>
+<li>Variable name followed by opening parenthesis (<code>pi (x + 3)</code>)</li>
+<li>Variable name followed by variable name (<code>pi E EulerGamma</code>)</li>
+</ul>
+<p>Application (and multiplication, though it’s not necessary) depends on an intermediate step that groups function calls into one token—<code>sin(x)</code>, while represented with seven tokens normally (<code>['sin', '(', 'Symbol', '(', &quot;'x'&quot;, ')', ')']</code>), is first grouped into one “token” (called <code>AppliedFunction</code> in the source). Then it follows these steps:</p>
+<ol style="list-style-type: decimal">
+<li>Keep track of how many parentheses we have to insert and how many tokens to skip.</li>
+<li>For each token,
+<ol style="list-style-type: decimal">
+<li>If it’s a function name not followed by an opening parenthesis, increment the counter and insert an opening parenthesis.</li>
+<li>Else, if the parenthesis counter is nonzero,
+<ol style="list-style-type: decimal">
+<li>If the next token is a multiplication or exponentiation, increment the skip counter.</li>
+<li>Else, if the skip counter is nonzero, decrement it.</li>
+<li>Else, insert a closing parenthesis after this token and decrement the counter.</li>
+</ol></li>
+</ol></li>
+</ol>
+<p>This way, <code>sin x^2</code> gets parsed as <code>sin(x^2)</code>, not <code>sin(x)^2</code>. There’s some more logic to make life easier for the function exponentiation transformation as well.</p>
+<p>To implement function exponentiation, think about how the token stream would look at this point. All functions are applied, so for <code>sin**2 x</code>, we would have something like this:</p>
+<p>{% highlight python %} [‘sin’, ’**‘, ’Integer’, ‘(’, ‘2’, ‘)’, ‘(’, ‘Symbol’, ‘(’, “‘x’”, ‘)’, ‘)’] {% endhighlight %}</p>
+<p>If you have implicit multiplication enabled, it’ll actually look like this (note the extraneous multiplication):</p>
+<p>{% highlight python %} [‘sin’, ’**‘, ’Integer’, ‘(’, ‘2’, ‘)’, ’*‘,’(‘, ’Symbol’, ‘(’, “‘x’”, ‘)’, ‘)’] {% endhighlight %}</p>
+<p>The transformation has to figure out what constitutes the exponent and what constitutes the function call. The rule SymPy uses is, essentially, the exponent is everything from and including the exponentiation operator to the first closing parenthesis it sees (this rules out anything but simple integer and symbolic exponents; <code>sin**(x+3)(x+5)</code> won’t be parsed correctly). It then parses the following tokens, discarding the extraneous multiplication if it exists, to find the closing parenthesis of the function call (this correctly handles nested parentheses), and moves the tokens for the exponent to the end. So what the parser ends up seeing is</p>
+<p>{% highlight python %} [‘sin’, ‘(’, ‘Symbol’, ‘(’, “‘x’”, ‘)’, ‘)’, ’**‘, ’Integer’, ‘(’, ‘2’, ‘)’] {% endhighlight %}</p>
+<p>which is equivalent to <code>sin(Symbol(x))**2</code>.</p>
+<h3 id="evaluation">Evaluation</h3>
+<p>One final note: SymPy uses a an evaluation trick for the final result. SymPy defines <code>Symbol.__call__</code> so that this works:</p>
+<p>{% highlight python %} &gt;&gt;&gt; spam = sympify(‘f(x)’) f(x) &gt;&gt;&gt; x = Symbol(‘x’) &gt;&gt;&gt; eggs = Function(‘f’)(x) f(x) &gt;&gt;&gt; spam == eggs True {% endhighlight %}</p>
+<p>However, it’s a <a href="https://code.google.com/p/sympy/issues/detail?id=440">point of contention</a> whether this should be done at all.</p>
+<p>So there you have it. SymPy’s parser.</p>
+
+        </div>
+        <div id="footer">
+            Site proudly generated by
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+        </div>
+    </body>
+</html>
