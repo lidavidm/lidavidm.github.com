@@ -20,7 +20,7 @@ main = hakyllWith customConfiguration $ do
         compile compressCssCompiler
 
     match (fromList ["src/about.md", "src/contact.md"]) $ do
-        route   $ setExtension "html"
+        route   $ srcRoute `composeRoutes` setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "src/templates/default.html" defaultContext
             >>= relativizeUrls
