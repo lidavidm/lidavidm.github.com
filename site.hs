@@ -7,13 +7,25 @@ import           Text.Pandoc.Options
 
 --------------------------------------------------------------------------------
 
+customConfiguration :: Configuration
 customConfiguration = defaultConfiguration { destinationDirectory = "blog" }
 
+feedConfiguration :: FeedConfiguration
+feedConfiguration = FeedConfiguration
+    { feedTitle       = "lidavidm’s blog"
+    , feedDescription = "David Li’s blog"
+    , feedAuthorName  = "David Li"
+    , feedAuthorEmail = "li.davidm96@gmail.com"
+    , feedRoot        = "http://lidavidm.github.io/blog"
+    }
+
+pandocWriterOptions :: WriterOptions
 pandocWriterOptions = (def :: WriterOptions) {
   writerHTMLMathMethod = MathJax "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML",
   writerHighlight = True
   }
 
+srcRoute :: Routes
 srcRoute = gsubRoute "src/" (const "")
 
 main :: IO ()
@@ -44,6 +56,7 @@ main = hakyllWith customConfiguration $ do
         route $ srcRoute `composeRoutes` setExtension "html"
         compile $ pandocCompilerWith (def :: ReaderOptions) (pandocWriterOptions)
             >>= loadAndApplyTemplate "src/templates/post.html"    postCtx
+            >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "src/templates/default.html" postCtx
             >>= relativizeUrls
 
@@ -73,6 +86,14 @@ main = hakyllWith customConfiguration $ do
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "src/templates/default.html" indexCtx
                 >>= relativizeUrls
+
+    create ["atom.xml"] $ do
+      route idRoute
+      compile $ do
+        let feedCtx = postCtx `mappend` bodyField "description"
+        posts <- recentFirst =<<
+            loadAllSnapshots "src/posts/*" "content"
+        renderAtom feedConfiguration feedCtx posts
 
     match "src/templates/*" $ compile templateCompiler
 

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>lidavidm’s blog</title>
+    <link href="http://lidavidm.github.io/blog/atom.xml" rel="self" />
+    <link href="http://lidavidm.github.io/blog" />
+    <id>http://lidavidm.github.io/blog/atom.xml</id>
+    <author>
+        <name>David Li</name>
+        <email>li.davidm96@gmail.com</email>
+    </author>
+    <updated>2013-12-07T00:00:00Z</updated>
+    <entry>
+    <title>Software Patents for the Rest of Us</title>
+    <link href="http://lidavidm.github.io/blog/posts/2013-12-07-software-patents.html" />
+    <id>http://lidavidm.github.io/blog/posts/2013-12-07-software-patents.html</id>
+    <published>2013-12-07T00:00:00Z</published>
+    <updated>2013-12-07T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<div class="info">
+  Posted on December  7, 2013
+  
+</div>
+
+<p>Say you’re an aspiring writer. You’ve toiled endless hours working on your book, telling the tale of a lieutenant and his betrayal of his general, picking each word carefully, giving your sentences that twist, perfectly capturing the image of the spring vista outside your window, the backdrop of your epic. You publish your book and immediately make it onto the <em>New York Times</em> bestseller list. Time to sit back and relax…</p>
+<p>One day, you open your mail and see a legal notice<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Another writer, someone named William Shakespeare, says he has a patent on stories <a href="http://en.wikipedia.org/wiki/Othello">about lieutenants who betray their masters</a>. <em>That’s ridiculous</em>, you say. <em>Plots are ideas and that Shakespeare can’t patent them!</em><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<p>What are your options?</p>
+<p>Well, you remember reading a <a href="http://en.wikipedia.org/wiki/Othello#Cinthio_source">story similar to Shakespeare’s</a>, published long before the Bard received his patent. Perhaps you could challenge him in court and invalidate the patent? How much would that cost?</p>
+<p><strong>$500,000</strong>—in legal fees<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>. That’s not counting the settlement you’d have to pay if you lose.</p>
+<p>Pick yourself up off that floor. There’s more to that legal notice.</p>
+<p><em>But</em>, you whine, <em>how am I supposed to know?</em></p>
+<p>Good question. Here’s another one: what’s the difference between a patent on “a means of communicating a story in which an official betrays his superior” and a patent on “a method of communicating a tale about the betrayal of a general by a subordinate”? How are you supposed to search for patents that could cover your story, given that you could word and reword and reword the same idea multiple ways? Or that you could have multiple slightly different ideas that still cover your story?</p>
+<p>And let’s consider what Shakespeare could demand from you. He could ask that you <strong>license</strong> his patent—in effect, that you pay him money to use his “invention”. He could ask for an <strong>injunction</strong>—that you censor your book and not publish or sell it. Or you could refuse, and <strong>rewrite</strong> your book to avoid his patent.</p>
+<p><em>This is still ridiculous. You can’t actually patent stories!</em> And indeed you can’t. But this is just an allegory—now consider this real-life example.</p>
+<p>Now, you are <a href="http://investing.businessweek.com/research/stocks/private/person.asp?personId=25730570">Fred Chang</a>, CEO of <a href="http://www.newegg.com">Newegg.com</a>, a successful online electronics retailer. And how do people buy from your store? They put products in a shopping cart, of course. Just like every other site, just like they do in the physical world.</p>
+<p>And one day you (i.e., some drone in your legal office) receive a legal notice from Soverain Software. They <a href="https://www.google.com/patents/US5715314">claim to own the idea of a shopping cart</a>. Of course, they refer to it as a “network sales system”, and want their <em>rightful</em> share of your profits. <a href="http://www.zdnet.com/news/amazon-pays-40-million-to-settle-patent-dispute/144171">Amazon has already agreed to pay $40 million</a>. Soverain wants $34 million from you. Every other company targeted has <a href="http://arstechnica.com/tech-policy/2013/01/how-newegg-crushed-the-shopping-cart-patent-and-saved-online-retail/">agreed to settle</a>. What would you do in Newegg’s shoes?</p>
+<p>In the case of Newegg, they decided to fight. Newegg lost the first trial. Indeed, the judge didn’t even let the jury hear their argument that the patent was invalid! Luckily, upon appeal, the judgement was overruled and the patent declared invalid. A good ending for Newegg, and an example of justice: a predatory company that makes no products, a <em>patent troll</em>, has its patent invalidated.</p>
+<p>But in the real world, not every story has a happy ending. And not every aggressor is an obvious troll. Let’s look at Samsung vs Apple, the two titans on the sides of the Android phone vs iPhone battle.</p>
+<p>In 2011, Apple filed suit against Samsung, claiming that Samsung’s products infringed upon Apple patents for such features as double-tap-to-zoom and pinch-to-zoom, seeking <strong>$2.75 billion</strong> in damages<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>. Apple was originally awarded $1.05 billion, still a staggering sum, and of course Samsung has appealed, the award has been changed, etc. As of this writing, the <a href="http://news.cnet.com/8301-13579_3-57613382-37/jury-reaches-verdict-in-apple-v-samsung-damages-retrial/">retrial is still dragging on</a>. Samsung could easily see its products banned from the US market, leaving consumers with less competition in the smartphone market. And what products remain could face price increases, as manufacturers must then license Apple’s patents or face litigation. In fact, <a href="http://www.apple.com/pr/library/2012/11/11HTC-and-Apple-Settle-Patent-Dispute.html">HTC has already agreed to license from Apple</a>, under unknown but likely onerous terms.</p>
+<p>What is the purpose of patents? To protect inventions from copycats. Is an online shopping cart an invention? (Yes, said Soverain.) Is <a href="http://9gag.com/gag/219293">slide-to-unlock</a> (warning: Internet meme) an invention? (Yes, says Apple.) Is a little tray that holds all your notifications an invention? (Yes, says Google.)</p>
+<p>But are these <em>inventions</em>? Or are they <em>ideas</em>?</p>
+<p>This is the world of software patents. <a href="http://www.washingtonpost.com/blogs/the-switch/wp/2013/08/29/new-zealand-just-abolished-software-patents-heres-why-we-should-too/">Lawsuits are only increasing</a>, the number of software patents is steadily climbing, and the damages are now in the billions. Is there a solution? Any number of academics, policymakers, and others have proposed reforms, laws, bans. But ultimately, it remains up to us—the consumers—to make this problem a priority, not just an abstruse debate.</p>
+<p><em>For more information, check out the</em> <a href="http://en.swpat.org/wiki">End Software Patents <em>wiki</em></a>.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>This analogy comes <a href="http://www.gnu.org/philosophy/software-literary-patents.html">by way of Richard Stallman</a>, by the way.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>See the <a href="http://www.uspto.gov/patents/resources/general_info_concerning_patents.jsp#heading-4">USPTO’s website</a>: “A patent cannot be obtained upon a mere idea or suggestion.”<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>“The Private Costs of Patent Litigation” (2008), page 16.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>See, for instance, the <a href="http://www.huffingtonpost.com/2012/08/24/apple-samsung-lawsuit-verdict_n_1829268.html">Huffington Post story</a>.<a href="#fnref4">↩</a></p></li>
+</ol>
+</div>
+
+<script src="/js/headers.js"></script>
+]]></summary>
+</entry>
+<entry>
+    <title>New Features for Gamma</title>
+    <link href="http://lidavidm.github.io/blog/posts/2013-11-28-new-features-for-gamma.html" />
+    <id>http://lidavidm.github.io/blog/posts/2013-11-28-new-features-for-gamma.html</id>
+    <published>2013-11-28T00:00:00Z</published>
+    <updated>2013-11-28T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<div class="info">
+  Posted on November 28, 2013
+  
+</div>
+
+<p><a href="http://www.sympygamma.com">SymPy Gamma</a> is essentially SymPy’s clone of Wolfram|Alpha, at least in terms of math features. We just rolled out some new features:</p>
+<ul>
+<li><p>Improved plotting, still based on <a href="http://www.d3js.org">D3.js</a></p></li>
+<li><p>Multiple graphs on one plot:</p>
+<p><a href="http://www.sympygamma.com/input/?i=plot%28[x%2C+x^2%2C+x^3%2C+x^4]%29"><img src="/assets/gamma-multiple-plots.svg" alt="Multiple plots in Gamma" /></a></p></li>
+<li><p>Polar and parametric equations:</p>
+<p><a href="http://www.sympygamma.com/input/?i=plot%28x%3D7cos%28t%29%2C+y%3D10sin%28t%29%2Cr%3Dtheta%29"><img src="/assets/gamma-multiple-plots-2.svg" alt="Polar and parametric plots in Gamma" /></a></p></li>
+<li><p>Diophantine equation solving: <a href="http://www.sympygamma.com/input/?i=diophantine%283*x**2%20%2B%204*y**2%20-%205*z**2%20%2B%204*x*y%20-%207*y*z%20%2B%207*z*x%29"><code>diophantine(3*x**2 + 4*y**2 - 5*z**2 + 4*x*y - 7*y*z + 7*z*x)</code></a></p>
+<img src="/assets/gamma-diophantine.png" alt="Gamma&#39;s Diophantine equation solution" /></li>
+<li><p>Recurrence relation solving: <a href="http://www.sympygamma.com/input/?i=rsolve%28y%28n%2B2%29-y%28n%2B1%29-y%28n%29%2C%20y%28n%29%2C%20{y%280%29%3A%200%2C%20y%281%29%3A%201}%29"><code>rsolve(y(n+2)-y(n+1)-y(n), y(n), {y(0): 0, y(1): 1})</code></a></p>
+<img src="/assets/gamma-recurrence.png" alt="Gamma&#39;s recurrence relation solution" /></li>
+<li>Boolean logic results:</li>
+<li><p>An updated version of SymPy, and various other improvements</p></li>
+</ul>
+<p>Gamma's (and by extension, SymPy's) parsing still needs work, though, when it comes to the implicit style. Consider, for instance, the input <code>y(x)</code>. Is this</p>
+<ol style="list-style-type: decimal">
+<li>The function <span class="math">\(\mathrm{y}(x)\)</span>, or</li>
+<li>The product <span class="math">\(yx\)</span>?</li>
+</ol>
+<p>This makes inputs ambiguous, at least to the parser. For instance, it makes sense that <code>expand(a(x + 1) + b(x + 2))</code> should be <span class="math">\(ax + bx + a + b\)</span> and not <span class="math">\(\mathrm{a}(x+1) + \mathrm{b}(x+2)\)</span>. Meanwhile, <code>rsolve(y(n+2) - y(n+1) - y(n), y(n))</code> wouldn't make any sense as <span class="math">\(\mathrm{rsolve}(ny + 2y - ny - y - ny, ny)\)</span>.</p>
+<p>How do we solve this problem? I see three, non-mutually-exclusive ways:</p>
+<ol style="list-style-type: decimal">
+<li>Provide an &quot;interpret as&quot; functionality, like Wolfram|Alpha. For functions, you can also explicitly specify a function symbol with <code>Function(&quot;f&quot;)(x)</code>, though this is rather tedious to type.</li>
+<li>Give the parser a whitelist/blacklist of functions to use implicit function or implicit multiplication syntax.</li>
+<li>Try it both ways and take the one that doesn't raise an exception.</li>
+</ol>
+<p>So in the future, I'd like to improve SymPy's parser more -- and hopefully, someday add natural language parsing to Gamma. Dealing with these ambiguities is a first step towards that.</p>
+
+<script src="/js/headers.js"></script>
+]]></summary>
+</entry>
+<entry>
+    <title>Parsing & Implicit Parsing in SymPy</title>
+    <link href="http://lidavidm.github.io/blog/posts/2013-09-15-implicit-parsing-in-sympy.html" />
+    <id>http://lidavidm.github.io/blog/posts/2013-09-15-implicit-parsing-in-sympy.html</id>
+    <published>2013-09-15T00:00:00Z</published>
+    <updated>2013-09-15T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<div class="info">
+  Posted on September 15, 2013
+  
+</div>
+
+<p><em>This is a work-in-progress and will be periodically revised to reflect changes in SymPy. Last updated: 2014-6-21</em></p>
+<p>One of the annoyances of entering mathematics on the computer is the rigidity of the format the computer generally expects. In SymPy, <code>sympify()</code> won’t accept any of the following, though a human would:</p>
+<ul>
+<li><code>2x</code></li>
+<li><code>5 sin x</code></li>
+<li><code>6(9)</code></li>
+<li><code>sin x^3 + y</code></li>
+<li><code>ln sin x</code></li>
+<li><code>sin^2 x</code></li>
+<li><code>xyz</code></li>
+</ul>
+<p>SymPy’s implicit parsing aims to fix this. Implicit multiplication takes care of statements like <code>2x</code>, symbol splitting allows for <code>xyz</code>, implicit application enables <code>sin x</code>, and function exponentiation allows <code>sin^2 x</code>.</p>
+<p>But first, we have a problem: some of these statements are ambiguous. For instance, should <code>sin x^3 + y</code> be interpreted as <code>sin(x^3) + y</code>, <code>sin(x^3 + y)</code>, or <code>sin(x)^3 + y</code>? The last one, to a human, wouldn't make much sense, but the other two are perfectly valid. For SymPy, we’ve arbitrarily chosen the first interpretation.</p>
+<p>That’s not all. Let’s look at the last case more: <code>xyz</code>. To a human, this represents <code>x*y*z</code>, so naturally to handle this SymPy should simply split the name into three. But we can’t split every token; consider these:</p>
+<ul>
+<li><code>x_2</code></li>
+<li><code>alpha</code></li>
+</ul>
+<p>Splitting these names would not match user expectations at all.</p>
+<p>So taking these considerations into account, how should we implement implicit parsing? We have a few options:</p>
+<ul>
+<li>Transform the input string (regular expression). <a href="https://github.com/sagemath/sage/blob/master/src/sage/misc/preparser.py">This is what Sage does</a>.</li>
+<li>Transform the token stream. <a href="https://github.com/sympy/sympy/blob/master/sympy/parsing/sympy_parser.py">This is what SymPy does</a>.</li>
+<li>Use a custom parser.</li>
+</ul>
+<p>(AST transforms aren’t an option because this syntax isn’t valid Python syntax.)</p>
+<p>Let’s look at the SymPy parser. If you just want to read about implicit parsing, jump to the section about <a href="#transformations">token transformations</a>.</p>
+<h2 id="the-sympy-parser">The SymPy Parser</h2>
+<p><em>Note: all data here is based on SymPy 0.7.3</em></p>
+<p>Overall, SymPy follows these steps. You can follow along in <a href="https://github.com/sympy/sympy/blob/master/sympy/parsing/sympy_parser.py"><code>sympy_parser.py</code></a>:</p>
+<ol style="list-style-type: decimal">
+<li>Tokenize the input (which is not necessarily valid Python) using a modified Python 2 tokenizer.</li>
+<li>Run the tokens through a series of transformations.</li>
+<li>Untokenize the tokens, generating valid Python code.</li>
+<li>Evaluate the string.</li>
+</ol>
+<p>Yes, we use <code>eval()</code>. It’s not safe. (SymPy Live and SymPy Gamma deal with this by ignoring the problem: they run on Google App Engine, which is sandboxed.)</p>
+<h3 id="the-sympy-tokenizer">The SymPy Tokenizer</h3>
+<p>The tokenizer handles some syntax not in vanilla Python. In particular, we’d like to be able to parse expressions like these:</p>
+<ul>
+<li><code>x!</code> (<span class="math">\(x\)</span> factorial)</li>
+<li><code>x!!</code> (<span class="math">\(x\)</span> double factorial)</li>
+<li><code>0.[123]</code> (<span class="math">\(0.\overline{123}\)</span>)</li>
+</ul>
+<p>Note that the last example is valid Python—it’s equivalent to <code>(0.)[123]</code>. But to make it easier to recognize and transform, we modified the tokenizer to handle it as a special case:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="co"># Standard library</span>
+&gt;&gt;&gt; tokenize.tokenize(StringIO(<span class="st">&#39;0.[123]&#39;</span>).readline)
+<span class="dv">1</span>,<span class="dv">0-1</span>,<span class="dv">2</span>:	NUMBER	<span class="st">&#39;0.&#39;</span>
+<span class="dv">1</span>,<span class="dv">2-1</span>,<span class="dv">3</span>:	OP	<span class="st">&#39;[&#39;</span>
+<span class="dv">1</span>,<span class="dv">3-1</span>,<span class="dv">6</span>:	NUMBER	<span class="st">&#39;123&#39;</span>
+<span class="dv">1</span>,<span class="dv">6-1</span>,<span class="dv">7</span>:	OP	<span class="st">&#39;]&#39;</span>
+<span class="dv">2</span>,<span class="dv">0-2</span>,<span class="dv">0</span>:	ENDMARKER	<span class="st">&#39;&#39;</span>
+
+<span class="co"># SymPy</span>
+&gt;&gt;&gt; sympy.parsing.sympy_tokenize.tokenize(StringIO(<span class="st">&#39;0.[123]&#39;</span>).readline)
+<span class="dv">1</span>,<span class="dv">0-1</span>,<span class="dv">7</span>:	NUMBER	<span class="st">&#39;0.[123]&#39;</span>
+<span class="dv">2</span>,<span class="dv">0-2</span>,<span class="dv">0</span>:	ENDMARKER	<span class="st">&#39;&#39;</span></code></pre>
+<p><code>!</code> and <code>!!</code> are simply operators now:</p>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; sympy.parsing.sympy_tokenize.tokenize(StringIO(<span class="st">&#39;x!!&#39;</span>).readline)
+<span class="dv">1</span>,<span class="dv">0-1</span>,<span class="dv">1</span>:	NAME	<span class="st">&#39;x&#39;</span>
+<span class="dv">1</span>,<span class="dv">1-1</span>,<span class="dv">3</span>:	OP	<span class="st">&#39;!!&#39;</span>
+<span class="dv">2</span>,<span class="dv">0-2</span>,<span class="dv">0</span>:	ENDMARKER	<span class="st">&#39;&#39;</span>
+&gt;&gt;&gt; sympy.parsing.sympy_tokenize.tokenize(StringIO(<span class="st">&#39;x!&#39;</span>).readline)
+<span class="dv">1</span>,<span class="dv">0-1</span>,<span class="dv">1</span>:	NAME	<span class="st">&#39;x&#39;</span>
+<span class="dv">1</span>,<span class="dv">1-1</span>,<span class="dv">2</span>:	OP	<span class="st">&#39;!&#39;</span>
+<span class="dv">2</span>,<span class="dv">0-2</span>,<span class="dv">0</span>:	ENDMARKER	<span class="st">&#39;&#39;</span></code></pre>
+<p>Unfortunately, since this is based on an older tokenizer, it doesn’t support Python 3 features, such as bytestrings, and it’ll <a href="https://code.google.com/p/sympy/issues/detail?id=3986">incorrectly parse longs in Python 3</a>, not to mention it <a href="https://code.google.com/p/sympy/issues/detail?id=1763">doesn’t support Unicode</a>.</p>
+<h3 id="transformations">Transformations</h3>
+<p>Say you’re making a SymPy calculator/grapher/what-have-you. The user inputs this expression:</p>
+<pre class="sourceCode python"><code class="sourceCode python">sin(x) + <span class="dv">3</span></code></pre>
+<p>and your app spits out this error message:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">NameError</span>: name <span class="st">&#39;x&#39;</span> is not defined</code></pre>
+<p>Not a very good calculator. SymPy handles this by transforming the token stream; in this case, undefined variables are wrapped in <code>Symbol()</code> calls to turn them into SymPy symbols. By default, parsing uses these transformations:</p>
+<ol style="list-style-type: decimal">
+<li>Undefined variables become <code>Symbol</code>s.</li>
+<li>Complex numbers become SymPy complex numbers (<code>3 + 4j</code> becomes <code>3 + 4*I</code>)</li>
+<li>Repeating decimals become <code>Rational</code>s (<code>0.[123]</code> becomes <code>Rational(123,    999)</code>).</li>
+<li>Floating-point constants become <code>Float</code>s.</li>
+<li>Integer constants become <code>Integer</code>s.</li>
+<li>Factorial notation becomes calls to <code>factorial</code> or <code>factorial2</code> as appropriate.</li>
+</ol>
+<p>SymPy also provides other useful transformations:</p>
+<ul>
+<li>XOR, <code>^</code>, becomes exponentiation.</li>
+<li>Floats become rational numbers.</li>
+<li>Implicit parsing.</li>
+</ul>
+<p>Note that <em>SymPy’s transformations always produce valid Python code</em>, since we’re not modifying the parser.</p>
+<p>The API for this is a bit hidden. Here’s an example:</p>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; <span class="ch">from</span> sympy.parsing.sympy_parser <span class="ch">import</span> parse_expr
+&gt;&gt;&gt; parse_expr(<span class="st">&quot;1/2&quot;</span>)
+<span class="dv">1</span>/<span class="dv">2</span>
+&gt;&gt;&gt; <span class="dt">type</span>(_)
+&lt;<span class="kw">class</span> <span class="st">&#39;sympy.core.numbers.Half&#39;</span>&gt;
+&gt;&gt;&gt; <span class="ch">from</span> sympy.parsing.sympy_parser <span class="ch">import</span> standard_transformations,\
+... implicit_multiplication_application, convert_xor
+&gt;&gt;&gt; transformations = (standard_transformations +
+...     (implicit_multiplication_application,))
+&gt;&gt;&gt; parse_expr(<span class="st">&quot;2x&quot;</span>, transformations=transformations)
+<span class="dv">2</span>*x
+&gt;&gt;&gt; transformations = (standard_transformations + (convert_xor,))
+&gt;&gt;&gt; parse_expr(<span class="st">&quot;x^3&quot;</span>, transformations=transformations)
+x**<span class="dv">3</span></code></pre>
+<p>How do the implicit parsing transformations work? They’re split into four transformations: symbol splitting, multiplication, application, and exponentiation, which must be run in that order, though not all need to be run.</p>
+<p>Symbol splitting is quite simple: for each name in the token stream, the transformation checks if it 1) is part of a <code>Symbol</code>, so that it doesn’t split function names 2) is not a Greek letter, and 3) does not contain an underscore. If so, it makes one <code>Symbol</code> for each letter in the original name.</p>
+<p>Implicit multiplication scans the tokens two at a time, looking for one of these conditions:</p>
+<ul>
+<li>Closing parenthesis followed by opening parenthesis (<code>(x + 2)(x + 3)</code>)</li>
+<li>Closing parenthesis followed by variable name (<code>(x + 2) sin(x)</code>)</li>
+<li>Variable name followed by opening parenthesis (<code>pi (x + 3)</code>)</li>
+<li>Variable name followed by variable name (<code>pi E EulerGamma</code>)</li>
+</ul>
+<p>Application (and multiplication, though it’s not necessary) depends on an intermediate step that groups function calls into one token—<code>sin(x)</code>, while represented with seven tokens normally (<code>['sin', '(', 'Symbol', '(', &quot;'x'&quot;, ')', ')']</code>), is first grouped into one “token” (called <code>AppliedFunction</code> in the source). Then it follows these steps:</p>
+<ol style="list-style-type: decimal">
+<li>Keep track of how many parentheses we have to insert and how many tokens to skip.</li>
+<li>For each token,
+<ol style="list-style-type: decimal">
+<li>If it’s a function name not followed by an opening parenthesis, increment the counter and insert an opening parenthesis.</li>
+<li>Else, if the parenthesis counter is nonzero,
+<ol style="list-style-type: decimal">
+<li>If the next token is a multiplication or exponentiation, increment the skip counter.</li>
+<li>Else, if the skip counter is nonzero, decrement it.</li>
+<li>Else, insert a closing parenthesis after this token and decrement the counter.</li>
+</ol></li>
+</ol></li>
+</ol>
+<p>This way, <code>sin x^2</code> gets parsed as <code>sin(x^2)</code>, not <code>sin(x)^2</code>. There’s some more logic to make life easier for the function exponentiation transformation as well.</p>
+<p>To implement function exponentiation, think about how the token stream would look at this point. All functions are applied, so for <code>sin**2 x</code>, we would have something like this:</p>
+<pre class="sourceCode python"><code class="sourceCode python">[<span class="st">&#39;sin&#39;</span>, <span class="st">&#39;**&#39;</span>, <span class="st">&#39;Integer&#39;</span>, <span class="st">&#39;(&#39;</span>, <span class="st">&#39;2&#39;</span>, <span class="st">&#39;)&#39;</span>, <span class="st">&#39;(&#39;</span>, <span class="st">&#39;Symbol&#39;</span>, <span class="st">&#39;(&#39;</span>, <span class="st">&quot;&#39;x&#39;&quot;</span>, <span class="st">&#39;)&#39;</span>, <span class="st">&#39;)&#39;</span>]</code></pre>
+<p>If you have implicit multiplication enabled, it’ll actually look like this (note the extraneous multiplication):</p>
+<pre class="sourceCode python"><code class="sourceCode python">[<span class="st">&#39;sin&#39;</span>, <span class="st">&#39;**&#39;</span>, <span class="st">&#39;Integer&#39;</span>, <span class="st">&#39;(&#39;</span>, <span class="st">&#39;2&#39;</span>, <span class="st">&#39;)&#39;</span>, <span class="st">&#39;*&#39;</span>, <span class="st">&#39;(&#39;</span>, <span class="st">&#39;Symbol&#39;</span>, <span class="st">&#39;(&#39;</span>, <span class="st">&quot;&#39;x&#39;&quot;</span>, <span class="st">&#39;)&#39;</span>, <span class="st">&#39;)&#39;</span>]</code></pre>
+<p>The transformation has to figure out what constitutes the exponent and what constitutes the function call. The rule SymPy uses is, essentially, the exponent is everything from and including the exponentiation operator to the first closing parenthesis it sees (this rules out anything but simple integer and symbolic exponents; <code>sin**(x+3)(x+5)</code> won’t be parsed correctly). It then parses the following tokens, discarding the extraneous multiplication if it exists, to find the closing parenthesis of the function call (this correctly handles nested parentheses), and moves the tokens for the exponent to the end. So what the parser ends up seeing is</p>
+<pre class="sourceCode python"><code class="sourceCode python">[<span class="st">&#39;sin&#39;</span>, <span class="st">&#39;(&#39;</span>, <span class="st">&#39;Symbol&#39;</span>, <span class="st">&#39;(&#39;</span>, <span class="st">&quot;&#39;x&#39;&quot;</span>, <span class="st">&#39;)&#39;</span>, <span class="st">&#39;)&#39;</span>, <span class="st">&#39;**&#39;</span>, <span class="st">&#39;Integer&#39;</span>, <span class="st">&#39;(&#39;</span>, <span class="st">&#39;2&#39;</span>, <span class="st">&#39;)&#39;</span>]</code></pre>
+<p>which is equivalent to <code>sin(Symbol(x))**2</code>.</p>
+<h3 id="evaluation">Evaluation</h3>
+<p>One final note: SymPy uses a an evaluation trick for the final result. SymPy defines <code>Symbol.__call__</code> so that this works:</p>
+<pre class="sourceCode python"><code class="sourceCode python">&gt;&gt;&gt; spam = sympify(<span class="st">&#39;f(x)&#39;</span>)
+f(x)
+&gt;&gt;&gt; x = Symbol(<span class="st">&#39;x&#39;</span>)
+&gt;&gt;&gt; eggs = Function(<span class="st">&#39;f&#39;</span>)(x)
+f(x)
+&gt;&gt;&gt; spam == eggs
+<span class="ot">True</span></code></pre>
+<p>However, it’s a <a href="https://code.google.com/p/sympy/issues/detail?id=440">point of contention</a> whether this should be done at all.</p>
+<p>So there you have it. SymPy’s parser.</p>
+
+<script src="/js/headers.js"></script>
+]]></summary>
+</entry>
+
+</feed>
