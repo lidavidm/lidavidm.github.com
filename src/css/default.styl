@@ -1,28 +1,35 @@
-@import url("crimson/stylesheet.css");
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400");
+@import url('crimson/stylesheet.css');
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:300,400');
+
 /** Mixins **/
+
+shadow(size) {
+  box-shadow: 0px 3px size rgba(0, 0, 0, 0.5);
+}
+
 /** Styling **/
+
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   margin: 0;
-  background: #ddd;
+  background: #DDD;
 }
+
 header {
-  color: #fff;
-  background: #3b5526;
+  color: #FFF;
+  background: #3B5526;
 }
+
 div#logo a {
-  color: #fff;
+  color: #FFF;
   text-decoration: none;
   font-weight: 300;
   font-size: 2em;
   padding: 1rem;
 }
-#navigation a:link,
-#navigation a:visited,
-#navigation a:hover,
-#navigation a:active {
+
+#navigation a:link, #navigation a:visited, #navigation a:hover, #navigation a:active {
   color: #000;
   display: block;
   text-decoration: none;
@@ -33,50 +40,62 @@ div#logo a {
   -o-transition: all 300ms ease-out;
   transition: all 300ms ease-out;
 }
+
 #navigation a:hover {
-  background: #81b953;
+  background: #81B953;
 }
+
 #navigation a:active {
-  background: #aaa;
+  background: #AAA;
 }
+
 main {
   font-family: "crimson";
 }
+
 article {
-  background: #fff;
+  background: #FFF;
 }
+
 footer {
   padding: 0.5em 0;
   color: #555;
   font-family: "Open Sans", sans-serif;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+h1,h2,h3,h4,h5,h6 {
   font-family: "Open Sans", sans-serif;
   font-weight: normal;
 }
+
 article > h1 {
   margin: 0.25rem 0 0.5rem 0;
   font-size: 2.25rem;
   font-weight: 300;
-  color: #3b5526;
+  color: #3B5526;
 }
+
+h1 {
+}
+
+h2 {
+}
+
 div.info {
   color: #555;
   font-style: italic;
 }
+
 /** Layout **/
+
 /* Mobile phones */
 @media (max-device-width: 767px) {
   header {
-    box-shadow: 0px 3px 5px rgba(0,0,0,0.5);
+    shadow: 5px;
   }
+
   div#logo {
-    background: #3b5526;
+    background: #3B5526;
     position: fixed;
     top: 0;
     left: 0;
@@ -85,6 +104,7 @@ div.info {
     z-index: 10000;
     text-align: right;
   }
+
   #mobile-menu {
     position: absolute;
     top: 0;
@@ -94,11 +114,12 @@ div.info {
     border: 0;
     padding: 0 1rem;
     margin: 0;
-    background: #3b5526;
+    background: #3B5526;
     text-transform: uppercase;
     color: inherit;
     font-size: 1.5em;
   }
+
   div#logo a {
     font-size: 1.25em;
     line-height: 2.5rem;
@@ -106,6 +127,7 @@ div.info {
     font-weight: 400;
     padding-right: 0.25em;
   }
+
   #navigation {
     position: fixed;
     top: 0;
@@ -113,7 +135,7 @@ div.info {
     left: 0;
     right: 50%;
     text-align: left;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     opacity: 0;
     -webkit-transition: all 750ms ease-out;
     -moz-transition: all 750ms ease-out;
@@ -126,6 +148,7 @@ div.info {
     -ms-transform: translateX(-100%);
     transform: translateX(-100%);
   }
+
   #navigation nav {
     position: absolute;
     top: 50%;
@@ -137,36 +160,43 @@ div.info {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
+
   #navigation a {
     clear: both;
     height: 3rem;
     display: inline-block;
     line-height: 3rem;
   }
-  #navigation a:link,
-  #navigation a:visited,
-  #navigation a:hover,
-  #navigation a:active {
-    background: rgba(0,0,0,0.7);
-    color: #fff;
-    padding-left: 1em;
-    margin-bottom: 0.5em;
+
+  #navigation {
+    a:link, a:visited, a:hover, a:active {
+      background: rgba(0, 0, 0, 0.7);
+      color: #FFF;
+      padding-left: 1em;
+      margin-bottom: 0.5em;
+    }
   }
+
   main {
     padding-top: 2.75rem;
   }
+
   article {
     margin: 0 0.25em;
     padding: 1em 0.5em;
   }
+
   pre.sourceCode {
     overflow-y: auto;
   }
+
   footer {
     text-align: center;
   }
 }
+
 /* Tablet and desktop */
+
 @media (min-device-width: 768px) {
   header {
     position: absolute;
@@ -174,60 +204,73 @@ div.info {
     left: 0;
     right: 0;
     height: 4em;
-    box-shadow: 0px 3px 5px rgba(0,0,0,0.5);
+
+    #logo {
+      position: absolute;
+      bottom: 0.5em;
+      left: 0.5em;
+    }
+
+    shadow(5px);
   }
-  header #logo {
-    position: absolute;
-    bottom: 0.5em;
-    left: 0.5em;
-  }
+
   #mobile-menu {
     display: none;
   }
+
   main {
     position: absolute;
     left: 0;
   }
+
   article {
-    box-shadow: 0px 3px 10px rgba(0,0,0,0.5);
+    shadow(10px);
     padding: 1em;
     margin-bottom: 1em;
     min-height: 20em;
   }
 }
+
 /* Tablet only */
+
 @media (min-device-width: 768px) and (max-device-width: 1279px) {
   #navigation {
     position: absolute;
     top: 4em;
     text-align: center;
+
+    a:link, a:visited, a:hover, a:active {
+      display: inline-block;
+      padding: 1rem;
+    }
   }
-  #navigation a:link,
-  #navigation a:visited,
-  #navigation a:hover,
-  #navigation a:active {
-    display: inline-block;
-    padding: 1rem;
-  }
+
   main {
     top: 7em;
   }
 }
+
 /* Desktop only */
+
 @media (min-device-width: 1280px) {
   header {
     position: fixed;
     height: 7em;
   }
+
   #navigation {
     position: fixed;
     top: 7em;
     left: 0;
     width: 21em;
+
+    a {
+      i {
+        display: none;
+      }
+    }
   }
-  #navigation a i {
-    display: none;
-  }
+
   main {
     top: 3em;
     left: 18em;

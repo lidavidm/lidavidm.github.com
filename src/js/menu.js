@@ -3,7 +3,7 @@ $(function() {
     var visible = false;
     $('#mobile-menu').click(function() {
         if (visible) {
-            $('header #navigation').css({
+            $('#navigation').css({
                 opacity: 0,
                 '-webkit-transform': 'translateX(-100%)',
                 '-moz-transform': 'translateX(-100%)',
@@ -13,7 +13,7 @@ $(function() {
             });
         }
         else {
-            $('header #navigation').css({
+            $('#navigation').css({
                 opacity: 1,
                 '-webkit-transform': 'translateX(0%)',
                 '-moz-transform': 'translateX(0%)',
