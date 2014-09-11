@@ -18,11 +18,12 @@ animated—I’ve simply taken the superficial look.
 
 Personally I find that Material Design has too much whitespace—Google’s
 designers know better than I do, but the neon colors and excessive padding
-bothered me in general. I have also opted for
+in the design guidelines bothered me in general. I have also opted for the
 [Crimson](http://aldusleaf.org/0-crimson.html) and
-[Open Sans](http://www.google.com/fonts/specimen/Open+Sans) over Google’s
-[Roboto](http://www.google.com/design/spec/style/typography.html)
-font. Admittedly, the
+[Open Sans](http://www.google.com/fonts/specimen/Open+Sans) fonts over
+Google’s [Roboto](http://www.google.com/design/spec/style/typography.html).
+
+Admittedly, the
 [animations in Material Design are gorgeous](http://www.google.com/design/spec/animation/meaningful-transitions.html)—the
 ink ripple effect is a nice touch, and the way the pages smoothly morph into
 each other makes the UI feel responsive. I have not replicated them because
@@ -33,16 +34,24 @@ styles is definitely something I will be trying.
 I find the use of shadows, paper, and other skeuomorphic effects in Material
 Design interesting as well—the current trend has been towards completely
 flat interfaces, which started with Microsoft’s Zune and continued with
-Windows Phone 7, Metro, Google’s Holo, and Apple’s iOS 6.
+Windows Phone 7, Metro, Google’s Holo, and Apple’s iOS 6. Material reverses
+the trend away from skeuomorphism while still retaining the “flat” design
+that is so popular.
 
 My redesign here is still ongoing—I’d like to differentiate myself from
-Material Design further
+Material Design further and create my own look (though this design will
+clearly be inspired by Material).
 
-## Why Hakyll
+## About Hakyll
 
 Github Pages has Jekyll built in, making it quite convenient to
 use. However, depending on Github to run Jekyll on my repository was
 frustrating; it took a while for the site to be rebuilt, and I had to wait
 until then for error messages. There also isn’t a way to disable processing
 for certain pages—everything gets run through Jekyll, whether I like it or
-not. Running Jekyll locally would have solved these issues, of course.
+not. Running Jekyll locally would have solved these issues, of
+course. Instead of Jekyll I decided to use Hakyll, a Haskell site generator.
+
+Hakyll specifies configuration in Haskell code; instead of running “the”
+Hakyll processor, your configuration is compiled into a site generator,
+which you then run to output the actual site.
