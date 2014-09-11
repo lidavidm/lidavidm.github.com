@@ -7,6 +7,10 @@ I’ve updated the design of this blog, switching from
 [Jekyll](http://jekyllrb.com/) to [Hakyll](http://jaspervdj.be/hakyll/) in
 the process.
 
+I also took the chance to use a free domain from Namecheap,
+[http://lidavidm.me](http://lidavidm.me), and restructure this blog to be
+hosted under `/blog` instead of at the root of the site.
+
 ## The New Design
 
 This design is inspired by Google’s new
@@ -55,3 +59,10 @@ course. Instead of Jekyll I decided to use Hakyll, a Haskell site generator.
 Hakyll specifies configuration in Haskell code; instead of running “the”
 Hakyll processor, your configuration is compiled into a site generator,
 which you then run to output the actual site.
+
+## Final Notes
+
+I’ve been quite busy these past couple months and haven’t had a chance to
+really work on SymPy or write posts. I promise more is coming soon, about a
+TypeScript/Canvas project that I’ve been working on for a few months
+now.
