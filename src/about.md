@@ -14,23 +14,28 @@ violin, and read cyberpunk and sci-fi.
 
 ## Projects
 
-Some open-source projects I contribute to:
+Some open-source projects I’ve contributed to:
 
 - [SymPy](http://sympy.org), an open-source Python symbolic mathematics
   library
       - [SymPy Gamma](http://sympygamma.com), an online calculator based around
         SymPy in the spirit of Wolfram|Alpha
+- [Conda](http://conda.pydata.org/), a package manager
 
 What I'm working on:
 
-- [re/hack](https://github.com/lidavidm/rehack), an HTML5 Canvas clone of an
-  old Shockwave game
+- [re/hack](https://github.com/lidavidm/rehack), a TypeScript/HTML5 Canvas
+  clone of an old Shockwave game
 
 ## Work
 
 - Intern at [Continuum Analytics](http://continuum.io) *July 2014*
 
-## Bookshelf
+## Hobbies & Interests
+
+- Dota 2 (MMR: 2980)
+
+### Bookshelf
 
 - “Hello, Red”—Kurt Vonnegut (from *Look at the Birdie*)
 - “EPIPAC”—Kurt Vonnegut (from *Welcome to the Monkey House*)

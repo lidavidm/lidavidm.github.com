@@ -96,9 +96,15 @@ a.button:active {
   color: #fff;
   background: #3b5526;
   font-family: "Open Sans", sans-serif;
-  padding: 0.25em;
+  padding: 0.25em 0.5em;
   border-radius: 5px;
   text-decoration: none;
+  font-size: 0.9em;
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
 }
 a.button:hover {
   background: #81b953;
@@ -149,10 +155,10 @@ a.button:hover {
     text-align: left;
     background: rgba(0,0,0,0.7);
     opacity: 0;
-    -webkit-transition: all 750ms ease-out;
-    -moz-transition: all 750ms ease-out;
-    -ms-transition: all 750ms ease-out;
-    -o-transition: all 750ms ease-out;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
     transition: all 300ms ease-out;
     -moz-transform: translateX(-100%);
     -webkit-transform: translateX(-100%);
