@@ -109,6 +109,9 @@ a.button:active {
 a.button:hover {
   background: #81b953;
 }
+#disqus_thread {
+  margin-top: 3em;
+}
 /** Layout **/
 /* Mobile phones */
 @media (max-device-width: 767px) {
