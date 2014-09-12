@@ -1,1 +1,6 @@
 live-nacl
+*.hi
+*.o
+.cabal-sandbox/
+_cache/
+dist/
