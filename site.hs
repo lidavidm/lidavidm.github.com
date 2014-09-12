@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Data.Monoid (mappend)
+import           Data.Monoid (mappend, (<>))
 import           Hakyll
 import           Text.Pandoc.Options
 
@@ -55,6 +55,7 @@ main = hakyllWith customConfiguration $ do
     match "src/posts/*" $ do
         route $ srcRoute `composeRoutes` setExtension "html"
         compile $ pandocCompilerWith (def :: ReaderOptions) (pandocWriterOptions)
+            >>= saveSnapshot "teaser"
             >>= loadAndApplyTemplate "src/templates/post.html"    postCtx
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "src/templates/default.html" postCtx
@@ -78,8 +79,8 @@ main = hakyllWith customConfiguration $ do
         compile $ do
             posts <- recentFirst =<< loadAll "src/posts/*"
             let indexCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Home"                `mappend`
+                    listField "posts" postCtx (return posts) <>
+                    constField "title" "Home"                <>
                     defaultContext
 
             getResourceBody
@@ -101,5 +102,6 @@ main = hakyllWith customConfiguration $ do
 --------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
-    dateField "date" "%B %e, %Y" `mappend`
+    dateField "date" "%B %e, %Y" <>
+    teaserField "teaser" "teaser" <>
     defaultContext

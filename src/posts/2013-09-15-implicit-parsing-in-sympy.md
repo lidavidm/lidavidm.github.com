@@ -22,6 +22,8 @@ SymPy’s implicit parsing aims to fix this. Implicit multiplication takes
 care of statements like `2x`, symbol splitting allows for `xyz`, implicit
 application enables `sin x`, and function exponentiation allows `sin^2 x`.
 
+<!--more-->
+
 But first, we have a problem: some of these statements are ambiguous. For
 instance, should `sin x^3 + y` be interpreted as `sin(x^3) + y`, `sin(x^3 +
 y)`, or `sin(x)^3 + y`? The last one, to a human, wouldn't make much sense,

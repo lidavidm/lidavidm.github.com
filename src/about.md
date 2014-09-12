@@ -1,13 +1,16 @@
 ---
 layout: base
-title: About & Projects
+title: About & Contact
 ---
 
 I am a student at Cornell University in Ithaca, New York, pursuing a BSE in
 computer science. In my spare time, I contribute to open source, play
 violin, and read cyberpunk and sci-fi.
 
-[Résumé](/assets/resume.pdf)
+- [Résumé](/assets/resume.pdf)
+- [li.davidm96@gmail.com](mailto:li.davidm96@gmail.com)
+- [lidavidm @ Github](https://github.com/lidavidm)
+- [Google+](https://plus.google.com/+DavidLi96)
 
 ## Projects
 
@@ -32,9 +35,6 @@ What I'm working on:
 - “Hello, Red”—Kurt Vonnegut (from *Look at the Birdie*)
 - “EPIPAC”—Kurt Vonnegut (from *Welcome to the Monkey House*)
 - *Snow Crash*—Neal Stephenson
-
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-<div class="g-person" data-href="https://plus.google.com/+DavidLi96"></div>
 
 <a href="http://stackoverflow.com/users/262727/li-davidm">
 <img src="http://stackoverflow.com/users/flair/262727.png?theme=clean" width="208" height="58" alt="profile for li.davidm at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for li.davidm at Stack Overflow, Q&amp;A for professional and enthusiast programmers">

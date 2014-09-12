@@ -1,7 +1,16 @@
-<ul>
-  $for(posts)$
-  <li>
-    <a href="$url$">$title$</a> - $date$
-  </li>
-  $endfor$
-</ul>
+$for(posts)$
+<article class="article-card">
+  <header>
+    <h3><a href="$url$">$title$</a></h3>
+    <div class="info"><span class="date">$date$</span></div>
+  </header>
+
+  $if(teaser)$
+    $teaser$
+  $else$
+    <p></p>
+  $endif$
+
+  <a href="$url$" class="button">Read More <i class="fa fa-angle-right"></i></a>
+</article>
+$endfor$

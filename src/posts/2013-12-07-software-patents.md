@@ -20,6 +20,8 @@ patent them!*[^2]
 
 What are your options?
 
+<!--more-->
+
 Well, you remember reading a
 [story similar to Shakespeare’s](http://en.wikipedia.org/wiki/Othello#Cinthio_source),
 published long before the Bard received his patent. Perhaps you could

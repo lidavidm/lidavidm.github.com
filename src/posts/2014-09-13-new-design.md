@@ -11,6 +11,8 @@ I also took the chance to use a free domain from Namecheap,
 [http://lidavidm.me](http://lidavidm.me), and restructure this blog to be
 hosted under `/blog` instead of at the root of the site.
 
+<!--more-->
+
 ## The New Design
 
 This design is inspired by Google’s new
@@ -66,3 +68,8 @@ I’ve been quite busy these past couple months and haven’t had a chance to
 really work on SymPy or write posts. I promise more is coming soon, about a
 TypeScript/Canvas project that I’ve been working on for a few months
 now.
+
+## Updates
+
+2014-09-12: Added back Disqus commenting, updated home page, tweaked
+styling, merged about/contact, added RSS.

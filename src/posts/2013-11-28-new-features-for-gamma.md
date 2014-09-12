@@ -8,6 +8,8 @@ tags: SymPy Gamma
 Wolfram|Alpha, at least in terms of math features. We just rolled out some
 new features:
 
+<!--more-->
+
 - Improved plotting, still based on [D3.js](http://www.d3js.org)
 
   - Multiple graphs on one plot:

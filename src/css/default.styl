@@ -1,6 +1,16 @@
 @import url('crimson/stylesheet.css');
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:300,400');
 
+/** Variables **/
+
+font-sans = "Open Sans", sans-serif;
+font-serif = Crimson, serif;
+
+color-main = #3B5526;
+color-main-accent = #81B953;
+color-background = #DDD;
+color-muted = #555;
+
 /** Mixins **/
 
 shadow(size) {
@@ -10,15 +20,15 @@ shadow(size) {
 /** Styling **/
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: font-sans;
   font-size: 16px;
   margin: 0;
-  background: #DDD;
+  background: color-background;
 }
 
-header {
+#header {
   color: #FFF;
-  background: #3B5526;
+  background: color-main;
 }
 
 div#logo a {
@@ -42,7 +52,7 @@ div#logo a {
 }
 
 #navigation a:hover {
-  background: #81B953;
+  background: color-main-accent;
 }
 
 #navigation a:active {
@@ -50,52 +60,83 @@ div#logo a {
 }
 
 main {
-  font-family: "crimson";
+  font-family: font-serif;
 }
 
-article {
+#content {
   background: #FFF;
 }
 
 footer {
   padding: 0.5em 0;
-  color: #555;
-  font-family: "Open Sans", sans-serif;
+  color: color-muted;
+  font-family: font-sans;
 }
 
 h1,h2,h3,h4,h5,h6 {
-  font-family: "Open Sans", sans-serif;
+  font-family: font-sans;
   font-weight: normal;
 }
 
-article > h1 {
+#content > h1 {
   margin: 0.25rem 0 0.5rem 0;
   font-size: 2.25rem;
   font-weight: 300;
-  color: #3B5526;
+  color: color-main;
 }
 
 h1 {
 }
 
 h2 {
+  border-left: 3px solid color-main;
+  padding-left: 0.25em;
 }
 
 div.info {
-  color: #555;
+  color: color-muted;
   font-style: italic;
+}
+
+.article-card {
+  padding: 1em;
+
+  border-bottom: 1px solid color-muted;
+
+  h3 {
+    margin: 0 0 0.5em 0;
+    border: 0;
+
+    a:link, a:visited, a:hover, a:active {
+      color: color-main;
+      text-decoration: none;
+    }
+  }
+}
+
+a.button:link, a.button:visited, a.button:hover, a.button:active {
+  color: #FFF;
+  background: color-main;
+  font-family: font-sans;
+  padding: 0.25em;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+a.button:hover {
+  background: color-main-accent;
 }
 
 /** Layout **/
 
 /* Mobile phones */
 @media (max-device-width: 767px) {
-  header {
+  #header {
     shadow: 5px;
   }
 
   div#logo {
-    background: #3B5526;
+    background: color-main;
     position: fixed;
     top: 0;
     left: 0;
@@ -114,7 +155,7 @@ div.info {
     border: 0;
     padding: 0 1rem;
     margin: 0;
-    background: #3B5526;
+    background: color-main;
     text-transform: uppercase;
     color: inherit;
     font-size: 1.5em;
@@ -181,7 +222,7 @@ div.info {
     padding-top: 2.75rem;
   }
 
-  article {
+  #content {
     margin: 0 0.25em;
     padding: 1em 0.5em;
   }
@@ -198,7 +239,7 @@ div.info {
 /* Tablet and desktop */
 
 @media (min-device-width: 768px) {
-  header {
+  #header {
     position: absolute;
     top: 0;
     left: 0;
@@ -223,7 +264,7 @@ div.info {
     left: 0;
   }
 
-  article {
+  #content {
     shadow(10px);
     padding: 1em;
     margin-bottom: 1em;
@@ -253,7 +294,7 @@ div.info {
 /* Desktop only */
 
 @media (min-device-width: 1280px) {
-  header {
+  #header {
     position: fixed;
     height: 7em;
   }

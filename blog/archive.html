@@ -12,7 +12,7 @@
     <script src="./js/menu.js"></script>
   </head>
   <body>
-    <header>
+    <header id="header">
       <div id="logo">
         <button id="mobile-menu"><i class="fa fa-bars"></i></button>
         <a href="./">lidavidm’s blog</a>
@@ -22,41 +22,93 @@
     <nav id="navigation">
       <nav>
         <a href="./">Home</a>
-        <a href="./about.html">About &amp; Projects</a>
-        <a href="./contact.html">Contact</a>
+        <a href="./about.html">About &amp; Contact</a>
         <a href="./archive.html">Archive</a>
+        <a href="./atom.xml">RSS</a>
       </nav>
     </nav>
 
-    <main>
-      <article>
+    <main id="main">
+      <article id="content">
         <h1>Archive</h1>
 
-        <ul>
+        
+<article class="article-card">
+  <header>
+    <h3><a href="./posts/2014-09-13-new-design.html">Refreshed Design</a></h3>
+    <div class="info"><span class="date">September 13, 2014</span></div>
+  </header>
+
   
-  <li>
-    <a href="./posts/2014-09-13-new-design.html">Refreshed Design</a> - September 13, 2014
-  </li>
+    <p>I’ve updated the design of this blog, switching from <a href="http://jekyllrb.com/">Jekyll</a> to <a href="http://jaspervdj.be/hakyll/">Hakyll</a> in the process.</p>
+<p>I also took the chance to use a free domain from Namecheap, <a href="http://lidavidm.me" class="uri">http://lidavidm.me</a>, and restructure this blog to be hosted under <code>/blog</code> instead of at the root of the site.</p>
+
   
-  <li>
-    <a href="./posts/2013-12-07-software-patents.html">Software Patents for the Rest of Us</a> - December  7, 2013
-  </li>
+
+  <a href="./posts/2014-09-13-new-design.html" class="button">Read More <i class="fa fa-angle-right"></i></a>
+</article>
+
+<article class="article-card">
+  <header>
+    <h3><a href="./posts/2013-12-07-software-patents.html">Software Patents for the Rest of Us</a></h3>
+    <div class="info"><span class="date">December  7, 2013</span></div>
+  </header>
+
   
-  <li>
-    <a href="./posts/2013-11-28-new-features-for-gamma.html">New Features for Gamma</a> - November 28, 2013
-  </li>
+    <p>Say you’re an aspiring writer. You’ve toiled endless hours working on your book, telling the tale of a lieutenant and his betrayal of his general, picking each word carefully, giving your sentences that twist, perfectly capturing the image of the spring vista outside your window, the backdrop of your epic. You publish your book and immediately make it onto the <em>New York Times</em> bestseller list. Time to sit back and relax…</p>
+<p>One day, you open your mail and see a legal notice<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Another writer, someone named William Shakespeare, says he has a patent on stories <a href="http://en.wikipedia.org/wiki/Othello">about lieutenants who betray their masters</a>. <em>That’s ridiculous</em>, you say. <em>Plots are ideas and that Shakespeare can’t patent them!</em><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<p>What are your options?</p>
+
   
-  <li>
-    <a href="./posts/2013-09-15-implicit-parsing-in-sympy.html">Parsing &amp; Implicit Parsing in SymPy</a> - September 15, 2013
-  </li>
+
+  <a href="./posts/2013-12-07-software-patents.html" class="button">Read More <i class="fa fa-angle-right"></i></a>
+</article>
+
+<article class="article-card">
+  <header>
+    <h3><a href="./posts/2013-11-28-new-features-for-gamma.html">New Features for Gamma</a></h3>
+    <div class="info"><span class="date">November 28, 2013</span></div>
+  </header>
+
   
+    <p><a href="http://www.sympygamma.com">SymPy Gamma</a> is essentially SymPy’s clone of Wolfram|Alpha, at least in terms of math features. We just rolled out some new features:</p>
+
+  
+
+  <a href="./posts/2013-11-28-new-features-for-gamma.html" class="button">Read More <i class="fa fa-angle-right"></i></a>
+</article>
+
+<article class="article-card">
+  <header>
+    <h3><a href="./posts/2013-09-15-implicit-parsing-in-sympy.html">Parsing & Implicit Parsing in SymPy</a></h3>
+    <div class="info"><span class="date">September 15, 2013</span></div>
+  </header>
+
+  
+    <p><em>This is a work-in-progress and will be periodically revised to reflect changes in SymPy. Last updated: 2014-6-21</em></p>
+<p>One of the annoyances of entering mathematics on the computer is the rigidity of the format the computer generally expects. In SymPy, <code>sympify()</code> won’t accept any of the following, though a human would:</p>
+<ul>
+<li><code>2x</code></li>
+<li><code>5 sin x</code></li>
+<li><code>6(9)</code></li>
+<li><code>sin x^3 + y</code></li>
+<li><code>ln sin x</code></li>
+<li><code>sin^2 x</code></li>
+<li><code>xyz</code></li>
 </ul>
+<p>SymPy’s implicit parsing aims to fix this. Implicit multiplication takes care of statements like <code>2x</code>, symbol splitting allows for <code>xyz</code>, implicit application enables <code>sin x</code>, and function exponentiation allows <code>sin^2 x</code>.</p>
+
+  
+
+  <a href="./posts/2013-09-15-implicit-parsing-in-sympy.html" class="button">Read More <i class="fa fa-angle-right"></i></a>
+</article>
+
 
 
       </article>
 
       <footer>
-        <p>Copyright © 2014 David Li.</p>
+        <p>Copyright &copy; 2014 David Li.</p>
         <p>Generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>.</p>
       </footer>
     </main>
