@@ -139,6 +139,11 @@ a.button:hover {
 
 /** Layout **/
 
+#content.nopadding {
+  padding: 0!important;
+  margin: 0!important;
+}
+
 /* Mobile phones */
 @media (max-device-width: 767px) {
   #header {
@@ -228,7 +233,7 @@ a.button:hover {
     padding-top: 2.75rem;
   }
 
-  #content {
+  #content, article.padded {
     margin: 0 0.25em;
     padding: 1em 0.5em;
   }
@@ -270,7 +275,7 @@ a.button:hover {
     left: 0;
   }
 
-  #content {
+  #content, article.padded {
     shadow(10px);
     padding: 1em;
     margin-bottom: 1em;

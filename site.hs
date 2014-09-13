@@ -46,10 +46,11 @@ main = hakyllWith customConfiguration $ do
         route   srcRoute
         compile copyFileCompiler
 
-    match (fromList ["src/about.md", "src/contact.md"]) $ do
+    match "src/about.md" $ do
         route   $ srcRoute `composeRoutes` setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "src/templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "src/templates/nopadding.html" defaultContext
+            >>= loadAndApplyTemplate "src/templates/base.html" defaultContext
             >>= relativizeUrls
 
     match "src/posts/*" $ do
@@ -59,6 +60,7 @@ main = hakyllWith customConfiguration $ do
             >>= loadAndApplyTemplate "src/templates/post.html"    postCtx
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "src/templates/default.html" postCtx
+            >>= loadAndApplyTemplate "src/templates/base.html" postCtx
             >>= relativizeUrls
 
     match "src/archive.html" $ do
@@ -72,6 +74,7 @@ main = hakyllWith customConfiguration $ do
             getResourceBody
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "src/templates/default.html" indexCtx
+                >>= loadAndApplyTemplate "src/templates/base.html" indexCtx
                 >>= relativizeUrls
 
     match "src/index.html" $ do
@@ -86,6 +89,7 @@ main = hakyllWith customConfiguration $ do
             getResourceBody
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "src/templates/default.html" indexCtx
+                >>= loadAndApplyTemplate "src/templates/base.html" indexCtx
                 >>= relativizeUrls
 
     create ["atom.xml"] $ do
