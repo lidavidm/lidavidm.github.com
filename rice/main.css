@@ -10,7 +10,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'source-sans-pro', sans-serif;
+  font-family: 'alegreya', serif;
 }
 #header {
   background: #f6f6de;
@@ -45,7 +45,6 @@ h6 {
 #mainnav ul li a:hover,
 #mainnav ul li a:active {
   display: inline-block;
-  font-family: 'source-sans-pro', sans-serif;
   text-decoration: none;
   color: #555;
   -webkit-transition: background-color 400ms ease-out;
@@ -78,17 +77,16 @@ main #footer {
   background: #f9faf5;
 }
 .article header h1 {
-  font-weight: 300;
   font-size: 3em;
   margin: 0;
-  color: #87ceeb;
+  color: #8b0000;
 }
 .article h2,
 .article h3,
 .article h4,
 .article h5,
 .article h6 {
-  color: #87ceeb;
+  color: #8b0000;
   font-weight: 400;
 }
 .article p {
@@ -108,7 +106,7 @@ main #footer {
 .article >p:first-of-type::first-letter,
 .article hr+p::first-letter {
   float: left;
-  color: #87ceeb;
+  color: #8b0000;
   font-size: 4em;
   line-height: 0.8em;
   padding-right: 0.03em;
@@ -129,7 +127,7 @@ main #footer {
   content: "“";
   font-size: 4em;
   float: left;
-  color: #87ceeb;
+  color: #8b0000;
   line-height: 1em;
   padding-right: 0.1em;
 }
