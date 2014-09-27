@@ -1,0 +1,418 @@
+@import url("crimson/crimson.css");
+@import url("crimson-smcp/crimson-smcp.css");
+body {
+  font-family: 'crimson', serif;
+  font-size: 18px;
+  background: #f9faf5;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'crimson', serif;
+}
+#header {
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 1px 1px 5px #000;
+  z-index: 10000;
+}
+#header.alt-blue {
+  background-color: #defeff;
+}
+#header h1 {
+  position: absolute;
+  left: 0.1rem;
+  top: 0.1rem;
+  bottom: 0;
+  font-size: 3rem;
+  font-family: 'source-sans-pro', sans-serif;
+  font-weight: 300;
+  margin: 0;
+  display: inline-block;
+}
+#header h1 #mobile-menu {
+  display: none;
+}
+#header h1 .page-title {
+  display: inline-block;
+}
+#header h1 .article-title {
+  display: inline-block;
+  margin-left: 1rem;
+  font-weight: 400;
+  color: #0b88d7;
+}
+#mainnav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#mainnav ul li a:link,
+#mainnav ul li a:visited,
+#mainnav ul li a:hover,
+#mainnav ul li a:active {
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'source-sans-pro', sans-serif;
+  font-weight: 600;
+  color: #555;
+  -webkit-transition: color 200ms ease-out;
+  -moz-transition: color 200ms ease-out;
+  -ms-transition: color 200ms ease-out;
+  -o-transition: color 200ms ease-out;
+  transition: color 200ms ease-out;
+}
+#mainnav ul li a:hover {
+  color: #0b88d7;
+}
+main {
+  position: absolute;
+  top: 6rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+main #footer {
+  padding: 3em 1em;
+  color: #555;
+}
+.article {
+  font-size: 1.1em;
+  background: #f9faf5;
+}
+.article > * {
+  padding: 0 1rem;
+}
+.article header {
+  padding: 0;
+  background-size: cover;
+}
+.article header.backdrop {
+  height: 16rem;
+  position: relative;
+}
+.article header.backdrop h1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-shadow: 3px 3px 2px #000;
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(100%, rgba(0,0,0,0.7))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%); /* W3C */
+}
+.article header.backdrop h1 a:link,
+.article header.backdrop h1 a:visited,
+.article header.backdrop h1 a:hover,
+.article header.backdrop h1 a:active {
+  color: #fff;
+}
+.article header.backdrop h1.no-shadow {
+  background: none;
+}
+.article header h1 {
+  padding: 0 1rem;
+  font-size: 5em;
+  margin: 0;
+  font-family: 'source-sans-pro', sans-serif;
+  font-weight: 200;
+}
+.article header h1 a:link,
+.article header h1 a:visited,
+.article header h1 a:hover,
+.article header h1 a:active {
+  color: #000;
+  text-decoration: none;
+}
+.article header >div {
+  padding: 1rem;
+}
+.article time {
+  display: block;
+  font-style: italic;
+  margin: 0.5em 0;
+  font-size: 0.9em;
+}
+.article div.about {
+  margin: 0.5em 0;
+}
+.article ul.tags {
+  font-style: italic;
+  padding: 0 1rem;
+  margin: 0.5em 0;
+  font-size: 0.9em;
+}
+.article ul.tags li {
+  display: inline-block;
+}
+.article h2,
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
+  color: #8b0000;
+  font-weight: 400;
+}
+.article p {
+  line-height: 1.4em;
+}
+.article >p:first-of-type::first-line,
+.article hr+p::first-line {
+/* -moz-font-feature-settings: "smcp" 1;  */
+/* -moz-font-feature-settings: "smcp=1";  */
+/* -ms-font-feature-settings: "smcp" 1;  */
+/* -o-font-feature-settings: "smcp" 1;  */
+/* -webkit-font-feature-settings: "smcp" 1;  */
+/* font-feature-settings: "smcp" 1; */
+  font-family: 'crimson-smcp';
+  font-size: 1.2em;
+}
+.article >p:first-of-type::first-letter,
+.article hr+p::first-letter {
+  float: left;
+  color: #8b0000;
+  font-size: 4.5em;
+  line-height: 0.8em;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+}
+.article blockquote {
+  margin: 1em 4em;
+  border: 3px solid #093958;
+  border-left: 0;
+  border-right: 0;
+  color: #555;
+}
+.article blockquote p {
+  font-style: italic;
+  font-size: 1.5em;
+  margin: 0.5em 0;
+  line-height: 1.5em;
+}
+.article blockquote p:first-child:before {
+  content: "“";
+  height: 1rem;
+  font-size: 4em;
+  float: left;
+  color: #8b0000;
+  line-height: 1em;
+  padding-right: 0.1em;
+}
+.article blockquote cite {
+  font-style: italic;
+  color: #8b0000;
+}
+.article blockquote cite:before {
+  content: "—";
+  color: #8b0000;
+}
+.article blockquote.small {
+  font-size: 0.8em;
+}
+.article blockquote.side {
+  float: right;
+  width: 40%;
+  margin: 1em;
+}
+.article blockquote.side p {
+  font-size: 1.2em;
+}
+.article blockquote.side p:first-child:before {
+  content: "";
+}
+.article hr {
+  border-color: #8b0000;
+}
+.article a:link,
+.article a:visited,
+.article a:hover,
+.article a:active {
+  color: #000;
+  -webkit-transition: color 100ms ease-out;
+  -moz-transition: color 100ms ease-out;
+  -ms-transition: color 100ms ease-out;
+  -o-transition: color 100ms ease-out;
+  transition: color 100ms ease-out;
+}
+.article a:hover {
+  color: #0b88d7;
+}
+/** Layout **/
+/* Phone Only */
+@media screen and (max-device-width: 767px) {
+  #header {
+    height: 3rem !important;
+  }
+  #header h1 {
+    top: 0;
+    left: 0;
+    font-size: 2.4rem;
+    line-height: 3rem;
+  }
+  #header #mainnav {
+    top: 3rem;
+  }
+  main {
+    top: 3rem;
+    left: 0;
+    right: 0;
+  }
+  .article {
+    font-size: 1em;
+  }
+  .article header.backdrop {
+    height: 6rem;
+  }
+  .article header.backdrop h1 {
+    font-size: 4rem;
+    font-weight: 300;
+  }
+  .article blockquote {
+    margin: 1em;
+    font-size: 1.25em;
+  }
+  .article blockquote.small {
+    font-size: 0.7em;
+  }
+  .article blockquote cite {
+    font-size: 1.25em !important;
+  }
+}
+/* Mobile Only */
+@media screen and (max-device-width: 1279px) {
+  header h1 #mobile-menu {
+    display: inline-block !important;
+    padding: 0 0.25em;
+    margin-left: -0.7em;
+    padding-right: 0.3em;
+    margin-right: 0.3em;
+    font-size: 2rem;
+    -webkit-transition: all 500ms ease-out;
+    -moz-transition: all 500ms ease-out;
+    -ms-transition: all 500ms ease-out;
+    -o-transition: all 500ms ease-out;
+    transition: all 500ms ease-out;
+  }
+  header h1 #mobile-menu.open {
+    margin-left: -0.4em;
+    padding-right: 0;
+    color: #0b88d7;
+  }
+  header h1 #mobile-menu:active {
+    border: 1px solid #0b88d7;
+    color: #0b88d7;
+  }
+  header h1 i.icon-ricelogo {
+    margin-left: -0.4em;
+  }
+  header h1 .page-title {
+    margin-left: -0.4em;
+  }
+  header h1 .article-title {
+    display: none !important;
+  }
+  header #mainnav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    transform: translateX(-110%);
+    opacity: 0;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 1px 1px 5px #000;
+    -webkit-transition: all 500ms ease-out;
+    -moz-transition: all 500ms ease-out;
+    -ms-transition: all 500ms ease-out;
+    -o-transition: all 500ms ease-out;
+    transition: all 500ms ease-out;
+  }
+  header #mainnav ul li a {
+    width: 100%;
+    padding: 0.75em 0;
+    text-align: center;
+    border-bottom: 1px solid #555;
+  }
+  header #mainnav.open {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  .welcome {
+    display: none;
+  }
+}
+/* Tablet only */
+@media screen and (min-device-width: 768px) and (max-device-width: 1279px) {
+  header #mainnav {
+    top: 6rem;
+  }
+}
+/* Tablet and desktop */
+@media screen and (min-device-width: 768px) {
+  .article {
+    width: calc(100% - 2em);
+    max-width: 58rem;
+    margin: 0 auto;
+    padding-bottom: 1em;
+    font-size: 1.1em;
+    box-shadow: 1px 1px 5px #000;
+  }
+}
+/* Desktop Only */
+@media screen and (min-device-width: 1280px) {
+  body {
+    min-width: 769px;
+  }
+  .welcome {
+    display: block;
+    position: absolute;
+    top: 9rem;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    color: #ccc;
+  }
+  .welcome span {
+    display: block;
+    font-size: 4em;
+    margin: 0.5rem 1rem;
+  }
+  .welcome span:nth-child(2n) {
+    text-align: right;
+  }
+  .welcome span:first-of-type {
+    font-family: 'crimson', serif;
+  }
+  #mainnav {
+    position: absolute;
+    top: auto !important;
+    right: 0;
+    bottom: 0;
+  }
+  #mainnav ul {
+    height: 100%;
+    font-size: 0;
+  }
+  #mainnav ul li {
+    height: 100%;
+    display: inline-block;
+  }
+  #mainnav ul li a:link,
+  #mainnav ul li a:visited,
+  #mainnav ul li a:hover,
+  #mainnav ul li a:active {
+    font-size: 1.4rem;
+    line-height: 100%;
+    height: 100%;
+    padding: 0.5em 1em 0.1em 1em;
+  }
+}
