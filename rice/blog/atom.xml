@@ -4,10 +4,10 @@
         BASIC blog full text feed    </title>
         <link href="/blog/atom.xml" rel="self" />
     
-        <link href="/"/>
+        <link href="/rice/"/>
     
         
-    <updated>2014-09-26T20:39:21Z</updated>
+    <updated>2014-09-26T21:31:24Z</updated>
 
     <id>/blog/atom.xml/</id>
 
@@ -18,7 +18,7 @@
             <updated>2014-09-21T10:00:00Z</updated>
             <published>2014-09-21T10:00:00Z</published>
             <id>/blog/untitled.html</id>
-                        <category   scheme="/blog/tags"
+                        <category   scheme="/rice/blog/tags"
                         term="India"
                         label="India" />
             

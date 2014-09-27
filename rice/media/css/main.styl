@@ -364,6 +364,19 @@ main {
         margin-right: 0.3em;
 
         font-size: 2rem;
+
+        transition: all 500ms ease-out;
+
+        &.open {
+          margin-left: -0.4em;
+          padding-right: 0;
+          color: color-accent;
+        }
+
+        &:active {
+          border: 1px solid color-accent;
+          color: color-accent;
+        }
       }
 
       i.icon-ricelogo {
@@ -382,20 +395,29 @@ main {
       position: fixed;
       left: 0;
       right: 0;
-      display: none;
+
+      transform: translateX(-110%);
+      opacity: 0;
 
       background: rgba(255, 255, 255, 0.95);
       box-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+
+      transition: all 500ms ease-out;
 
       ul {
         li {
           a {
             width: 100%;
-            padding: 0.5em 0;
+            padding: 0.75em 0;
             text-align: center;
             border-bottom: 1px solid color-muted;
           }
         }
+      }
+
+      &.open {
+        transform: translateX(0%);
+        opacity: 1;
       }
     }
   }
@@ -434,7 +456,7 @@ main {
 /* Desktop Only */
 @media screen and (min-device-width: 1280px) {
   body {
-    min-width: 1024px;
+    min-width: 769px;
   }
 
   .welcome {
@@ -464,6 +486,7 @@ main {
 
   #mainnav {
     position: absolute;
+    top: auto !important;
     right: 0;
     bottom: 0;
     
