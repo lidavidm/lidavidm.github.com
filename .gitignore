@@ -3,4 +3,5 @@ live-nacl
 *.o
 .cabal-sandbox/
 _cache/
+*.xcf
 dist/
