@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -6,18 +8,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.plotting.plot &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.plotting.plot &mdash; SymPy 0.7.5 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '0.7.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,15 +28,15 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 0.7.5 documentation" href="../../../index.html" />
     <link rel="up" title="sympy" href="../../sympy.html" /> 
   </head>
   <body>
@@ -47,7 +49,10 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li class="right" >
+          <a href="../../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../../index.html" >Module code</a> &raquo;</li>
           <li><a href="../../sympy.html" accesskey="U">sympy</a> &raquo;</li> 
       </ul>
@@ -83,14 +88,17 @@
 <span class="sd">every time you call ``show()`` and the old one is left to the garbage collector.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
 <span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">getargspec</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
 <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sympify</span><span class="p">,</span> <span class="n">Expr</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dummy</span>
 <span class="kn">from</span> <span class="nn">sympy.external</span> <span class="kn">import</span> <span class="n">import_module</span>
-<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">set_union</span>
 <span class="kn">from</span> <span class="nn">sympy.utilities.decorator</span> <span class="kn">import</span> <span class="n">doctest_depends_on</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">experimental_lambdify</span> <span class="kn">import</span> <span class="p">(</span><span class="n">vectorized_lambdify</span><span class="p">,</span> <span class="n">lambdify</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.experimental_lambdify</span> <span class="kn">import</span> <span class="p">(</span><span class="n">vectorized_lambdify</span><span class="p">,</span> <span class="n">lambdify</span><span class="p">)</span>
 
 <span class="c"># N.B.</span>
 <span class="c"># When changing the minimum module version for matplotlib, please change</span>
@@ -230,7 +238,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">backend</span> <span class="o">=</span> <span class="n">DefaultBackend</span>
 
         <span class="c"># The keyword arguments should only contain options for the plot.</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
 
@@ -399,7 +407,7 @@
                 <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_parameter_points</span><span class="p">()</span>
                 <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">centers_of_segments</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">variables</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">centers_of_segments</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_points</span><span class="p">())</span>
+                <span class="n">variables</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">centers_of_segments</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_points</span><span class="p">()))</span>
                 <span class="k">if</span> <span class="n">arity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">variables</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
                 <span class="k">elif</span> <span class="n">arity</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -494,9 +502,9 @@
                 <span class="c">#sample those points further.</span>
                 <span class="k">elif</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
                     <span class="n">xarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">)</span>
-                    <span class="n">yarray</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">xarray</span><span class="p">)</span>
+                    <span class="n">yarray</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">xarray</span><span class="p">))</span>
                     <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">yarray</span><span class="p">):</span>
-                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">len</span><span class="p">(</span><span class="n">yarray</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">yarray</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
                             <span class="k">if</span> <span class="n">yarray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">yarray</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                                 <span class="n">sample</span><span class="p">([</span><span class="n">xarray</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">yarray</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span>
                                     <span class="p">[</span><span class="n">xarray</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">yarray</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -614,11 +622,11 @@
             <span class="k">elif</span> <span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">or</span>
                     <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)):</span>
                 <span class="n">param_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">param_p</span><span class="p">,</span> <span class="n">param_q</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-                <span class="n">x_array</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">f_x</span><span class="p">,</span> <span class="n">param_array</span><span class="p">)</span>
-                <span class="n">y_array</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">f_y</span><span class="p">,</span> <span class="n">param_array</span><span class="p">)</span>
+                <span class="n">x_array</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">f_x</span><span class="p">,</span> <span class="n">param_array</span><span class="p">))</span>
+                <span class="n">y_array</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">f_y</span><span class="p">,</span> <span class="n">param_array</span><span class="p">))</span>
                 <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
                         <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x_array</span><span class="p">,</span> <span class="n">y_array</span><span class="p">)):</span>
-                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_array</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_array</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
                         <span class="k">if</span> <span class="p">((</span><span class="n">x_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">y_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">or</span>
                                 <span class="p">(</span><span class="n">x_array</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">y_array</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">)):</span>
                             <span class="n">point_a</span> <span class="o">=</span> <span class="p">[</span><span class="n">x_array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y_array</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
@@ -709,16 +717,16 @@
     <span class="k">def</span> <span class="nf">get_color_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">np</span> <span class="o">=</span> <span class="n">import_module</span><span class="p">(</span><span class="s">&#39;numpy&#39;</span><span class="p">)</span>
         <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">surface_color</span>
-        <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">Callable</span><span class="p">):</span>
             <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
             <span class="n">arity</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">getargspec</span><span class="p">(</span><span class="n">c</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_parametric</span><span class="p">:</span>
-                <span class="n">variables</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">centers_of_faces</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_parameter_meshes</span><span class="p">())</span>
+                <span class="n">variables</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">centers_of_faces</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_parameter_meshes</span><span class="p">()))</span>
                 <span class="k">if</span> <span class="n">arity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">variables</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
                 <span class="k">elif</span> <span class="n">arity</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">variables</span><span class="p">)</span>
-            <span class="n">variables</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">centers_of_faces</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_meshes</span><span class="p">())</span>
+            <span class="n">variables</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">centers_of_faces</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_meshes</span><span class="p">()))</span>
             <span class="k">if</span> <span class="n">arity</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">variables</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="k">elif</span> <span class="n">arity</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -955,7 +963,7 @@
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s">&#39;label&#39;</span><span class="p">):</span>
                 <span class="n">collection</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">is_line</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="n">line_color</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">line_color</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">callable</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">line_color</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">line_color</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">line_color</span><span class="p">,</span> <span class="n">Callable</span><span class="p">):</span>
                     <span class="n">color_array</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get_color_array</span><span class="p">()</span>
                     <span class="n">collection</span><span class="o">.</span><span class="n">set_array</span><span class="p">(</span><span class="n">color_array</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -963,7 +971,7 @@
             <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">is_3Dsurface</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="n">surface_color</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">__version__</span> <span class="o">&lt;</span> <span class="s">&quot;1.2.0&quot;</span><span class="p">:</span>  <span class="c"># TODO in the distant future remove this check</span>
                     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&#39;The version of matplotlib is too old to use surface coloring.&#39;</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">surface_color</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">callable</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">surface_color</span><span class="p">):</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">surface_color</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">surface_color</span><span class="p">,</span> <span class="n">Callable</span><span class="p">):</span>
                     <span class="n">color_array</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get_color_array</span><span class="p">()</span>
                     <span class="n">color_array</span> <span class="o">=</span> <span class="n">color_array</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">color_array</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
                     <span class="n">collection</span><span class="o">.</span><span class="n">set_array</span><span class="p">(</span><span class="n">color_array</span><span class="p">)</span>
@@ -1131,7 +1139,9 @@
 <span class="nd">@doctest_depends_on</span><span class="p">(</span><span class="n">modules</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;numpy&#39;</span><span class="p">,</span> <span class="s">&#39;matplotlib&#39;</span><span class="p">,))</span>
 <div class="viewcode-block" id="plot"><a class="viewcode-back" href="../../../modules/plotting.html#sympy.plotting.plot.plot">[docs]</a><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Plots a function of a single variable.</span>
+<span class="sd">    Plots a function of a single variable and returns an instance of</span>
+<span class="sd">    the ``Plot`` class (also, see the description of the</span>
+<span class="sd">    ``show`` keyword argument below).</span>
 
 <span class="sd">    The plotting uses an adaptive algorithm which samples recursively to</span>
 <span class="sd">    accurately plot the plot. The adaptive algorithm uses a random point near</span>
@@ -1171,6 +1181,14 @@
 
 <span class="sd">    Keyword Arguments</span>
 <span class="sd">    =================</span>
+
+<span class="sd">    Arguments for ``plot`` function:</span>
+
+<span class="sd">    ``show``: Boolean. The default value is set to ``True``. Set show to</span>
+<span class="sd">    ``False`` and the function will not display the plot. The returned</span>
+<span class="sd">    instance of the ``Plot`` class can then be used to save or display</span>
+<span class="sd">    the plot by calling the ``save()`` and ``show()`` methods</span>
+<span class="sd">    respectively.</span>
 
 <span class="sd">    Arguments for ``LineOver1DRangeSeries`` class:</span>
 
@@ -1253,7 +1271,7 @@
 <span class="sd">    Plot, LineOver1DRangeSeries.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
     <span class="n">show</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;show&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
     <span class="n">series</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">plot_expr</span> <span class="o">=</span> <span class="n">check_arguments</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -1385,11 +1403,11 @@
 <span class="sd">    Plot, Parametric2DLineSeries</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
     <span class="n">show</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;show&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
     <span class="n">series</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">plot_expr</span> <span class="o">=</span> <span class="n">check_arguments</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">Parametric2DLineSeries</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">plot_expr</span><span class="p">]</span>
+    <span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">Parametric2DLineSeries</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">plot_expr</span><span class="p">]</span>
     <span class="n">plots</span> <span class="o">=</span> <span class="n">Plot</span><span class="p">(</span><span class="o">*</span><span class="n">series</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
         <span class="n">plots</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1481,11 +1499,11 @@
 <span class="sd">    Plot, Parametric3DLineSeries</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
     <span class="n">show</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;show&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
     <span class="n">series</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">plot_expr</span> <span class="o">=</span> <span class="n">check_arguments</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">Parametric3DLineSeries</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">plot_expr</span><span class="p">]</span>
+    <span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">Parametric3DLineSeries</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">plot_expr</span><span class="p">]</span>
     <span class="n">plots</span> <span class="o">=</span> <span class="n">Plot</span><span class="p">(</span><span class="o">*</span><span class="n">series</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
         <span class="n">plots</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1593,11 +1611,11 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">args</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
     <span class="n">show</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;show&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
     <span class="n">series</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">plot_expr</span> <span class="o">=</span> <span class="n">check_arguments</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">SurfaceOver2DRangeSeries</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">plot_expr</span><span class="p">]</span>
+    <span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">SurfaceOver2DRangeSeries</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">plot_expr</span><span class="p">]</span>
     <span class="n">plots</span> <span class="o">=</span> <span class="n">Plot</span><span class="p">(</span><span class="o">*</span><span class="n">series</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
         <span class="n">plots</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1688,11 +1706,11 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">args</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
     <span class="n">show</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;show&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
     <span class="n">series</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">plot_expr</span> <span class="o">=</span> <span class="n">check_arguments</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">ParametricSurfaceSeries</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">plot_expr</span><span class="p">]</span>
+    <span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="n">ParametricSurfaceSeries</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">plot_expr</span><span class="p">]</span>
     <span class="n">plots</span> <span class="o">=</span> <span class="n">Plot</span><span class="p">(</span><span class="o">*</span><span class="n">series</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
         <span class="n">plots</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1717,7 +1735,8 @@
         <span class="c"># Multiple expressions same range.</span>
         <span class="c"># The arguments are tuples when the expression length is</span>
         <span class="c"># greater than 1.</span>
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">expr_len</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">expr_len</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;len(args) should not be less than expr_len&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)):</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">):</span>
                 <span class="k">break</span>
@@ -1725,7 +1744,7 @@
             <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 
         <span class="n">exprs</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">[:</span><span class="n">i</span><span class="p">])</span>
-        <span class="n">free_symbols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">set_union</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">free_symbols</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">exprs</span><span class="p">]))</span>
+        <span class="n">free_symbols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">free_symbols</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">exprs</span><span class="p">]))</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="n">expr_len</span> <span class="o">+</span> <span class="n">nb_of_free_symbols</span><span class="p">:</span>
             <span class="c">#Ranges given</span>
             <span class="n">plots</span> <span class="o">=</span> <span class="p">[</span><span class="n">exprs</span> <span class="o">+</span> <span class="n">Tuple</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">[</span><span class="n">expr_len</span><span class="p">:])]</span>
@@ -1756,7 +1775,7 @@
 
         <span class="n">exprs</span> <span class="o">=</span> <span class="n">args</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span>
         <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">Expr</span><span class="p">)</span> <span class="k">for</span> <span class="n">expr</span> <span class="ow">in</span> <span class="n">exprs</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">expr</span><span class="p">)</span>
-        <span class="n">free_symbols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">set_union</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">free_symbols</span> <span class="k">for</span> <span class="n">expr</span> <span class="ow">in</span> <span class="n">exprs</span>
+        <span class="n">free_symbols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">free_symbols</span> <span class="k">for</span> <span class="n">expr</span> <span class="ow">in</span> <span class="n">exprs</span>
                                         <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">expr</span><span class="p">]))</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">free_symbols</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">nb_of_free_symbols</span><span class="p">:</span>
@@ -1828,15 +1847,18 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li class="right" >
+          <a href="../../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../../index.html" >Module code</a> &raquo;</li>
           <li><a href="../../sympy.html" >sympy</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Jun 21, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Last updated on Feb 22, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -6,18 +8,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Advanced Expression Manipulation &mdash; SymPy 0.7.3 documentation</title>
+    <title>Advanced Expression Manipulation &mdash; SymPy 0.7.5 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7.3',
+        VERSION:     '0.7.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,15 +28,15 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../index.html" />
+    <link rel="top" title="SymPy 0.7.5 documentation" href="../index.html" />
     <link rel="up" title="SymPy Tutorial" href="index.html" />
     <link rel="next" title="Gotchas and Pitfalls" href="../gotchas.html" />
     <link rel="prev" title="Matrices" href="matrices.html" /> 
@@ -50,12 +52,15 @@
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="../gotchas.html" title="Gotchas and Pitfalls"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="matrices.html" title="Matrices"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">SymPy Tutorial</a> &raquo;</li> 
       </ul>
     </div>  
@@ -92,7 +97,7 @@ expression looks like internally by using <tt class="docutils literal"><span cla
 <p>The easiest way to tear this apart is to look at a diagram of the expression
 tree:</p>
 <p class="graphviz">
-digraph{
+<img src="../_images/graphviz-d8d6268439273f5c9659310fcb25b50fd18c6260.svg" alt="digraph{
 
 # Graph style
 &quot;rankdir&quot;=&quot;TD&quot;
@@ -119,7 +124,8 @@ digraph{
 &quot;Pow(Symbol(x), Integer(2))_(1,)&quot; -&gt; &quot;Integer(2)_(1, 1)&quot;;
 &quot;Add(Mul(Symbol(x), Symbol(y)), Pow(Symbol(x), Integer(2)))_()&quot; -&gt; &quot;Mul(Symbol(x), Symbol(y))_(0,)&quot;;
 &quot;Add(Mul(Symbol(x), Symbol(y)), Pow(Symbol(x), Integer(2)))_()&quot; -&gt; &quot;Pow(Symbol(x), Integer(2))_(1,)&quot;;
-}</p>
+}" />
+</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The above diagram was made using <a class="reference external" href="http://www.graphviz.org/">Graphviz</a> and
@@ -175,7 +181,7 @@ The SymPy class for multiplication is <tt class="docutils literal"><span class="
 <p>Now we get to our final expression, <tt class="docutils literal"><span class="pre">x**2</span> <span class="pre">+</span> <span class="pre">x*y</span></tt>.  This is the addition of
 our last two objects, <tt class="docutils literal"><span class="pre">Pow(x,</span> <span class="pre">2)</span></tt>, and <tt class="docutils literal"><span class="pre">Mul(x,</span> <span class="pre">y)</span></tt>.  The SymPy class for
 addition is <tt class="docutils literal"><span class="pre">Add</span></tt>, so, as you might expect, to create this object, we use
-<tt class="docutils literal"><span class="pre">Add(Pow(x,</span> <span class="pre">2),</span> <span class="pre">Mul(x,</span> <span class="pre">y))</span></tt>.</p>
+<tt class="docutils literal"><span class="pre">Add(Pow(x,</span> <span class="pre">2),</span> <span class="pre">Mul(x,</span> <span class="pre">y)</span></tt>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Add</span><span class="p">(</span><span class="n">Pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">Mul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
 <span class="go">x**2 + x*y</span>
 </pre></div>
@@ -190,7 +196,7 @@ broad.  Here is a more complicated example</p>
 </div>
 <p>Here is a diagram</p>
 <p class="graphviz">
-digraph{
+<img src="../_images/graphviz-a15fbf4039d3f5488f10cf31b136816de047baa7.svg" alt="digraph{
 
 # Graph style
 &quot;rankdir&quot;=&quot;TD&quot;
@@ -233,7 +239,8 @@ digraph{
 &quot;Add(Mul(Half(), sin(Mul(Symbol(x), Symbol(y)))), Mul(NegativeOne(), Pow(Symbol(x), Integer(2))), Pow(Symbol(y), NegativeOne()))_()&quot; -&gt; &quot;Pow(Symbol(y), NegativeOne())_(2,)&quot;;
 &quot;Add(Mul(Half(), sin(Mul(Symbol(x), Symbol(y)))), Mul(NegativeOne(), Pow(Symbol(x), Integer(2))), Pow(Symbol(y), NegativeOne()))_()&quot; -&gt; &quot;Mul(Half(), sin(Mul(Symbol(x), Symbol(y))))_(0,)&quot;;
 &quot;Add(Mul(Half(), sin(Mul(Symbol(x), Symbol(y)))), Mul(NegativeOne(), Pow(Symbol(x), Integer(2))), Pow(Symbol(y), NegativeOne()))_()&quot; -&gt; &quot;Mul(NegativeOne(), Pow(Symbol(x), Integer(2)))_(1,)&quot;;
-}</p>
+}" />
+</p>
 <p>This expression reveals some interesting things about SymPy expression
 trees. Let&#8217;s go through them one by one.</p>
 <p>Let&#8217;s first look at the term <tt class="docutils literal"><span class="pre">x**2</span></tt>.  As we expected, we see <tt class="docutils literal"><span class="pre">Pow(x,</span> <span class="pre">2)</span></tt>.
@@ -246,7 +253,7 @@ class in SymPy.  <tt class="docutils literal"><span class="pre">x</span> <span c
 </pre></div>
 </div>
 <p class="graphviz">
-digraph{
+<img src="../_images/graphviz-751d8866c8b62cfbeb5393714bd4f17241679175.svg" alt="digraph{
 
 # Graph style
 &quot;rankdir&quot;=&quot;TD&quot;
@@ -269,7 +276,8 @@ digraph{
 &quot;Mul(NegativeOne(), Symbol(y))_(0,)&quot; -&gt; &quot;NegativeOne()_(0, 0)&quot;;
 &quot;Add(Mul(NegativeOne(), Symbol(y)), Symbol(x))_()&quot; -&gt; &quot;Symbol(x)_(1,)&quot;;
 &quot;Add(Mul(NegativeOne(), Symbol(y)), Symbol(x))_()&quot; -&gt; &quot;Mul(NegativeOne(), Symbol(y))_(0,)&quot;;
-}</p>
+}" />
+</p>
 <p>Next, look at <tt class="docutils literal"><span class="pre">1/y</span></tt>.  We might expect to see something like <tt class="docutils literal"><span class="pre">Div(1,</span> <span class="pre">y)</span></tt>,
 but similar to subtraction, there is no class in SymPy for division.  Rather,
 division is represented by a power of -1.  Hence, we have <tt class="docutils literal"><span class="pre">Pow(y,</span> <span class="pre">-1)</span></tt>.
@@ -281,7 +289,7 @@ see.</p>
 </pre></div>
 </div>
 <p class="graphviz">
-digraph{
+<img src="../_images/graphviz-e878bf0458393c212427a889ec15220a360a91b4.svg" alt="digraph{
 
 # Graph style
 &quot;rankdir&quot;=&quot;TD&quot;
@@ -304,7 +312,8 @@ digraph{
 &quot;Pow(Symbol(y), NegativeOne())_(1,)&quot; -&gt; &quot;NegativeOne()_(1, 1)&quot;;
 &quot;Mul(Symbol(x), Pow(Symbol(y), NegativeOne()))_()&quot; -&gt; &quot;Symbol(x)_(0,)&quot;;
 &quot;Mul(Symbol(x), Pow(Symbol(y), NegativeOne()))_()&quot; -&gt; &quot;Pow(Symbol(y), NegativeOne())_(1,)&quot;;
-}</p>
+}" />
+</p>
 <p>We see that <tt class="docutils literal"><span class="pre">x/y</span></tt> is represented as <tt class="docutils literal"><span class="pre">x*y**-1</span></tt>, i.e., <tt class="docutils literal"><span class="pre">Mul(x,</span> <span class="pre">Pow(y,</span>
 <span class="pre">-1))</span></tt>.</p>
 <p>Finally, let&#8217;s look at the <tt class="docutils literal"><span class="pre">sin(x*y)/2</span></tt> term.  Following the pattern of the
@@ -587,19 +596,22 @@ each singletonized class can be accessed from the <tt class="docutils literal"><
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="../gotchas.html" title="Gotchas and Pitfalls"
              >next</a> |</li>
         <li class="right" >
           <a href="matrices.html" title="Matrices"
              >previous</a> |</li>
-        <li><a href="../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="index.html" >SymPy Tutorial</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Jun 21, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Last updated on Feb 22, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

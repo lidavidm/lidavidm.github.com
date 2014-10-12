@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -6,18 +8,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Bessel functions and related functions &mdash; SymPy 0.7.3 documentation</title>
+    <title>Bessel functions and related functions &mdash; SymPy 0.7.5 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '0.7.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,15 +28,15 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 0.7.5 documentation" href="../../../index.html" />
     <link rel="up" title="Mathematical functions" href="index.html" />
     <link rel="next" title="Orthogonal polynomials" href="orthogonal.html" />
     <link rel="prev" title="Exponential integrals and error functions" href="expintegrals.html" /> 
@@ -50,12 +52,15 @@
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="orthogonal.html" title="Orthogonal polynomials"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="expintegrals.html" title="Exponential integrals and error functions"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../../index.html" >SymPy Modules Reference</a> &raquo;</li>
           <li><a href="../index.html" >Welcome to mpmath&#8217;s documentation!</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Mathematical functions</a> &raquo;</li> 
@@ -116,7 +121,7 @@ function <span class="math">\(\,_0F_1\)</span>:</p>
 <p><strong>Examples</strong></p>
 <p>Evaluation is supported for arbitrary arguments, and at
 arbitrary precision:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">besselj</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="go">-0.024777229528606</span>
@@ -252,7 +257,7 @@ limit. With <em>derivative</em> = <span class="math">\(m \ne 0\)</span>, the <sp
 <img alt="../../../_images/bessely_c.png" src="../../../_images/bessely_c.png" />
 <p><strong>Examples</strong></p>
 <p>Some values of <span class="math">\(Y_n(x)\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bessely</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">bessely</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">bessely</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="go">(-inf, -inf, -inf)</span>
@@ -325,7 +330,7 @@ first kind,</p>
 <img alt="../../../_images/besseli_c.png" src="../../../_images/besseli_c.png" />
 <p><strong>Examples</strong></p>
 <p>Some values of <span class="math">\(I_n(x)\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">besseli</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="go">1.0</span>
@@ -403,7 +408,7 @@ limit.</p>
 <img alt="../../../_images/besselk_c.png" src="../../../_images/besselk_c.png" />
 <p><strong>Examples</strong></p>
 <p>Evaluation is supported for arbitrary complex arguments:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">besselk</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="go">0.4210244382407083333356274</span>
@@ -472,7 +477,7 @@ and <span class="math">\(m\)</span>.</p>
 \[\begin{split}j'_{\nu,k} &lt; j_{\nu,k} &lt; j'_{\nu,k+1}\end{split}\]\[\begin{split}j_{\nu,1} &lt; j_{\nu+1,2} &lt; j_{\nu,2} &lt; j_{\nu+1,2} &lt; j_{\nu,3} &lt; \cdots\end{split}\]</div>
 <p><strong>Examples</strong></p>
 <p>Initial zeros of the Bessel functions <span class="math">\(J_0(z), J_1(z), J_2(z)\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">besseljzero</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">besseljzero</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="n">besseljzero</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">2.404825557695772768621632</span>
@@ -489,7 +494,7 @@ and <span class="math">\(m\)</span>.</p>
 </pre></div>
 </div>
 <p>Initial zeros of <span class="math">\(J'_0(z), J'_1(z), J'_2(z)\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre>0.0
+<div class="highlight-python"><pre>0.0
 3.831705970207512315614436
 7.01558666981561875353705
 &gt;&gt;&gt; besseljzero(1,1,1); besseljzero(1,2,1); besseljzero(1,3,1)
@@ -499,8 +504,7 @@ and <span class="math">\(m\)</span>.</p>
 &gt;&gt;&gt; besseljzero(2,1,1); besseljzero(2,2,1); besseljzero(2,3,1)
 3.054236928227140322755932
 6.706133194158459146634394
-9.969467823087595793179143
-</pre></div>
+9.969467823087595793179143</pre>
 </div>
 <p>Zeros with large index:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">besseljzero</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span> <span class="n">besseljzero</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span> <span class="n">besseljzero</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span>
@@ -574,7 +578,7 @@ with <em>derivative=1</em>, gives the first positive zero <span class="math">\(y
 \[\begin{split}y_{\nu,k} &lt; y'_{\nu,k} &lt; y_{\nu,k+1}\end{split}\]\[\begin{split}y_{\nu,1} &lt; y_{\nu+1,2} &lt; y_{\nu,2} &lt; y_{\nu+1,2} &lt; y_{\nu,3} &lt; \cdots\end{split}\]</div>
 <p><strong>Examples</strong></p>
 <p>Initial zeros of the Bessel functions <span class="math">\(Y_0(z), Y_1(z), Y_2(z)\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">besselyzero</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">besselyzero</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="n">besselyzero</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">0.8935769662791675215848871</span>
@@ -674,7 +678,7 @@ which is the complex combination of Bessel functions given by</p>
 <img alt="../../../_images/hankel1_c.png" src="../../../_images/hankel1_c.png" />
 <p><strong>Examples</strong></p>
 <p>The Hankel function is generally complex-valued:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hankel1</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
 <span class="go">(0.4854339326315091097054957 - 0.0999007139290278787734903j)</span>
@@ -711,7 +715,7 @@ which is the complex combination of Bessel functions given by</p>
 <img alt="../../../_images/hankel2_c.png" src="../../../_images/hankel2_c.png" />
 <p><strong>Examples</strong></p>
 <p>The Hankel function is generally complex-valued:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hankel2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
 <span class="go">(0.4854339326315091097054957 + 0.0999007139290278787734903j)</span>
@@ -747,7 +751,7 @@ of the Bessel J function of a rotated argument</p>
 <img alt="../../../_images/ber.png" src="../../../_images/ber.png" />
 <p><strong>Examples</strong></p>
 <p>Verifying the defining relation:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">3.5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ber</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
@@ -802,7 +806,7 @@ of the (rescaled) Bessel K function of a rotated argument</p>
 <img alt="../../../_images/ker.png" src="../../../_images/ker.png" />
 <p><strong>Examples</strong></p>
 <p>Verifying the defining relation:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">4.5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ker</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
@@ -853,7 +857,7 @@ See <a class="reference internal" href="#mpmath.ker" title="mpmath.ker"><tt clas
 \[z^2 f''(z) + z f'(z) + (z^2-n^2) f(z) = \frac{2 z^{n+1}}{\pi (2n-1)!!}.\]</div>
 <p><strong>Examples</strong></p>
 <p>Evaluation for arbitrary real and complex arguments:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">struveh</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)</span>
 <span class="go">0.3608207733778295024977797</span>
@@ -905,7 +909,7 @@ See <a class="reference internal" href="#mpmath.ker" title="mpmath.ker"><tt clas
 \[z^2 f''(z) + z f'(z) - (z^2+n^2) f(z) = \frac{2 z^{n+1}}{\pi (2n-1)!!}.\]</div>
 <p><strong>Examples</strong></p>
 <p>Evaluation for arbitrary real and complex arguments:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">struvel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)</span>
 <span class="go">7.180846515103737996249972</span>
@@ -958,7 +962,7 @@ equation</p>
     = \frac{(z-\nu)}{\pi z^2} \sin(\pi \nu).\]</div>
 <p><strong>Examples</strong></p>
 <p>Evaluation for real and complex parameter and argument:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">angerj</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">0.4860912605858910769078311</span>
@@ -998,7 +1002,7 @@ is an integer:</p>
 </div>
 <p><strong>References</strong></p>
 <ol class="arabic simple">
-<li><a class="reference internal" href="../references.html#dlmf" id="id1">[DLMF]</a> section 11.10: Anger-Weber Functions</li>
+<li><a class="reference internal" href="../references.html#dlmf">[DLMF]</a> section 11.10: Anger-Weber Functions</li>
 </ol>
 </dd></dl>
 
@@ -1020,7 +1024,7 @@ equation</p>
     = -\frac{1}{\pi z^2} (z+\nu+(z-\nu)\cos(\pi \nu)).\]</div>
 <p><strong>Examples</strong></p>
 <p>Evaluation for real and complex parameter and argument:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">webere</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">-0.1057668973099018425662646</span>
@@ -1060,7 +1064,7 @@ with the Struve H-function when <span class="math">\(\nu\)</span> is an integer:
 </div>
 <p><strong>References</strong></p>
 <ol class="arabic simple">
-<li><a class="reference internal" href="../references.html#dlmf" id="id2">[DLMF]</a> section 11.10: Anger-Weber Functions</li>
+<li><a class="reference internal" href="../references.html#dlmf">[DLMF]</a> section 11.10: Anger-Weber Functions</li>
 </ol>
 </dd></dl>
 
@@ -1094,7 +1098,7 @@ with the Struve H-function when <span class="math">\(\nu\)</span> is an integer:
 <img alt="../../../_images/lommels1.png" src="../../../_images/lommels1.png" />
 <p><strong>Examples</strong></p>
 <p>An integral representation:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="n">mpf</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">lommels1</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
@@ -1121,8 +1125,8 @@ with the Struve H-function when <span class="math">\(\nu\)</span> is an integer:
 </div>
 <p><strong>References</strong></p>
 <ol class="arabic simple">
-<li><a class="reference internal" href="../references.html#gradshteynryzhik" id="id3">[GradshteynRyzhik]</a></li>
-<li><a class="reference internal" href="../references.html#weisstein" id="id4">[Weisstein]</a> <a class="reference external" href="http://mathworld.wolfram.com/LommelFunction.html">http://mathworld.wolfram.com/LommelFunction.html</a></li>
+<li><a class="reference internal" href="../references.html#gradshteynryzhik">[GradshteynRyzhik]</a></li>
+<li><a class="reference internal" href="../references.html#weisstein">[Weisstein]</a> <a class="reference external" href="http://mathworld.wolfram.com/LommelFunction.html">http://mathworld.wolfram.com/LommelFunction.html</a></li>
 </ol>
 </dd></dl>
 
@@ -1153,7 +1157,7 @@ with the Struve H-function when <span class="math">\(\nu\)</span> is an integer:
 <img alt="../../../_images/lommels2.png" src="../../../_images/lommels2.png" />
 <p><strong>Examples</strong></p>
 <p>For large <span class="math">\(|z|\)</span>, <span class="math">\(S_{\mu,\nu} \sim z^{\mu-1}\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">lommels2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">30000</span><span class="p">)</span>
 <span class="go">1.968299831601008419949804e+40</span>
@@ -1179,8 +1183,8 @@ with the Struve H-function when <span class="math">\(\nu\)</span> is an integer:
 </div>
 <p><strong>References</strong></p>
 <ol class="arabic simple">
-<li><a class="reference internal" href="../references.html#gradshteynryzhik" id="id5">[GradshteynRyzhik]</a></li>
-<li><a class="reference internal" href="../references.html#weisstein" id="id6">[Weisstein]</a> <a class="reference external" href="http://mathworld.wolfram.com/LommelFunction.html">http://mathworld.wolfram.com/LommelFunction.html</a></li>
+<li><a class="reference internal" href="../references.html#gradshteynryzhik">[GradshteynRyzhik]</a></li>
+<li><a class="reference internal" href="../references.html#weisstein">[Weisstein]</a> <a class="reference external" href="http://mathworld.wolfram.com/LommelFunction.html">http://mathworld.wolfram.com/LommelFunction.html</a></li>
 </ol>
 </dd></dl>
 
@@ -1239,7 +1243,7 @@ negative half of the real axis. They can be computed with
 <img alt="../../../_images/ai_c.png" src="../../../_images/ai_c.png" />
 <p><strong>Basic examples</strong></p>
 <p>Limits and values include:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">airyai</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">power</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s">&#39;2/3&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">gamma</span><span class="p">(</span><span class="s">&#39;2/3&#39;</span><span class="p">))</span>
 <span class="go">0.3550280538878172392600632</span>
@@ -1390,8 +1394,8 @@ functions of order <span class="math">\(\pm 1/3\)</span>. For <span class="math"
 </div>
 <p><strong>References</strong></p>
 <ol class="arabic simple">
-<li><a class="reference internal" href="../references.html#dlmf" id="id7">[DLMF]</a> Chapter 9: Airy and Related Functions</li>
-<li><a class="reference internal" href="../references.html#wolframfunctions" id="id8">[WolframFunctions]</a> section: Bessel-Type Functions</li>
+<li><a class="reference internal" href="../references.html#dlmf">[DLMF]</a> Chapter 9: Airy and Related Functions</li>
+<li><a class="reference internal" href="../references.html#wolframfunctions">[WolframFunctions]</a> section: Bessel-Type Functions</li>
 </ol>
 </dd></dl>
 
@@ -1433,7 +1437,7 @@ with <a class="reference internal" href="#mpmath.airybizero" title="mpmath.airyb
 <img alt="../../../_images/bi_c.png" src="../../../_images/bi_c.png" />
 <p><strong>Basic examples</strong></p>
 <p>Limits and values include:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">airybi</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">power</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s">&#39;1/6&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">gamma</span><span class="p">(</span><span class="s">&#39;2/3&#39;</span><span class="p">))</span>
 <span class="go">0.6149266274460007351509224</span>
@@ -1592,7 +1596,7 @@ zero <span class="math">\(a'_k\)</span> of the derivative function, i.e.
 <span class="math">\(\operatorname{Ai}'(a'_k) = 0\)</span>, is computed.</p>
 <p><strong>Examples</strong></p>
 <p>Some values of <span class="math">\(a_k\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">airyaizero</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="go">-2.338107410459767038489197</span>
@@ -1642,7 +1646,7 @@ zero <span class="math">\(b'_k\)</span> or <span class="math">\(\beta'_k\)</span
 is computed.</p>
 <p><strong>Examples</strong></p>
 <p>Some values of <span class="math">\(b_k\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">airybizero</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="go">-1.17371322270912792491998</span>
@@ -1742,7 +1746,7 @@ particular solution is given by the Scorer Hi-function
 <img alt="../../../_images/gi_c.png" src="../../../_images/gi_c.png" />
 <p><strong>Examples</strong></p>
 <p>Some values and limits:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scorergi</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">power</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s">&#39;7/6&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">gamma</span><span class="p">(</span><span class="s">&#39;2/3&#39;</span><span class="p">))</span>
 <span class="go">0.2049755424820002450503075</span>
@@ -1809,7 +1813,7 @@ particular solution is given by the Scorer Hi-function
 </div>
 <p><strong>References</strong></p>
 <ol class="arabic simple">
-<li><a class="reference internal" href="../references.html#dlmf" id="id9">[DLMF]</a> section 9.12: Scorer Functions</li>
+<li><a class="reference internal" href="../references.html#dlmf">[DLMF]</a> section 9.12: Scorer Functions</li>
 </ol>
 </dd></dl>
 
@@ -1840,7 +1844,7 @@ differential equation <span class="math">\(f''(z) - z f(z) = 1/\pi\)</span>. See
 <img alt="../../../_images/hi_c.png" src="../../../_images/hi_c.png" />
 <p><strong>Examples</strong></p>
 <p>Some values and limits:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scorerhi</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">power</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s">&#39;7/6&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">gamma</span><span class="p">(</span><span class="s">&#39;2/3&#39;</span><span class="p">))</span>
 <span class="go">0.4099510849640004901006149</span>
@@ -1942,7 +1946,7 @@ to be complex in this implementation (see references).</p>
 <img alt="../../../_images/coulombf_c.png" src="../../../_images/coulombf_c.png" />
 <p><strong>Examples</strong></p>
 <p>Evaluation is supported for arbitrary magnitudes of <span class="math">\(z\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">coulombf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)</span>
 <span class="go">0.4080998961088761187426445</span>
@@ -2064,7 +2068,7 @@ and <span class="math">\(\sigma_l(\eta) = (\ln \Gamma(1+l+i\eta)-\ln \Gamma(1+l-
 <img alt="../../../_images/coulombg_c.png" src="../../../_images/coulombg_c.png" />
 <p><strong>Examples</strong></p>
 <p>Evaluation is supported for arbitrary magnitudes of <span class="math">\(z\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">coulombg</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)</span>
 <span class="go">1.380011900612186346255524</span>
@@ -2143,7 +2147,7 @@ hypergeometric differential equation (the first is provided by <span class="math
 see <a class="reference internal" href="hypergeometric.html#mpmath.hyp1f1" title="mpmath.hyp1f1"><tt class="xref py py-func docutils literal"><span class="pre">hyp1f1()</span></tt></a>).</p>
 <p><strong>Examples</strong></p>
 <p>Evaluation for arbitrary complex arguments:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hyperu</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 <span class="go">0.0625</span>
@@ -2203,7 +2207,7 @@ They are alternate forms of the confluent hypergeometric functions
     U(\tfrac{1}{2}+m-k, 1+2m, z).\]</div>
 <p><strong>Examples</strong></p>
 <p>Evaluation for arbitrary real and complex arguments is supported:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">whitm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="go">0.7302596799460411820509668</span>
@@ -2256,7 +2260,7 @@ verifying evaluation along the real axis:</p>
 solution to the Whittaker differential equation. (See <a class="reference internal" href="#mpmath.whitm" title="mpmath.whitm"><tt class="xref py py-func docutils literal"><span class="pre">whitm()</span></tt></a>.)</p>
 <p><strong>Examples</strong></p>
 <p>Evaluation for arbitrary real and complex arguments is supported:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">whitw</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="go">1.19532063107581155661012</span>
@@ -2327,7 +2331,7 @@ It solves the differential equation</p>
 </div>
 <img alt="../../../_images/pcfd.png" src="../../../_images/pcfd.png" />
 <p><strong>Examples</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pcfd</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="n">pcfd</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="n">pcfd</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="n">pcfd</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="go">1.0</span>
@@ -2380,7 +2384,7 @@ U-function (see <a class="reference internal" href="#mpmath.hyperu" title="mpmat
     \tfrac{3}{2}; -\tfrac{1}{2}z^2\right).\]</div>
 <p><strong>Examples</strong></p>
 <p>Connection to other functions:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">mpf</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pcfu</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
@@ -2411,7 +2415,7 @@ represented in terms of <a class="reference internal" href="#mpmath.pcfu" title=
 \[V(a,z) = \frac{\Gamma(a+\tfrac{1}{2}) (U(a,-z)-\sin(\pi a) U(a,z)}{\pi}.\]</div>
 <p><strong>Examples</strong></p>
 <p>Wronskian relation between <span class="math">\(U\)</span> and <span class="math">\(V\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pcfu</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">diff</span><span class="p">(</span><span class="n">pcfv</span><span class="p">,(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">-</span><span class="n">diff</span><span class="p">(</span><span class="n">pcfu</span><span class="p">,(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">pcfv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
@@ -2440,7 +2444,7 @@ represented in terms of <a class="reference internal" href="#mpmath.pcfu" title=
 <dd><p>Gives the parabolic cylinder function <span class="math">\(W(a,z)\)</span> defined in (DLMF 12.14).</p>
 <p><strong>Examples</strong></p>
 <p>Value at the origin:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">mpf</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pcfw</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
@@ -2580,12 +2584,15 @@ represented in terms of <a class="reference internal" href="#mpmath.pcfu" title=
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="orthogonal.html" title="Orthogonal polynomials"
              >next</a> |</li>
         <li class="right" >
           <a href="expintegrals.html" title="Exponential integrals and error functions"
              >previous</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../../index.html" >SymPy Modules Reference</a> &raquo;</li>
           <li><a href="../index.html" >Welcome to mpmath&#8217;s documentation!</a> &raquo;</li>
           <li><a href="index.html" >Mathematical functions</a> &raquo;</li> 
@@ -2593,8 +2600,8 @@ represented in terms of <a class="reference internal" href="#mpmath.pcfu" title=
     </div>
     <div class="footer">
         &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Jun 21, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Last updated on Feb 22, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

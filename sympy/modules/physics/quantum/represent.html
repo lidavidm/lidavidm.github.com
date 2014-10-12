@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -6,18 +8,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Represent &mdash; SymPy 0.7.3 documentation</title>
+    <title>Represent &mdash; SymPy 0.7.5 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '0.7.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,15 +28,15 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 0.7.5 documentation" href="../../../index.html" />
     <link rel="up" title="Quantum Mechanics" href="index.html" />
     <link rel="next" title="Spin" href="spin.html" />
     <link rel="prev" title="Qapply" href="qapply.html" /> 
@@ -50,12 +52,15 @@
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="spin.html" title="Spin"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="qapply.html" title="Qapply"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../../index.html" >SymPy Modules Reference</a> &raquo;</li>
           <li><a href="../index.html" >Physics Module</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Quantum Mechanics</a> &raquo;</li> 
@@ -93,8 +98,7 @@ and the object is replaced by the representation returned by this method.
 By default, the <tt class="docutils literal"><span class="pre">_represent</span></tt> method will dispatch to other methods
 that handle the representation logic for a particular basis set. The
 naming convention for these methods is the following:</p>
-<div class="highlight-python"><div class="highlight"><pre>def _represent_FooBasis(self, e, basis, **options)
-</pre></div>
+<div class="highlight-python"><pre>def _represent_FooBasis(self, e, basis, **options)</pre>
 </div>
 <p>This function will have the logic for representing instances of its class
 in the basis set having a class named <tt class="docutils literal"><span class="pre">FooBasis</span></tt>.</p>
@@ -102,7 +106,7 @@ in the basis set having a class named <tt class="docutils literal"><span class="
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>expr</strong> : Expr</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>expr</strong> : Expr</p>
 <blockquote>
 <div><p>The expression to represent.</p>
 </div></blockquote>
@@ -122,7 +126,7 @@ the size of the basis set would be set.</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>e</strong> : Expr</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>e</strong> : Expr</p>
 <blockquote class="last">
 <div><p>The SymPy expression of the represented quantum expression.</p>
 </div></blockquote>
@@ -180,7 +184,7 @@ basis. Should only be passed an instance of KetBase or BraBase</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>expr</strong> : KetBase or BraBase</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>expr</strong> : KetBase or BraBase</p>
 <blockquote class="last">
 <div><p>The expression to be represented</p>
 </div></blockquote>
@@ -209,7 +213,7 @@ basis. Should only be passed an instance of KetBase or BraBase</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>expr</strong> : Operator</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>expr</strong> : Operator</p>
 <blockquote class="last">
 <div><p>Operator to be represented in the specified basis</p>
 </div></blockquote>
@@ -248,7 +252,7 @@ given merely to show the use cases.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>orig_expr</strong> : quantum expression</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>orig_expr</strong> : quantum expression</p>
 <blockquote>
 <div><p>The original expression which was to be represented</p>
 </div></blockquote>
@@ -302,7 +306,7 @@ only pass QExpr&#8217;s.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>expr</strong> : Operator or StateBase</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>expr</strong> : Operator or StateBase</p>
 <blockquote class="last">
 <div><p>Expression whose basis is sought</p>
 </div></blockquote>
@@ -344,7 +348,7 @@ is the number of kets you wish to receive.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>args</strong> : list</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>args</strong> : list</p>
 <blockquote class="last">
 <div><p>See list of operation modes above for explanation</p>
 </div></blockquote>
@@ -414,12 +418,15 @@ is the number of kets you wish to receive.</li>
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="spin.html" title="Spin"
              >next</a> |</li>
         <li class="right" >
           <a href="qapply.html" title="Qapply"
              >previous</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../../index.html" >SymPy Modules Reference</a> &raquo;</li>
           <li><a href="../index.html" >Physics Module</a> &raquo;</li>
           <li><a href="index.html" >Quantum Mechanics</a> &raquo;</li> 
@@ -427,8 +434,8 @@ is the number of kets you wish to receive.</li>
     </div>
     <div class="footer">
         &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Jun 21, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Last updated on Feb 22, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

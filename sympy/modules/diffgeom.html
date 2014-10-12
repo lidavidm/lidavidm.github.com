@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -6,18 +8,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Differential Geometry Module &mdash; SymPy 0.7.3 documentation</title>
+    <title>Differential Geometry Module &mdash; SymPy 0.7.5 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7.3',
+        VERSION:     '0.7.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,15 +28,15 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../index.html" />
+    <link rel="top" title="SymPy 0.7.5 documentation" href="../index.html" />
     <link rel="up" title="SymPy Modules Reference" href="index.html" />
     <link rel="next" title="Development Tips: Comparisons in Python" href="../python-comparisons.html" />
     <link rel="prev" title="Category Theory Module" href="categories.html" /> 
@@ -50,12 +52,15 @@
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="../python-comparisons.html" title="Development Tips: Comparisons in Python"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="categories.html" title="Category Theory Module"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">SymPy Modules Reference</a> &raquo;</li> 
       </ul>
     </div>  
@@ -231,7 +236,7 @@ operator on scalar fields.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>to_sys</strong> :</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>to_sys</strong> :</p>
 <blockquote>
 <div><p>another instance of <tt class="docutils literal"><span class="pre">CoordSystem</span></tt></p>
 </div></blockquote>
@@ -402,13 +407,13 @@ expressions containing <tt class="docutils literal"><span class="pre">BaseScalar
 <p>A vector field is an operator taking a scalar field and returning a
 directional derivative (which is also a scalar field).</p>
 <p>A base vector field is the same type of operator, however the derivation is
-specifically done wrt a chosen coordinate.</p>
+specifically done with respect to a chosen coordinate.</p>
 <p>To define a base vector field you need to choose the coordinate system and
 the index of the coordinate.</p>
 <p>The use of the vector field after its definition is independent of the
-coordinate system in which it was defined, however due to limitations in
-the simplification routines you may arrive at more complicated
-expression if you use unappropriate coordinate systems.</p>
+coordinate system in which it was defined, however due to limitations in the
+simplification routines you may arrive at more complicated expression if you
+use unappropriate coordinate systems.</p>
 <p class="rubric">Examples</p>
 <p>Use the predefined R2 manifold, setup some boilerplate.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">Function</span>
@@ -469,10 +474,13 @@ to <span class="math">\(v_1(v_2(f)) - v_2(v_1(f))\)</span>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">e_x</span><span class="p">,</span> <span class="n">e_y</span><span class="p">,</span> <span class="n">e_r</span> <span class="o">=</span> <span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">e_y</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">e_r</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c_xy</span> <span class="o">=</span> <span class="n">Commutator</span><span class="p">(</span><span class="n">e_x</span><span class="p">,</span> <span class="n">e_y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c_xr</span> <span class="o">=</span> <span class="n">Commutator</span><span class="p">(</span><span class="n">e_x</span><span class="p">,</span> <span class="n">e_r</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c_xy</span>
+<span class="go">0</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c_xy</span>
-<span class="go">0</span>
+<p>Unfortunately, the current code is not able to compute everything:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c_xr</span>
+<span class="go">Commutator(e_x, e_r)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -530,7 +538,7 @@ as <span class="math">\(df(v) = v(f)\)</span>.</p>
 <p>The tensor product permits the creation of multilinear functionals (i.e.
 higher order tensors) out of lower order forms (e.g. 1-forms). However, the
 higher tensors thus created lack the interesting features provided by the
-other type of product, the wedge product, namely they are not antisymetric
+other type of product, the wedge product, namely they are not antisymmetric
 and hence are not form fields.</p>
 <p class="rubric">Examples</p>
 <p>Use the predefined R2 manifold, setup some boilerplate.</p>
@@ -554,14 +562,16 @@ and hence are not form fields.</p>
 <span class="go">1</span>
 </pre></div>
 </div>
-<p>You can make partial contaction for instance when &#8216;raising an index&#8217;.</p>
+<p>You can make partial contraction for instance when &#8216;raising an index&#8217;.
+Putting <tt class="docutils literal"><span class="pre">None</span></tt> in the second argument of <tt class="docutils literal"><span class="pre">rcall</span></tt> means that the
+respective position in the tensor product is left as it is.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">TP</span> <span class="o">=</span> <span class="n">TensorProduct</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">metric</span> <span class="o">=</span> <span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">metric</span><span class="o">.</span><span class="n">rcall</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_y</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
 <span class="go">3*dy</span>
 </pre></div>
 </div>
-<p>Or automatically pad the args with <a href="#id1"><span class="problematic" id="id2">``</span></a>None``s.</p>
+<p>Or automatically pad the args with <tt class="docutils literal"><span class="pre">None</span></tt> without specifying them.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">metric</span><span class="o">.</span><span class="n">rcall</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_y</span><span class="p">)</span>
 <span class="go">3*dy</span>
 </pre></div>
@@ -572,7 +582,7 @@ and hence are not form fields.</p>
 <dt id="sympy.diffgeom.WedgeProduct">
 <em class="property">class </em><tt class="descclassname">sympy.diffgeom.</tt><tt class="descname">WedgeProduct</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#sympy.diffgeom.WedgeProduct" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wedge product of forms.</p>
-<p>In the context of integration only completely antisymetric forms make
+<p>In the context of integration only completely antisymmetric forms make
 sense. The wedge product permits the creation of such forms.</p>
 <p class="rubric">Examples</p>
 <p>Use the predefined R2 manifold, setup some boilerplate.</p>
@@ -601,12 +611,32 @@ sense. The wedge product permits the creation of such forms.</p>
 <dl class="class">
 <dt id="sympy.diffgeom.LieDerivative">
 <em class="property">class </em><tt class="descclassname">sympy.diffgeom.</tt><tt class="descname">LieDerivative</tt><big>(</big><em>v_field</em>, <em>expr</em><big>)</big><a class="headerlink" href="#sympy.diffgeom.LieDerivative" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lie derivative wrt a vector field.</p>
-<p>The transport operator that defines the Lie derivative is the pushforward
-of the field to be derived along the integral curve of the field wrt which
-one derives.</p>
+<dd><p>Lie derivative with respect to a vector field.</p>
+<p>The transport operator that defines the Lie derivative is the pushforward of
+the field to be derived along the integral curve of the field with respect
+to which one derives.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c">#TODO</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom</span> <span class="kn">import</span> <span class="p">(</span><span class="n">LieDerivative</span><span class="p">,</span> <span class="n">TensorProduct</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom.rn</span> <span class="kn">import</span> <span class="n">R2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">)</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+<p>The Lie derivative of a tensor field by another tensor field is equal to
+their commutator:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">e_r</span><span class="p">)</span>
+<span class="go">Commutator(e_x, e_r)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span> <span class="o">+</span> <span class="n">R2</span><span class="o">.</span><span class="n">e_y</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tp</span> <span class="o">=</span> <span class="n">TensorProduct</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">tp</span><span class="p">)</span>
+<span class="go">LieDerivative(e_x, TensorProduct(dx, dy))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">tp</span><span class="p">)</span><span class="o">.</span><span class="n">doit</span><span class="p">()</span>
+<span class="go">LieDerivative(e_rectangular_0, TensorProduct(dx, dy))</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -614,7 +644,7 @@ one derives.</p>
 <dl class="class">
 <dt id="sympy.diffgeom.BaseCovarDerivativeOp">
 <em class="property">class </em><tt class="descclassname">sympy.diffgeom.</tt><tt class="descname">BaseCovarDerivativeOp</tt><big>(</big><em>coord_sys</em>, <em>index</em>, <em>christoffel</em><big>)</big><a class="headerlink" href="#sympy.diffgeom.BaseCovarDerivativeOp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Covariant derivative operator wrt a base vector.</p>
+<dd><p>Covariant derivative operator with respect to a base vector.</p>
 <p class="rubric">Examples</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom.rn</span> <span class="kn">import</span> <span class="n">R2</span><span class="p">,</span> <span class="n">R2_r</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom</span> <span class="kn">import</span> <span class="n">BaseCovarDerivativeOp</span>
@@ -657,12 +687,15 @@ one derives.</p>
 <dt id="sympy.diffgeom.intcurve_series">
 <tt class="descclassname">sympy.diffgeom.</tt><tt class="descname">intcurve_series</tt><big>(</big><em>vector_field</em>, <em>param</em>, <em>start_point</em>, <em>n=6</em>, <em>coord_sys=None</em>, <em>coeffs=False</em><big>)</big><a class="headerlink" href="#sympy.diffgeom.intcurve_series" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the series expansion for an integral curve of the field.</p>
-<p>Integral curve is a function <span class="math">\(gamma\)</span> taking a parameter in R to a point
+<p>Integral curve is a function <span class="math">\(\gamma\)</span> taking a parameter in <span class="math">\(R\)</span> to a point
 in the manifold. It verifies the equation:</p>
-<p><span class="math">\(vector_field(f)(gamma(param)) = diff(f(gamma(t)), t)\)</span></p>
-<p>for any value <span class="math">\(t\)</span> for the parameter and any scalar field <span class="math">\(f\)</span>.</p>
-<p>This function returns a series expansion of <span class="math">\(gamma(t)\)</span> in terms of the
-coordinate system <span class="math">\(coord_sys\)</span>. The equations and expansions are necessarily
+<p><span class="math">\(V(f)\big(\gamma(t)\big) = \frac{d}{dt}f\big(\gamma(t)\big)\)</span></p>
+<p>where the given <tt class="docutils literal"><span class="pre">vector_field</span></tt> is denoted as <span class="math">\(V\)</span>. This holds for any
+value <span class="math">\(t\)</span> for the parameter and any scalar field <span class="math">\(f\)</span>.</p>
+<p>This equation can also be decomposed of a basis of coordinate functions</p>
+<p><span class="math">\(V(f_i)\big(\gamma(t)\big) = \frac{d}{dt}f_i\big(\gamma(t)\big) \quad \forall i\)</span></p>
+<p>This function returns a series expansion of <span class="math">\(\gamma(t)\)</span> in terms of the
+coordinate system <tt class="docutils literal"><span class="pre">coord_sys</span></tt>. The equations and expansions are necessarily
 done in coordinate-system-dependent way as there is no other way to
 represent movement between points on the manifold (i.e. there is no such
 thing as a difference of points for a general manifold).</p>
@@ -670,32 +703,35 @@ thing as a difference of points for a general manifold).</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vector_field</strong> :</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>vector_field</strong> :</p>
 <blockquote>
 <div><p>the vector field for which an integral curve will be given</p>
 </div></blockquote>
 <p><strong>param</strong> :</p>
 <blockquote>
-<div><p>the argument of the function <span class="math">\(gamma\)</span> from R to the curve</p>
+<div><p>the argument of the function <span class="math">\(\gamma\)</span> from R to the curve</p>
 </div></blockquote>
 <p><strong>start_point</strong> :</p>
 <blockquote>
-<div><p>the point which coresponds to <span class="math">\(gamma(0)\)</span></p>
+<div><p>the point which coresponds to <span class="math">\(\gamma(0)\)</span></p>
 </div></blockquote>
 <p><strong>n</strong> :</p>
 <blockquote>
 <div><p>the order to which to expand</p>
 </div></blockquote>
 <p><strong>coord_sys</strong> :</p>
-<blockquote>
+<blockquote class="last">
 <div><p>the coordinate system in which to expand
 coeffs (default False) - if True return a list of elements of the expansion</p>
 </div></blockquote>
-<p class="last"><strong>See Also: intcurve_diffequ</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.diffgeom.intcurve_diffequ" title="sympy.diffgeom.intcurve_diffequ"><tt class="xref py py-obj docutils literal"><span class="pre">intcurve_diffequ</span></tt></a></p>
+</div>
 <p class="rubric">Examples</p>
 <p>Use the predefined R2 manifold:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
@@ -754,12 +790,13 @@ coeffs (default False) - if True return a list of elements of the expansion</p>
 <dt id="sympy.diffgeom.intcurve_diffequ">
 <tt class="descclassname">sympy.diffgeom.</tt><tt class="descname">intcurve_diffequ</tt><big>(</big><em>vector_field</em>, <em>param</em>, <em>start_point</em>, <em>coord_sys=None</em><big>)</big><a class="headerlink" href="#sympy.diffgeom.intcurve_diffequ" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the differential equation for an integral curve of the field.</p>
-<p>Integral curve is a function <span class="math">\(gamma\)</span> taking a parameter in R to a point
+<p>Integral curve is a function <span class="math">\(\gamma\)</span> taking a parameter in <span class="math">\(R\)</span> to a point
 in the manifold. It verifies the equation:</p>
-<p><span class="math">\(vector_field(f)(gamma(param)) = diff(f(gamma(t)), t)\)</span></p>
-<p>for any value <span class="math">\(t\)</span> for the parameter and any scalar field <span class="math">\(f\)</span>.</p>
-<p>This function returns the differential equation of <span class="math">\(gamma(t)\)</span> in terms of the
-coordinate system <span class="math">\(coord_sys\)</span>. The equations and expansions are necessarily
+<p><span class="math">\(V(f)\big(\gamma(t)\big) = \frac{d}{dt}f\big(\gamma(t)\big)\)</span></p>
+<p>where the given <tt class="docutils literal"><span class="pre">vector_field</span></tt> is denoted as <span class="math">\(V\)</span>. This holds for any
+value <span class="math">\(t\)</span> for the parameter and any scalar field <span class="math">\(f\)</span>.</p>
+<p>This function returns the differential equation of <span class="math">\(\gamma(t)\)</span> in terms of the
+coordinate system <tt class="docutils literal"><span class="pre">coord_sys</span></tt>. The equations and expansions are necessarily
 done in coordinate-system-dependent way as there is no other way to
 represent movement between points on the manifold (i.e. there is no such
 thing as a difference of points for a general manifold).</p>
@@ -767,17 +804,17 @@ thing as a difference of points for a general manifold).</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vector_field</strong> :</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>vector_field</strong> :</p>
 <blockquote>
 <div><p>the vector field for which an integral curve will be given</p>
 </div></blockquote>
 <p><strong>param</strong> :</p>
 <blockquote>
-<div><p>the argument of the function <span class="math">\(gamma\)</span> from R to the curve</p>
+<div><p>the argument of the function <span class="math">\(\gamma\)</span> from R to the curve</p>
 </div></blockquote>
 <p><strong>start_point</strong> :</p>
 <blockquote>
-<div><p>the point which coresponds to <span class="math">\(gamma(0)\)</span></p>
+<div><p>the point which coresponds to <span class="math">\(\gamma(0)\)</span></p>
 </div></blockquote>
 <p><strong>coord_sys</strong> :</p>
 <blockquote>
@@ -785,12 +822,15 @@ thing as a difference of points for a general manifold).</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>a tuple of (equations, initial conditions)</strong> :</p>
-<p class="last"><strong>See Also: intcurve_series</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>a tuple of (equations, initial conditions)</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
+<div class="admonition-see-also admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.diffgeom.intcurve_series" title="sympy.diffgeom.intcurve_series"><tt class="xref py py-obj docutils literal"><span class="pre">intcurve_series</span></tt></a></p>
+</div>
 <p class="rubric">Examples</p>
 <p>Use the predefined R2 manifold:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">t</span>
@@ -1015,19 +1055,22 @@ given.</p>
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="../python-comparisons.html" title="Development Tips: Comparisons in Python"
              >next</a> |</li>
         <li class="right" >
           <a href="categories.html" title="Category Theory Module"
              >previous</a> |</li>
-        <li><a href="../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="index.html" >SymPy Modules Reference</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Jun 21, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Last updated on Feb 22, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

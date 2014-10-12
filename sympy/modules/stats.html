@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -6,18 +8,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Stats &mdash; SymPy 0.7.3 documentation</title>
+    <title>Stats &mdash; SymPy 0.7.5 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7.3',
+        VERSION:     '0.7.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,18 +28,18 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../index.html" />
+    <link rel="top" title="SymPy 0.7.5 documentation" href="../index.html" />
     <link rel="up" title="SymPy Modules Reference" href="index.html" />
     <link rel="next" title="ODE" href="solvers/ode.html" />
-    <link rel="prev" title="Details on the Hypergeometric Function Expansion Module" href="simplify/hyperexpand.html" /> 
+    <link rel="prev" title="Statistics" href="statistics.html" /> 
   </head>
   <body>
     <div class="related">
@@ -50,12 +52,15 @@
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="solvers/ode.html" title="ODE"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="simplify/hyperexpand.html" title="Details on the Hypergeometric Function Expansion Module"
+          <a href="statistics.html" title="Statistics"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">SymPy Modules Reference</a> &raquo;</li> 
       </ul>
     </div>  
@@ -134,12 +139,12 @@ the input set.</p>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">DiscreteUniform</span><span class="p">(</span><span class="s">&#39;X&#39;</span><span class="p">,</span> <span class="n">symbols</span><span class="p">(</span><span class="s">&#39;a b c&#39;</span><span class="p">))</span> <span class="c"># equally likely over a, b, c</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span>
 <span class="go">{a: 1/3, b: 1/3, c: 1/3}</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="n">DiscreteUniform</span><span class="p">(</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="c"># distribution over a range</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="n">DiscreteUniform</span><span class="p">(</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span> <span class="c"># distribution over a range</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span>
 <span class="go">{0: 1/5, 1: 1/5, 2: 1/5, 3: 1/5, 4: 1/5}</span>
 </pre></div>
 </div>
@@ -154,12 +159,12 @@ the input set.</p>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D6</span> <span class="o">=</span> <span class="n">Die</span><span class="p">(</span><span class="s">&#39;D6&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="c"># Six sided Die</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">D6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">D6</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span>
 <span class="go">{1: 1/6, 2: 1/6, 3: 1/6, 4: 1/6, 5: 1/6, 6: 1/6}</span>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D4</span> <span class="o">=</span> <span class="n">Die</span><span class="p">(</span><span class="s">&#39;D4&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c"># Four sided Die</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">D4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">D4</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span>
 <span class="go">{1: 1/4, 2: 1/4, 3: 1/4, 4: 1/4}</span>
 </pre></div>
 </div>
@@ -175,12 +180,12 @@ the input set.</p>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">Bernoulli</span><span class="p">(</span><span class="s">&#39;X&#39;</span><span class="p">,</span> <span class="n">S</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span> <span class="c"># 1-0 Bernoulli variable, probability = 3/4</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span>
 <span class="go">{0: 1/4, 1: 3/4}</span>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">Bernoulli</span><span class="p">(</span><span class="s">&#39;X&#39;</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">Half</span><span class="p">,</span> <span class="s">&#39;Heads&#39;</span><span class="p">,</span> <span class="s">&#39;Tails&#39;</span><span class="p">)</span> <span class="c"># A fair coin toss</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span>
 <span class="go">{Heads: 1/2, Tails: 1/2}</span>
 </pre></div>
 </div>
@@ -197,12 +202,12 @@ the input set.</p>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">Coin</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span> <span class="c"># A fair coin toss</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">C</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span>
 <span class="go">{H: 1/2, T: 1/2}</span>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">C2</span> <span class="o">=</span> <span class="n">Coin</span><span class="p">(</span><span class="s">&#39;C2&#39;</span><span class="p">,</span> <span class="n">Rational</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="c"># An unfair coin</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">C2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">C2</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span>
 <span class="go">{H: 3/5, T: 2/5}</span>
 </pre></div>
 </div>
@@ -219,7 +224,7 @@ the input set.</p>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">Binomial</span><span class="p">(</span><span class="s">&#39;X&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">Half</span><span class="p">)</span> <span class="c"># Four &quot;coin flips&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span>
 <span class="go">{0: 1/16, 1: 1/4, 2: 3/8, 3: 1/4, 4: 1/16}</span>
 </pre></div>
 </div>
@@ -236,7 +241,7 @@ the input set.</p>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">Hypergeometric</span><span class="p">(</span><span class="s">&#39;X&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c"># 10 marbles, 5 white (success), 3 draws</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span>
 <span class="go">{0: 1/12, 1: 5/12, 2: 5/12, 3: 1/12}</span>
 </pre></div>
 </div>
@@ -276,9 +281,9 @@ the input set.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>p: A probability between 0 and 1</strong> :</td>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><strong>p: A probability between 0 and 1</strong> :</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
 </tr>
 </tbody>
 </table>
@@ -322,9 +327,9 @@ the input set.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lamda: Positive number, a rate</strong> :</td>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><strong>lamda: Positive number, a rate</strong> :</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
 </tr>
 </tbody>
 </table>
@@ -372,20 +377,20 @@ the input set.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : Real number, the left interval boundary</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>a</strong> : Real number, the left interval boundary</p>
 <p><strong>b</strong> : Real number, the right interval boundary</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r231" rules="none">
+<table class="docutils citation" frame="void" id="r325" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R231]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Arcsine_distribution">http://en.wikipedia.org/wiki/Arcsine_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[R325]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Arcsine_distribution">http://en.wikipedia.org/wiki/Arcsine_distribution</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -422,27 +427,27 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>alpha</strong> : Real number, <span class="math">\(\alpha &gt; 0\)</span>, a shape</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>alpha</strong> : Real number, <span class="math">\(\alpha &gt; 0\)</span>, a shape</p>
 <p><strong>beta</strong> : Real number, <span class="math">\(\beta &gt; 0\)</span>, a shape</p>
 <p><strong>sigma</strong> : Real number, <span class="math">\(\sigma &gt; 0\)</span>, a scale</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r232" rules="none">
+<table class="docutils citation" frame="void" id="r326" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[R232]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Benini_distribution">http://en.wikipedia.org/wiki/Benini_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[R326]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Benini_distribution">http://en.wikipedia.org/wiki/Benini_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r233" rules="none">
+<table class="docutils citation" frame="void" id="r327" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[R233]</a></td><td><a class="reference external" href="http://reference.wolfram.com/legacy/v8/ref/BeniniDistribution.html">http://reference.wolfram.com/legacy/v8/ref/BeniniDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id3">[R327]</a></td><td><a class="reference external" href="http://reference.wolfram.com/legacy/v8/ref/BeniniDistribution.html">http://reference.wolfram.com/legacy/v8/ref/BeniniDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -482,26 +487,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>alpha</strong> : Real number, <span class="math">\(\alpha &gt; 0\)</span>, a shape</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>alpha</strong> : Real number, <span class="math">\(\alpha &gt; 0\)</span>, a shape</p>
 <p><strong>beta</strong> : Real number, <span class="math">\(\beta &gt; 0\)</span>, a shape</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r234" rules="none">
+<table class="docutils citation" frame="void" id="r328" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[R234]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Beta_distribution">http://en.wikipedia.org/wiki/Beta_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id4">[R328]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Beta_distribution">http://en.wikipedia.org/wiki/Beta_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r235" rules="none">
+<table class="docutils citation" frame="void" id="r329" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[R235]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/BetaDistribution.html">http://mathworld.wolfram.com/BetaDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[R329]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/BetaDistribution.html">http://mathworld.wolfram.com/BetaDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -547,26 +552,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>alpha</strong> : Real number, <span class="math">\(\alpha &gt; 0\)</span>, a shape</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>alpha</strong> : Real number, <span class="math">\(\alpha &gt; 0\)</span>, a shape</p>
 <p><strong>beta</strong> : Real number, <span class="math">\(\beta &gt; 0\)</span>, a shape</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r236" rules="none">
+<table class="docutils citation" frame="void" id="r330" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[R236]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Beta_prime_distribution">http://en.wikipedia.org/wiki/Beta_prime_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id6">[R330]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Beta_prime_distribution">http://en.wikipedia.org/wiki/Beta_prime_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r237" rules="none">
+<table class="docutils citation" frame="void" id="r331" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[R237]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/BetaPrimeDistribution.html">http://mathworld.wolfram.com/BetaPrimeDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id7">[R331]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/BetaPrimeDistribution.html">http://mathworld.wolfram.com/BetaPrimeDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -604,26 +609,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x0</strong> : Real number, the location</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>x0</strong> : Real number, the location</p>
 <p><strong>gamma</strong> : Real number, <span class="math">\(\gamma &gt; 0\)</span>, the scale</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r238" rules="none">
+<table class="docutils citation" frame="void" id="r332" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[R238]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Cauchy_distribution">http://en.wikipedia.org/wiki/Cauchy_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id8">[R332]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Cauchy_distribution">http://en.wikipedia.org/wiki/Cauchy_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r239" rules="none">
+<table class="docutils citation" frame="void" id="r333" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[R239]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/CauchyDistribution.html">http://mathworld.wolfram.com/CauchyDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id9">[R333]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/CauchyDistribution.html">http://mathworld.wolfram.com/CauchyDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -657,23 +662,23 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>k</strong> : A positive Integer, <span class="math">\(k &gt; 0\)</span>, the number of degrees of freedom</td>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><strong>k</strong> : A positive Integer, <span class="math">\(k &gt; 0\)</span>, the number of degrees of freedom</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r240" rules="none">
+<table class="docutils citation" frame="void" id="r334" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id10">[R240]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Chi_distribution">http://en.wikipedia.org/wiki/Chi_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id10">[R334]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Chi_distribution">http://en.wikipedia.org/wiki/Chi_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r241" rules="none">
+<table class="docutils citation" frame="void" id="r335" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[R241]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/ChiDistribution.html">http://mathworld.wolfram.com/ChiDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id11">[R335]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/ChiDistribution.html">http://mathworld.wolfram.com/ChiDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -708,20 +713,20 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>k</strong> : A positive Integer, <span class="math">\(k &gt; 0\)</span>, the number of degrees of freedom</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>k</strong> : A positive Integer, <span class="math">\(k &gt; 0\)</span>, the number of degrees of freedom</p>
 <p><strong>l</strong> : Shift parameter</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r242" rules="none">
+<table class="docutils citation" frame="void" id="r336" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id12">[R242]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Noncentral_chi_distribution">http://en.wikipedia.org/wiki/Noncentral_chi_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id12">[R336]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Noncentral_chi_distribution">http://en.wikipedia.org/wiki/Noncentral_chi_distribution</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -756,23 +761,23 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>k</strong> : A positive Integer, <span class="math">\(k &gt; 0\)</span>, the number of degrees of freedom</td>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><strong>k</strong> : A positive Integer, <span class="math">\(k &gt; 0\)</span>, the number of degrees of freedom</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r243" rules="none">
+<table class="docutils citation" frame="void" id="r337" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id13">[R243]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Chi_squared_distribution">http://en.wikipedia.org/wiki/Chi_squared_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id13">[R337]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Chi_squared_distribution">http://en.wikipedia.org/wiki/Chi_squared_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r244" rules="none">
+<table class="docutils citation" frame="void" id="r338" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id14">[R244]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/Chi-SquaredDistribution.html">http://mathworld.wolfram.com/Chi-SquaredDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id14">[R338]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/Chi-SquaredDistribution.html">http://mathworld.wolfram.com/Chi-SquaredDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -814,21 +819,21 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>p</strong> : Real number, <span class="math">\(p &gt; 0\)</span>, a shape</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>p</strong> : Real number, <span class="math">\(p &gt; 0\)</span>, a shape</p>
 <p><strong>a</strong> : Real number, <span class="math">\(a &gt; 0\)</span>, a shape</p>
 <p><strong>b</strong> : Real number, <span class="math">\(b &gt; 0\)</span>, a scale</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r245" rules="none">
+<table class="docutils citation" frame="void" id="r339" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id15">[R245]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Dagum_distribution">http://en.wikipedia.org/wiki/Dagum_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id15">[R339]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Dagum_distribution">http://en.wikipedia.org/wiki/Dagum_distribution</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -863,26 +868,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>k</strong> : Integer</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>k</strong> : Integer</p>
 <p><strong>l</strong> : Real number, <span class="math">\(\lambda &gt; 0\)</span>, the rate</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r246" rules="none">
+<table class="docutils citation" frame="void" id="r340" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id16">[R246]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Erlang_distribution">http://en.wikipedia.org/wiki/Erlang_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id16">[R340]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Erlang_distribution">http://en.wikipedia.org/wiki/Erlang_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r247" rules="none">
+<table class="docutils citation" frame="void" id="r341" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id17">[R247]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/ErlangDistribution.html">http://mathworld.wolfram.com/ErlangDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id17">[R341]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/ErlangDistribution.html">http://mathworld.wolfram.com/ErlangDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -937,23 +942,23 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rate</strong> : A positive Real number, <span class="math">\(\lambda &gt; 0\)</span>, the rate (or inverse scale/inverse mean)</td>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><strong>rate</strong> : A positive Real number, <span class="math">\(\lambda &gt; 0\)</span>, the rate (or inverse scale/inverse mean)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r248" rules="none">
+<table class="docutils citation" frame="void" id="r342" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id18">[R248]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Exponential_distribution">http://en.wikipedia.org/wiki/Exponential_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id18">[R342]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Exponential_distribution">http://en.wikipedia.org/wiki/Exponential_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r249" rules="none">
+<table class="docutils citation" frame="void" id="r343" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id19">[R249]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/ExponentialDistribution.html">http://mathworld.wolfram.com/ExponentialDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id19">[R343]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/ExponentialDistribution.html">http://mathworld.wolfram.com/ExponentialDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1020,26 +1025,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>d1</strong> : <span class="math">\(d_1 &gt; 0\)</span> a parameter</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>d1</strong> : <span class="math">\(d_1 &gt; 0\)</span> a parameter</p>
 <p><strong>d2</strong> : <span class="math">\(d_2 &gt; 0\)</span> a parameter</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r250" rules="none">
+<table class="docutils citation" frame="void" id="r344" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id20">[R250]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/F-distribution">http://en.wikipedia.org/wiki/F-distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id20">[R344]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/F-distribution">http://en.wikipedia.org/wiki/F-distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r251" rules="none">
+<table class="docutils citation" frame="void" id="r345" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id21">[R251]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/F-Distribution.html">http://mathworld.wolfram.com/F-Distribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id21">[R345]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/F-Distribution.html">http://mathworld.wolfram.com/F-Distribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1082,26 +1087,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>d1</strong> : <span class="math">\(d_1 &gt; 0\)</span>, degree of freedom</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>d1</strong> : <span class="math">\(d_1 &gt; 0\)</span>, degree of freedom</p>
 <p><strong>d2</strong> : <span class="math">\(d_2 &gt; 0\)</span>, degree of freedom</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r252" rules="none">
+<table class="docutils citation" frame="void" id="r346" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id22">[R252]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Fisher%27s_z-distribution">http://en.wikipedia.org/wiki/Fisher%27s_z-distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id22">[R346]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Fisher%27s_z-distribution">http://en.wikipedia.org/wiki/Fisher%27s_z-distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r253" rules="none">
+<table class="docutils citation" frame="void" id="r347" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id23">[R253]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/Fishersz-Distribution.html">http://mathworld.wolfram.com/Fishersz-Distribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id23">[R347]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/Fishersz-Distribution.html">http://mathworld.wolfram.com/Fishersz-Distribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1146,21 +1151,21 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : Real number, <span class="math">\(a \in \left(0, \infty\right)\)</span> the shape</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>a</strong> : Real number, <span class="math">\(a \in \left(0, \infty\right)\)</span> the shape</p>
 <p><strong>s</strong> : Real number, <span class="math">\(s \in \left(0, \infty\right)\)</span> the scale</p>
 <p><strong>m</strong> : Real number, <span class="math">\(m \in \left(-\infty, \infty\right)\)</span> the minimum</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r254" rules="none">
+<table class="docutils citation" frame="void" id="r348" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id24">[R254]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Fr%C3%A9chet_distribution">http://en.wikipedia.org/wiki/Fr%C3%A9chet_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id24">[R348]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Fr%C3%A9chet_distribution">http://en.wikipedia.org/wiki/Fr%C3%A9chet_distribution</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1195,26 +1200,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>k</strong> : Real number, <span class="math">\(k &gt; 0\)</span>, a shape</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>k</strong> : Real number, <span class="math">\(k &gt; 0\)</span>, a shape</p>
 <p><strong>theta</strong> : Real number, <span class="math">\(\theta &gt; 0\)</span>, a scale</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r255" rules="none">
+<table class="docutils citation" frame="void" id="r349" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id25">[R255]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Gamma_distribution">http://en.wikipedia.org/wiki/Gamma_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id25">[R349]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Gamma_distribution">http://en.wikipedia.org/wiki/Gamma_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r256" rules="none">
+<table class="docutils citation" frame="void" id="r350" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id26">[R256]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/GammaDistribution.html">http://mathworld.wolfram.com/GammaDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id26">[R350]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/GammaDistribution.html">http://mathworld.wolfram.com/GammaDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1276,20 +1281,20 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : Real number, <span class="math">\(a &gt; 0\)</span> a shape</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>a</strong> : Real number, <span class="math">\(a &gt; 0\)</span> a shape</p>
 <p><strong>b</strong> : Real number, <span class="math">\(b &gt; 0\)</span> a scale</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r257" rules="none">
+<table class="docutils citation" frame="void" id="r351" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id27">[R257]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Inverse-gamma_distribution">http://en.wikipedia.org/wiki/Inverse-gamma_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id27">[R351]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Inverse-gamma_distribution">http://en.wikipedia.org/wiki/Inverse-gamma_distribution</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1329,20 +1334,20 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : Real number, <span class="math">\(a &gt; 0\)</span> a shape</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>a</strong> : Real number, <span class="math">\(a &gt; 0\)</span> a shape</p>
 <p><strong>b</strong> : Real number, <span class="math">\(b &gt; 0\)</span> a shape</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r258" rules="none">
+<table class="docutils citation" frame="void" id="r352" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id28">[R258]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Kumaraswamy_distribution">http://en.wikipedia.org/wiki/Kumaraswamy_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id28">[R352]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Kumaraswamy_distribution">http://en.wikipedia.org/wiki/Kumaraswamy_distribution</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1378,26 +1383,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number, the location (mean)</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number, the location (mean)</p>
 <p><strong>b</strong> : Real number, <span class="math">\(b &gt; 0\)</span>, a scale</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r259" rules="none">
+<table class="docutils citation" frame="void" id="r353" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id29">[R259]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Laplace_distribution">http://en.wikipedia.org/wiki/Laplace_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id29">[R353]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Laplace_distribution">http://en.wikipedia.org/wiki/Laplace_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r260" rules="none">
+<table class="docutils citation" frame="void" id="r354" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id30">[R260]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/LaplaceDistribution.html">http://mathworld.wolfram.com/LaplaceDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id30">[R354]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/LaplaceDistribution.html">http://mathworld.wolfram.com/LaplaceDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1430,26 +1435,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number, the location (mean)</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number, the location (mean)</p>
 <p><strong>s</strong> : Real number, <span class="math">\(s &gt; 0\)</span> a scale</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r261" rules="none">
+<table class="docutils citation" frame="void" id="r355" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id31">[R261]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Logistic_distribution">http://en.wikipedia.org/wiki/Logistic_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id31">[R355]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Logistic_distribution">http://en.wikipedia.org/wiki/Logistic_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r262" rules="none">
+<table class="docutils citation" frame="void" id="r356" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id32">[R262]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/LogisticDistribution.html">http://mathworld.wolfram.com/LogisticDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id32">[R356]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/LogisticDistribution.html">http://mathworld.wolfram.com/LogisticDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1484,26 +1489,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number, the log-scale</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number, the log-scale</p>
 <p><strong>sigma</strong> : Real number, <span class="math">\(\sigma^2 &gt; 0\)</span> a shape</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r263" rules="none">
+<table class="docutils citation" frame="void" id="r357" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id33">[R263]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Lognormal">http://en.wikipedia.org/wiki/Lognormal</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id33">[R357]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Lognormal">http://en.wikipedia.org/wiki/Lognormal</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r264" rules="none">
+<table class="docutils citation" frame="void" id="r358" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id34">[R264]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/LogNormalDistribution.html">http://mathworld.wolfram.com/LogNormalDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id34">[R358]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/LogNormalDistribution.html">http://mathworld.wolfram.com/LogNormalDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1553,23 +1558,23 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> : Real number, <span class="math">\(a &gt; 0\)</span></td>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><strong>a</strong> : Real number, <span class="math">\(a &gt; 0\)</span></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r265" rules="none">
+<table class="docutils citation" frame="void" id="r359" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id35">[R265]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Maxwell_distribution">http://en.wikipedia.org/wiki/Maxwell_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id35">[R359]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Maxwell_distribution">http://en.wikipedia.org/wiki/Maxwell_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r266" rules="none">
+<table class="docutils citation" frame="void" id="r360" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id36">[R266]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/MaxwellDistribution.html">http://mathworld.wolfram.com/MaxwellDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id36">[R360]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/MaxwellDistribution.html">http://mathworld.wolfram.com/MaxwellDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1611,20 +1616,20 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number, <span class="math">\(\mu \geq \frac{1}{2}\)</span> a shape</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number, <span class="math">\(\mu \geq \frac{1}{2}\)</span> a shape</p>
 <p><strong>omega</strong> : Real number, <span class="math">\(\omega &gt; 0\)</span>, the spread</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r267" rules="none">
+<table class="docutils citation" frame="void" id="r361" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id37">[R267]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Nakagami_distribution">http://en.wikipedia.org/wiki/Nakagami_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id37">[R361]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Nakagami_distribution">http://en.wikipedia.org/wiki/Nakagami_distribution</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1676,26 +1681,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number, the mean</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number, the mean</p>
 <p><strong>sigma</strong> : Real number, <span class="math">\(\sigma^2 &gt; 0\)</span> the variance</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r268" rules="none">
+<table class="docutils citation" frame="void" id="r362" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id38">[R268]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Normal_distribution">http://en.wikipedia.org/wiki/Normal_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id38">[R362]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Normal_distribution">http://en.wikipedia.org/wiki/Normal_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r269" rules="none">
+<table class="docutils citation" frame="void" id="r363" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id39">[R269]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/NormalDistributionFunction.html">http://mathworld.wolfram.com/NormalDistributionFunction.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id39">[R363]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/NormalDistributionFunction.html">http://mathworld.wolfram.com/NormalDistributionFunction.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1756,26 +1761,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>xm</strong> : Real number, <span class="math">\(x_m &gt; 0\)</span>, a scale</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>xm</strong> : Real number, <span class="math">\(x_m &gt; 0\)</span>, a scale</p>
 <p><strong>alpha</strong> : Real number, <span class="math">\(\alpha &gt; 0\)</span>, a shape</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r270" rules="none">
+<table class="docutils citation" frame="void" id="r364" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id40">[R270]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Pareto_distribution">http://en.wikipedia.org/wiki/Pareto_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id40">[R364]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Pareto_distribution">http://en.wikipedia.org/wiki/Pareto_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r271" rules="none">
+<table class="docutils citation" frame="void" id="r365" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id41">[R271]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/ParetoDistribution.html">http://mathworld.wolfram.com/ParetoDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id41">[R365]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/ParetoDistribution.html">http://mathworld.wolfram.com/ParetoDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1809,20 +1814,20 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : Real number</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>a</strong> : Real number</p>
 <p><strong>b</strong> : Real number, <span class="math">\(a &lt; b\)</span></p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r272" rules="none">
+<table class="docutils citation" frame="void" id="r366" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id42">[R272]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/U-quadratic_distribution">http://en.wikipedia.org/wiki/U-quadratic_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id42">[R366]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/U-quadratic_distribution">http://en.wikipedia.org/wiki/U-quadratic_distribution</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1865,20 +1870,20 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number</p>
 <p><strong>s</strong> : Real number, <span class="math">\(s &gt; 0\)</span></p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r273" rules="none">
+<table class="docutils citation" frame="void" id="r367" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id43">[R273]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Raised_cosine_distribution">http://en.wikipedia.org/wiki/Raised_cosine_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id43">[R367]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Raised_cosine_distribution">http://en.wikipedia.org/wiki/Raised_cosine_distribution</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1919,23 +1924,23 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sigma</strong> : Real number, <span class="math">\(\sigma &gt; 0\)</span></td>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><strong>sigma</strong> : Real number, <span class="math">\(\sigma &gt; 0\)</span></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r274" rules="none">
+<table class="docutils citation" frame="void" id="r368" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id44">[R274]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Rayleigh_distribution">http://en.wikipedia.org/wiki/Rayleigh_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id44">[R368]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Rayleigh_distribution">http://en.wikipedia.org/wiki/Rayleigh_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r275" rules="none">
+<table class="docutils citation" frame="void" id="r369" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id45">[R275]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/RayleighDistribution.html">http://mathworld.wolfram.com/RayleighDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id45">[R369]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/RayleighDistribution.html">http://mathworld.wolfram.com/RayleighDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1977,23 +1982,23 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>nu</strong> : Real number, <span class="math">\(\nu &gt; 0\)</span>, the degrees of freedom</td>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><strong>nu</strong> : Real number, <span class="math">\(\nu &gt; 0\)</span>, the degrees of freedom</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r276" rules="none">
+<table class="docutils citation" frame="void" id="r370" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id46">[R276]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Student_t-distribution">http://en.wikipedia.org/wiki/Student_t-distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id46">[R370]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Student_t-distribution">http://en.wikipedia.org/wiki/Student_t-distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r277" rules="none">
+<table class="docutils citation" frame="void" id="r371" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id47">[R277]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/Studentst-Distribution.html">http://mathworld.wolfram.com/Studentst-Distribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id47">[R371]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/Studentst-Distribution.html">http://mathworld.wolfram.com/Studentst-Distribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -2042,27 +2047,27 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : Real number, <span class="math">\(a \in \left(-\infty, \infty\right)\)</span></p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>a</strong> : Real number, <span class="math">\(a \in \left(-\infty, \infty\right)\)</span></p>
 <p><strong>b</strong> : Real number, <span class="math">\(a &lt; b\)</span></p>
 <p><strong>c</strong> : Real number, <span class="math">\(a \leq c \leq b\)</span></p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r278" rules="none">
+<table class="docutils citation" frame="void" id="r372" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id48">[R278]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Triangular_distribution">http://en.wikipedia.org/wiki/Triangular_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id48">[R372]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Triangular_distribution">http://en.wikipedia.org/wiki/Triangular_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r279" rules="none">
+<table class="docutils citation" frame="void" id="r373" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id49">[R279]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/TriangularDistribution.html">http://mathworld.wolfram.com/TriangularDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id49">[R373]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/TriangularDistribution.html">http://mathworld.wolfram.com/TriangularDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -2112,26 +2117,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : Real number, <span class="math">\(-\infty &lt; a\)</span> the left boundary</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>a</strong> : Real number, <span class="math">\(-\infty &lt; a\)</span> the left boundary</p>
 <p><strong>b</strong> : Real number, <span class="math">\(a &lt; b &lt; \infty\)</span> the right boundary</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r280" rules="none">
+<table class="docutils citation" frame="void" id="r374" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id50">[R280]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Uniform_distribution_%28continuous%29">http://en.wikipedia.org/wiki/Uniform_distribution_%28continuous%29</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id50">[R374]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Uniform_distribution_%28continuous%29">http://en.wikipedia.org/wiki/Uniform_distribution_%28continuous%29</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r281" rules="none">
+<table class="docutils citation" frame="void" id="r375" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id51">[R281]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/UniformDistribution.html">http://mathworld.wolfram.com/UniformDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id51">[R375]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/UniformDistribution.html">http://mathworld.wolfram.com/UniformDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -2163,10 +2168,6 @@ distribution.</p>
 <span class="go">a**2/12 - a*b/6 + b**2/12</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">simplify</span><span class="p">(</span><span class="n">skewness</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
-<span class="go">0</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="function">
@@ -2183,23 +2184,23 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> : A positive Integer, <span class="math">\(n &gt; 0\)</span></td>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><strong>n</strong> : A positive Integer, <span class="math">\(n &gt; 0\)</span></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><strong>A RandomSymbol.</strong> :</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r282" rules="none">
+<table class="docutils citation" frame="void" id="r376" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id52">[R282]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Uniform_sum_distribution">http://en.wikipedia.org/wiki/Uniform_sum_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id52">[R376]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Uniform_sum_distribution">http://en.wikipedia.org/wiki/Uniform_sum_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r283" rules="none">
+<table class="docutils citation" frame="void" id="r377" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id53">[R283]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/UniformSumDistribution.html">http://mathworld.wolfram.com/UniformSumDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id53">[R377]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/UniformSumDistribution.html">http://mathworld.wolfram.com/UniformSumDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -2242,26 +2243,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number, measure of location</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>mu</strong> : Real number, measure of location</p>
 <p><strong>k</strong> : Real number, measure of concentration</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r284" rules="none">
+<table class="docutils citation" frame="void" id="r378" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id54">[R284]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Von_Mises_distribution">http://en.wikipedia.org/wiki/Von_Mises_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id54">[R378]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Von_Mises_distribution">http://en.wikipedia.org/wiki/Von_Mises_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r285" rules="none">
+<table class="docutils citation" frame="void" id="r379" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id55">[R285]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/vonMisesDistribution.html">http://mathworld.wolfram.com/vonMisesDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id55">[R379]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/vonMisesDistribution.html">http://mathworld.wolfram.com/vonMisesDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -2302,26 +2303,26 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>lambda</strong> : Real number, <span class="math">\(\lambda &gt; 0\)</span> a scale</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>lambda</strong> : Real number, <span class="math">\(\lambda &gt; 0\)</span> a scale</p>
 <p><strong>k</strong> : Real number, <span class="math">\(k &gt; 0\)</span> a shape</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>A RandomSymbol.</strong> :</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r286" rules="none">
+<table class="docutils citation" frame="void" id="r380" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id56">[R286]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Weibull_distribution">http://en.wikipedia.org/wiki/Weibull_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id56">[R380]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Weibull_distribution">http://en.wikipedia.org/wiki/Weibull_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r287" rules="none">
+<table class="docutils citation" frame="void" id="r381" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id57">[R287]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/WeibullDistribution.html">http://mathworld.wolfram.com/WeibullDistribution.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id57">[R381]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/WeibullDistribution.html">http://mathworld.wolfram.com/WeibullDistribution.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -2363,23 +2364,23 @@ distribution.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>R</strong> : Real number, <span class="math">\(R &gt; 0\)</span>, the radius</td>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><strong>R</strong> : Real number, <span class="math">\(R &gt; 0\)</span>, the radius</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>A `RandomSymbol`.</strong> :</td>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><strong>A `RandomSymbol`.</strong> :</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r288" rules="none">
+<table class="docutils citation" frame="void" id="r382" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id58">[R288]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Wigner_semicircle_distribution">http://en.wikipedia.org/wiki/Wigner_semicircle_distribution</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id58">[R382]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Wigner_semicircle_distribution">http://en.wikipedia.org/wiki/Wigner_semicircle_distribution</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r289" rules="none">
+<table class="docutils citation" frame="void" id="r383" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id59">[R289]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/WignersSemicircleLaw.html">http://mathworld.wolfram.com/WignersSemicircleLaw.html</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id59">[R383]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/WignersSemicircleLaw.html">http://mathworld.wolfram.com/WignersSemicircleLaw.html</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -2440,13 +2441,13 @@ This function should be necessary only very rarely.</p>
 <h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="sympy.stats.P">
-<tt class="descclassname">sympy.stats.</tt><tt class="descname">P</tt><big>(</big><em>condition</em>, <em>given_condition=None</em>, <em>numsamples=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sympy.stats.P" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">sympy.stats.</tt><tt class="descname">P</tt><big>(</big><em>condition</em>, <em>given_condition=None</em>, <em>numsamples=None</em>, <em>evaluate=True</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sympy.stats.P" title="Permalink to this definition">¶</a></dt>
 <dd><p>Probability that a condition is true, optionally given a second condition</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>expr</strong> : Relational containing RandomSymbols</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>expr</strong> : Relational containing RandomSymbols</p>
 <blockquote>
 <div><p>The condition of which you want to compute the probability</p>
 </div></blockquote>
@@ -2486,13 +2487,13 @@ This function should be necessary only very rarely.</p>
 
 <dl class="function">
 <dt id="sympy.stats.E">
-<tt class="descclassname">sympy.stats.</tt><tt class="descname">E</tt><big>(</big><em>expr</em>, <em>condition=None</em>, <em>numsamples=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sympy.stats.E" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">sympy.stats.</tt><tt class="descname">E</tt><big>(</big><em>expr</em>, <em>condition=None</em>, <em>numsamples=None</em>, <em>evaluate=True</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sympy.stats.E" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the expected value of a random expression</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>expr</strong> : Expr containing RandomSymbols</p>
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>expr</strong> : Expr containing RandomSymbols</p>
 <blockquote>
 <div><p>The expression of which you want to compute the expectation value</p>
 </div></blockquote>
@@ -2533,7 +2534,7 @@ This function should be necessary only very rarely.</p>
 
 <dl class="function">
 <dt id="sympy.stats.density">
-<tt class="descclassname">sympy.stats.</tt><tt class="descname">density</tt><big>(</big><em>expr</em>, <em>condition=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sympy.stats.density" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">sympy.stats.</tt><tt class="descname">density</tt><big>(</big><em>expr</em>, <em>condition=None</em>, <em>evaluate=True</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sympy.stats.density" title="Permalink to this definition">¶</a></dt>
 <dd><p>Probability density of a random expression</p>
 <p>Optionally given a second condition</p>
 <p>This density will take on different forms for different types of
@@ -2545,16 +2546,17 @@ Continuous variables produce Lambdas.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Symbol</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">Die</span><span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">Die</span><span class="p">(</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">D</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span>
 <span class="go">{1: 1/6, 2: 1/6, 3: 1/6, 4: 1/6, 5: 1/6, 6: 1/6}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">D</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">D</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span>
 <span class="go">{2: 1/6, 4: 1/6, 6: 1/6, 8: 1/6, 10: 1/6, 12: 1/6}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="go">Lambda(x, sqrt(2)*exp(-x**2/2)/(2*sqrt(pi)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">X</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">sqrt(2)*exp(-x**2/2)/(2*sqrt(pi))</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -2562,15 +2564,36 @@ Continuous variables produce Lambdas.</p>
 <dl class="function">
 <dt id="sympy.stats.given">
 <tt class="descclassname">sympy.stats.</tt><tt class="descname">given</tt><big>(</big><em>expr</em>, <em>condition=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#sympy.stats.given" title="Permalink to this definition">¶</a></dt>
-<dd><p>From a random expression and a condition on that expression creates a new
+<dd><p>Conditional Random Expression
+From a random expression and a condition on that expression creates a new
 probability space from the condition and returns the same expression on that
 conditional probability space.</p>
 <p class="rubric">Examples</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.stats</span> <span class="kn">import</span> <span class="n">given</span><span class="p">,</span> <span class="n">density</span><span class="p">,</span> <span class="n">Die</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">Die</span><span class="p">(</span><span class="s">&#39;X&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="n">given</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">density</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span>
 <span class="go">{4: 1/3, 5: 1/3, 6: 1/3}</span>
+</pre></div>
+</div>
+<p>Following convention, if the condition is a random symbol then that symbol
+is considered fixed.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.stats</span> <span class="kn">import</span> <span class="n">Normal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">z</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="s">&#39;X&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">density</span><span class="p">(</span><span class="n">X</span> <span class="o">+</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Y</span><span class="p">)(</span><span class="n">z</span><span class="p">),</span> <span class="n">use_unicode</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="go">                2</span>
+<span class="go">       -(-Y + z)</span>
+<span class="go">       -----------</span>
+<span class="go">  ___       2</span>
+<span class="go">\/ 2 *e</span>
+<span class="go">------------------</span>
+<span class="go">         ____</span>
+<span class="go">     2*\/ pi</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -2669,7 +2692,7 @@ conditional probability space.</p>
 <p>expr: Random expression to be realized
 condition: A conditional expression (optional)
 numsamples: Length of the iterator (defaults to infinity)</p>
-<div class="admonition seealso">
+<div class="admonition-see-also admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last"><tt class="xref py py-obj docutils literal"><span class="pre">Sample</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">sampling_P</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">sampling_E</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">sample_iter_lambdify</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">sample_iter_subs</span></tt></p>
 </div>
@@ -2875,8 +2898,8 @@ Output: dict mapping RVs in a to RVs in b</p>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="simplify/hyperexpand.html"
-                        title="previous chapter">Details on the Hypergeometric Function Expansion Module</a></p>
+  <p class="topless"><a href="statistics.html"
+                        title="previous chapter">Statistics</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="solvers/ode.html"
                         title="next chapter">ODE</a></p>
@@ -2912,19 +2935,22 @@ Output: dict mapping RVs in a to RVs in b</p>
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="solvers/ode.html" title="ODE"
              >next</a> |</li>
         <li class="right" >
-          <a href="simplify/hyperexpand.html" title="Details on the Hypergeometric Function Expansion Module"
+          <a href="statistics.html" title="Statistics"
              >previous</a> |</li>
-        <li><a href="../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="index.html" >SymPy Modules Reference</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Jun 21, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Last updated on Feb 22, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

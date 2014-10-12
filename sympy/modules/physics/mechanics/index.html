@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -6,18 +8,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Classical Mechanics &mdash; SymPy 0.7.3 documentation</title>
+    <title>Classical Mechanics &mdash; SymPy 0.7.5 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '0.7.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,18 +28,18 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 0.7.5 documentation" href="../../../index.html" />
     <link rel="up" title="Physics Module" href="../index.html" />
     <link rel="next" title="Mechanics: Masses, Inertias, Particles and Rigid Bodies" href="masses.html" />
-    <link rel="prev" title="Docstrings for basic field functions" href="../vector/api/fieldfunctions.html" /> 
+    <link rel="prev" title="Essential Functions (Docstrings)" href="../vector/api/functions.html" /> 
   </head>
   <body>
     <div class="related">
@@ -50,12 +52,15 @@
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="masses.html" title="Mechanics: Masses, Inertias, Particles and Rigid Bodies"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../vector/api/fieldfunctions.html" title="Docstrings for basic field functions"
+          <a href="../vector/api/functions.html" title="Essential Functions (Docstrings)"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../../index.html" >SymPy Modules Reference</a> &raquo;</li>
           <li><a href="../index.html" accesskey="U">Physics Module</a> &raquo;</li> 
       </ul>
@@ -227,15 +232,19 @@ Step 4 amounts to this specific module, sympy.physics.mechanics.</p>
 <li><a class="reference internal" href="#">Classical Mechanics</a><ul>
 <li><a class="reference internal" href="#vector">Vector</a></li>
 <li><a class="reference internal" href="#mechanics">Mechanics</a></li>
-<li><a class="reference internal" href="#guide-to-mechanics">Guide to Mechanics</a></li>
-<li><a class="reference internal" href="#mechanics-api">Mechanics API</a></li>
+<li><a class="reference internal" href="#guide-to-mechanics">Guide to Mechanics</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#mechanics-api">Mechanics API</a><ul>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../vector/api/fieldfunctions.html"
-                        title="previous chapter">Docstrings for basic field functions</a></p>
+  <p class="topless"><a href="../vector/api/functions.html"
+                        title="previous chapter">Essential Functions (Docstrings)</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="masses.html"
                         title="next chapter">Mechanics: Masses, Inertias, Particles and Rigid Bodies</a></p>
@@ -271,20 +280,23 @@ Step 4 amounts to this specific module, sympy.physics.mechanics.</p>
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="masses.html" title="Mechanics: Masses, Inertias, Particles and Rigid Bodies"
              >next</a> |</li>
         <li class="right" >
-          <a href="../vector/api/fieldfunctions.html" title="Docstrings for basic field functions"
+          <a href="../vector/api/functions.html" title="Essential Functions (Docstrings)"
              >previous</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../../index.html" >SymPy Modules Reference</a> &raquo;</li>
           <li><a href="../index.html" >Physics Module</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Jun 21, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Last updated on Feb 22, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

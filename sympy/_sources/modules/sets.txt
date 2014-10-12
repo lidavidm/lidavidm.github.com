@@ -1,14 +1,12 @@
 Sets
 ===========
 
-.. automodule:: sympy.sets.sets
+.. automodule:: sympy.core.sets
 
 Set
 ^^^
 .. autoclass:: Set
    :members:
-
-.. autofunction:: imageset
 
 Elementary Sets
 ---------------
@@ -76,3 +74,4 @@ ImageSet
 ^^^^^^^^
 .. autoclass:: ImageSet
    :members:
+

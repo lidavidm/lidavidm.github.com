@@ -27,9 +27,8 @@ Gamma, Beta and related Functions
    :members:
 .. autoclass:: sympy.functions.special.gamma_functions.lowergamma
    :members:
-.. module:: sympy.functions.special.beta_functions
-.. autoclass:: sympy.functions.special.beta_functions.beta
-   :members:
+
+.. autofunction:: sympy.functions.special.gamma_functions.beta
 
 Error Functions and Fresnel Integrals
 -------------------------------------

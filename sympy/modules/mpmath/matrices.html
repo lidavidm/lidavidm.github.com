@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -6,18 +8,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Matrices &mdash; SymPy 0.7.3 documentation</title>
+    <title>Matrices &mdash; SymPy 0.7.5 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '0.7.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,15 +28,15 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 0.7.5 documentation" href="../../index.html" />
     <link rel="up" title="Welcome to mpmath’s documentation!" href="index.html" />
     <link rel="next" title="Number identification" href="identification.html" />
     <link rel="prev" title="Function approximation" href="calculus/approximation.html" /> 
@@ -50,12 +52,15 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="identification.html" title="Number identification"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="calculus/approximation.html" title="Function approximation"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../index.html" >SymPy Modules Reference</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Welcome to mpmath&#8217;s documentation!</a> &raquo;</li> 
       </ul>
@@ -327,7 +332,7 @@ For operator matrix norms, use <a class="reference internal" href="#mpmath.mnorm
 <p>You can use the string &#8216;inf&#8217; as well as float(&#8216;inf&#8217;) or mpf(&#8216;inf&#8217;)
 to specify the infinity norm.</p>
 <p><strong>Examples</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">False</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">([</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -359,7 +364,7 @@ approximation of the spectral norm and satisfies</p>
 be expected of a norm.</p>
 <p>For general elementwise <span class="math">\(p\)</span>-norms, use <a class="reference internal" href="#mpmath.norm" title="mpmath.norm"><tt class="xref py py-func docutils literal"><span class="pre">norm()</span></tt></a> instead.</p>
 <p><strong>Examples</strong></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">False</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mnorm</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -392,7 +397,7 @@ test whether <span class="math">\(A\)</span> is positive-definite.</p>
 verifying positive-definiteness.</p>
 <p><strong>Examples</strong></p>
 <p>Cholesky decomposition of a positive-definite symmetric matrix:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">hilbert</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">nprint</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
@@ -434,7 +439,7 @@ definite:</p>
 </div>
 <p><strong>References</strong></p>
 <ol class="arabic simple">
-<li><a class="reference internal" href="references.html#wikipedia" id="id1">[Wikipedia]</a> <a class="reference external" href="http://en.wikipedia.org/wiki/Cholesky_decomposition">http://en.wikipedia.org/wiki/Cholesky_decomposition</a></li>
+<li><a class="reference internal" href="references.html#wikipedia">[Wikipedia]</a> <a class="reference external" href="http://en.wikipedia.org/wiki/Cholesky_decomposition">http://en.wikipedia.org/wiki/Cholesky_decomposition</a></li>
 </ol>
 </dd></dl>
 
@@ -443,9 +448,8 @@ definite:</p>
 <h3>Linear equations<a class="headerlink" href="#linear-equations" title="Permalink to this headline">¶</a></h3>
 <p>Basic linear algebra is implemented; you can for example solve the linear
 equation system:</p>
-<div class="highlight-python"><div class="highlight"><pre>  x + 2*y = -10
-3*x + 4*y =  10
-</pre></div>
+<div class="highlight-python"><pre>  x + 2*y = -10
+3*x + 4*y =  10</pre>
 </div>
 <p>using <tt class="docutils literal"><span class="pre">lu_solve</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
@@ -587,9 +591,8 @@ hermitian transpose (i.e. transposition and conjugation).</p>
 <h3>The eigenvalue problem<a class="headerlink" href="#the-eigenvalue-problem" title="Permalink to this headline">¶</a></h3>
 <p>The routine <tt class="docutils literal"><span class="pre">eig</span></tt> solves the (ordinary) eigenvalue problem for a real or complex
 square matrix <em>A</em>. Given <em>A</em>, a vector <em>E</em> and matrices <em>ER</em> and <em>EL</em> are calculated such that</p>
-<div class="code highlight-python"><div class="highlight"><pre>        A ER[:,i] =         E[i] ER[:,i]
-EL[i,:] A         = EL[i,:] E[i]
-</pre></div>
+<div class="code highlight-python"><pre>        A ER[:,i] =         E[i] ER[:,i]
+EL[i,:] A         = EL[i,:] E[i]</pre>
 </div>
 <p><em>E</em> contains the eigenvalues of <em>A</em>. The columns of <em>ER</em> contain the right eigenvectors
 of <em>A</em> whereas the rows of <em>EL</em> contain the left eigenvectors.</p>
@@ -628,8 +631,7 @@ calculated which diagonalizes A:</p>
 &#8216; denotes the hermitian transpose (i.e. ordinary transposition and
 complex conjugation).</p>
 <p>The columns of <em>Q</em> are the eigenvectors of <em>A</em> and <em>E</em> contains the eigenvalues:</p>
-<div class="code highlight-python"><div class="highlight"><pre>A Q[:,i] = E[i] Q[:,i]
-</pre></div>
+<div class="code highlight-python"><pre>A Q[:,i] = E[i] Q[:,i]</pre>
 </div>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="n">mp</span>
@@ -689,7 +691,7 @@ using the Taylor series. With method=&#8217;pade&#8217;, Pade approximants
 are used instead.</p>
 <p><strong>Examples</strong></p>
 <p>Basic examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">expm</span><span class="p">(</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 <span class="go">[1.0  0.0  0.0]</span>
@@ -741,7 +743,7 @@ noncommuting matrices:</p>
 <dd><p>Gives the cosine of a square matrix <span class="math">\(A\)</span>, defined in analogy
 with the matrix exponential.</p>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cosm</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -767,7 +769,7 @@ with the matrix exponential.</p>
 <dd><p>Gives the sine of a square matrix <span class="math">\(A\)</span>, defined in analogy
 with the matrix exponential.</p>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sinm</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -795,7 +797,7 @@ a matrix <span class="math">\(B = A^{1/2}\)</span> such that <span class="math">
 of a matrix, if it exists, is not unique.</p>
 <p><strong>Examples</strong></p>
 <p>Square roots of some simple matrices:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sqrtm</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
 <span class="go">[1.0  0.0]</span>
@@ -894,7 +896,7 @@ a matrix <span class="math">\(B = \log(A)\)</span> such that <span class="math">
 of a matrix, if it exists, is not unique.</p>
 <p><strong>Examples</strong></p>
 <p>Logarithms of some simple matrices:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">logm</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -975,7 +977,7 @@ the rotation:</p>
 number <span class="math">\(r\)</span>.</p>
 <p><strong>Examples</strong></p>
 <p>Powers and inverse powers of a matrix:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span><span class="o">.</span><span class="n">dps</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span> <span class="n">mp</span><span class="o">.</span><span class="n">pretty</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">11</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">powm</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -1100,20 +1102,23 @@ number <span class="math">\(r\)</span>.</p>
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="identification.html" title="Number identification"
              >next</a> |</li>
         <li class="right" >
           <a href="calculus/approximation.html" title="Function approximation"
              >previous</a> |</li>
-        <li><a href="../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../index.html" >SymPy Modules Reference</a> &raquo;</li>
           <li><a href="index.html" >Welcome to mpmath&#8217;s documentation!</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Jun 21, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Last updated on Feb 22, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

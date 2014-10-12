@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -6,18 +8,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Gotchas and Pitfalls &mdash; SymPy 0.7.3 documentation</title>
+    <title>Gotchas and Pitfalls &mdash; SymPy 0.7.5 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.7.3',
+        URL_ROOT:    '',
+        VERSION:     '0.7.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,15 +28,15 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
     <link rel="shortcut icon" href="_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="index.html" />
+    <link rel="top" title="SymPy 0.7.5 documentation" href="index.html" />
     <link rel="next" title="SymPy User’s Guide" href="guide.html" />
     <link rel="prev" title="Advanced Expression Manipulation" href="tutorial/manipulation.html" /> 
   </head>
@@ -49,12 +51,15 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="guide.html" title="SymPy User’s Guide"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="tutorial/manipulation.html" title="Advanced Expression Manipulation"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">SymPy 0.7.3 documentation</a> &raquo;</li> 
+        <li><a href="index.html">SymPy 0.7.5 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -67,11 +72,11 @@
 <span id="gotchas"></span><h1>Gotchas and Pitfalls<a class="headerlink" href="#gotchas-and-pitfalls" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>SymPy runs under the <a class="reference external" href="https://www.python.org/">Python Programming Language</a>, so there are some things that may behave
+<p>SymPy runs under the <a class="reference external" href="http://www.python.org/">Python Programming Language</a>, so there are some things that may behave
 differently than they do in other, independent computer algebra systems
 like Maple or Mathematica.  These are some of the gotchas and pitfalls
 that you may encounter when using SymPy.  See also the <a class="reference external" href="https://github.com/sympy/sympy/wiki/Faq">FAQ</a>, the <a class="reference internal" href="tutorial/index.html#tutorial"><em>Tutorial</em></a>, the
-remainder of the SymPy Docs, and the <a class="reference external" href="https://docs.python.org/3/tutorial/">official Python Tutorial</a>.</p>
+remainder of the SymPy Docs, and the <a class="reference external" href="http://docs.python.org/tutorial/">official Python Tutorial</a>.</p>
 <p>If you are already familiar with C or Java, you might also want to look
 at this <a class="reference external" href="http://www.nerdparadise.com/tech/python/4minutecrashcourse/">4 minute Python tutorial</a>.</p>
 <p>Ignore <tt class="docutils literal"><span class="pre">#doctest:</span> <span class="pre">+SKIP</span></tt> in the examples.  That has to do with
@@ -769,12 +774,11 @@ complex by default, and, for example, <tt class="docutils literal"><span class="
 <a class="reference external" href="http://wiki.sympy.org/">SymPy Wiki</a>, you can also get info on functions from within the
 Python interpreter that runs SymPy.  The easiest way to do this is to do
 <tt class="docutils literal"><span class="pre">help(function)</span></tt>, or <tt class="docutils literal"><span class="pre">function?</span></tt> if you are using <strong class="command">ipython</strong>:</p>
-<div class="highlight-python"><div class="highlight"><pre>In [1]: help(powsimp)  # help() works everywhere
+<div class="highlight-python"><pre>In [1]: help(powsimp)  # help() works everywhere
 
 In [2]: # But in ipython, you can also use ?, which is better because it
 In [3]: # it gives you more information
-In [4]: powsimp?
-</pre></div>
+In [4]: powsimp?</pre>
 </div>
 <p>These will give you the function parameters and docstring for
 <tt class="xref py py-func docutils literal"><span class="pre">powsimp()</span></tt>.  The output will look something like this:</p>
@@ -892,18 +896,21 @@ from SymPy 0.6.5:</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="guide.html" title="SymPy User’s Guide"
              >next</a> |</li>
         <li class="right" >
           <a href="tutorial/manipulation.html" title="Advanced Expression Manipulation"
              >previous</a> |</li>
-        <li><a href="index.html">SymPy 0.7.3 documentation</a> &raquo;</li> 
+        <li><a href="index.html">SymPy 0.7.5 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Jun 21, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Last updated on Feb 22, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

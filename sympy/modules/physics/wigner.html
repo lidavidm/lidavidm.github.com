@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -6,18 +8,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Wigner Symbols &mdash; SymPy 0.7.3 documentation</title>
+    <title>Wigner Symbols &mdash; SymPy 0.7.5 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '0.7.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,15 +28,15 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 0.7.5 documentation" href="../../index.html" />
     <link rel="up" title="Physics Module" href="index.html" />
     <link rel="next" title="Units" href="units.html" />
     <link rel="prev" title="Second Quantization" href="secondquant.html" /> 
@@ -50,12 +52,15 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="units.html" title="Units"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="secondquant.html" title="Second Quantization"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../index.html" >SymPy Modules Reference</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Physics Module</a> &raquo;</li> 
       </ul>
@@ -72,7 +77,7 @@
 <p>Collection of functions for calculating Wigner 3j, 6j, 9j,
 Clebsch-Gordan, Racah as well as Gaunt coefficients exactly, all
 evaluating to a rational number times the square root of a rational
-number <a class="reference internal" href="#rasch03" id="id1">[Rasch03]</a>.</p>
+number <a class="reference internal" href="#rasch03">[Rasch03]</a>.</p>
 <p>Please see the description of the individual functions for further
 details and examples.</p>
 <div class="section" id="references">
@@ -101,7 +106,7 @@ J. Sci. Comput. Volume 25, Issue 4, pp. 1416-1428 (2003)</td></tr>
 <tt class="descclassname">sympy.physics.wigner.</tt><tt class="descname">clebsch_gordan</tt><big>(</big><em>j_1</em>, <em>j_2</em>, <em>j_3</em>, <em>m_1</em>, <em>m_2</em>, <em>m_3</em>, <em>prec=None</em><big>)</big><a class="reference internal" href="../../_modules/sympy/physics/wigner.html#clebsch_gordan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.physics.wigner.clebsch_gordan" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates the Clebsch-Gordan coefficient
 <span class="math">\(\langle j_1 m_1 \; j_2 m_2 | j_3 m_3 \rangle\)</span>.</p>
-<p>The reference for this function is <a class="reference internal" href="#edmonds74" id="id2">[Edmonds74]</a>.</p>
+<p>The reference for this function is <a class="reference internal" href="#edmonds74">[Edmonds74]</a>.</p>
 <p>INPUT:</p>
 <ul class="simple">
 <li><tt class="docutils literal"><span class="pre">j_1</span></tt>, <tt class="docutils literal"><span class="pre">j_2</span></tt>, <tt class="docutils literal"><span class="pre">j_3</span></tt>, <tt class="docutils literal"><span class="pre">m_1</span></tt>, <tt class="docutils literal"><span class="pre">m_2</span></tt>, <tt class="docutils literal"><span class="pre">m_3</span></tt> - integer or half integer</li>
@@ -167,15 +172,14 @@ drastically speed up the calculation.</li>
 </pre></div>
 </div>
 <p>It is an error to use non-integer values for <span class="math">\(l\)</span> and <span class="math">\(m\)</span>:</p>
-<div class="highlight-python"><div class="highlight"><pre>sage: gaunt(1.2,0,1.2,0,0,0)
+<div class="highlight-python"><pre>sage: gaunt(1.2,0,1.2,0,0,0)
 Traceback (most recent call last):
 ...
 ValueError: l values must be integer
 sage: gaunt(1,0,1,1.1,0,-1.1)
 Traceback (most recent call last):
 ...
-ValueError: m values must be integer
-</pre></div>
+ValueError: m values must be integer</pre>
 </div>
 <p>NOTES:</p>
 <p>The Gaunt coefficient obeys the following symmetry rules:</p>
@@ -195,7 +199,7 @@ ValueError: m values must be integer
 =Y(j_1,j_2,j_3,-m_1,-m_2,-m_3)\]</div>
 </li>
 <li><p class="first">symmetric with respect to the 72 Regge symmetries as inherited
-for the <span class="math">\(3j\)</span> symbols <a class="reference internal" href="#regge58" id="id3">[Regge58]</a></p>
+for the <span class="math">\(3j\)</span> symbols <a class="reference internal" href="#regge58">[Regge58]</a></p>
 </li>
 <li><p class="first">zero for <span class="math">\(l_1\)</span>, <span class="math">\(l_2\)</span>, <span class="math">\(l_3\)</span> not fulfilling triangle relation</p>
 </li>
@@ -207,11 +211,11 @@ for the <span class="math">\(3j\)</span> symbols <a class="reference internal" h
 </li>
 </ul>
 <p>ALGORITHM:</p>
-<p>This function uses the algorithm of <a class="reference internal" href="#liberatodebrito82" id="id4">[Liberatodebrito82]</a> to
+<p>This function uses the algorithm of <a class="reference internal" href="#liberatodebrito82">[Liberatodebrito82]</a> to
 calculate the value of the Gaunt coefficient exactly. Note that
 the formula contains alternating sums over large factorials and is
 therefore unsuitable for finite precision arithmetic and only
-useful for a computer algebra system <a class="reference internal" href="#rasch03" id="id5">[Rasch03]</a>.</p>
+useful for a computer algebra system <a class="reference internal" href="#rasch03">[Rasch03]</a>.</p>
 <p>REFERENCES:</p>
 <table class="docutils citation" frame="void" id="liberatodebrito82" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -254,11 +258,11 @@ drastically speed up the calculation.</li>
 <p>Please see the 6j symbol for its much richer symmetries and for
 additional properties.</p>
 <p>ALGORITHM:</p>
-<p>This function uses the algorithm of <a class="reference internal" href="#edmonds74" id="id6">[Edmonds74]</a> to calculate the
+<p>This function uses the algorithm of <a class="reference internal" href="#edmonds74">[Edmonds74]</a> to calculate the
 value of the 6j symbol exactly. Note that the formula contains
 alternating sums over large factorials and is therefore unsuitable
 for finite precision arithmetic and only useful for a computer
-algebra system <a class="reference internal" href="#rasch03" id="id7">[Rasch03]</a>.</p>
+algebra system <a class="reference internal" href="#rasch03">[Rasch03]</a>.</p>
 <p>AUTHORS:</p>
 <ul class="simple">
 <li>Jens Rasch (2009-03-24): initial version</li>
@@ -288,15 +292,14 @@ drastically speed up the calculation.</li>
 </div>
 <p>It is an error to have arguments that are not integer or half
 integer values:</p>
-<div class="highlight-python"><div class="highlight"><pre>sage: wigner_3j(2.1, 6, 4, 0, 0, 0)
+<div class="highlight-python"><pre>sage: wigner_3j(2.1, 6, 4, 0, 0, 0)
 Traceback (most recent call last):
 ...
 ValueError: j values must be integer or half integer
 sage: wigner_3j(2, 6, 4, 1, 0, -1.1)
 Traceback (most recent call last):
 ...
-ValueError: m values must be integer or half integer
-</pre></div>
+ValueError: m values must be integer or half integer</pre>
 </div>
 <p>NOTES:</p>
 <p>The Wigner 3j symbol obeys the following symmetry rules:</p>
@@ -317,7 +320,7 @@ exception of a sign change where <span class="math">\(J:=j_1+j_2+j_3\)</span>):<
 =(-1)^J Wigner3j(j_1,j_2,j_3,-m_1,-m_2,-m_3)\]</div>
 </li>
 <li><p class="first">symmetric with respect to the 72 additional symmetries based on
-the work by <a class="reference internal" href="#regge58" id="id8">[Regge58]</a></p>
+the work by <a class="reference internal" href="#regge58">[Regge58]</a></p>
 </li>
 <li><p class="first">zero for <span class="math">\(j_1\)</span>, <span class="math">\(j_2\)</span>, <span class="math">\(j_3\)</span> not fulfilling triangle relation</p>
 </li>
@@ -328,11 +331,11 @@ the work by <a class="reference internal" href="#regge58" id="id8">[Regge58]</a>
 </li>
 </ul>
 <p>ALGORITHM:</p>
-<p>This function uses the algorithm of <a class="reference internal" href="#edmonds74" id="id9">[Edmonds74]</a> to calculate the
+<p>This function uses the algorithm of <a class="reference internal" href="#edmonds74">[Edmonds74]</a> to calculate the
 value of the 3j symbol exactly. Note that the formula contains
 alternating sums over large factorials and is therefore unsuitable
 for finite precision arithmetic and only useful for a computer
-algebra system <a class="reference internal" href="#rasch03" id="id10">[Rasch03]</a>.</p>
+algebra system <a class="reference internal" href="#rasch03">[Rasch03]</a>.</p>
 <p>REFERENCES:</p>
 <table class="docutils citation" frame="void" id="regge58" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -377,15 +380,14 @@ drastically speed up the calculation.</li>
 </div>
 <p>It is an error to have arguments that are not integer or half
 integer values or do not fulfill the triangle relation:</p>
-<div class="highlight-python"><div class="highlight"><pre>sage: wigner_6j(2.5,2.5,2.5,2.5,2.5,2.5)
+<div class="highlight-python"><pre>sage: wigner_6j(2.5,2.5,2.5,2.5,2.5,2.5)
 Traceback (most recent call last):
 ...
 ValueError: j values must be integer or half integer and fulfill the triangle relation
 sage: wigner_6j(0.5,0.5,1.1,0.5,0.5,1.1)
 Traceback (most recent call last):
 ...
-ValueError: j values must be integer or half integer and fulfill the triangle relation
-</pre></div>
+ValueError: j values must be integer or half integer and fulfill the triangle relation</pre>
 </div>
 <p>NOTES:</p>
 <p>The Wigner 6j symbol is related to the Racah symbol but exhibits
@@ -413,18 +415,18 @@ arguments in each of any two columns, i.e.</p>
  =Wigner6j(j_4,j_2,j_6,j_1,j_5,j_3)
  =Wigner6j(j_4,j_5,j_3,j_1,j_2,j_6)\]</div>
 </li>
-<li><p class="first">additional 6 symmetries <a class="reference internal" href="#regge59" id="id11">[Regge59]</a> giving rise to 144 symmetries
+<li><p class="first">additional 6 symmetries <a class="reference internal" href="#regge59">[Regge59]</a> giving rise to 144 symmetries
 in total</p>
 </li>
 <li><p class="first">only non-zero if any triple of <span class="math">\(j\)</span>&#8216;s fulfill a triangle relation</p>
 </li>
 </ul>
 <p>ALGORITHM:</p>
-<p>This function uses the algorithm of <a class="reference internal" href="#edmonds74" id="id12">[Edmonds74]</a> to calculate the
+<p>This function uses the algorithm of <a class="reference internal" href="#edmonds74">[Edmonds74]</a> to calculate the
 value of the 6j symbol exactly. Note that the formula contains
 alternating sums over large factorials and is therefore unsuitable
 for finite precision arithmetic and only useful for a computer
-algebra system <a class="reference internal" href="#rasch03" id="id13">[Rasch03]</a>.</p>
+algebra system <a class="reference internal" href="#rasch03">[Rasch03]</a>.</p>
 <p>REFERENCES:</p>
 <table class="docutils citation" frame="void" id="regge59" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -457,22 +459,21 @@ drastically speed up the calculation.</li>
 </div>
 <p>It is an error to have arguments that are not integer or half
 integer values or do not fulfill the triangle relation:</p>
-<div class="highlight-python"><div class="highlight"><pre>sage: wigner_9j(0.5,0.5,0.5, 0.5,0.5,0.5, 0.5,0.5,0.5,prec=64)
+<div class="highlight-python"><pre>sage: wigner_9j(0.5,0.5,0.5, 0.5,0.5,0.5, 0.5,0.5,0.5,prec=64)
 Traceback (most recent call last):
 ...
 ValueError: j values must be integer or half integer and fulfill the triangle relation
 sage: wigner_9j(1,1,1, 0.5,1,1.5, 0.5,1,2.5,prec=64)
 Traceback (most recent call last):
 ...
-ValueError: j values must be integer or half integer and fulfill the triangle relation
-</pre></div>
+ValueError: j values must be integer or half integer and fulfill the triangle relation</pre>
 </div>
 <p>ALGORITHM:</p>
-<p>This function uses the algorithm of <a class="reference internal" href="#edmonds74" id="id14">[Edmonds74]</a> to calculate the
+<p>This function uses the algorithm of <a class="reference internal" href="#edmonds74">[Edmonds74]</a> to calculate the
 value of the 3j symbol exactly. Note that the formula contains
 alternating sums over large factorials and is therefore unsuitable
 for finite precision arithmetic and only useful for a computer
-algebra system <a class="reference internal" href="#rasch03" id="id15">[Rasch03]</a>.</p>
+algebra system <a class="reference internal" href="#rasch03">[Rasch03]</a>.</p>
 </dd></dl>
 
 </div>
@@ -534,20 +535,23 @@ algebra system <a class="reference internal" href="#rasch03" id="id15">[Rasch03]
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="units.html" title="Units"
              >next</a> |</li>
         <li class="right" >
           <a href="secondquant.html" title="Second Quantization"
              >previous</a> |</li>
-        <li><a href="../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../index.html" >SymPy Modules Reference</a> &raquo;</li>
           <li><a href="index.html" >Physics Module</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Jun 21, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Last updated on Feb 22, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

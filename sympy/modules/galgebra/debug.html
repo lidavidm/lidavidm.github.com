@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -6,18 +8,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Debug code for Geometric Algebra &mdash; SymPy 0.7.3 documentation</title>
+    <title>Debug code for Geometric Algebra &mdash; SymPy 0.7.5 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://88.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '0.7.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,15 +28,15 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://88.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 0.7.5 documentation" href="../../index.html" />
     <link rel="up" title="Geometric Algebra Module" href="index.html" />
     <link rel="next" title="Geometry Module" href="../geometry.html" />
     <link rel="prev" title="String manipulation for Geometric Algebra" href="stringarrays.html" /> 
@@ -50,12 +52,15 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="../geometry.html" title="Geometry Module"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="stringarrays.html" title="String manipulation for Geometric Algebra"
              accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../index.html" >SymPy Modules Reference</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Geometric Algebra Module</a> &raquo;</li> 
       </ul>
@@ -70,6 +75,37 @@
 <span id="debug-code-for-geometric-algebra"></span><h1>Debug code for Geometric Algebra<a class="headerlink" href="#module-sympy.galgebra.debug" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="function-reference">
 <h2>Function Reference<a class="headerlink" href="#function-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="sympy.galgebra.debug.ostr">
+<tt class="descclassname">sympy.galgebra.debug.</tt><tt class="descname">ostr</tt><big>(</big><em>obj</em>, <em>dict_mode=False</em><big>)</big><a class="reference internal" href="../../_modules/sympy/galgebra/debug.html#ostr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.galgebra.debug.ostr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively convert iterated object (list/tuple/dict/set) to string.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.galgebra.debug.oprint">
+<tt class="descclassname">sympy.galgebra.debug.</tt><tt class="descname">oprint</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../../_modules/sympy/galgebra/debug.html#oprint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.galgebra.debug.oprint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Debug printing for iterated (list/tuple/dict/set) objects. args is
+of form (title1,object1,title2,object2,...) and prints:</p>
+<blockquote>
+<div>title1 = object1
+title2 = object2
+...</div></blockquote>
+<p>If you only wish to print a title set object = None.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.galgebra.debug.print_product_table">
+<tt class="descclassname">sympy.galgebra.debug.</tt><tt class="descname">print_product_table</tt><big>(</big><em>title</em>, <em>keys</em>, <em>pdict</em>, <em>op='*'</em>, <em>blade_rep=True</em><big>)</big><a class="reference internal" href="../../_modules/sympy/galgebra/debug.html#print_product_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.galgebra.debug.print_product_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print product dictionary, pdict, according to order of keys in keys</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.galgebra.debug.print_sub_table">
+<tt class="descclassname">sympy.galgebra.debug.</tt><tt class="descname">print_sub_table</tt><big>(</big><em>title</em>, <em>keys</em>, <em>sdict</em>, <em>blade_rep=True</em><big>)</big><a class="reference internal" href="../../_modules/sympy/galgebra/debug.html#print_sub_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.galgebra.debug.print_sub_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print substitution dictionary, sdict, according to order of keys in
+keys</p>
+</dd></dl>
+
 </div>
 </div>
 
@@ -128,20 +164,23 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="../../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="../geometry.html" title="Geometry Module"
              >next</a> |</li>
         <li class="right" >
           <a href="stringarrays.html" title="String manipulation for Geometric Algebra"
              >previous</a> |</li>
-        <li><a href="../../index.html">SymPy 0.7.3 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
           <li><a href="../index.html" >SymPy Modules Reference</a> &raquo;</li>
           <li><a href="index.html" >Geometric Algebra Module</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Jun 21, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Last updated on Feb 22, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>
