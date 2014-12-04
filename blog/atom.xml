@@ -8,8 +8,45 @@
         <name>David Li</name>
         <email>li.davidm96@gmail.com</email>
     </author>
-    <updated>2014-09-13T00:00:00Z</updated>
+    <updated>2014-12-03T00:00:00Z</updated>
     <entry>
+    <title>Initial Impressions of C for Programmers (Deitel)</title>
+    <link href="http://lidavidm.github.io/blog/posts/2014-12-03-initial-impressions-c-for-programmers.html" />
+    <id>http://lidavidm.github.io/blog/posts/2014-12-03-initial-impressions-c-for-programmers.html</id>
+    <published>2014-12-03T00:00:00Z</published>
+    <updated>2014-12-03T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<div class="info">
+  Posted on December  3, 2014
+  
+</div>
+
+<p>For Cyber Monday I purchased <em>C for Programmers with an Introduction to C11</em>, by Paul and Harvey Deitel. My overall impressions of this book so far are rather lukewarm, but writing a book “for programmers” is difficult because it’s hard to define what a “programmer” is. I think K&amp;R C would’ve been closer to what I wanted, but it’s an old—though most likely still quite relevant—book by now.</p>
+<!--more-->
+<p>The initial chapters that I’ve skimmed through have focused on how to run and compile C programs, what a terminal is, what Linux is, what an assignment operator does…all things that I think a programmer should know, and nothing that is really about C itself. Perhaps for someone used to Visual Studio their entire career, or a college student still relatively new to programming, such topics would be useful. But for me, lost between all that noise were the important subjects, such as how C compiles and links code separately. As a “programmer”, what I don’t want is a tedious three page example of <em>running</em> a guess-the-number game. <strong>A book marketed as “for programmers” should focus on where C differs from common procedural languages</strong>; what I want is <em>C for Python and Java Programmers</em>. Such a book would focus on pointers, memory management, headers, security considerations, bit manipulation, and other areas that C and its ilk are known for, instead of devoting pages to operator precedence (which I’m never going to use because if it’s not clear, I would add parentheses).</p>
+<p>This probably isn’t an entirely fair assessment. As a Linux user, I’m already fairly comfortable with the command line and a lot of the other background material (like what Linux <em>is</em>) that perhaps most programmers would like to learn about. But I also think most of the tedious preparatory material—setting up compilers, running programs, and so on—should be farmed out to other books or the Internet. A programming language book should focus on the language. This would work better for languages like Python with a single “standard” runtime, where there is a clear central location where a user can find help and documentation on setting up a development environment.</p>
+<p>The book has it’s strong suits: the end of each chapter discusses secure programming and specific problems to avoid in C. I would appreciate more of this material, but at least it’s there.</p>
+<p>Ultimately, this book’s problem is that it’s audience—“for programmers”—is ill-defined. Different programmers are going to be comfortable with different things and will need to review different subjects. But I feel the first third of the book could have been far more concise.</p>
+<p><strong>Out of five stars, this book would get three-and-a-half</strong>. My advice? Skim the first third of the book and focus on the topics that make C different. This book could easily have been much more concise or focused much more on topics and techniques unique to C, perhaps merging aspects of an introductory C book and an intermediate <em>Effective C++</em> style book—that’s what I would ideally want. It’ll get the job done (and I’ll post a full review in a few months’ time), but it could be better.</p>
+
+<script src="/js/headers.js"></script>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+ /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+ var disqus_shortname = 'lidavidm'; // required: replace example with your forum shortname
+
+ /* * * DON'T EDIT BELOW THIS LINE * * */
+ (function() {
+     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+ })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+]]></summary>
+</entry>
+<entry>
     <title>Refreshed Design</title>
     <link href="http://lidavidm.github.io/blog/posts/2014-09-13-new-design.html" />
     <id>http://lidavidm.github.io/blog/posts/2014-09-13-new-design.html</id>
