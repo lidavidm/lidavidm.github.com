@@ -11,6 +11,10 @@ violin, and read cyberpunk and sci-fi.
 - [lidavidm @ Github](https://github.com/lidavidm)
 - [Google+](https://plus.google.com/+DavidLi96)
 
+<a href="http://stackoverflow.com/users/262727/li-davidm">
+<img src="http://stackoverflow.com/users/flair/262727.png" width="208" height="58" alt="profile for li.davidm at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for li.davidm at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
+</a>
+
 ## Projects
 
 Some open-source projects I’ve contributed to:
@@ -33,13 +37,20 @@ What I'm working on:
 ## Hobbies & Interests
 
 - Dota 2 (MMR: 2980)
+- Violin
 
 ### Bookshelf
 
 - “Hello, Red”—Kurt Vonnegut (from *Look at the Birdie*)
 - “EPIPAC”—Kurt Vonnegut (from *Welcome to the Monkey House*)
 - *Snow Crash*—Neal Stephenson
+- *Anathem*—Neal Stephenson
+- *Daemon*—Daniel Suarez
+- *Carrie*—Stephen King
 
-<a href="http://stackoverflow.com/users/262727/li-davidm">
-<img src="http://stackoverflow.com/users/flair/262727.png?theme=clean" width="208" height="58" alt="profile for li.davidm at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for li.davidm at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
-</a>
+### Music
+
+- Nobuo Uematsu
+- Yasunori Mitsuda
+- Yuki Kajiura
+- Max Richter

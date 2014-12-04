@@ -49,7 +49,7 @@ main = hakyllWith customConfiguration $ do
     match "src/about.md" $ do
         route   $ srcRoute `composeRoutes` setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "src/templates/nopadding.html" defaultContext
+            >>= loadAndApplyTemplate "src/templates/aboutbase.html" defaultContext
             >>= loadAndApplyTemplate "src/templates/base.html" defaultContext
             >>= relativizeUrls
 
