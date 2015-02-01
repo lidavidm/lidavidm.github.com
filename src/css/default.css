@@ -67,7 +67,7 @@ h6 {
   color: #3b5526;
 }
 #content.about > header {
-  background: url("/assets/banner.jpg");
+  background: url("assets/banner.jpg");
   background-size: cover;
   height: 15em;
   padding: 1em 1em 0 1em;
