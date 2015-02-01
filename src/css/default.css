@@ -251,6 +251,7 @@ a.button.github:hover {
     -o-transform: translateX(-100%);
     -ms-transform: translateX(-100%);
     transform: translateX(-100%);
+    z-index: 10000;
   }
   #navigation nav {
     position: absolute;
