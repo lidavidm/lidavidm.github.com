@@ -200,6 +200,7 @@ a.button.github:hover {
 @media (max-device-width: 767px) {
   #header {
     box-shadow: 0px 3px 5px rgba(0,0,0,0.5);
+    z-index: 10000;
   }
   div#logo {
     background: #3b5526;
@@ -251,7 +252,7 @@ a.button.github:hover {
     -o-transform: translateX(-100%);
     -ms-transform: translateX(-100%);
     transform: translateX(-100%);
-    z-index: 10000;
+    z-index: 1000;
   }
   #navigation nav {
     position: absolute;
