@@ -71,5 +71,7 @@ now.
 
 ## Updates
 
+2015-02-01: New About page.
+
 2014-09-12: Added back Disqus commenting, updated home page, tweaked
 styling, merged about/contact, added RSS.

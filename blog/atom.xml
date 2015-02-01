@@ -8,8 +8,44 @@
         <name>David Li</name>
         <email>li.davidm96@gmail.com</email>
     </author>
-    <updated>2014-12-03T00:00:00Z</updated>
+    <updated>2015-02-01T00:00:00Z</updated>
     <entry>
+    <title>A Look Back on the First Semester</title>
+    <link href="http://lidavidm.github.io/blog/posts/2015-02-01-first-semester-of-university.html" />
+    <id>http://lidavidm.github.io/blog/posts/2015-02-01-first-semester-of-university.html</id>
+    <published>2015-02-01T00:00:00Z</published>
+    <updated>2015-02-01T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<div class="info">
+  Posted on February  1, 2015
+  
+</div>
+
+<p>For someone who already has several years experience with programming, through open-source, side-projects, and commercial work, what can they gain from a university computer science course?</p>
+<!--more-->
+<p>Initially I doubted Cornell’s <a href="http://www.cs.cornell.edu/Courses/cs2112/2014fa/">CS2112 course</a>, taught by Andrew Myers. The curriculum sounded like a standard Java class, going through various aspects of the language before touching upon data structures, GUI toolkits, and HTTP servers. And superficially, that was the course. Where CS2112 succeeded was in taking those concepts and challenging us with them—sure, we might think we know how a hashtable works, but can we actually implement one? We might’ve used Git for our side projects before, but can we actually work in pairs to write software?</p>
+<p>And Myers emphasized software <em>engineering</em> as well, requiring us to design and specify our software before starting on the work. Because our last four assignments were cumulative, those who glossed over design initially were given a quite intimate lesson on what technical debt actually entails.</p>
+<p>Overall, the class wasn’t about specific knowledge—it wasn’t about graphs, or data structures, or generics—it was about how to design, write, and test software. How to be a capital-S Software Developer, and how to reason about complex design and implementation problems in the context of a larger project, instead of in isolation as a cute “programming challenge” like so many of us focus on today. Sure, this isn’t the flashy algorithmic wizardry, obsessive performance optimization, or mystic code golfing that so many of us associate with skill in our code jams and competitions. It’s stolid, maybe even a little boring—but it’s what makes programming a craft, in addition to an art and (someday) a science.</p>
+<p>For any future Cornell students debating between 2110 and 2112, I highly recommend the challenge of 2112. Just don’t procrastinate.</p>
+
+<script src="/js/headers.js"></script>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+ /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+ var disqus_shortname = 'lidavidm'; // required: replace example with your forum shortname
+
+ /* * * DON'T EDIT BELOW THIS LINE * * */
+ (function() {
+     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+ })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+]]></summary>
+</entry>
+<entry>
     <title>Initial Impressions of C for Programmers (Deitel)</title>
     <link href="http://lidavidm.github.io/blog/posts/2014-12-03-initial-impressions-c-for-programmers.html" />
     <id>http://lidavidm.github.io/blog/posts/2014-12-03-initial-impressions-c-for-programmers.html</id>
@@ -72,6 +108,7 @@
 <h2 id="final-notes">Final Notes</h2>
 <p>I’ve been quite busy these past couple months and haven’t had a chance to really work on SymPy or write posts. I promise more is coming soon, about a TypeScript/Canvas project that I’ve been working on for a few months now.</p>
 <h2 id="updates">Updates</h2>
+<p>2015-02-01: New About page.</p>
 <p>2014-09-12: Added back Disqus commenting, updated home page, tweaked styling, merged about/contact, added RSS.</p>
 
 <script src="/js/headers.js"></script>
