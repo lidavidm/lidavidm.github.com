@@ -1,5 +1,5 @@
 @import url('crimson/stylesheet.css');
-@import url('http://fonts.googleapis.com/css?family=Open+Sans:300,400');
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:300,400|Inconsolata:400,700');
 
 /** Variables **/
 
@@ -143,8 +143,7 @@ h1 {
 }
 
 h2 {
-  border-left: 3px solid color-main;
-  padding-left: 0.25em;
+  margin: 0.25em 0 0.1em;
 }
 
 div.info {
@@ -217,6 +216,10 @@ a.button.github:link, a.button.github:visited, a.button.github:active {
 
 a.button.github:hover {
   background: lighten(#333, 30%);
+}
+
+pre,code,tt {
+  font-family: Inconsolata, monospace;
 }
 
 #disqus_thread {
@@ -364,7 +367,7 @@ a.button.github:hover {
   }
 
   #content, article.padded {
-    padding: 1em;
+    padding: 0.5em 1em 1em 1em;
     margin-bottom: 1em;
     min-height: 20em;
   }
