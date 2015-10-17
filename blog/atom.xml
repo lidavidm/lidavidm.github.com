@@ -8,8 +8,61 @@
         <name>David Li</name>
         <email>li.davidm96@gmail.com</email>
     </author>
-    <updated>2015-07-26T00:00:00Z</updated>
+    <updated>2015-10-17T00:00:00Z</updated>
     <entry>
+    <title>Arch Linux on a Dell Chromebook 11 (2014)</title>
+    <link href="http://lidavidm.github.io/blog/posts/2015-10-17-linux-dell-chromebook-11.html" />
+    <id>http://lidavidm.github.io/blog/posts/2015-10-17-linux-dell-chromebook-11.html</id>
+    <published>2015-10-17T00:00:00Z</published>
+    <updated>2015-10-17T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<div class="info">
+  Posted on October 17, 2015
+  
+</div>
+
+<p>This week I got a 2014 <a href="http://www.dell.com/us/business/p/chromebook-11/pd">Dell Chromebook 11</a> as a secondary laptop for carrying around to classes. It’s now discontinued, but it fills that purpose perfectly. However, there’s some things you have to be aware of when installing Arch Linux on it.</p>
+<!--more-->
+<h1 id="installing-arch">Installing Arch</h1>
+<p>The steps are nearly the same as what the <a href="https://wiki.archlinux.org/index.php/Dell_Chromebook_11">Arch wiki page</a> recommends. However, there’s some outdated info there:</p>
+<ol style="list-style-type: decimal">
+<li>The patched SeaBios linked to there is outdated. If you have the Core i3 model like I do, you’ll want to scroll down and find the updated BIOS…</li>
+<li>But you don’t even want to do that. Instead, use <a href="https://johnlewis.ie/custom-chromebook-firmware/rom-download/">John Lewis’s patched SeaBIOS</a>. This will let you actually change the backlight.</li>
+<li>The wiki page neglects to mention it, but if you’re not dual-booting, don’t use UEFI/GPT. It won’t work and you’ll be confused. Set up a BIOS/MBR system and use GRUB as your bootloader.</li>
+</ol>
+<p>Afterwards, set up Arch like normal. Some tips:</p>
+<ol style="list-style-type: decimal">
+<li>Use <a href="https://aur.archlinux.org/packages/xf86-input-cmt/">xf86-input-cmt</a> for your touchpad drivers; in my experience, Synaptics was frustrating to use because the touchpad would randomly stop responding.</li>
+<li>Blacklist <code>echi_pci</code> in GRUB: https://wiki.archlinux.org/index.php/Chrome_OS_devices#With_kernel_parameters</li>
+</ol>
+<p>That’s pretty much all I’ve run into so far. Other quick notes:</p>
+<ol style="list-style-type: decimal">
+<li>In terms of battery life, I’m getting between 3 and 10 hours estimated usage—Firefox is a very heavy power draw. At idle or doing light work in Emacs, the power draw is between 3 and 5 watts, giving me 7 to 10 hours of battery, but Firefox can easily double that usage to 10 watts.</li>
+<li>The laptop is silent most of the time—when its fans aren’t running—but as soon as the fans kick in, you’ll notice them. There’s also no way to control them; <code>lm_sensors</code> and <code>fancontrol</code> don’t detect them.</li>
+<li><code>xbacklight</code> can’t adjust the backlight for some reason, but you can do it manually with <code>/sys/class/backlight</code>. There is some kernel parameter that needs to be set.</li>
+<li>I wish Dell had gone for at least a matte screen; the glossy screen is quite irritating in brightly lit environments.</li>
+<li>The charger light is also annoying at night—it can light up a desk and is annoying if you’re trying to sleep.</li>
+</ol>
+<p>Overall, for the $290 (tax+shipping) I paid, I’m happy for what I got—a light, long-lasting portable laptop that is still reasonably powerful (ULV Haswell i3, 4GB RAM), for programming tasks. The only task remaining is to find a lightweight web browser.</p>
+
+<script src="/js/headers.js"></script>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+ /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+ var disqus_shortname = 'lidavidm'; // required: replace example with your forum shortname
+
+ /* * * DON'T EDIT BELOW THIS LINE * * */
+ (function() {
+     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+ })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+]]></summary>
+</entry>
+<entry>
     <title>Quick Thoughts on Go</title>
     <link href="http://lidavidm.github.io/blog/posts/2015-07-26-quick-thoughts-on-go.html" />
     <id>http://lidavidm.github.io/blog/posts/2015-07-26-quick-thoughts-on-go.html</id>
