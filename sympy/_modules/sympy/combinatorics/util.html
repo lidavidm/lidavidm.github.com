@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.combinatorics.util &mdash; SymPy 0.7.5 documentation</title>
+    <title>sympy.combinatorics.util &mdash; SymPy 0.7.3 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.5',
+        VERSION:     '0.7.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -28,57 +26,39 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
-    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.5 documentation" href="../../../index.html" />
-    <link rel="up" title="sympy.combinatorics" href="../combinatorics.html" /> 
+    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../sympy.html" >sympy</a> &raquo;</li>
-          <li><a href="../combinatorics.html" accesskey="U">sympy.combinatorics</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for sympy.combinatorics.util</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
-
-<span class="kn">from</span> <span class="nn">sympy.ntheory</span> <span class="kn">import</span> <span class="n">isprime</span>
+<span></span><span class="kn">from</span> <span class="nn">sympy.ntheory</span> <span class="kn">import</span> <span class="n">isprime</span>
 <span class="kn">from</span> <span class="nn">sympy.combinatorics.permutations</span> <span class="kn">import</span> <span class="n">Permutation</span><span class="p">,</span> <span class="n">_af_invert</span><span class="p">,</span> <span class="n">_af_rmul</span>
-<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="nb">xrange</span>
 
 <span class="n">rmul</span> <span class="o">=</span> <span class="n">Permutation</span><span class="o">.</span><span class="n">rmul</span>
 <span class="n">_af_new</span> <span class="o">=</span> <span class="n">Permutation</span><span class="o">.</span><span class="n">_af_new</span>
 
-<span class="c">############################################</span>
-<span class="c">###</span>
-<span class="c">### Utilities for computational group theory</span>
-<span class="c">###</span>
-<span class="c">############################################</span>
+<span class="c1">############################################</span>
+<span class="c1">###</span>
+<span class="c1">### Utilities for computational group theory</span>
+<span class="c1">###</span>
+<span class="c1">############################################</span>
 
 
 <div class="viewcode-block" id="_base_ordering"><a class="viewcode-back" href="../../../modules/combinatorics/util.html#sympy.combinatorics.util._base_ordering">[docs]</a><span class="k">def</span> <span class="nf">_base_ordering</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">degree</span><span class="p">):</span>
@@ -133,9 +113,9 @@
         <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">base</span><span class="p">:</span>
             <span class="n">ordering</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">current</span>
             <span class="n">current</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">ordering</span>
+    <span class="k">return</span> <span class="n">ordering</span></div>
 
-</div>
+
 <div class="viewcode-block" id="_check_cycles_alt_sym"><a class="viewcode-back" href="../../../modules/combinatorics/util.html#sympy.combinatorics.util._check_cycles_alt_sym">[docs]</a><span class="k">def</span> <span class="nf">_check_cycles_alt_sym</span><span class="p">(</span><span class="n">perm</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Checks for cycles of prime length p with n/2 &lt; p &lt; n-2.</span>
@@ -178,9 +158,9 @@
             <span class="n">total_len</span> <span class="o">+=</span> <span class="n">current_len</span>
             <span class="k">if</span> <span class="n">current_len</span> <span class="o">&gt;</span> <span class="n">n</span><span class="o">//</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">current_len</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">isprime</span><span class="p">(</span><span class="n">current_len</span><span class="p">):</span>
                 <span class="k">return</span> <span class="bp">True</span>
-    <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="bp">False</span></div>
 
-</div>
+
 <div class="viewcode-block" id="_distribute_gens_by_base"><a class="viewcode-back" href="../../../modules/combinatorics/util.html#sympy.combinatorics.util._distribute_gens_by_base">[docs]</a><span class="k">def</span> <span class="nf">_distribute_gens_by_base</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">gens</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Distribute the group elements ``gens`` by membership in basic stabilizers.</span>
@@ -242,9 +222,9 @@
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">stabs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_stab_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">base_len</span><span class="p">):</span>
-        <span class="n">stabs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_af_new</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">degree</span><span class="p">))))</span>
-    <span class="k">return</span> <span class="n">stabs</span>
-</div>
+        <span class="n">stabs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_af_new</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">degree</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">stabs</span></div>
+
 <div class="viewcode-block" id="_handle_precomputed_bsgs"><a class="viewcode-back" href="../../../modules/combinatorics/util.html#sympy.combinatorics.util._handle_precomputed_bsgs">[docs]</a><span class="k">def</span> <span class="nf">_handle_precomputed_bsgs</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">strong_gens</span><span class="p">,</span> <span class="n">transversals</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
                              <span class="n">basic_orbits</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">strong_gens_distr</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -310,11 +290,11 @@
         <span class="k">if</span> <span class="n">basic_orbits</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">base_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
             <span class="n">basic_orbits</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span><span class="o">*</span><span class="n">base_len</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">base_len</span><span class="p">):</span>
-                <span class="n">basic_orbits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">transversals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-    <span class="k">return</span> <span class="n">transversals</span><span class="p">,</span> <span class="n">basic_orbits</span><span class="p">,</span> <span class="n">strong_gens_distr</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">base_len</span><span class="p">):</span>
+                <span class="n">basic_orbits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">transversals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">transversals</span><span class="p">,</span> <span class="n">basic_orbits</span><span class="p">,</span> <span class="n">strong_gens_distr</span></div>
 
-</div>
+
 <div class="viewcode-block" id="_orbits_transversals_from_bsgs"><a class="viewcode-back" href="../../../modules/combinatorics/util.html#sympy.combinatorics.util._orbits_transversals_from_bsgs">[docs]</a><span class="k">def</span> <span class="nf">_orbits_transversals_from_bsgs</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">strong_gens_distr</span><span class="p">,</span>
                                    <span class="n">transversals_only</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -366,13 +346,13 @@
         <span class="n">transversals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">_orbit_transversal</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">strong_gens_distr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
                                  <span class="n">base</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pairs</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">transversals_only</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
-            <span class="n">basic_orbits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">transversals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="n">basic_orbits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">transversals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">transversals_only</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">transversals</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">basic_orbits</span><span class="p">,</span> <span class="n">transversals</span>
+        <span class="k">return</span> <span class="n">basic_orbits</span><span class="p">,</span> <span class="n">transversals</span></div>
 
-</div>
+
 <div class="viewcode-block" id="_remove_gens"><a class="viewcode-back" href="../../../modules/combinatorics/util.html#sympy.combinatorics.util._remove_gens">[docs]</a><span class="k">def</span> <span class="nf">_remove_gens</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">strong_gens</span><span class="p">,</span> <span class="n">basic_orbits</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">strong_gens_distr</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Remove redundant generators from a strong generating set.</span>
@@ -446,8 +426,8 @@
                 <span class="k">if</span> <span class="n">temp_orbit</span> <span class="o">==</span> <span class="n">basic_orbits</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
                     <span class="n">gens_copy</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
                     <span class="n">res</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">gen</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">res</span>
-</div>
+    <span class="k">return</span> <span class="n">res</span></div>
+
 <div class="viewcode-block" id="_strip"><a class="viewcode-back" href="../../../modules/combinatorics/util.html#sympy.combinatorics.util._strip">[docs]</a><span class="k">def</span> <span class="nf">_strip</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">orbits</span><span class="p">,</span> <span class="n">transversals</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Attempt to decompose a permutation using a (possibly partial) BSGS</span>
@@ -523,8 +503,8 @@
             <span class="k">return</span> <span class="n">_af_new</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="n">u</span> <span class="o">=</span> <span class="n">transversals</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">beta</span><span class="p">]</span><span class="o">.</span><span class="n">_array_form</span>
         <span class="n">h</span> <span class="o">=</span> <span class="n">_af_rmul</span><span class="p">(</span><span class="n">_af_invert</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">h</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">_af_new</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="n">base_len</span> <span class="o">+</span> <span class="mi">1</span>
-</div>
+    <span class="k">return</span> <span class="n">_af_new</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="n">base_len</span> <span class="o">+</span> <span class="mi">1</span></div>
+
 <span class="k">def</span> <span class="nf">_strip_af</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">orbits</span><span class="p">,</span> <span class="n">transversals</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    optimized _strip, with h, transversals and result in array form</span>
@@ -593,12 +573,20 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="../../../index.html">
               <img class="logo" src="../../../_static/sympylogo.png" alt="Logo"/>
-            </a></p>
-<div id="searchbox" style="display: none">
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -606,37 +594,23 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../sympy.html" >sympy</a> &raquo;</li>
-          <li><a href="../combinatorics.html" >sympy.combinatorics</a> &raquo;</li> 
-      </ul>
-    </div>
     <div class="footer">
-        &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Feb 22, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      &copy;2015 SymPy Development Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
     </div>
+
+    
+
+    
   </body>
 </html>

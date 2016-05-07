@@ -95,7 +95,7 @@ will modify the Matrix **in place**.
     >>> M
     [2  3]
 
-.. TODO: This is a mess. See issue 3893.
+.. TODO: This is a mess. See issue 6992.
 
 To insert rows or columns, use ``row_insert`` or ``col_insert``.  These
 operations **do not** operate in place.
@@ -290,6 +290,26 @@ To find the nullspace of a matrix, use ``nullspace``. ``nullspace`` returns a
     ⎢⎢ 0 ⎥  ⎢1⎥  ⎢ 0  ⎥⎥
     ⎢⎢   ⎥  ⎢ ⎥  ⎢    ⎥⎥
     ⎣⎣ 0 ⎦  ⎣0⎦  ⎣ 1  ⎦⎦
+
+Columnspace
+-----------
+
+To find the columnspace of a matrix, use ``columnspace``. ``columnspace`` returns a
+``list`` of column vectors that span the columnspace of the matrix.
+
+    >>> M = Matrix([[1, 1, 2], [2 ,1 , 3], [3 , 1, 4]])
+    >>> M
+    ⎡1  1  2⎤
+    ⎢       ⎥
+    ⎢2  1  3⎥
+    ⎢       ⎥
+    ⎣3  1  4⎦
+    >>> M.columnspace()
+    ⎡⎡1⎤, ⎡1⎤⎤
+    ⎢⎢ ⎥  ⎢ ⎥⎥
+    ⎢⎢2⎥  ⎢1⎥⎥
+    ⎢⎢ ⎥  ⎢ ⎥⎥
+    ⎣⎣3⎦  ⎣1⎦⎦
 
 Eigenvalues, Eigenvectors, and Diagonalization
 ----------------------------------------------

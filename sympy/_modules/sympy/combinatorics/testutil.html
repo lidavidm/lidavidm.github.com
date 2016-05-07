@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.combinatorics.testutil &mdash; SymPy 0.7.5 documentation</title>
+    <title>sympy.combinatorics.testutil &mdash; SymPy 0.7.3 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.5',
+        VERSION:     '0.7.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -28,46 +26,29 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
-    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.5 documentation" href="../../../index.html" />
-    <link rel="up" title="sympy.combinatorics" href="../combinatorics.html" /> 
+    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../sympy.html" >sympy</a> &raquo;</li>
-          <li><a href="../combinatorics.html" accesskey="U">sympy.combinatorics</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for sympy.combinatorics.testutil</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
-
-<span class="kn">from</span> <span class="nn">sympy.combinatorics.util</span> <span class="kn">import</span> <span class="n">_distribute_gens_by_base</span>
+<span></span><span class="kn">from</span> <span class="nn">sympy.combinatorics.util</span> <span class="kn">import</span> <span class="n">_distribute_gens_by_base</span>
 <span class="kn">from</span> <span class="nn">sympy.combinatorics</span> <span class="kn">import</span> <span class="n">Permutation</span>
 
 <span class="n">rmul</span> <span class="o">=</span> <span class="n">Permutation</span><span class="o">.</span><span class="n">rmul</span>
@@ -96,9 +77,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">set</span><span class="p">([</span><span class="nb">tuple</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">first</span><span class="p">])</span> <span class="o">==</span> \
-        <span class="nb">set</span><span class="p">([</span><span class="nb">tuple</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">second</span><span class="p">])</span>
+        <span class="nb">set</span><span class="p">([</span><span class="nb">tuple</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">second</span><span class="p">])</span></div>
 
-</div>
+
 <div class="viewcode-block" id="_naive_list_centralizer"><a class="viewcode-back" href="../../../modules/combinatorics/testutil.html#sympy.combinatorics.testutil._naive_list_centralizer">[docs]</a><span class="k">def</span> <span class="nf">_naive_list_centralizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">af</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="kn">from</span> <span class="nn">sympy.combinatorics.perm_groups</span> <span class="kn">import</span> <span class="n">PermutationGroup</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -123,7 +104,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">sympy.combinatorics.permutations</span> <span class="kn">import</span> <span class="n">_af_commutes_with</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s">&#39;generators&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s1">&#39;generators&#39;</span><span class="p">):</span>
         <span class="n">elements</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generate_dimino</span><span class="p">(</span><span class="n">af</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
         <span class="n">gens</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">_array_form</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">other</span><span class="o">.</span><span class="n">generators</span><span class="p">]</span>
         <span class="n">commutes_with_gens</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">all</span><span class="p">(</span><span class="n">_af_commutes_with</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gen</span><span class="p">)</span> <span class="k">for</span> <span class="n">gen</span> <span class="ow">in</span> <span class="n">gens</span><span class="p">)</span>
@@ -137,11 +118,11 @@
                 <span class="k">if</span> <span class="n">commutes_with_gens</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
                     <span class="n">centralizer_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">centralizer_list</span>
-    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s">&#39;getitem&#39;</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s1">&#39;getitem&#39;</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">_naive_list_centralizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PermutationGroup</span><span class="p">(</span><span class="n">other</span><span class="p">),</span> <span class="n">af</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s">&#39;array_form&#39;</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">_naive_list_centralizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">other</span><span class="p">]),</span> <span class="n">af</span><span class="p">)</span>
-</div>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s1">&#39;array_form&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_naive_list_centralizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">other</span><span class="p">]),</span> <span class="n">af</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="_verify_bsgs"><a class="viewcode-back" href="../../../modules/combinatorics/testutil.html#sympy.combinatorics.testutil._verify_bsgs">[docs]</a><span class="k">def</span> <span class="nf">_verify_bsgs</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">gens</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Verify the correctness of a base and strong generating set.</span>
@@ -177,9 +158,9 @@
         <span class="n">current_stabilizer</span> <span class="o">=</span> <span class="n">current_stabilizer</span><span class="o">.</span><span class="n">stabilizer</span><span class="p">(</span><span class="n">base</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">current_stabilizer</span><span class="o">.</span><span class="n">order</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">return</span> <span class="bp">True</span></div>
 
-</div>
+
 <div class="viewcode-block" id="_verify_centralizer"><a class="viewcode-back" href="../../../modules/combinatorics/testutil.html#sympy.combinatorics.testutil._verify_centralizer">[docs]</a><span class="k">def</span> <span class="nf">_verify_centralizer</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">centr</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Verify the centralizer of a group/set/element inside another group.</span>
@@ -213,9 +194,9 @@
         <span class="n">centr</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">centralizer</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
     <span class="n">centr_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">centr</span><span class="o">.</span><span class="n">generate_dimino</span><span class="p">(</span><span class="n">af</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
     <span class="n">centr_list_naive</span> <span class="o">=</span> <span class="n">_naive_list_centralizer</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">af</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">_cmp_perm_lists</span><span class="p">(</span><span class="n">centr_list</span><span class="p">,</span> <span class="n">centr_list_naive</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_cmp_perm_lists</span><span class="p">(</span><span class="n">centr_list</span><span class="p">,</span> <span class="n">centr_list_naive</span><span class="p">)</span></div>
 
-</div>
+
 <div class="viewcode-block" id="_verify_normal_closure"><a class="viewcode-back" href="../../../modules/combinatorics/testutil.html#sympy.combinatorics.testutil._verify_normal_closure">[docs]</a><span class="k">def</span> <span class="nf">_verify_normal_closure</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">closure</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="kn">from</span> <span class="nn">sympy.combinatorics.perm_groups</span> <span class="kn">import</span> <span class="n">PermutationGroup</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -244,18 +225,18 @@
     <span class="k">if</span> <span class="n">closure</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">closure</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">normal_closure</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
     <span class="n">conjugates</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="s">&#39;generators&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="s1">&#39;generators&#39;</span><span class="p">):</span>
         <span class="n">subgr_gens</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">generators</span>
-    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="s">&#39;__getitem__&#39;</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="s1">&#39;__getitem__&#39;</span><span class="p">):</span>
         <span class="n">subgr_gens</span> <span class="o">=</span> <span class="n">arg</span>
-    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="s">&#39;array_form&#39;</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="s1">&#39;array_form&#39;</span><span class="p">):</span>
         <span class="n">subgr_gens</span> <span class="o">=</span> <span class="p">[</span><span class="n">arg</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">generate_dimino</span><span class="p">():</span>
         <span class="k">for</span> <span class="n">gen</span> <span class="ow">in</span> <span class="n">subgr_gens</span><span class="p">:</span>
             <span class="n">conjugates</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gen</span><span class="o">^</span><span class="n">el</span><span class="p">)</span>
     <span class="n">naive_closure</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">conjugates</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">closure</span><span class="o">.</span><span class="n">is_subgroup</span><span class="p">(</span><span class="n">naive_closure</span><span class="p">)</span>
-</div>
+    <span class="k">return</span> <span class="n">closure</span><span class="o">.</span><span class="n">is_subgroup</span><span class="p">(</span><span class="n">naive_closure</span><span class="p">)</span></div>
+
 <span class="k">def</span> <span class="nf">canonicalize_naive</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">dummies</span><span class="p">,</span> <span class="n">sym</span><span class="p">,</span> <span class="o">*</span><span class="n">v</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    canonicalize tensor formed by tensors of the different types</span>
@@ -355,19 +336,19 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">sympy.combinatorics.permutations</span> <span class="kn">import</span> <span class="n">_af_invert</span>
     <span class="kn">from</span> <span class="nn">sympy.combinatorics.tensor_can</span> <span class="kn">import</span> <span class="n">get_symmetric_group_sgs</span><span class="p">,</span> <span class="n">canonicalize</span>
-    <span class="n">items</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">gr</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
     <span class="n">items</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">pvert</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">items</span><span class="p">]</span>
     <span class="n">pvert</span> <span class="o">=</span> <span class="n">_af_invert</span><span class="p">(</span><span class="n">pvert</span><span class="p">)</span>
 
-    <span class="c"># the indices of the tensor are twice the number of lines of the graph</span>
+    <span class="c1"># the indices of the tensor are twice the number of lines of the graph</span>
     <span class="n">num_indices</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">neigh</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
       <span class="n">num_indices</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">neigh</span><span class="p">)</span>
-    <span class="c"># associate to each vertex its indices; for each line</span>
-    <span class="c"># between two vertices assign the</span>
-    <span class="c"># even index to the vertex which comes first in items,</span>
-    <span class="c"># the odd index to the other vertex</span>
+    <span class="c1"># associate to each vertex its indices; for each line</span>
+    <span class="c1"># between two vertices assign the</span>
+    <span class="c1"># even index to the vertex which comes first in items,</span>
+    <span class="c1"># the odd index to the other vertex</span>
     <span class="n">vertices</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">items</span><span class="p">]</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">neigh</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
@@ -382,7 +363,7 @@
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">==</span> <span class="n">num_indices</span>
     <span class="n">g</span> <span class="o">+=</span> <span class="p">[</span><span class="n">num_indices</span><span class="p">,</span> <span class="n">num_indices</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">size</span> <span class="o">=</span> <span class="n">num_indices</span> <span class="o">+</span> <span class="mi">2</span>
-    <span class="k">assert</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">==</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
     <span class="n">g</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
     <span class="n">vlen</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vertices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">neigh</span> <span class="ow">in</span> <span class="n">vertices</span><span class="p">:</span>
@@ -394,7 +375,7 @@
             <span class="n">base</span><span class="p">,</span> <span class="n">gens</span> <span class="o">=</span> <span class="n">get_symmetric_group_sgs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
             <span class="n">v</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">base</span><span class="p">,</span> <span class="n">gens</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
     <span class="n">v</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
-    <span class="n">dummies</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_indices</span><span class="p">))</span>
+    <span class="n">dummies</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_indices</span><span class="p">)</span>
     <span class="n">can</span> <span class="o">=</span> <span class="n">canonicalize</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">dummies</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">v</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">can</span>
 </pre></div>
@@ -402,12 +383,20 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="../../../index.html">
               <img class="logo" src="../../../_static/sympylogo.png" alt="Logo"/>
-            </a></p>
-<div id="searchbox" style="display: none">
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -415,37 +404,23 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../sympy.html" >sympy</a> &raquo;</li>
-          <li><a href="../combinatorics.html" >sympy.combinatorics</a> &raquo;</li> 
-      </ul>
-    </div>
     <div class="footer">
-        &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Feb 22, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      &copy;2015 SymPy Development Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
     </div>
+
+    
+
+    
   </body>
 </html>

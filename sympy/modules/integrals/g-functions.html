@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Computing Integrals using Meijer G-Functions &mdash; SymPy 0.7.5 documentation</title>
+    <title>Computing Integrals using Meijer G-Functions &mdash; SymPy 0.7.3 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.5',
+        VERSION:     '0.7.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -28,48 +26,28 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
-    <script type="text/javascript" src="../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.5 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
     <link rel="up" title="Symbolic Integrals" href="integrals.html" />
-    <link rel="next" title="Logic Module" href="../logic.html" />
-    <link rel="prev" title="Symbolic Integrals" href="integrals.html" /> 
+    <link rel="next" title="Lie Algebra Module" href="../liealgebras/index.html" />
+    <link rel="prev" title="Symbolic Integrals" href="integrals.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../logic.html" title="Logic Module"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="integrals.html" title="Symbolic Integrals"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../index.html" >SymPy Modules Reference</a> &raquo;</li>
-          <li><a href="integrals.html" accesskey="U">Symbolic Integrals</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="computing-integrals-using-meijer-g-functions">
 <h1>Computing Integrals using Meijer G-Functions<a class="headerlink" href="#computing-integrals-using-meijer-g-functions" title="Permalink to this headline">¶</a></h1>
@@ -164,10 +142,10 @@ SymPy documentation.</p>
 single G-function. To do this, we first split <span class="math">\(f(x)\)</span> into the form <span class="math">\(x^s g(x)\)</span>
 (where <span class="math">\(g(x)\)</span> is supposed to be simpler than <span class="math">\(f(x)\)</span>). This is because multiplicative
 powers can be absorbed into the G-function later. This splitting is done by
-<tt class="docutils literal"><span class="pre">_split_mul(f,</span> <span class="pre">x)</span></tt>. Then we assemble a tuple of functions that occur in
+<code class="docutils literal"><span class="pre">_split_mul(f,</span> <span class="pre">x)</span></code>. Then we assemble a tuple of functions that occur in
 <span class="math">\(f\)</span> (e.g. if <span class="math">\(f(x) = e^x \cos{x}\)</span>, we would assemble the tuple <span class="math">\((\cos, \exp)\)</span>).
-This is done by the function <tt class="docutils literal"><span class="pre">_mytype(f,</span> <span class="pre">x)</span></tt>. Next we index a lookup table
-(created using <tt class="docutils literal"><span class="pre">_create_lookup_table()</span></tt>) with this tuple. This (hopefully)
+This is done by the function <code class="docutils literal"><span class="pre">_mytype(f,</span> <span class="pre">x)</span></code>. Next we index a lookup table
+(created using <code class="docutils literal"><span class="pre">_create_lookup_table()</span></code>) with this tuple. This (hopefully)
 yields a list of Meijer G-function formulae involving these functions, we then
 pattern-match all of them. If one fits, we were successful, otherwise not and we
 have to try something else.</p>
@@ -179,7 +157,7 @@ minimise (a) the number of powers occuring in <span class="math">\(f_i(x)\)</spa
 different functions occuring in <span class="math">\(f_i(x)\)</span>. Thus given e.g.
 <span class="math">\(f(x) = \sin{x}\, e^{x} \sin{2x}\)</span> we should try <span class="math">\(f_1(x) = \sin{x}\, \sin{2x}\)</span>,
 <span class="math">\(f_2(x) = e^{x}\)</span> first.
-All of this is done by the function <tt class="docutils literal"><span class="pre">_mul_as_two_parts(f)</span></tt>.</p>
+All of this is done by the function <code class="docutils literal"><span class="pre">_mul_as_two_parts(f)</span></code>.</p>
 <p>Finally, we can try a recursive Mellin transform technique. Since the Meijer
 G-function is defined essentially as a certain inverse mellin transform,
 if we want to write a function <span class="math">\(f(x)\)</span> as a G-function, we can compute its mellin
@@ -194,25 +172,25 @@ is recognised to be analytic, then we can try to compute the mellin-transform of
 continuation. (Checking for analyticity is easy. Since we can only deal with a
 certain subset of functions anyway, we only have to filter out those which are
 not analyitc.)</p>
-<p>The function <tt class="docutils literal"><span class="pre">_rewrite_single</span></tt> does the table lookup and recursive mellin
-transform. The functions <tt class="docutils literal"><span class="pre">_rewrite1</span></tt> and <tt class="docutils literal"><span class="pre">_rewrite2</span></tt> respectively use
-above-mentioned helpers and <tt class="docutils literal"><span class="pre">_rewrite_single</span></tt> to rewrite their argument as
+<p>The function <code class="docutils literal"><span class="pre">_rewrite_single</span></code> does the table lookup and recursive mellin
+transform. The functions <code class="docutils literal"><span class="pre">_rewrite1</span></code> and <code class="docutils literal"><span class="pre">_rewrite2</span></code> respectively use
+above-mentioned helpers and <code class="docutils literal"><span class="pre">_rewrite_single</span></code> to rewrite their argument as
 respectively one or two G-functions.</p>
 </div>
 <div class="section" id="applying-the-integral-theorems">
 <h2>Applying the Integral Theorems<a class="headerlink" href="#applying-the-integral-theorems" title="Permalink to this headline">¶</a></h2>
 <p>If the integrand has been recast into G-functions, evaluating the integral is
 relatively easy. We first do some substitutions to reduce e.g. the exponent
-of the argument of the G-function to unity (see <tt class="docutils literal"><span class="pre">_rewrite_saxena_1</span></tt> and
-<tt class="docutils literal"><span class="pre">_rewrite_saxena</span></tt>, respectively, for one or two G-functions). Next we go through
+of the argument of the G-function to unity (see <code class="docutils literal"><span class="pre">_rewrite_saxena_1</span></code> and
+<code class="docutils literal"><span class="pre">_rewrite_saxena</span></code>, respectively, for one or two G-functions). Next we go through
 a list of conditions under which the integral theorem applies. It can fail for
 basically two reasons: either the integral does not exist, or the manipulations
-in deriving the theorem may not be allowed (for more details, see this <a class="reference internal" href="#blogpost">[BlogPost]</a>).</p>
+in deriving the theorem may not be allowed (for more details, see this <a class="reference internal" href="#blogpost" id="id1">[BlogPost]</a>).</p>
 <p>Sometimes this can be remedied by reducing the argument of the G-functions
 involved. For example it is clear that the G-function representing <span class="math">\(e^z\)</span>
 is satisfies <span class="math">\(G(\operatorname{Exp}(2 \pi i)z) = G(z)\)</span> for all <span class="math">\(z \in \mathcal{S}\)</span>. The function
-<tt class="docutils literal"><span class="pre">meijerg.get_period()</span></tt> can be used to discover this, and the function
-<tt class="docutils literal"><span class="pre">principal_branch(z,</span> <span class="pre">period)</span></tt> in <tt class="docutils literal"><span class="pre">functions/elementary/complexes.py</span></tt> can
+<code class="docutils literal"><span class="pre">meijerg.get_period()</span></code> can be used to discover this, and the function
+<code class="docutils literal"><span class="pre">principal_branch(z,</span> <span class="pre">period)</span></code> in <code class="docutils literal"><span class="pre">functions/elementary/complexes.py</span></code> can
 be used to exploit the information. This is done transparently by the
 integration code.</p>
 <table class="docutils citation" frame="void" id="blogpost" rules="none">
@@ -258,13 +236,13 @@ G_{v+p, u+q}^{m+t, n+s} \left.\left(
 </ol>
 <p>The more interesting question is under what conditions these formulae are
 valid. Below we detail the conditions implemented in SymPy. They are an
-amalgamation of conditions found in <a class="reference internal" href="../simplify/hyperexpand.html#prudnikov1990">[Prudnikov1990]</a> and <a class="reference internal" href="../simplify/hyperexpand.html#luke1969">[Luke1969]</a>; please
+amalgamation of conditions found in <a class="reference internal" href="../simplify/hyperexpand.html#prudnikov1990" id="id2">[Prudnikov1990]</a> and <a class="reference internal" href="../simplify/hyperexpand.html#luke1969" id="id3">[Luke1969]</a>; please
 let us know if you find any errors.</p>
 <div class="section" id="conditions-of-convergence-for-integral-1">
 <h2>Conditions of Convergence for Integral (1)<a class="headerlink" href="#conditions-of-convergence-for-integral-1" title="Permalink to this headline">¶</a></h2>
 <p>We can without loss of generality assume <span class="math">\(p \le q\)</span>, since the G-functions
 of indices <span class="math">\(m, n, p, q\)</span> and of indices <span class="math">\(n, m, q, p\)</span> can be related easily
-(see e.g. <a class="reference internal" href="../simplify/hyperexpand.html#luke1969">[Luke1969]</a>, section 5.3). We introduce the following notation:</p>
+(see e.g. <a class="reference internal" href="../simplify/hyperexpand.html#luke1969" id="id4">[Luke1969]</a>, section 5.3). We introduce the following notation:</p>
 <div class="math">
 \[\begin{split}\xi = m + n - p \\
 \delta = m + n - \frac{p + q}{2}\end{split}\]</div>
@@ -275,7 +253,7 @@ of indices <span class="math">\(m, n, p, q\)</span> and of indices <span class="
 \[\begin{split}C_3^*: -\Re(b_j) &lt; 1 \text{ for } j=1, \dots, q \\
 0 &lt; -\Re(a_j) \text{ for } j=1, \dots, p\end{split}\]</div>
 <div class="math">
-\[\begin{split}C_4: -\Re(\delta) + \frac{q + 1 - p}{2} &gt; q - p\end{split}\]</div>
+\[C_4: -\Re(\delta) + \frac{q + 1 - p}{2} &gt; q - p\]</div>
 <p>The convergence conditions will be detailed in several &#8220;cases&#8221;, numbered one
 to five. For later use it will be helpful to separate conditions &#8220;at infinity&#8221;
 from conditions &#8220;at zero&#8221;. By conditions &#8220;at infinity&#8221; we mean conditions that
@@ -291,10 +269,10 @@ particular much harder to control.</p>
 <p>These are the conditions &#8220;at infinity&#8221;:</p>
 <ol class="arabic">
 <li><div class="first math">
-\[\begin{split}\delta &gt; 0 \wedge |\arg(\eta)| &lt; \delta \pi \wedge (A \vee B \vee C),\end{split}\]</div>
+\[\delta &gt; 0 \wedge |\arg(\eta)| &lt; \delta \pi \wedge (A \vee B \vee C),\]</div>
 <p>where</p>
 <div class="math">
-\[\begin{split}A = 1 \le n \wedge p &lt; q \wedge 1 \le m\end{split}\]</div>
+\[A = 1 \le n \wedge p &lt; q \wedge 1 \le m\]</div>
 <div class="math">
 \[B = 1 \le p \wedge 1 \le m \wedge q = p+1 \wedge
             \neg (n = 0 \wedge m = p + 1 )\]</div>
@@ -304,18 +282,18 @@ particular much harder to control.</p>
          \left\lceil \frac{\delta}{2} \right\rceil.\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}n = 0 \wedge p + 1 \le m \wedge |\arg(\eta)| &lt; \delta \pi\end{split}\]</div>
+\[n = 0 \wedge p + 1 \le m \wedge |\arg(\eta)| &lt; \delta \pi\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}(p &lt; q \wedge 1 \le m \wedge \delta &gt; 0 \wedge |\arg(\eta)| = \delta \pi)
-\vee (p \le q - 2 \wedge \delta = 0 \wedge \arg(\eta) = 0)\end{split}\]</div>
+\[(p &lt; q \wedge 1 \le m \wedge \delta &gt; 0 \wedge |\arg(\eta)| = \delta \pi)
+\vee (p \le q - 2 \wedge \delta = 0 \wedge \arg(\eta) = 0)\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p = q \wedge \delta = 0 \wedge \arg(\eta) = 0 \wedge \eta \ne 0
-\wedge \Re\left(\sum_{j=1}^p b_j - a_j \right) &lt; 0\end{split}\]</div>
+\[p = q \wedge \delta = 0 \wedge \arg(\eta) = 0 \wedge \eta \ne 0
+\wedge \Re\left(\sum_{j=1}^p b_j - a_j \right) &lt; 0\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}\delta &gt; 0 \wedge |\arg(\eta)| &lt; \delta \pi\end{split}\]</div>
+\[\delta &gt; 0 \wedge |\arg(\eta)| &lt; \delta \pi\]</div>
 </li>
 </ol>
 <p>And these are the conditions &#8220;at zero&#8221;:</p>
@@ -375,56 +353,56 @@ particular much harder to control.</p>
 \wedge
 (c_i - d_j \notin \mathbb{Z}_{&gt;0} \text{ for } i = 1, \dots, t, j = 1, \dots, s)\end{split}\]</div>
 <div class="math">
-\[\begin{split}C_2:
-\Re(1 + b_i + d_j) &gt; 0 \text{ for } i = 1, \dots, m, j = 1, \dots, s\end{split}\]</div>
+\[C_2:
+\Re(1 + b_i + d_j) &gt; 0 \text{ for } i = 1, \dots, m, j = 1, \dots, s\]</div>
 <div class="math">
-\[\begin{split}C_3:
-\Re(a_i + c_j) &lt; 1 \text{ for } i = 1, \dots, n, j = 1, \dots, t\end{split}\]</div>
+\[C_3:
+\Re(a_i + c_j) &lt; 1 \text{ for } i = 1, \dots, n, j = 1, \dots, t\]</div>
 <div class="math">
-\[\begin{split}C_4:
-(p - q)\Re(c_i) - \Re(\mu) &gt; -\frac{3}{2} \text{ for } i=1, \dots, t\end{split}\]</div>
+\[C_4:
+(p - q)\Re(c_i) - \Re(\mu) &gt; -\frac{3}{2} \text{ for } i=1, \dots, t\]</div>
 <div class="math">
-\[\begin{split}C_5:
-(p - q)\Re(1 + d_i) - \Re(\mu) &gt; -\frac{3}{2} \text{ for } i=1, \dots, s\end{split}\]</div>
+\[C_5:
+(p - q)\Re(1 + d_i) - \Re(\mu) &gt; -\frac{3}{2} \text{ for } i=1, \dots, s\]</div>
 <div class="math">
-\[\begin{split}C_6:
-(u - v)\Re(a_i) - \Re(\rho) &gt; -\frac{3}{2} \text{ for } i=1, \dots, n\end{split}\]</div>
+\[C_6:
+(u - v)\Re(a_i) - \Re(\rho) &gt; -\frac{3}{2} \text{ for } i=1, \dots, n\]</div>
 <div class="math">
-\[\begin{split}C_7:
-(u - v)\Re(1 + b_i) - \Re(\rho) &gt; -\frac{3}{2} \text{ for } i=1, \dots, m\end{split}\]</div>
+\[C_7:
+(u - v)\Re(1 + b_i) - \Re(\rho) &gt; -\frac{3}{2} \text{ for } i=1, \dots, m\]</div>
 <div class="math">
-\[\begin{split}C_8:
-0 &lt; \lvert{\phi}\rvert + 2 \Re\left(\left(\mu -1\right) \left(- u + v\right) + \left(- p + q\right) \left(\rho -1\right) + \left(- p + q\right) \left(- u + v\right)\right)\end{split}\]</div>
+\[C_8:
+0 &lt; \lvert{\phi}\rvert + 2 \Re\left(\left(\mu -1\right) \left(- u + v\right) + \left(- p + q\right) \left(\rho -1\right) + \left(- p + q\right) \left(- u + v\right)\right)\]</div>
 <div class="math">
-\[\begin{split}C_9:
-0 &lt; \lvert{\phi}\rvert - 2 \Re\left(\left(\mu -1\right) \left(- u + v\right) + \left(- p + q\right) \left(\rho -1\right) + \left(- p + q\right) \left(- u + v\right)\right)\end{split}\]</div>
+\[C_9:
+0 &lt; \lvert{\phi}\rvert - 2 \Re\left(\left(\mu -1\right) \left(- u + v\right) + \left(- p + q\right) \left(\rho -1\right) + \left(- p + q\right) \left(- u + v\right)\right)\]</div>
 <div class="math">
-\[\begin{split}C_{10}:
-\lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi b^{*}\end{split}\]</div>
+\[C_{10}:
+\lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi b^{*}\]</div>
 <div class="math">
 \[C_{11}:
 \lvert{\operatorname{arg}\left(\sigma\right)}\rvert = \pi b^{*}\]</div>
 <div class="math">
-\[\begin{split}C_{12}:
-|\arg(\omega)| &lt; c^*\pi\end{split}\]</div>
+\[C_{12}:
+|\arg(\omega)| &lt; c^*\pi\]</div>
 <div class="math">
 \[C_{13}:
 |\arg(\omega)| = c^*\pi\]</div>
 <div class="math">
-\[\begin{split}C_{14}^1:
+\[C_{14}^1:
 \left(z_0 \ne 1 \wedge |\arg(1 - z_0)| &lt; \pi \right) \vee
-\left(z_0 = 1 \wedge \Re(\mu + \rho - u + v) &lt; 1 \right)\end{split}\]</div>
+\left(z_0 = 1 \wedge \Re(\mu + \rho - u + v) &lt; 1 \right)\]</div>
 <div class="math">
-\[\begin{split}C_{14}^2:
+\[C_{14}^2:
 \left(z_1 \ne 1 \wedge |\arg(1 - z_1)| &lt; \pi \right) \vee
-\left(z_1 = 1 \wedge \Re(\mu + \rho - p + q) &lt; 1 \right)\end{split}\]</div>
+\left(z_1 = 1 \wedge \Re(\mu + \rho - p + q) &lt; 1 \right)\]</div>
 <div class="math">
 \[C_{14}:
 \phi = 0 \wedge b^* + c^* \le 1 \wedge (C_{14}^1 \vee C_{14}^2)\]</div>
 <div class="math">
-\[\begin{split}C_{15}:
+\[C_{15}:
 \lambda_c &gt; 0 \vee (\lambda_c = 0 \wedge \lambda_s \ne 0 \wedge \Re(\eta) &gt; -1)
-              \vee (\lambda_c = 0 \wedge \lambda_s = 0 \wedge \Re(\eta) &gt; 0)\end{split}\]</div>
+              \vee (\lambda_c = 0 \wedge \lambda_s = 0 \wedge \Re(\eta) &gt; 0)\]</div>
 <div class="math">
 \[C_{16}: \int_0^\infty G_{u, v}^{s, t}(\sigma x) \mathrm{d} x
 \text{ converges at infinity }\]</div>
@@ -437,121 +415,121 @@ integral (1).</p>
 as follows:</p>
 <ol class="arabic">
 <li><div class="first math">
-\[\begin{split}m n s t \neq 0 \wedge 0 &lt; b^{*} \wedge 0 &lt; c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{10} \wedge C_{12}\end{split}\]</div>
+\[m n s t \neq 0 \wedge 0 &lt; b^{*} \wedge 0 &lt; c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{10} \wedge C_{12}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}u = v \wedge b^{*} = 0 \wedge 0 &lt; c^{*} \wedge 0 &lt; \sigma \wedge \Re{\rho} &lt; 1 \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{12}\end{split}\]</div>
+\[u = v \wedge b^{*} = 0 \wedge 0 &lt; c^{*} \wedge 0 &lt; \sigma \wedge \Re{\rho} &lt; 1 \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{12}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p = q \wedge u = v \wedge b^{*} = 0 \wedge c^{*} = 0 \wedge 0 &lt; \sigma \wedge 0 &lt; \omega \wedge \Re{\mu} &lt; 1 \wedge \Re{\rho} &lt; 1 \wedge \sigma \neq \omega \wedge C_{1} \wedge C_{2} \wedge C_{3}\end{split}\]</div>
+\[p = q \wedge u = v \wedge b^{*} = 0 \wedge c^{*} = 0 \wedge 0 &lt; \sigma \wedge 0 &lt; \omega \wedge \Re{\mu} &lt; 1 \wedge \Re{\rho} &lt; 1 \wedge \sigma \neq \omega \wedge C_{1} \wedge C_{2} \wedge C_{3}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p = q \wedge u = v \wedge b^{*} = 0 \wedge c^{*} = 0 \wedge 0 &lt; \sigma \wedge 0 &lt; \omega \wedge \Re\left(\mu + \rho\right) &lt; 1 \wedge \omega \neq \sigma \wedge C_{1} \wedge C_{2} \wedge C_{3}\end{split}\]</div>
+\[p = q \wedge u = v \wedge b^{*} = 0 \wedge c^{*} = 0 \wedge 0 &lt; \sigma \wedge 0 &lt; \omega \wedge \Re\left(\mu + \rho\right) &lt; 1 \wedge \omega \neq \sigma \wedge C_{1} \wedge C_{2} \wedge C_{3}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p = q \wedge u = v \wedge b^{*} = 0 \wedge c^{*} = 0 \wedge 0 &lt; \sigma \wedge 0 &lt; \omega \wedge \Re\left(\mu + \rho\right) &lt; 1 \wedge \omega \neq \sigma \wedge C_{1} \wedge C_{2} \wedge C_{3}\end{split}\]</div>
+\[p = q \wedge u = v \wedge b^{*} = 0 \wedge c^{*} = 0 \wedge 0 &lt; \sigma \wedge 0 &lt; \omega \wedge \Re\left(\mu + \rho\right) &lt; 1 \wedge \omega \neq \sigma \wedge C_{1} \wedge C_{2} \wedge C_{3}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}q &lt; p \wedge 0 &lt; s \wedge 0 &lt; b^{*} \wedge 0 \leq c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{5} \wedge C_{10} \wedge C_{13}\end{split}\]</div>
+\[q &lt; p \wedge 0 &lt; s \wedge 0 &lt; b^{*} \wedge 0 \leq c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{5} \wedge C_{10} \wedge C_{13}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p &lt; q \wedge 0 &lt; t \wedge 0 &lt; b^{*} \wedge 0 \leq c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{4} \wedge C_{10} \wedge C_{13}\end{split}\]</div>
+\[p &lt; q \wedge 0 &lt; t \wedge 0 &lt; b^{*} \wedge 0 \leq c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{4} \wedge C_{10} \wedge C_{13}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}v &lt; u \wedge 0 &lt; m \wedge 0 &lt; c^{*} \wedge 0 \leq b^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{7} \wedge C_{11} \wedge C_{12}\end{split}\]</div>
+\[v &lt; u \wedge 0 &lt; m \wedge 0 &lt; c^{*} \wedge 0 \leq b^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{7} \wedge C_{11} \wedge C_{12}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}u &lt; v \wedge 0 &lt; n \wedge 0 &lt; c^{*} \wedge 0 \leq b^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{6} \wedge C_{11} \wedge C_{12}\end{split}\]</div>
+\[u &lt; v \wedge 0 &lt; n \wedge 0 &lt; c^{*} \wedge 0 \leq b^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{6} \wedge C_{11} \wedge C_{12}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}q &lt; p \wedge u = v \wedge b^{*} = 0 \wedge 0 \leq c^{*} \wedge 0 &lt; \sigma \wedge \Re{\rho} &lt; 1 \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{5} \wedge C_{13}\end{split}\]</div>
+\[q &lt; p \wedge u = v \wedge b^{*} = 0 \wedge 0 \leq c^{*} \wedge 0 &lt; \sigma \wedge \Re{\rho} &lt; 1 \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{5} \wedge C_{13}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p &lt; q \wedge u = v \wedge b^{*} = 0 \wedge 0 \leq c^{*} \wedge 0 &lt; \sigma \wedge \Re{\rho} &lt; 1 \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{4} \wedge C_{13}\end{split}\]</div>
+\[p &lt; q \wedge u = v \wedge b^{*} = 0 \wedge 0 \leq c^{*} \wedge 0 &lt; \sigma \wedge \Re{\rho} &lt; 1 \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{4} \wedge C_{13}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p = q \wedge v &lt; u \wedge 0 \leq b^{*} \wedge c^{*} = 0 \wedge 0 &lt; \omega \wedge \Re{\mu} &lt; 1 \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{7} \wedge C_{11}\end{split}\]</div>
+\[p = q \wedge v &lt; u \wedge 0 \leq b^{*} \wedge c^{*} = 0 \wedge 0 &lt; \omega \wedge \Re{\mu} &lt; 1 \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{7} \wedge C_{11}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p = q \wedge u &lt; v \wedge 0 \leq b^{*} \wedge c^{*} = 0 \wedge 0 &lt; \omega \wedge \Re{\mu} &lt; 1 \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{6} \wedge C_{11}\end{split}\]</div>
+\[p = q \wedge u &lt; v \wedge 0 \leq b^{*} \wedge c^{*} = 0 \wedge 0 &lt; \omega \wedge \Re{\mu} &lt; 1 \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{6} \wedge C_{11}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p &lt; q \wedge v &lt; u \wedge 0 \leq b^{*} \wedge 0 \leq c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{4} \wedge C_{7} \wedge C_{11} \wedge C_{13}\end{split}\]</div>
+\[p &lt; q \wedge v &lt; u \wedge 0 \leq b^{*} \wedge 0 \leq c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{4} \wedge C_{7} \wedge C_{11} \wedge C_{13}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}q &lt; p \wedge u &lt; v \wedge 0 \leq b^{*} \wedge 0 \leq c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{5} \wedge C_{6} \wedge C_{11} \wedge C_{13}\end{split}\]</div>
+\[q &lt; p \wedge u &lt; v \wedge 0 \leq b^{*} \wedge 0 \leq c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{5} \wedge C_{6} \wedge C_{11} \wedge C_{13}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}q &lt; p \wedge v &lt; u \wedge 0 \leq b^{*} \wedge 0 \leq c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{5} \wedge C_{7} \wedge C_{8} \wedge C_{11} \wedge C_{13} \wedge C_{14}\end{split}\]</div>
+\[q &lt; p \wedge v &lt; u \wedge 0 \leq b^{*} \wedge 0 \leq c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{5} \wedge C_{7} \wedge C_{8} \wedge C_{11} \wedge C_{13} \wedge C_{14}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p &lt; q \wedge u &lt; v \wedge 0 \leq b^{*} \wedge 0 \leq c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{4} \wedge C_{6} \wedge C_{9} \wedge C_{11} \wedge C_{13} \wedge C_{14}\end{split}\]</div>
+\[p &lt; q \wedge u &lt; v \wedge 0 \leq b^{*} \wedge 0 \leq c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{4} \wedge C_{6} \wedge C_{9} \wedge C_{11} \wedge C_{13} \wedge C_{14}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}t = 0 \wedge 0 &lt; s \wedge 0 &lt; b^{*} \wedge 0 &lt; \phi \wedge C_{1} \wedge C_{2} \wedge C_{10}\end{split}\]</div>
+\[t = 0 \wedge 0 &lt; s \wedge 0 &lt; b^{*} \wedge 0 &lt; \phi \wedge C_{1} \wedge C_{2} \wedge C_{10}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}s = 0 \wedge 0 &lt; t \wedge 0 &lt; b^{*} \wedge \phi &lt; 0 \wedge C_{1} \wedge C_{3} \wedge C_{10}\end{split}\]</div>
+\[s = 0 \wedge 0 &lt; t \wedge 0 &lt; b^{*} \wedge \phi &lt; 0 \wedge C_{1} \wedge C_{3} \wedge C_{10}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}n = 0 \wedge 0 &lt; m \wedge 0 &lt; c^{*} \wedge \phi &lt; 0 \wedge C_{1} \wedge C_{2} \wedge C_{12}\end{split}\]</div>
+\[n = 0 \wedge 0 &lt; m \wedge 0 &lt; c^{*} \wedge \phi &lt; 0 \wedge C_{1} \wedge C_{2} \wedge C_{12}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}m = 0 \wedge 0 &lt; n \wedge 0 &lt; c^{*} \wedge 0 &lt; \phi \wedge C_{1} \wedge C_{3} \wedge C_{12}\end{split}\]</div>
+\[m = 0 \wedge 0 &lt; n \wedge 0 &lt; c^{*} \wedge 0 &lt; \phi \wedge C_{1} \wedge C_{3} \wedge C_{12}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}s t = 0 \wedge 0 &lt; b^{*} \wedge 0 &lt; c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{10} \wedge C_{12}\end{split}\]</div>
+\[s t = 0 \wedge 0 &lt; b^{*} \wedge 0 &lt; c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{10} \wedge C_{12}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}m n = 0 \wedge 0 &lt; b^{*} \wedge 0 &lt; c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{10} \wedge C_{12}\end{split}\]</div>
+\[m n = 0 \wedge 0 &lt; b^{*} \wedge 0 &lt; c^{*} \wedge C_{1} \wedge C_{2} \wedge C_{3} \wedge C_{10} \wedge C_{12}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p &lt; m + n \wedge t = 0 \wedge \phi = 0 \wedge 0 &lt; s \wedge 0 &lt; b^{*} \wedge c^{*} &lt; 0 \wedge \lvert{\operatorname{arg}\left(\omega\right)}\rvert &lt; \pi \left(m + n - p + 1\right) \wedge C_{1} \wedge C_{2} \wedge C_{10} \wedge C_{14} \wedge C_{15}\end{split}\]</div>
+\[p &lt; m + n \wedge t = 0 \wedge \phi = 0 \wedge 0 &lt; s \wedge 0 &lt; b^{*} \wedge c^{*} &lt; 0 \wedge \lvert{\operatorname{arg}\left(\omega\right)}\rvert &lt; \pi \left(m + n - p + 1\right) \wedge C_{1} \wedge C_{2} \wedge C_{10} \wedge C_{14} \wedge C_{15}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}q &lt; m + n \wedge s = 0 \wedge \phi = 0 \wedge 0 &lt; t \wedge 0 &lt; b^{*} \wedge c^{*} &lt; 0 \wedge \lvert{\operatorname{arg}\left(\omega\right)}\rvert &lt; \pi \left(m + n - q + 1\right) \wedge C_{1} \wedge C_{3} \wedge C_{10} \wedge C_{14} \wedge C_{15}\end{split}\]</div>
+\[q &lt; m + n \wedge s = 0 \wedge \phi = 0 \wedge 0 &lt; t \wedge 0 &lt; b^{*} \wedge c^{*} &lt; 0 \wedge \lvert{\operatorname{arg}\left(\omega\right)}\rvert &lt; \pi \left(m + n - q + 1\right) \wedge C_{1} \wedge C_{3} \wedge C_{10} \wedge C_{14} \wedge C_{15}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p = q -1 \wedge t = 0 \wedge \phi = 0 \wedge 0 &lt; s \wedge 0 &lt; b^{*} \wedge 0 \leq c^{*} \wedge \pi c^{*} &lt; \lvert{\operatorname{arg}\left(\omega\right)}\rvert \wedge C_{1} \wedge C_{2} \wedge C_{10} \wedge C_{14} \wedge C_{15}\end{split}\]</div>
+\[p = q -1 \wedge t = 0 \wedge \phi = 0 \wedge 0 &lt; s \wedge 0 &lt; b^{*} \wedge 0 \leq c^{*} \wedge \pi c^{*} &lt; \lvert{\operatorname{arg}\left(\omega\right)}\rvert \wedge C_{1} \wedge C_{2} \wedge C_{10} \wedge C_{14} \wedge C_{15}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p = q + 1 \wedge s = 0 \wedge \phi = 0 \wedge 0 &lt; t \wedge 0 &lt; b^{*} \wedge 0 \leq c^{*} \wedge \pi c^{*} &lt; \lvert{\operatorname{arg}\left(\omega\right)}\rvert \wedge C_{1} \wedge C_{3} \wedge C_{10} \wedge C_{14} \wedge C_{15}\end{split}\]</div>
+\[p = q + 1 \wedge s = 0 \wedge \phi = 0 \wedge 0 &lt; t \wedge 0 &lt; b^{*} \wedge 0 \leq c^{*} \wedge \pi c^{*} &lt; \lvert{\operatorname{arg}\left(\omega\right)}\rvert \wedge C_{1} \wedge C_{3} \wedge C_{10} \wedge C_{14} \wedge C_{15}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}p &lt; q -1 \wedge t = 0 \wedge \phi = 0 \wedge 0 &lt; s \wedge 0 &lt; b^{*} \wedge 0 \leq c^{*} \wedge \pi c^{*} &lt; \lvert{\operatorname{arg}\left(\omega\right)}\rvert \wedge \lvert{\operatorname{arg}\left(\omega\right)}\rvert &lt; \pi \left(m + n - p + 1\right) \wedge C_{1} \wedge C_{2} \wedge C_{10} \wedge C_{14} \wedge C_{15}\end{split}\]</div>
+\[p &lt; q -1 \wedge t = 0 \wedge \phi = 0 \wedge 0 &lt; s \wedge 0 &lt; b^{*} \wedge 0 \leq c^{*} \wedge \pi c^{*} &lt; \lvert{\operatorname{arg}\left(\omega\right)}\rvert \wedge \lvert{\operatorname{arg}\left(\omega\right)}\rvert &lt; \pi \left(m + n - p + 1\right) \wedge C_{1} \wedge C_{2} \wedge C_{10} \wedge C_{14} \wedge C_{15}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}q + 1 &lt; p \wedge s = 0 \wedge \phi = 0 \wedge 0 &lt; t \wedge 0 &lt; b^{*} \wedge 0 \leq c^{*} \wedge \pi c^{*} &lt; \lvert{\operatorname{arg}\left(\omega\right)}\rvert \wedge \lvert{\operatorname{arg}\left(\omega\right)}\rvert &lt; \pi \left(m + n - q + 1 \right) \wedge C_{1} \wedge C_{3} \wedge C_{10} \wedge C_{14} \wedge C_{15}\end{split}\]</div>
+\[q + 1 &lt; p \wedge s = 0 \wedge \phi = 0 \wedge 0 &lt; t \wedge 0 &lt; b^{*} \wedge 0 \leq c^{*} \wedge \pi c^{*} &lt; \lvert{\operatorname{arg}\left(\omega\right)}\rvert \wedge \lvert{\operatorname{arg}\left(\omega\right)}\rvert &lt; \pi \left(m + n - q + 1 \right) \wedge C_{1} \wedge C_{3} \wedge C_{10} \wedge C_{14} \wedge C_{15}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}n = 0 \wedge \phi = 0 \wedge 0 &lt; s + t \wedge 0 &lt; m \wedge 0 &lt; c^{*} \wedge b^{*} &lt; 0 \wedge \lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi \left(s + t - u + 1\right) \wedge C_{1} \wedge C_{2} \wedge C_{12} \wedge C_{14} \wedge C_{15}\end{split}\]</div>
+\[n = 0 \wedge \phi = 0 \wedge 0 &lt; s + t \wedge 0 &lt; m \wedge 0 &lt; c^{*} \wedge b^{*} &lt; 0 \wedge \lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi \left(s + t - u + 1\right) \wedge C_{1} \wedge C_{2} \wedge C_{12} \wedge C_{14} \wedge C_{15}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}m = 0 \wedge \phi = 0 \wedge v &lt; s + t \wedge 0 &lt; n \wedge 0 &lt; c^{*} \wedge b^{*} &lt; 0 \wedge \lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi \left(s + t - v + 1\right) \wedge C_{1} \wedge C_{3} \wedge C_{12} \wedge C_{14} \wedge C_{15}\end{split}\]</div>
+\[m = 0 \wedge \phi = 0 \wedge v &lt; s + t \wedge 0 &lt; n \wedge 0 &lt; c^{*} \wedge b^{*} &lt; 0 \wedge \lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi \left(s + t - v + 1\right) \wedge C_{1} \wedge C_{3} \wedge C_{12} \wedge C_{14} \wedge C_{15}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}n = 0 \wedge \phi = 0 \wedge u = v -1 \wedge 0 &lt; m \wedge 0 &lt; c^{*} \wedge 0 \leq b^{*} \wedge \pi b^{*} &lt; \lvert{\operatorname{arg}\left(\sigma\right)}\rvert \wedge \lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi \left(b^{*} + 1\right) \wedge C_{1} \wedge C_{2} \wedge C_{12} \wedge C_{14} \wedge C_{15}\end{split}\]</div>
+\[n = 0 \wedge \phi = 0 \wedge u = v -1 \wedge 0 &lt; m \wedge 0 &lt; c^{*} \wedge 0 \leq b^{*} \wedge \pi b^{*} &lt; \lvert{\operatorname{arg}\left(\sigma\right)}\rvert \wedge \lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi \left(b^{*} + 1\right) \wedge C_{1} \wedge C_{2} \wedge C_{12} \wedge C_{14} \wedge C_{15}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}m = 0 \wedge \phi = 0 \wedge u = v + 1 \wedge 0 &lt; n \wedge 0 &lt; c^{*} \wedge 0 \leq b^{*} \wedge \pi b^{*} &lt; \lvert{\operatorname{arg}\left(\sigma\right)}\rvert \wedge \lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi \left(b^{*} + 1\right) \wedge C_{1} \wedge C_{3} \wedge C_{12} \wedge C_{14} \wedge C_{15}\end{split}\]</div>
+\[m = 0 \wedge \phi = 0 \wedge u = v + 1 \wedge 0 &lt; n \wedge 0 &lt; c^{*} \wedge 0 \leq b^{*} \wedge \pi b^{*} &lt; \lvert{\operatorname{arg}\left(\sigma\right)}\rvert \wedge \lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi \left(b^{*} + 1\right) \wedge C_{1} \wedge C_{3} \wedge C_{12} \wedge C_{14} \wedge C_{15}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}n = 0 \wedge \phi = 0 \wedge u &lt; v -1 \wedge 0 &lt; m \wedge 0 &lt; c^{*} \wedge 0 \leq b^{*} \wedge \pi b^{*} &lt; \lvert{\operatorname{arg}\left(\sigma\right)}\rvert \wedge \lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi \left(s + t - u + 1\right) \wedge C_{1} \wedge C_{2} \wedge C_{12} \wedge C_{14} \wedge C_{15}\end{split}\]</div>
+\[n = 0 \wedge \phi = 0 \wedge u &lt; v -1 \wedge 0 &lt; m \wedge 0 &lt; c^{*} \wedge 0 \leq b^{*} \wedge \pi b^{*} &lt; \lvert{\operatorname{arg}\left(\sigma\right)}\rvert \wedge \lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi \left(s + t - u + 1\right) \wedge C_{1} \wedge C_{2} \wedge C_{12} \wedge C_{14} \wedge C_{15}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}m = 0 \wedge \phi = 0 \wedge v + 1 &lt; u \wedge 0 &lt; n \wedge 0 &lt; c^{*} \wedge 0 \leq b^{*} \wedge \pi b^{*} &lt; \lvert{\operatorname{arg}\left(\sigma\right)}\rvert \wedge \lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi \left(s + t - v + 1 \right) \wedge C_{1} \wedge C_{3} \wedge C_{12} \wedge C_{14} \wedge C_{15}\end{split}\]</div>
+\[m = 0 \wedge \phi = 0 \wedge v + 1 &lt; u \wedge 0 &lt; n \wedge 0 &lt; c^{*} \wedge 0 \leq b^{*} \wedge \pi b^{*} &lt; \lvert{\operatorname{arg}\left(\sigma\right)}\rvert \wedge \lvert{\operatorname{arg}\left(\sigma\right)}\rvert &lt; \pi \left(s + t - v + 1 \right) \wedge C_{1} \wedge C_{3} \wedge C_{12} \wedge C_{14} \wedge C_{15}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}C_{17} \wedge t = 0 \wedge u &lt; s \wedge 0 &lt; b^{*} \wedge C_{10} \wedge C_{1} \wedge C_{2} \wedge C_{3}\end{split}\]</div>
+\[C_{17} \wedge t = 0 \wedge u &lt; s \wedge 0 &lt; b^{*} \wedge C_{10} \wedge C_{1} \wedge C_{2} \wedge C_{3}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}C_{17} \wedge s = 0 \wedge v &lt; t \wedge 0 &lt; b^{*} \wedge C_{10} \wedge C_{1} \wedge C_{2} \wedge C_{3}\end{split}\]</div>
+\[C_{17} \wedge s = 0 \wedge v &lt; t \wedge 0 &lt; b^{*} \wedge C_{10} \wedge C_{1} \wedge C_{2} \wedge C_{3}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}C_{16} \wedge n = 0 \wedge p &lt; m \wedge 0 &lt; c^{*} \wedge C_{12} \wedge C_{1} \wedge C_{2} \wedge C_{3}\end{split}\]</div>
+\[C_{16} \wedge n = 0 \wedge p &lt; m \wedge 0 &lt; c^{*} \wedge C_{12} \wedge C_{1} \wedge C_{2} \wedge C_{3}\]</div>
 </li>
 <li><div class="first math">
-\[\begin{split}C_{16} \wedge m = 0 \wedge q &lt; n \wedge 0 &lt; c^{*} \wedge C_{12} \wedge C_{1} \wedge C_{2} \wedge C_{3}\end{split}\]</div>
+\[C_{16} \wedge m = 0 \wedge q &lt; n \wedge 0 &lt; c^{*} \wedge C_{12} \wedge C_{1} \wedge C_{2} \wedge C_{3}\]</div>
 </li>
 </ol>
 </div>
@@ -561,7 +539,7 @@ as follows:</p>
 <p>The inverse laplace transform of a Meijer G-function can be expressed as
 another G-function. This is a fairly versatile method for computing this
 transform. However, I could not find the details in the literature, so I work
-them out here. In <a class="reference internal" href="../simplify/hyperexpand.html#luke1969">[Luke1969]</a>, section 5.6.3, there is a formula for the inverse
+them out here. In <a class="reference internal" href="../simplify/hyperexpand.html#luke1969" id="id5">[Luke1969]</a>, section 5.6.3, there is a formula for the inverse
 Laplace transform of a G-function of argument <span class="math">\(bz\)</span>, and convergence conditions
 are also given. However, we need a formula for argument <span class="math">\(bz^a\)</span> for rational <span class="math">\(a\)</span>.</p>
 <p>We are asked to compute</p>
@@ -621,12 +599,12 @@ function of its parameters, and of the coefficient <span class="math">\(b\)</spa
 Thus the final computation remains valid as long as the initial integral
 converges, and if there exists a changed set of parameters where the computation
 is valid. If we assume w.l.o.g. that <span class="math">\(a &gt; 0\)</span>, then the latter condition is
-fulfilled if <span class="math">\(G\)</span> converges along contours (2) or (3) of <a class="reference internal" href="../simplify/hyperexpand.html#luke1969">[Luke1969]</a>,
+fulfilled if <span class="math">\(G\)</span> converges along contours (2) or (3) of <a class="reference internal" href="../simplify/hyperexpand.html#luke1969" id="id6">[Luke1969]</a>,
 section 5.2, i.e. either <span class="math">\(\delta &gt;= \frac{a}{2}\)</span> or <span class="math">\(p \ge 1, p \ge q\)</span>.</p>
 </div>
 <div class="section" id="when-the-integral-exists">
 <h2>When the integral exists<a class="headerlink" href="#when-the-integral-exists" title="Permalink to this headline">¶</a></h2>
-<p>Using <a class="reference internal" href="../simplify/hyperexpand.html#luke1969">[Luke1969]</a>, section 5.10, for any given meijer G-function we can find a
+<p>Using <a class="reference internal" href="../simplify/hyperexpand.html#luke1969" id="id7">[Luke1969]</a>, section 5.10, for any given meijer G-function we can find a
 dominant term of the form <span class="math">\(z^a e^{bz^c}\)</span> (although this expression might not be
 the best possible, because of cancellation).</p>
 <p>We must thus investigate</p>
@@ -665,7 +643,7 @@ of special functions is to be dealt with.</p>
 <div class="math">
 \[\begin{split}a = a {G_{1, 1}^{1, 0}\left(\begin{matrix}  &amp; 1 \\0 &amp;  \end{matrix} \middle| {z} \right)} + a {G_{1, 1}^{0, 1}\left(\begin{matrix} 1 &amp;  \\ &amp; 0 \end{matrix} \middle| {z} \right)}\end{split}\]</div>
 <div class="math">
-\[\begin{split}\left(z^{q} p + b\right)^{- a} = \frac{b^{- a}}{\Gamma{\left(a \right)}} {G_{1, 1}^{1, 1}\left(\begin{matrix} - a + 1 &amp;  \\0 &amp;  \end{matrix} \middle| {\frac{z^{q} p}{b}} \right)}\end{split}\]</div>
+\[\begin{split}\left(z^{q} p + b\right)^{- a} = \frac{b^{- a}}{\Gamma\left(a\right)} {G_{1, 1}^{1, 1}\left(\begin{matrix} - a + 1 &amp;  \\0 &amp;  \end{matrix} \middle| {\frac{z^{q} p}{b}} \right)}\end{split}\]</div>
 <div class="math">
 \[\begin{split}\frac{- b^{a} + \left(z^{q} p\right)^{a}}{z^{q} p - b} = \frac{1}{\pi} b^{a - 1} \sin{\left (\pi a \right )} {G_{2, 2}^{2, 2}\left(\begin{matrix} 0, a &amp;  \\0, a &amp;  \end{matrix} \middle| {\frac{z^{q} p}{b}} \right)}\end{split}\]</div>
 <div class="math">
@@ -686,7 +664,7 @@ of special functions is to be dealt with.</p>
 \[\begin{split}\frac{\left(- z^{\frac{q}{2}} \sqrt{p} + \sqrt{z^{q} p + a}\right)^{b}}{\sqrt{z^{q} p + a}} = \frac{1}{\sqrt{\pi}} a^{\frac{b}{2} - \frac{1}{2}} {G_{2, 2}^{2, 1}\left(\begin{matrix} - \frac{b}{2} + \frac{1}{2} &amp; \frac{b}{2} + \frac{1}{2} \\0, \frac{1}{2} &amp;  \end{matrix} \middle| {\frac{z^{q} p}{a}} \right)}\end{split}\]</div>
 <p>Functions involving <span class="math">\(\left\lvert{- z^{q} p + b}\right\rvert\)</span>:</p>
 <div class="math">
-\[\begin{split}\left\lvert{- z^{q} p + b}\right\rvert^{- a} = \frac{\pi \left\lvert{b}\right\rvert^{- a}}{\cos{\left (\frac{\pi a}{2} \right )} \Gamma{\left(a \right)}} {G_{2, 2}^{1, 1}\left(\begin{matrix} - a + 1 &amp; - \frac{a}{2} + \frac{1}{2} \\0 &amp; - \frac{a}{2} + \frac{1}{2} \end{matrix} \middle| {\frac{z^{q} p}{b}} \right)},\text{ if } \Re{a} &lt; 1\end{split}\]</div>
+\[\begin{split}\left\lvert{- z^{q} p + b}\right\rvert^{- a} = \frac{\pi \left\lvert{b}\right\rvert^{- a}}{\cos{\left (\frac{\pi a}{2} \right )} \Gamma\left(a\right)} {G_{2, 2}^{1, 1}\left(\begin{matrix} - a + 1 &amp; - \frac{a}{2} + \frac{1}{2} \\0 &amp; - \frac{a}{2} + \frac{1}{2} \end{matrix} \middle| {\frac{z^{q} p}{b}} \right)},\text{ if } \Re{a} &lt; 1\end{split}\]</div>
 <p>Functions involving <span class="math">\(\operatorname{Chi}{\left (z^{q} p \right )}\)</span>:</p>
 <div class="math">
 \[\begin{split}\operatorname{Chi}{\left (z^{q} p \right )} = - \frac{\pi^{\frac{3}{2}}}{2} {G_{2, 4}^{2, 0}\left(\begin{matrix}  &amp; \frac{1}{2}, 1 \\0, 0 &amp; \frac{1}{2}, \frac{1}{2} \end{matrix} \middle| {\frac{p^{2}}{4} z^{2 q}} \right)}\end{split}\]</div>
@@ -698,13 +676,13 @@ of special functions is to be dealt with.</p>
 \[\begin{split}\operatorname{Ei}{\left (z^{q} p \right )} = - i \pi {G_{1, 1}^{1, 0}\left(\begin{matrix}  &amp; 1 \\0 &amp;  \end{matrix} \middle| {z} \right)} - {G_{1, 2}^{2, 0}\left(\begin{matrix}  &amp; 1 \\0, 0 &amp;  \end{matrix} \middle| {z^{q} p e^{i \pi}} \right)} - i \pi {G_{1, 1}^{0, 1}\left(\begin{matrix} 1 &amp;  \\ &amp; 0 \end{matrix} \middle| {z} \right)}\end{split}\]</div>
 <p>Functions involving <span class="math">\(\theta\left(z^{q} p - b\right)\)</span>:</p>
 <div class="math">
-\[\begin{split}\left(z^{q} p - b\right)^{a - 1} \theta\left(z^{q} p - b\right) = b^{a - 1} \Gamma{\left(a \right)} {G_{1, 1}^{0, 1}\left(\begin{matrix} a &amp;  \\ &amp; 0 \end{matrix} \middle| {\frac{z^{q} p}{b}} \right)},\text{ if } b &gt; 0\end{split}\]</div>
+\[\begin{split}\left(z^{q} p - b\right)^{a - 1} \theta\left(z^{q} p - b\right) = b^{a - 1} \Gamma\left(a\right) {G_{1, 1}^{0, 1}\left(\begin{matrix} a &amp;  \\ &amp; 0 \end{matrix} \middle| {\frac{z^{q} p}{b}} \right)},\text{ if } b &gt; 0\end{split}\]</div>
 <div class="math">
-\[\begin{split}\left(- z^{q} p + b\right)^{a - 1} \theta\left(- z^{q} p + b\right) = b^{a - 1} \Gamma{\left(a \right)} {G_{1, 1}^{1, 0}\left(\begin{matrix}  &amp; a \\0 &amp;  \end{matrix} \middle| {\frac{z^{q} p}{b}} \right)},\text{ if } b &gt; 0\end{split}\]</div>
+\[\begin{split}\left(- z^{q} p + b\right)^{a - 1} \theta\left(- z^{q} p + b\right) = b^{a - 1} \Gamma\left(a\right) {G_{1, 1}^{1, 0}\left(\begin{matrix}  &amp; a \\0 &amp;  \end{matrix} \middle| {\frac{z^{q} p}{b}} \right)},\text{ if } b &gt; 0\end{split}\]</div>
 <div class="math">
-\[\begin{split}\left(z^{q} p - b\right)^{a - 1} \theta\left(z - \left(\frac{b}{p}\right)^{\frac{1}{q}}\right) = b^{a - 1} \Gamma{\left(a \right)} {G_{1, 1}^{0, 1}\left(\begin{matrix} a &amp;  \\ &amp; 0 \end{matrix} \middle| {\frac{z^{q} p}{b}} \right)},\text{ if } b &gt; 0\end{split}\]</div>
+\[\begin{split}\left(z^{q} p - b\right)^{a - 1} \theta\left(z - \left(\frac{b}{p}\right)^{\frac{1}{q}}\right) = b^{a - 1} \Gamma\left(a\right) {G_{1, 1}^{0, 1}\left(\begin{matrix} a &amp;  \\ &amp; 0 \end{matrix} \middle| {\frac{z^{q} p}{b}} \right)},\text{ if } b &gt; 0\end{split}\]</div>
 <div class="math">
-\[\begin{split}\left(- z^{q} p + b\right)^{a - 1} \theta\left(- z + \left(\frac{b}{p}\right)^{\frac{1}{q}}\right) = b^{a - 1} \Gamma{\left(a \right)} {G_{1, 1}^{1, 0}\left(\begin{matrix}  &amp; a \\0 &amp;  \end{matrix} \middle| {\frac{z^{q} p}{b}} \right)},\text{ if } b &gt; 0\end{split}\]</div>
+\[\begin{split}\left(- z^{q} p + b\right)^{a - 1} \theta\left(- z + \left(\frac{b}{p}\right)^{\frac{1}{q}}\right) = b^{a - 1} \Gamma\left(a\right) {G_{1, 1}^{1, 0}\left(\begin{matrix}  &amp; a \\0 &amp;  \end{matrix} \middle| {\frac{z^{q} p}{b}} \right)},\text{ if } b &gt; 0\end{split}\]</div>
 <p>Functions involving <span class="math">\(\theta\left(- z^{q} p + 1\right)\)</span>, <span class="math">\(\log{\left (z^{q} p \right )}\)</span>:</p>
 <div class="math">
 \[\log^{n}{\left (z^{q} p \right )} \theta\left(- z^{q} p + 1\right) = \text{generated}\]</div>
@@ -780,7 +758,7 @@ of special functions is to be dealt with.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="../../index.html">
               <img class="logo" src="../../_static/sympylogo.png" alt="Logo"/>
@@ -808,19 +786,27 @@ of special functions is to be dealt with.</p>
 </li>
 <li><a class="reference internal" href="#implemented-g-function-formulae">Implemented G-Function Formulae</a></li>
 </ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="integrals.html"
-                        title="previous chapter">Symbolic Integrals</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="../logic.html"
-                        title="next chapter">Logic Module</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../../_sources/modules/integrals/g-functions.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">SymPy Modules Reference</a><ul>
+  <li><a href="integrals.html">Symbolic Integrals</a><ul>
+      <li>Previous: <a href="integrals.html" title="previous chapter">Symbolic Integrals</a></li>
+      <li>Next: <a href="../liealgebras/index.html" title="next chapter">Lie Algebra Module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/modules/integrals/g-functions.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">
       <input type="text" name="q" />
@@ -828,42 +814,26 @@ of special functions is to be dealt with.</p>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../logic.html" title="Logic Module"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="integrals.html" title="Symbolic Integrals"
-             >previous</a> |</li>
-        <li><a href="../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../index.html" >SymPy Modules Reference</a> &raquo;</li>
-          <li><a href="integrals.html" >Symbolic Integrals</a> &raquo;</li> 
-      </ul>
-    </div>
     <div class="footer">
-        &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Feb 22, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      &copy;2015 SymPy Development Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="../../_sources/modules/integrals/g-functions.txt"
+          rel="nofollow">Page source</a>
     </div>
+
+    
+
+    
   </body>
 </html>

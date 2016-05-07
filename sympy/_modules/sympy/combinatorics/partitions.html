@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.combinatorics.partitions &mdash; SymPy 0.7.5 documentation</title>
+    <title>sympy.combinatorics.partitions &mdash; SymPy 0.7.3 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.5',
+        VERSION:     '0.7.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -28,47 +26,30 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
-    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.5 documentation" href="../../../index.html" />
-    <link rel="up" title="sympy.combinatorics" href="../combinatorics.html" /> 
+    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../sympy.html" >sympy</a> &raquo;</li>
-          <li><a href="../combinatorics.html" accesskey="U">sympy.combinatorics</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for sympy.combinatorics.partitions</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
-
-<span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">Basic</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">sympify</span>
-<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">as_int</span><span class="p">,</span> <span class="n">default_sort_key</span><span class="p">,</span> <span class="nb">xrange</span>
+<span></span><span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">Basic</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">sympify</span>
+<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">as_int</span><span class="p">,</span> <span class="n">default_sort_key</span>
 <span class="kn">from</span> <span class="nn">sympy.functions.combinatorial.numbers</span> <span class="kn">import</span> <span class="n">bell</span>
 <span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="kn">import</span> <span class="n">zeros</span>
 <span class="kn">from</span> <span class="nn">sympy.utilities.iterables</span> <span class="kn">import</span> <span class="n">has_dups</span><span class="p">,</span> <span class="n">flatten</span><span class="p">,</span> <span class="n">group</span>
@@ -116,14 +97,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">args</span> <span class="o">=</span> <span class="n">partition</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">part</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">args</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Partition should be a list of lists.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Partition should be a list of lists.&quot;</span><span class="p">)</span>
 
-        <span class="c"># sort so we have a canonical reference for RGS</span>
+        <span class="c1"># sort so we have a canonical reference for RGS</span>
         <span class="n">partition</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">partition</span><span class="p">,</span> <span class="p">[]),</span> <span class="n">key</span><span class="o">=</span><span class="n">default_sort_key</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">has_dups</span><span class="p">(</span><span class="n">partition</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Partition contained duplicated elements.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Partition contained duplicated elements.&quot;</span><span class="p">)</span>
 
-        <span class="n">obj</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">FiniteSet</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">FiniteSet</span><span class="p">,</span> <span class="n">args</span><span class="p">)))</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">FiniteSet</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">FiniteSet</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
         <span class="n">obj</span><span class="o">.</span><span class="n">members</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">partition</span><span class="p">)</span>
         <span class="n">obj</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">partition</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj</span>
@@ -143,7 +124,7 @@
 <span class="sd">        &gt;&gt;&gt; a = Partition([[1, 2]])</span>
 <span class="sd">        &gt;&gt;&gt; b = Partition([[3, 4]])</span>
 <span class="sd">        &gt;&gt;&gt; c = Partition([[1, x]])</span>
-<span class="sd">        &gt;&gt;&gt; d = Partition([list(range(4))])</span>
+<span class="sd">        &gt;&gt;&gt; d = Partition([range(4)])</span>
 <span class="sd">        &gt;&gt;&gt; l = [d, b, a + 1, a, c]</span>
 <span class="sd">        &gt;&gt;&gt; l.sort(key=default_sort_key); l</span>
 <span class="sd">        [{{1, 2}}, {{1}, {2}}, {{1, x}}, {{3, 4}}, {{0, 1, 2, 3}}]</span>
@@ -153,10 +134,10 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">members</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">members</span><span class="p">,</span>
                              <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">default_sort_key</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">order</span><span class="p">)))</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">default_sort_key</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">members</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">)))</span>
-</div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">members</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span></div>
+
     <span class="nd">@property</span>
-<div class="viewcode-block" id="Partition.partition"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.Partition.partition">[docs]</a>    <span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return partition as a sorted list of lists.</span>
 
 <span class="sd">        Examples</span>
@@ -167,10 +148,9 @@
 <span class="sd">        [[1], [2, 3]]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partition</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_partition</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="nb">sorted</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">default_sort_key</span><span class="p">)</span>
-                                      <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_partition</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partition</span>
-</div>
+
     <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return permutation whose rank is ``other`` greater than current rank,</span>
@@ -252,7 +232,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sort_key</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">sympify</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="o">.</span><span class="n">sort_key</span><span class="p">()</span>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="Partition.rank"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.Partition.rank">[docs]</a>    <span class="k">def</span> <span class="nf">rank</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">rank</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets the rank of a partition.</span>
 
@@ -268,9 +248,9 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rank</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_rank</span> <span class="o">=</span> <span class="n">RGS_rank</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RGS</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rank</span>
-</div>
+
     <span class="nd">@property</span>
-<div class="viewcode-block" id="Partition.RGS"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.Partition.RGS">[docs]</a>    <span class="k">def</span> <span class="nf">RGS</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">RGS</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the &quot;restricted growth string&quot; of the partition.</span>
 
@@ -298,9 +278,8 @@
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">part</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">partition</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">part</span><span class="p">:</span>
                 <span class="n">rgs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">rgs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">partition</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">p</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="n">default_sort_key</span><span class="p">)])</span>
-</div>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">rgs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">partition</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">p</span><span class="p">)])</span>
+
     <span class="nd">@classmethod</span>
 <div class="viewcode-block" id="Partition.from_rgs"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.Partition.from_rgs">[docs]</a>    <span class="k">def</span> <span class="nf">from_rgs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rgs</span><span class="p">,</span> <span class="n">elements</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -325,7 +304,7 @@
 <span class="sd">        {{1, 4}, {2}, {3, 5}}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rgs</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;mismatch in rgs and element lengths&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;mismatch in rgs and element lengths&#39;</span><span class="p">)</span>
         <span class="n">max_elem</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">rgs</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="n">partition</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">max_elem</span><span class="p">)]</span>
         <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
@@ -333,10 +312,10 @@
             <span class="n">partition</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
             <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">partition</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;some blocks of the partition were empty.&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">Partition</span><span class="p">(</span><span class="n">partition</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;some blocks of the partition were empty.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Partition</span><span class="p">(</span><span class="n">partition</span><span class="p">)</span></div></div>
 
-</div></div>
+
 <div class="viewcode-block" id="IntegerPartition"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.IntegerPartition">[docs]</a><span class="k">class</span> <span class="nc">IntegerPartition</span><span class="p">(</span><span class="n">Basic</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class represents an integer partition.</span>
@@ -378,7 +357,7 @@
 <span class="sd">        &gt;&gt;&gt; a = IntegerPartition([5, 4, 3, 1, 1])</span>
 <span class="sd">        &gt;&gt;&gt; a</span>
 <span class="sd">        IntegerPartition(14, (5, 4, 3, 1, 1))</span>
-<span class="sd">        &gt;&gt;&gt; print(a)</span>
+<span class="sd">        &gt;&gt;&gt; print a</span>
 <span class="sd">        [5, 4, 3, 1, 1]</span>
 <span class="sd">        &gt;&gt;&gt; IntegerPartition({1:3, 2:1})</span>
 <span class="sd">        IntegerPartition(5, (2, 1, 1, 1))</span>
@@ -395,7 +374,7 @@
             <span class="n">integer</span><span class="p">,</span> <span class="n">partition</span> <span class="o">=</span> <span class="n">partition</span><span class="p">,</span> <span class="n">integer</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">partition</span><span class="p">,</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">Dict</span><span class="p">)):</span>
             <span class="n">_</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">partition</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">partition</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span><span class="p">:</span>
                     <span class="k">continue</span>
                 <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">as_int</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">as_int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
@@ -411,9 +390,9 @@
             <span class="n">integer</span> <span class="o">=</span> <span class="n">as_int</span><span class="p">(</span><span class="n">integer</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">sum_ok</span> <span class="ow">and</span> <span class="nb">sum</span><span class="p">(</span><span class="n">partition</span><span class="p">)</span> <span class="o">!=</span> <span class="n">integer</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Partition did not add to </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">integer</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Partition did not add to </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">integer</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">partition</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;The summands must all be positive.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The summands must all be positive.&quot;</span><span class="p">)</span>
 
         <span class="n">obj</span> <span class="o">=</span> <span class="n">Basic</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">integer</span><span class="p">,</span> <span class="n">partition</span><span class="p">)</span>
         <span class="n">obj</span><span class="o">.</span><span class="n">partition</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">partition</span><span class="p">)</span>
@@ -429,7 +408,7 @@
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.partitions import IntegerPartition</span>
 <span class="sd">        &gt;&gt;&gt; p = IntegerPartition([4])</span>
-<span class="sd">        &gt;&gt;&gt; print(p.prev_lex())</span>
+<span class="sd">        &gt;&gt;&gt; print p.prev_lex()</span>
 <span class="sd">        [3, 1]</span>
 <span class="sd">        &gt;&gt;&gt; p.partition &gt; p.prev_lex().partition</span>
 <span class="sd">        True</span>
@@ -455,8 +434,8 @@
                 <span class="k">if</span> <span class="n">left</span> <span class="o">-</span> <span class="n">new</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">d</span><span class="p">[</span><span class="n">new</span><span class="p">]</span> <span class="o">+=</span> <span class="n">left</span><span class="o">//</span><span class="n">new</span>
                     <span class="n">left</span> <span class="o">-=</span> <span class="n">d</span><span class="p">[</span><span class="n">new</span><span class="p">]</span><span class="o">*</span><span class="n">new</span>
-        <span class="k">return</span> <span class="n">IntegerPartition</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integer</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
-</div>
+        <span class="k">return</span> <span class="n">IntegerPartition</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integer</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="IntegerPartition.next_lex"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.IntegerPartition.next_lex">[docs]</a>    <span class="k">def</span> <span class="nf">next_lex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the next partition of the integer, n, in lexical order,</span>
 <span class="sd">        wrapping around to [n] if the partition is [1, ..., 1].</span>
@@ -466,7 +445,7 @@
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.partitions import IntegerPartition</span>
 <span class="sd">        &gt;&gt;&gt; p = IntegerPartition([3, 1])</span>
-<span class="sd">        &gt;&gt;&gt; print(p.next_lex())</span>
+<span class="sd">        &gt;&gt;&gt; print p.next_lex()</span>
 <span class="sd">        [4]</span>
 <span class="sd">        &gt;&gt;&gt; p.partition &lt; p.next_lex().partition</span>
 <span class="sd">        True</span>
@@ -505,8 +484,8 @@
                 <span class="n">need</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">*</span><span class="n">b</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">*</span><span class="n">a</span> <span class="o">-</span> <span class="n">b1</span>
                 <span class="n">d</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
                 <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">need</span>
-        <span class="k">return</span> <span class="n">IntegerPartition</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integer</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
-</div>
+        <span class="k">return</span> <span class="n">IntegerPartition</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integer</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="IntegerPartition.as_dict"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.IntegerPartition.as_dict">[docs]</a>    <span class="k">def</span> <span class="nf">as_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the partition as a dictionary whose keys are the</span>
 <span class="sd">        partition integers and the values are the multiplicity of that</span>
@@ -523,10 +502,10 @@
             <span class="n">groups</span> <span class="o">=</span> <span class="n">group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">partition</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span>
-</div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span></div>
+
     <span class="nd">@property</span>
-<div class="viewcode-block" id="IntegerPartition.conjugate"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.IntegerPartition.conjugate">[docs]</a>    <span class="k">def</span> <span class="nf">conjugate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">conjugate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the conjugate partition of itself.</span>
 
@@ -548,7 +527,7 @@
                 <span class="n">k</span> <span class="o">-=</span> <span class="mi">1</span>
             <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">b</span>
-</div>
+
     <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return True if self is less than other when the partition</span>
 <span class="sd">        is listed from smallest to biggest.</span>
@@ -582,7 +561,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">partition</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">partition</span><span class="p">))</span>
 
-<div class="viewcode-block" id="IntegerPartition.as_ferrers"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.IntegerPartition.as_ferrers">[docs]</a>    <span class="k">def</span> <span class="nf">as_ferrers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">char</span><span class="o">=</span><span class="s">&#39;#&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="IntegerPartition.as_ferrers"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.IntegerPartition.as_ferrers">[docs]</a>    <span class="k">def</span> <span class="nf">as_ferrers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">char</span><span class="o">=</span><span class="s1">&#39;#&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prints the ferrer diagram of a partition.</span>
 
@@ -590,17 +569,17 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.partitions import IntegerPartition</span>
-<span class="sd">        &gt;&gt;&gt; print(IntegerPartition([1, 1, 5]).as_ferrers())</span>
+<span class="sd">        &gt;&gt;&gt; print IntegerPartition([1, 1, 5]).as_ferrers()</span>
 <span class="sd">        #####</span>
 <span class="sd">        #</span>
 <span class="sd">        #</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">char</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">partition</span><span class="p">])</span>
-</div>
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">partition</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">char</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">partition</span><span class="p">])</span></div>
 
-</div>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">partition</span><span class="p">))</span></div>
+
+
 <div class="viewcode-block" id="random_integer_partition"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.random_integer_partition">[docs]</a><span class="k">def</span> <span class="nf">random_integer_partition</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates a random integer partition summing to ``n`` as a list</span>
@@ -625,7 +604,7 @@
 
     <span class="n">n</span> <span class="o">=</span> <span class="n">as_int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;n must be a positive integer&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;n must be a positive integer&#39;</span><span class="p">)</span>
 
     <span class="n">randint</span> <span class="o">=</span> <span class="n">_randint</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
 
@@ -637,9 +616,9 @@
         <span class="n">n</span> <span class="o">-=</span> <span class="n">k</span><span class="o">*</span><span class="n">mult</span>
     <span class="n">partition</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">partition</span> <span class="o">=</span> <span class="n">flatten</span><span class="p">([[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">m</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">partition</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">partition</span>
+    <span class="k">return</span> <span class="n">partition</span></div>
 
-</div>
+
 <div class="viewcode-block" id="RGS_generalized"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.RGS_generalized">[docs]</a><span class="k">def</span> <span class="nf">RGS_generalized</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the m + 1 generalized unrestricted growth strings</span>
@@ -669,9 +648,9 @@
                 <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">return</span> <span class="n">d</span>
+    <span class="k">return</span> <span class="n">d</span></div>
 
-</div>
+
 <div class="viewcode-block" id="RGS_enum"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.RGS_enum">[docs]</a><span class="k">def</span> <span class="nf">RGS_enum</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    RGS_enum computes the total number of restricted growth strings</span>
@@ -692,7 +671,7 @@
 <span class="sd">    We can check that the enumeration is correct by actually generating</span>
 <span class="sd">    the partitions. Here, the 15 partitions of 4 items are generated:</span>
 
-<span class="sd">    &gt;&gt;&gt; a = Partition([list(range(4))])</span>
+<span class="sd">    &gt;&gt;&gt; a = Partition([range(4)])</span>
 <span class="sd">    &gt;&gt;&gt; s = set()</span>
 <span class="sd">    &gt;&gt;&gt; for i in range(20):</span>
 <span class="sd">    ...     s.add(a)</span>
@@ -706,9 +685,9 @@
     <span class="k">elif</span> <span class="p">(</span><span class="n">m</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">bell</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">bell</span><span class="p">(</span><span class="n">m</span><span class="p">)</span></div>
 
-</div>
+
 <div class="viewcode-block" id="RGS_unrank"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.RGS_unrank">[docs]</a><span class="k">def</span> <span class="nf">RGS_unrank</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gives the unranked restricted growth string for a given</span>
@@ -724,9 +703,9 @@
 <span class="sd">    [0, 0, 0, 0]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;The superset size must be &gt;= 1&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The superset size must be &gt;= 1&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">rank</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">RGS_enum</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">rank</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Invalid arguments&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid arguments&quot;</span><span class="p">)</span>
 
     <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span>
@@ -741,9 +720,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rank</span> <span class="o">/</span> <span class="n">v</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
             <span class="n">rank</span> <span class="o">%=</span> <span class="n">v</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+    <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span></div>
 
-</div>
+
 <div class="viewcode-block" id="RGS_rank"><a class="viewcode-back" href="../../../modules/combinatorics/partitions.html#sympy.combinatorics.partitions.RGS_rank">[docs]</a><span class="k">def</span> <span class="nf">RGS_rank</span><span class="p">(</span><span class="n">rgs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the rank of a restricted growth string.</span>
@@ -770,12 +749,20 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="../../../index.html">
               <img class="logo" src="../../../_static/sympylogo.png" alt="Logo"/>
-            </a></p>
-<div id="searchbox" style="display: none">
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -783,37 +770,23 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../sympy.html" >sympy</a> &raquo;</li>
-          <li><a href="../combinatorics.html" >sympy.combinatorics</a> &raquo;</li> 
-      </ul>
-    </div>
     <div class="footer">
-        &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Feb 22, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      &copy;2015 SymPy Development Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
     </div>
+
+    
+
+    
   </body>
 </html>

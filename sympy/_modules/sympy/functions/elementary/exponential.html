@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.functions.elementary.exponential &mdash; SymPy 0.7.5 documentation</title>
+    <title>sympy.functions.elementary.exponential &mdash; SymPy 0.7.3 documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '0.7.5',
+        VERSION:     '0.7.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -28,45 +26,29 @@
     <script type="text/javascript" src="../../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
-    <script type="text/javascript" src="../../../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.5 documentation" href="../../../../index.html" />
-    <link rel="up" title="sympy" href="../../../sympy.html" /> 
+    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../../sympy.html" accesskey="U">sympy</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for sympy.functions.elementary.exponential</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
-
-<span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">C</span><span class="p">,</span> <span class="n">sympify</span>
+<span></span><span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">C</span><span class="p">,</span> <span class="n">sympify</span>
 <span class="kn">from</span> <span class="nn">sympy.core.add</span> <span class="kn">import</span> <span class="n">Add</span>
 <span class="kn">from</span> <span class="nn">sympy.core.function</span> <span class="kn">import</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">Function</span><span class="p">,</span> <span class="n">ArgumentIndexError</span>
 <span class="kn">from</span> <span class="nn">sympy.core.cache</span> <span class="kn">import</span> <span class="n">cacheit</span>
@@ -76,22 +58,22 @@
 
 <span class="kn">from</span> <span class="nn">sympy.functions.elementary.miscellaneous</span> <span class="kn">import</span> <span class="n">sqrt</span>
 <span class="kn">from</span> <span class="nn">sympy.ntheory</span> <span class="kn">import</span> <span class="n">multiplicity</span><span class="p">,</span> <span class="n">perfect_power</span>
-<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="nb">xrange</span>
 
-<span class="c"># NOTE IMPORTANT</span>
-<span class="c"># The series expansion code in this file is an important part of the gruntz</span>
-<span class="c"># algorithm for determining limits. _eval_nseries has to return a generalized</span>
-<span class="c"># power series with coefficients in C(log(x), log).</span>
-<span class="c"># In more detail, the result of _eval_nseries(self, x, n) must be</span>
-<span class="c">#   c_0*x**e_0 + ... (finitely many terms)</span>
-<span class="c"># where e_i are numbers (not necessarily integers) and c_i involve only</span>
-<span class="c"># numbers, the function log, and log(x). [This also means it must not contain</span>
-<span class="c"># log(x(1+p)), this *has* to be expanded to log(x)+log(1+p) if x.is_positive and</span>
-<span class="c"># p.is_positive.]</span>
+<span class="c1"># NOTE IMPORTANT</span>
+<span class="c1"># The series expansion code in this file is an important part of the gruntz</span>
+<span class="c1"># algorithm for determining limits. _eval_nseries has to return a generalized</span>
+<span class="c1"># power series with coefficients in C(log(x), log).</span>
+<span class="c1"># In more detail, the result of _eval_nseries(self, x, n) must be</span>
+<span class="c1">#   c_0*x**e_0 + ... (finitely many terms)</span>
+<span class="c1"># where e_i are numbers (not necessarily integers) and c_i involve only</span>
+<span class="c1"># numbers, the function log, and log(x). [This also means it must not contain</span>
+<span class="c1"># log(x(1+p)), this *has* to be expanded to log(x)+log(1+p) if x.is_positive and</span>
+<span class="c1"># p.is_positive.]</span>
 
 
 <span class="k">class</span> <span class="nc">ExpBase</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
 
+    <span class="n">nargs</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">unbranched</span> <span class="o">=</span> <span class="bp">True</span>
 
     <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argindex</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -114,8 +96,8 @@
 <span class="sd">        &gt;&gt;&gt; exp(x).as_numer_denom()</span>
 <span class="sd">        (exp(x), 1)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c"># this should be the same as Pow.as_numer_denom wrt</span>
-        <span class="c"># exponent handling</span>
+        <span class="c1"># this should be the same as Pow.as_numer_denom wrt</span>
+        <span class="c1"># exponent handling</span>
         <span class="n">exp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp</span>
         <span class="n">neg_exp</span> <span class="o">=</span> <span class="n">exp</span><span class="o">.</span><span class="n">is_negative</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">neg_exp</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="o">-</span><span class="n">exp</span><span class="p">)</span><span class="o">.</span><span class="n">is_negative</span><span class="p">:</span>
@@ -171,7 +153,7 @@
             <span class="k">return</span> <span class="n">rv</span>
         <span class="k">if</span> <span class="n">be</span><span class="o">.</span><span class="n">is_real</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">rv</span>
-        <span class="c"># &quot;is True&quot; needed below; exp.is_polar returns &lt;property object ...&gt;</span>
+        <span class="c1"># &quot;is True&quot; needed below; exp.is_polar returns &lt;property object ...&gt;</span>
         <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">is_polar</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">rv</span>
         <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">is_polar</span><span class="p">:</span>
@@ -179,7 +161,7 @@
         <span class="k">if</span> <span class="n">be</span><span class="o">.</span><span class="n">is_polar</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">rv</span>
         <span class="n">besmall</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">be</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">S</span><span class="o">.</span><span class="n">Pi</span>
-        <span class="k">if</span> <span class="n">besmall</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">besmall</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">rv</span>
         <span class="k">elif</span> <span class="n">besmall</span> <span class="ow">is</span> <span class="bp">False</span> <span class="ow">and</span> <span class="n">e</span><span class="o">.</span><span class="n">is_Rational</span> <span class="ow">and</span> <span class="n">e</span><span class="o">.</span><span class="n">q</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="k">return</span> <span class="o">-</span><span class="n">rv</span>
@@ -227,7 +209,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">is_polar</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="n">is_comparable</span> <span class="o">=</span> <span class="bp">False</span>  <span class="c"># cannot be evalf&#39;d</span>
+    <span class="n">is_comparable</span> <span class="o">=</span> <span class="bp">False</span>  <span class="c1"># cannot be evalf&#39;d</span>
 
     <span class="k">def</span> <span class="nf">_eval_Abs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">expand_mul</span>
@@ -238,10 +220,10 @@
         <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">im</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">re</span>
         <span class="n">i</span> <span class="o">=</span> <span class="n">im</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">pi</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">pi</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span>  <span class="c"># cannot evalf for this argument</span>
+            <span class="k">return</span> <span class="bp">self</span>  <span class="c1"># cannot evalf for this argument</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">_eval_evalf</span><span class="p">(</span><span class="n">prec</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">im</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c"># i ~ pi, but exp(I*i) evaluated to argument slightly bigger than pi</span>
+            <span class="c1"># i ~ pi, but exp(I*i) evaluated to argument slightly bigger than pi</span>
             <span class="k">return</span> <span class="n">re</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">res</span>
 
@@ -250,7 +232,7 @@
             <span class="k">return</span> <span class="bp">True</span>
 
     <span class="k">def</span> <span class="nf">as_base_exp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c"># XXX exp_polar(0) is special!</span>
+        <span class="c1"># XXX exp_polar(0) is special!</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="p">,</span> <span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ExpBase</span><span class="o">.</span><span class="n">as_base_exp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -273,8 +255,8 @@
         <span class="k">if</span> <span class="n">argindex</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ArgumentIndexError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argindex</span><span class="p">)</span>
-</div>
+            <span class="k">raise</span> <span class="n">ArgumentIndexError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argindex</span><span class="p">)</span></div>
+
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">arg</span><span class="o">.</span><span class="n">is_Number</span><span class="p">:</span>
@@ -307,14 +289,14 @@
                     <span class="k">elif</span> <span class="p">(</span><span class="n">coeff</span> <span class="o">+</span> <span class="n">S</span><span class="o">.</span><span class="n">Half</span><span class="p">)</span><span class="o">.</span><span class="n">is_odd</span><span class="p">:</span>
                         <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">ImaginaryUnit</span>
 
-            <span class="c"># Warning: code in risch.py will be very sensitive to changes</span>
-            <span class="c"># in this (see DifferentialExtension).</span>
+            <span class="c1"># Warning: code in risch.py will be very sensitive to changes</span>
+            <span class="c1"># in this (see DifferentialExtension).</span>
 
-            <span class="c"># look for a single log factor</span>
+            <span class="c1"># look for a single log factor</span>
 
             <span class="n">coeff</span><span class="p">,</span> <span class="n">terms</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">as_coeff_Mul</span><span class="p">()</span>
 
-            <span class="c"># but it can&#39;t be multiplied by oo</span>
+            <span class="c1"># but it can&#39;t be multiplied by oo</span>
             <span class="k">if</span> <span class="n">coeff</span> <span class="ow">in</span> <span class="p">[</span><span class="n">S</span><span class="o">.</span><span class="n">NegativeInfinity</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">Infinity</span><span class="p">]:</span>
                 <span class="k">return</span> <span class="bp">None</span>
 
@@ -347,17 +329,13 @@
             <span class="k">if</span> <span class="n">out</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="n">out</span><span class="p">)</span><span class="o">*</span><span class="n">cls</span><span class="p">(</span><span class="n">Add</span><span class="p">(</span><span class="o">*</span><span class="n">add</span><span class="p">),</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
-        <span class="k">elif</span> <span class="n">arg</span><span class="o">.</span><span class="n">is_Matrix</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Matrix</span>
-            <span class="k">return</span> <span class="n">arg</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
-
     <span class="nd">@property</span>
-<div class="viewcode-block" id="exp.base"><a class="viewcode-back" href="../../../../modules/functions/elementary.html#sympy.functions.elementary.exponential.exp.base">[docs]</a>    <span class="k">def</span> <span class="nf">base</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">base</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the base of the exponential function.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">Exp1</span>
-</div>
+
     <span class="nd">@staticmethod</span>
     <span class="nd">@cacheit</span>
 <div class="viewcode-block" id="exp.taylor_term"><a class="viewcode-back" href="../../../../modules/functions/elementary.html#sympy.functions.elementary.exponential.exp.taylor_term">[docs]</a>    <span class="k">def</span> <span class="nf">taylor_term</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">previous_terms</span><span class="p">):</span>
@@ -373,8 +351,8 @@
             <span class="n">p</span> <span class="o">=</span> <span class="n">previous_terms</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">p</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">p</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">n</span>
-        <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="n">n</span><span class="o">/</span><span class="n">C</span><span class="o">.</span><span class="n">factorial</span><span class="p">()(</span><span class="n">n</span><span class="p">)</span>
-</div>
+        <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="n">n</span><span class="o">/</span><span class="n">C</span><span class="o">.</span><span class="n">factorial</span><span class="p">()(</span><span class="n">n</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="exp.as_real_imag"><a class="viewcode-back" href="../../../../modules/functions/elementary.html#sympy.functions.elementary.exponential.exp.as_real_imag">[docs]</a>    <span class="k">def</span> <span class="nf">as_real_imag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="o">**</span><span class="n">hints</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns this function as a 2-tuple representing a complex number.</span>
@@ -405,15 +383,15 @@
             <span class="n">re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">deep</span><span class="p">,</span> <span class="o">**</span><span class="n">hints</span><span class="p">)</span>
             <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">deep</span><span class="p">,</span> <span class="o">**</span><span class="n">hints</span><span class="p">)</span>
         <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">im</span><span class="p">),</span> <span class="n">C</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">re</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">re</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">)</span>
-</div>
+        <span class="k">return</span> <span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">re</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">,</span> <span class="n">exp</span><span class="p">(</span><span class="n">re</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">)</span></div>
+
     <span class="k">def</span> <span class="nf">_eval_subs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">):</span>
         <span class="n">arg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">o</span> <span class="o">=</span> <span class="n">old</span>
-        <span class="k">if</span> <span class="n">old</span><span class="o">.</span><span class="n">is_Pow</span><span class="p">:</span>  <span class="c"># handle (exp(3*log(x))).subs(x**2, z) -&gt; z**(3/2)</span>
+        <span class="k">if</span> <span class="n">old</span><span class="o">.</span><span class="n">is_Pow</span><span class="p">:</span>  <span class="c1"># handle (exp(3*log(x))).subs(x**2, z) -&gt; z**(3/2)</span>
             <span class="n">o</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">exp</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">base</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">o</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="n">exp</span><span class="p">:</span>
-            <span class="c"># exp(a*expr) .subs( exp(b*expr), y )  -&gt;  y ** (a/b)</span>
+            <span class="c1"># exp(a*expr) .subs( exp(b*expr), y )  -&gt;  y ** (a/b)</span>
             <span class="n">a</span><span class="p">,</span> <span class="n">expr_terms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">as_independent</span><span class="p">(</span>
                 <span class="n">C</span><span class="o">.</span><span class="n">Symbol</span><span class="p">,</span> <span class="n">as_Add</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
             <span class="n">b</span><span class="p">,</span> <span class="n">expr_terms_</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">as_independent</span><span class="p">(</span>
@@ -422,8 +400,8 @@
             <span class="k">if</span> <span class="n">expr_terms</span> <span class="o">==</span> <span class="n">expr_terms_</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">new</span><span class="o">**</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">arg</span><span class="o">.</span><span class="n">is_Add</span><span class="p">:</span>  <span class="c"># exp(2*x+a).subs(exp(3*x),y) -&gt; y**(2/3) * exp(a)</span>
-                <span class="c"># exp(exp(x) + exp(x**2)).subs(exp(exp(x)), w) -&gt; w * exp(exp(x**2))</span>
+            <span class="k">if</span> <span class="n">arg</span><span class="o">.</span><span class="n">is_Add</span><span class="p">:</span>  <span class="c1"># exp(2*x+a).subs(exp(3*x),y) -&gt; y**(2/3) * exp(a)</span>
+                <span class="c1"># exp(exp(x) + exp(x**2)).subs(exp(exp(x)), w) -&gt; w * exp(exp(x**2))</span>
                 <span class="n">oarg</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="n">new_l</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="n">o_al</span> <span class="o">=</span> <span class="p">[]</span>
@@ -440,8 +418,8 @@
                     <span class="n">r</span> <span class="o">=</span> <span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="n">new_l</span><span class="p">)</span>
                     <span class="k">return</span> <span class="n">r</span>
         <span class="k">if</span> <span class="n">o</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">Exp1</span><span class="p">:</span>
-            <span class="c"># treat this however Pow is being treated</span>
-            <span class="n">u</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Dummy</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="c1"># treat this however Pow is being treated</span>
+            <span class="n">u</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Dummy</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">xreplace</span><span class="p">({</span><span class="n">u</span><span class="p">:</span> <span class="n">new</span><span class="p">})</span>
 
         <span class="k">return</span> <span class="n">Function</span><span class="o">.</span><span class="n">_eval_subs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
@@ -460,9 +438,18 @@
             <span class="n">arg2</span> <span class="o">=</span> <span class="o">-</span><span class="n">S</span><span class="o">.</span><span class="n">ImaginaryUnit</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">S</span><span class="o">.</span><span class="n">Pi</span>
             <span class="k">return</span> <span class="n">arg2</span><span class="o">.</span><span class="n">is_even</span>
 
+    <span class="k">def</span> <span class="nf">_eval_lseries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">yield</span> <span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">integrate</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">Dummy</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t</span><span class="p">))</span><span class="o">.</span><span class="n">lseries</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">integrate</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+
     <span class="k">def</span> <span class="nf">_eval_nseries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">logx</span><span class="p">):</span>
-        <span class="c"># NOTE Please see the comment at the beginning of this file, labelled</span>
-        <span class="c">#      IMPORTANT.</span>
+        <span class="c1"># NOTE Please see the comment at the beginning of this file, labelled</span>
+        <span class="c1">#      IMPORTANT.</span>
         <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">limit</span><span class="p">,</span> <span class="n">oo</span><span class="p">,</span> <span class="n">powsimp</span>
         <span class="n">arg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">arg_series</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">_eval_nseries</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">logx</span><span class="o">=</span><span class="n">logx</span><span class="p">)</span>
@@ -471,14 +458,14 @@
         <span class="n">arg0</span> <span class="o">=</span> <span class="n">limit</span><span class="p">(</span><span class="n">arg_series</span><span class="o">.</span><span class="n">removeO</span><span class="p">(),</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">arg0</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="n">oo</span><span class="p">,</span> <span class="n">oo</span><span class="p">]:</span>
             <span class="k">return</span> <span class="bp">self</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="n">Dummy</span><span class="p">(</span><span class="s">&quot;t&quot;</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">Dummy</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
         <span class="n">exp_series</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">_taylor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
         <span class="n">o</span> <span class="o">=</span> <span class="n">exp_series</span><span class="o">.</span><span class="n">getO</span><span class="p">()</span>
         <span class="n">exp_series</span> <span class="o">=</span> <span class="n">exp_series</span><span class="o">.</span><span class="n">removeO</span><span class="p">()</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">arg0</span><span class="p">)</span><span class="o">*</span><span class="n">exp_series</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">arg_series</span> <span class="o">-</span> <span class="n">arg0</span><span class="p">)</span>
         <span class="n">r</span> <span class="o">+=</span> <span class="n">C</span><span class="o">.</span><span class="n">Order</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="n">arg_series</span> <span class="o">-</span> <span class="n">arg0</span><span class="p">)),</span> <span class="n">x</span><span class="p">)</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">expand</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">powsimp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">combine</span><span class="o">=</span><span class="s">&#39;exp&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">powsimp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">combine</span><span class="o">=</span><span class="s1">&#39;exp&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_taylor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
         <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
@@ -508,9 +495,9 @@
 
     <span class="k">def</span> <span class="nf">_sage_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">import</span> <span class="nn">sage.all</span> <span class="kn">as</span> <span class="nn">sage</span>
-        <span class="k">return</span> <span class="n">sage</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_sage_</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">sage</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_sage_</span><span class="p">())</span></div>
 
-</div>
+
 <div class="viewcode-block" id="log"><a class="viewcode-back" href="../../../../modules/functions/elementary.html#sympy.functions.elementary.exponential.log">[docs]</a><span class="k">class</span> <span class="nc">log</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The natural logarithm function `\ln(x)` or `\log(x)`.</span>
@@ -524,23 +511,25 @@
 <span class="sd">    exp</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+    <span class="n">nargs</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
 <div class="viewcode-block" id="log.fdiff"><a class="viewcode-back" href="../../../../modules/functions/elementary.html#sympy.functions.elementary.exponential.log.fdiff">[docs]</a>    <span class="k">def</span> <span class="nf">fdiff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argindex</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the first derivative of the function.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">argindex</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Dummy</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">)</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Dummy</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">Lambda</span><span class="p">(</span><span class="n">s</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">s</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ArgumentIndexError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argindex</span><span class="p">)</span>
-</div>
+            <span class="k">raise</span> <span class="n">ArgumentIndexError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argindex</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="log.inverse"><a class="viewcode-back" href="../../../../modules/functions/elementary.html#sympy.functions.elementary.exponential.log.inverse">[docs]</a>    <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argindex</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns `e^x`, the inverse function of `\log(x)`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">exp</span>
-</div>
+        <span class="k">return</span> <span class="n">exp</span></div>
+
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">unpolarify</span>
@@ -554,8 +543,8 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">ComplexInfinity</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="c"># handle extraction of powers of the base now</span>
-                <span class="c"># or else expand_log in Mul would have to handle this</span>
+                <span class="c1"># handle extraction of powers of the base now</span>
+                <span class="c1"># or else expand_log in Mul would have to handle this</span>
                 <span class="n">n</span> <span class="o">=</span> <span class="n">multiplicity</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">n</span><span class="p">:</span>
                     <span class="n">den</span> <span class="o">=</span> <span class="n">base</span><span class="o">**</span><span class="n">n</span>
@@ -596,7 +585,7 @@
             <span class="k">return</span> <span class="n">arg</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">elif</span> <span class="n">arg</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="n">exp_polar</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">unpolarify</span><span class="p">(</span><span class="n">arg</span><span class="o">.</span><span class="n">exp</span><span class="p">)</span>
-        <span class="c">#don&#39;t autoexpand Pow or Mul (see the issue 252):</span>
+        <span class="c1">#don&#39;t autoexpand Pow or Mul (see the issue 252):</span>
         <span class="k">elif</span> <span class="ow">not</span> <span class="n">arg</span><span class="o">.</span><span class="n">is_Add</span><span class="p">:</span>
             <span class="n">coeff</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">as_coefficient</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">ImaginaryUnit</span><span class="p">)</span>
 
@@ -615,11 +604,11 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns this function in the form (base, exponent).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">One</span>
-</div>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">One</span></div>
+
     <span class="nd">@staticmethod</span>
     <span class="nd">@cacheit</span>
-<div class="viewcode-block" id="log.taylor_term"><a class="viewcode-back" href="../../../../modules/functions/elementary.html#sympy.functions.elementary.exponential.log.taylor_term">[docs]</a>    <span class="k">def</span> <span class="nf">taylor_term</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">previous_terms</span><span class="p">):</span>  <span class="c"># of log(1+x)</span>
+<div class="viewcode-block" id="log.taylor_term"><a class="viewcode-back" href="../../../../modules/functions/elementary.html#sympy.functions.elementary.exponential.log.taylor_term">[docs]</a>    <span class="k">def</span> <span class="nf">taylor_term</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">previous_terms</span><span class="p">):</span>  <span class="c1"># of log(1+x)</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the next term in the Taylor series expansion of `\log(1+x)`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -632,16 +621,16 @@
         <span class="k">if</span> <span class="n">previous_terms</span><span class="p">:</span>
             <span class="n">p</span> <span class="o">=</span> <span class="n">previous_terms</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">p</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">powsimp</span><span class="p">((</span><span class="o">-</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">deep</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">combine</span><span class="o">=</span><span class="s">&#39;exp&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-</div>
+                <span class="k">return</span> <span class="n">powsimp</span><span class="p">((</span><span class="o">-</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">deep</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">combine</span><span class="o">=</span><span class="s1">&#39;exp&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+
     <span class="k">def</span> <span class="nf">_eval_expand_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="o">**</span><span class="n">hints</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">unpolarify</span>
         <span class="kn">from</span> <span class="nn">sympy.concrete</span> <span class="kn">import</span> <span class="n">Sum</span><span class="p">,</span> <span class="n">Product</span>
-        <span class="n">force</span> <span class="o">=</span> <span class="n">hints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;force&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+        <span class="n">force</span> <span class="o">=</span> <span class="n">hints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;force&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
         <span class="n">arg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">arg</span><span class="o">.</span><span class="n">is_Integer</span><span class="p">:</span>
-            <span class="c"># remove perfect powers</span>
+            <span class="c1"># remove perfect powers</span>
             <span class="n">p</span> <span class="o">=</span> <span class="n">perfect_power</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span>
             <span class="k">if</span> <span class="n">p</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">False</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -655,10 +644,6 @@
                         <span class="n">expr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">_eval_expand_log</span><span class="p">(</span><span class="o">**</span><span class="n">hints</span><span class="p">))</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">expr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">x</span><span class="o">.</span><span class="n">is_negative</span><span class="p">:</span>
-                    <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
-                    <span class="n">expr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-                    <span class="n">nonpos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">NegativeOne</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">nonpos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">Add</span><span class="p">(</span><span class="o">*</span><span class="n">expr</span><span class="p">)</span> <span class="o">+</span> <span class="n">log</span><span class="p">(</span><span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="n">nonpos</span><span class="p">))</span>
@@ -677,12 +662,6 @@
                 <span class="k">return</span> <span class="n">Sum</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">arg</span><span class="o">.</span><span class="n">function</span><span class="p">),</span> <span class="o">*</span><span class="n">arg</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_eval_simplify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ratio</span><span class="p">,</span> <span class="n">measure</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">sympy.simplify.simplify</span> <span class="kn">import</span> <span class="n">expand_log</span><span class="p">,</span> <span class="n">logcombine</span><span class="p">,</span> <span class="n">simplify</span>
-        <span class="n">expr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">simplify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ratio</span><span class="o">=</span><span class="n">ratio</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="n">measure</span><span class="p">))</span>
-        <span class="n">expr</span> <span class="o">=</span> <span class="n">expand_log</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">min</span><span class="p">([</span><span class="n">expr</span><span class="p">,</span> <span class="bp">self</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="n">measure</span><span class="p">)</span>
 
 <div class="viewcode-block" id="log.as_real_imag"><a class="viewcode-back" href="../../../../modules/functions/elementary.html#sympy.functions.elementary.exponential.log.as_real_imag">[docs]</a>    <span class="k">def</span> <span class="nf">as_real_imag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="o">**</span><span class="n">hints</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -710,12 +689,12 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">abs</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">arg</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">arg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">if</span> <span class="n">hints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;log&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">):</span>  <span class="c"># Expand the log</span>
-            <span class="n">hints</span><span class="p">[</span><span class="s">&#39;complex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">hints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">):</span>  <span class="c1"># Expand the log</span>
+            <span class="n">hints</span><span class="p">[</span><span class="s1">&#39;complex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="nb">abs</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">deep</span><span class="p">,</span> <span class="o">**</span><span class="n">hints</span><span class="p">),</span> <span class="n">arg</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="nb">abs</span><span class="p">),</span> <span class="n">arg</span><span class="p">)</span>
-</div>
+            <span class="k">return</span> <span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="nb">abs</span><span class="p">),</span> <span class="n">arg</span><span class="p">)</span></div>
+
     <span class="k">def</span> <span class="nf">_eval_is_rational</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">func</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">:</span>
@@ -740,11 +719,12 @@
                 <span class="k">return</span> <span class="bp">True</span>
             <span class="k">if</span> <span class="n">arg</span><span class="o">.</span><span class="n">is_infinitesimal</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">False</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">arg</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">is_positive</span>
+            <span class="k">if</span> <span class="n">arg</span><span class="o">.</span><span class="n">is_Number</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">arg</span> <span class="o">&gt;</span> <span class="mi">1</span>
 
     <span class="k">def</span> <span class="nf">_eval_is_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c"># XXX This is not quite useless. Try evaluating log(0.5).is_negative</span>
-        <span class="c">#     without it. There&#39;s probably a nicer way though.</span>
+        <span class="c1"># XXX This is not quite useless. Try evaluating log(0.5).is_negative</span>
+        <span class="c1">#     without it. There&#39;s probably a nicer way though.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">One</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">True</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">is_number</span><span class="p">:</span>
@@ -753,25 +733,25 @@
             <span class="k">return</span> <span class="bp">False</span>
 
     <span class="k">def</span> <span class="nf">_eval_nseries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">logx</span><span class="p">):</span>
-        <span class="c"># NOTE Please see the comment at the beginning of this file, labelled</span>
-        <span class="c">#      IMPORTANT.</span>
+        <span class="c1"># NOTE Please see the comment at the beginning of this file, labelled</span>
+        <span class="c1">#      IMPORTANT.</span>
         <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">cancel</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">logx</span><span class="p">:</span>
             <span class="n">logx</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">logx</span>
         <span class="n">arg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">k</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">Wild</span><span class="p">(</span><span class="s">&quot;k&quot;</span><span class="p">),</span> <span class="n">Wild</span><span class="p">(</span><span class="s">&quot;l&quot;</span><span class="p">)</span>
+        <span class="n">k</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">Wild</span><span class="p">(</span><span class="s2">&quot;k&quot;</span><span class="p">),</span> <span class="n">Wild</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">)</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="n">l</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="c">#k = r.get(r, S.One)</span>
-            <span class="c">#l = r.get(l, S.Zero)</span>
+            <span class="c1">#k = r.get(r, S.One)</span>
+            <span class="c1">#l = r.get(l, S.Zero)</span>
             <span class="n">k</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">l</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">l</span><span class="o">.</span><span class="n">has</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">k</span><span class="o">.</span><span class="n">has</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-                <span class="n">r</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="n">l</span><span class="o">*</span><span class="n">logx</span>  <span class="c"># XXX true regardless of assumptions?</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="n">l</span><span class="o">*</span><span class="n">logx</span>  <span class="c1"># XXX true regardless of assumptions?</span>
                 <span class="k">return</span> <span class="n">r</span>
 
-        <span class="c"># TODO new and probably slow</span>
+        <span class="c1"># TODO new and probably slow</span>
         <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nseries</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">logx</span><span class="o">=</span><span class="n">logx</span><span class="p">)</span>
         <span class="k">while</span> <span class="n">s</span><span class="o">.</span><span class="n">is_Order</span><span class="p">:</span>
             <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -794,9 +774,9 @@
 
     <span class="k">def</span> <span class="nf">_sage_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">import</span> <span class="nn">sage.all</span> <span class="kn">as</span> <span class="nn">sage</span>
-        <span class="k">return</span> <span class="n">sage</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_sage_</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">sage</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_sage_</span><span class="p">())</span></div>
 
-</div>
+
 <div class="viewcode-block" id="LambertW"><a class="viewcode-back" href="../../../../modules/functions/elementary.html#sympy.functions.elementary.exponential.LambertW">[docs]</a><span class="k">class</span> <span class="nc">LambertW</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Lambert W function, defined as the inverse function of</span>
 <span class="sd">    x*exp(x). This function represents the principal branch</span>
@@ -806,6 +786,7 @@
 <span class="sd">    For more information, see:</span>
 <span class="sd">    http://en.wikipedia.org/wiki/Lambert_W_function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nargs</span> <span class="o">=</span> <span class="mi">1</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
@@ -828,20 +809,28 @@
             <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">LambertW</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">LambertW</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ArgumentIndexError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argindex</span><span class="p">)</span>
-</div></div>
+            <span class="k">raise</span> <span class="n">ArgumentIndexError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argindex</span><span class="p">)</span></div></div>
+
 <span class="kn">from</span> <span class="nn">sympy.core.function</span> <span class="kn">import</span> <span class="n">_coeff_isneg</span>
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="../../../../index.html">
               <img class="logo" src="../../../../_static/sympylogo.png" alt="Logo"/>
-            </a></p>
-<div id="searchbox" style="display: none">
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../../search.html" method="get">
       <input type="text" name="q" />
@@ -849,36 +838,23 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../../sympy.html" >sympy</a> &raquo;</li> 
-      </ul>
-    </div>
     <div class="footer">
-        &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Feb 22, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      &copy;2015 SymPy Development Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
     </div>
+
+    
+
+    
   </body>
 </html>

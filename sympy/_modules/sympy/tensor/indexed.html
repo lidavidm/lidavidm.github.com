@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.tensor.indexed &mdash; SymPy 0.7.5 documentation</title>
+    <title>sympy.tensor.indexed &mdash; SymPy 0.7.3 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.5',
+        VERSION:     '0.7.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -28,43 +26,29 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
-    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.5 documentation" href="../../../index.html" />
-    <link rel="up" title="sympy" href="../../sympy.html" /> 
+    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../sympy.html" accesskey="U">sympy</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for sympy.tensor.indexed</h1><div class="highlight"><pre>
-<span class="sd">&quot;&quot;&quot;Module that defines indexed objects</span>
+<span></span><span class="sd">&quot;&quot;&quot;Module that defines indexed objects</span>
 
 <span class="sd">    The classes IndexedBase, Indexed and Idx would represent a matrix element</span>
 <span class="sd">    M[i, j] as in the following graph::</span>
@@ -154,28 +138,26 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="c">#   TODO:  (some ideas for improvement)</span>
-<span class="c">#</span>
-<span class="c">#   o test and guarantee numpy compatibility</span>
-<span class="c">#      - implement full support for broadcasting</span>
-<span class="c">#      - strided arrays</span>
-<span class="c">#</span>
-<span class="c">#   o more functions to analyze indexed expressions</span>
-<span class="c">#      - identify standard constructs, e.g matrix-vector product in a subexpression</span>
-<span class="c">#</span>
-<span class="c">#   o functions to generate component based arrays (numpy and sympy.Matrix)</span>
-<span class="c">#      - generate a single array directly from Indexed</span>
-<span class="c">#      - convert simple sub-expressions</span>
-<span class="c">#</span>
-<span class="c">#   o sophisticated indexing (possibly in subclasses to preserve simplicity)</span>
-<span class="c">#      - Idx with range smaller than dimension of Indexed</span>
-<span class="c">#      - Idx with stepsize != 1</span>
-<span class="c">#      - Idx with step determined by function call</span>
-
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+<span class="c1">#   TODO:  (some ideas for improvement)</span>
+<span class="c1">#</span>
+<span class="c1">#   o test and guarantee numpy compatibility</span>
+<span class="c1">#      - implement full support for broadcasting</span>
+<span class="c1">#      - strided arrays</span>
+<span class="c1">#</span>
+<span class="c1">#   o more functions to analyze indexed expressions</span>
+<span class="c1">#      - identify standard constructs, e.g matrix-vector product in a subexpression</span>
+<span class="c1">#</span>
+<span class="c1">#   o functions to generate component based arrays (numpy and sympy.Matrix)</span>
+<span class="c1">#      - generate a single array directly from Indexed</span>
+<span class="c1">#      - convert simple sub-expressions</span>
+<span class="c1">#</span>
+<span class="c1">#   o sophisticated indexing (possibly in subclasses to preserve simplicity)</span>
+<span class="c1">#      - Idx with range smaller than dimension of Indexed</span>
+<span class="c1">#      - Idx with stepsize != 1</span>
+<span class="c1">#      - Idx with step determined by function call</span>
 
 <span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">Expr</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">sympify</span><span class="p">,</span> <span class="n">S</span>
-<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">is_sequence</span><span class="p">,</span> <span class="n">string_types</span><span class="p">,</span> <span class="n">NotIterable</span>
+<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">is_sequence</span>
 
 
 <span class="k">class</span> <span class="nc">IndexException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
@@ -204,17 +186,17 @@
         <span class="kn">from</span> <span class="nn">sympy.utilities.misc</span> <span class="kn">import</span> <span class="n">filldedent</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">IndexException</span><span class="p">(</span><span class="s">&quot;Indexed needs at least one index.&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="p">(</span><span class="n">string_types</span><span class="p">,</span> <span class="n">Symbol</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="n">IndexException</span><span class="p">(</span><span class="s2">&quot;Indexed needs at least one index.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="p">(</span><span class="nb">basestring</span><span class="p">,</span> <span class="n">Symbol</span><span class="p">)):</span>
             <span class="n">base</span> <span class="o">=</span> <span class="n">IndexedBase</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
         <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">IndexedBase</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">filldedent</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">                Indexed expects string, Symbol or IndexedBase as base.&quot;&quot;&quot;</span><span class="p">))</span>
-        <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">filldedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                Indexed expects string, Symbol or IndexedBase as base.&quot;&quot;&quot;</span><span class="p">))</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Expr</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw_args</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="Indexed.base"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.Indexed.base">[docs]</a>    <span class="k">def</span> <span class="nf">base</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">base</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the IndexedBase of the Indexed object.</span>
 
 <span class="sd">        Examples</span>
@@ -231,9 +213,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</div>
+
     <span class="nd">@property</span>
-<div class="viewcode-block" id="Indexed.indices"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.Indexed.indices">[docs]</a>    <span class="k">def</span> <span class="nf">indices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">indices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the indices of the Indexed object.</span>
 
@@ -248,9 +230,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-</div>
+
     <span class="nd">@property</span>
-<div class="viewcode-block" id="Indexed.rank"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.Indexed.rank">[docs]</a>    <span class="k">def</span> <span class="nf">rank</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">rank</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the rank of the Indexed object.</span>
 
@@ -270,9 +252,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-</div>
+
     <span class="nd">@property</span>
-<div class="viewcode-block" id="Indexed.shape"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.Indexed.shape">[docs]</a>    <span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a list with dimensions of each index.</span>
 
 <span class="sd">        Dimensions is a property of the array, not of the indices.  Still, if</span>
@@ -298,15 +280,15 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Tuple</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">upper</span> <span class="o">-</span> <span class="n">i</span><span class="o">.</span><span class="n">lower</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="p">])</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">IndexException</span><span class="p">(</span><span class="n">filldedent</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">                Range is not defined for all indices in: </span><span class="si">%s</span><span class="s">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="n">IndexException</span><span class="p">(</span><span class="n">filldedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                Range is not defined for all indices in: </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">))</span>
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">IndexException</span><span class="p">(</span><span class="n">filldedent</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">                Shape cannot be inferred from Idx with</span>
-<span class="s">                undefined range: </span><span class="si">%s</span><span class="s">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">))</span>
-</div>
+            <span class="k">raise</span> <span class="n">IndexException</span><span class="p">(</span><span class="n">filldedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                Shape cannot be inferred from Idx with</span>
+<span class="s2">                undefined range: </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">))</span>
+
     <span class="nd">@property</span>
-<div class="viewcode-block" id="Indexed.ranges"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.Indexed.ranges">[docs]</a>    <span class="k">def</span> <span class="nf">ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a list of tuples with lower and upper range of each index.</span>
 
 <span class="sd">        If an index does not define the data members upper and lower, the</span>
@@ -332,13 +314,13 @@
             <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
                 <span class="n">ranges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ranges</span>
-</div>
-    <span class="k">def</span> <span class="nf">_sympystr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-        <span class="n">indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">doprint</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="p">))</span>
-        <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">[</span><span class="si">%s</span><span class="s">]&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">doprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="p">),</span> <span class="s">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">indices</span><span class="p">))</span>
 
-</div>
-<div class="viewcode-block" id="IndexedBase"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.IndexedBase">[docs]</a><span class="k">class</span> <span class="nc">IndexedBase</span><span class="p">(</span><span class="n">Expr</span><span class="p">,</span> <span class="n">NotIterable</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_sympystr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">doprint</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">doprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="p">),</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">indices</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="IndexedBase"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.IndexedBase">[docs]</a><span class="k">class</span> <span class="nc">IndexedBase</span><span class="p">(</span><span class="n">Expr</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represent the base or stem of an indexed object</span>
 
 <span class="sd">    The IndexedBase class represent an array that contains elements. The main purpose</span>
@@ -392,8 +374,8 @@
     <span class="n">is_commutative</span> <span class="o">=</span> <span class="bp">False</span>
 
     <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw_args</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="n">string_types</span><span class="p">,</span> <span class="n">Symbol</span><span class="p">)):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Base label should be a string or Symbol.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="nb">basestring</span><span class="p">,</span> <span class="n">Symbol</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Base label should be a string or Symbol.&quot;</span><span class="p">)</span>
 
         <span class="n">label</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">Expr</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="o">**</span><span class="n">kw_args</span><span class="p">)</span>
@@ -404,7 +386,7 @@
         <span class="k">return</span> <span class="n">obj</span>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="IndexedBase.args"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.IndexedBase.args">[docs]</a>    <span class="k">def</span> <span class="nf">args</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">args</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the arguments used to create this IndexedBase object.</span>
 
 <span class="sd">        Examples</span>
@@ -420,23 +402,23 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_args</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_shape</span><span class="p">,)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_args</span>
-</div>
+
     <span class="k">def</span> <span class="nf">_hashable_content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">Expr</span><span class="o">.</span><span class="n">_hashable_content</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_shape</span><span class="p">,)</span>
 
     <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="o">**</span><span class="n">kw_args</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">indices</span><span class="p">):</span>
-            <span class="c"># Special case needed because M[*my_tuple] is a syntax error.</span>
+            <span class="c1"># Special case needed because M[*my_tuple] is a syntax error.</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="n">IndexException</span><span class="p">(</span><span class="s">&quot;Rank mismatch.&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">IndexException</span><span class="p">(</span><span class="s2">&quot;Rank mismatch.&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">Indexed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">indices</span><span class="p">,</span> <span class="o">**</span><span class="n">kw_args</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">IndexException</span><span class="p">(</span><span class="s">&quot;Rank mismatch.&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">IndexException</span><span class="p">(</span><span class="s2">&quot;Rank mismatch.&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">Indexed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="o">**</span><span class="n">kw_args</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="IndexedBase.shape"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.IndexedBase.shape">[docs]</a>    <span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the shape of the IndexedBase object.</span>
 
 <span class="sd">        Examples</span>
@@ -461,9 +443,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shape</span>
-</div>
+
     <span class="nd">@property</span>
-<div class="viewcode-block" id="IndexedBase.label"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.IndexedBase.label">[docs]</a>    <span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the label of the IndexedBase object.</span>
 
 <span class="sd">        Examples</span>
@@ -476,11 +458,11 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</div>
-    <span class="k">def</span> <span class="nf">_sympystr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">doprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
 
-</div>
+    <span class="k">def</span> <span class="nf">_sympystr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">doprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="Idx"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.Idx">[docs]</a><span class="k">class</span> <span class="nc">Idx</span><span class="p">(</span><span class="n">Expr</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represents an integer index as an Integer or integer expression.</span>
 
@@ -553,29 +535,29 @@
     <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw_args</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">sympy.utilities.misc</span> <span class="kn">import</span> <span class="n">filldedent</span>
 
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">string_types</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
             <span class="n">label</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">integer</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="n">label</span><span class="p">,</span> <span class="nb">range</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="nb">range</span><span class="p">)))</span>
+        <span class="n">label</span><span class="p">,</span> <span class="nb">range</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">sympify</span><span class="p">,</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="nb">range</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">label</span><span class="o">.</span><span class="n">is_integer</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Idx object requires an integer label.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Idx object requires an integer label.&quot;</span><span class="p">)</span>
 
         <span class="k">elif</span> <span class="n">is_sequence</span><span class="p">(</span><span class="nb">range</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">range</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">filldedent</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">                    Idx range tuple must have length 2, but got </span><span class="si">%s</span><span class="s">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="nb">range</span><span class="p">)))</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">filldedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    Idx range tuple must have length 2, but got </span><span class="si">%s</span><span class="s2">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="nb">range</span><span class="p">)))</span>
             <span class="k">for</span> <span class="n">bound</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">:</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">bound</span><span class="o">.</span><span class="n">is_integer</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">bound</span><span class="p">)</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">Infinity</span><span class="p">):</span>
-                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Idx object requires integer bounds.&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Idx object requires integer bounds.&quot;</span><span class="p">)</span>
             <span class="n">args</span> <span class="o">=</span> <span class="n">label</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">(</span><span class="o">*</span><span class="nb">range</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">range</span><span class="p">,</span> <span class="n">Expr</span><span class="p">):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">range</span><span class="o">.</span><span class="n">is_integer</span> <span class="ow">or</span> <span class="nb">range</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">Infinity</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Idx object requires an integer dimension.&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Idx object requires an integer dimension.&quot;</span><span class="p">)</span>
             <span class="n">args</span> <span class="o">=</span> <span class="n">label</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">range</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">range</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">filldedent</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
-<span class="s">                The range must be an ordered iterable or</span>
-<span class="s">                integer SymPy expression.&quot;&quot;&quot;</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">filldedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                The range must be an ordered iterable or</span>
+<span class="s2">                integer SymPy expression.&quot;&quot;&quot;</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">args</span> <span class="o">=</span> <span class="n">label</span><span class="p">,</span>
 
@@ -583,7 +565,7 @@
         <span class="k">return</span> <span class="n">obj</span>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="Idx.label"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.Idx.label">[docs]</a>    <span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the label (Integer or integer expression) of the Idx object.</span>
 
 <span class="sd">        Examples</span>
@@ -600,9 +582,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</div>
+
     <span class="nd">@property</span>
-<div class="viewcode-block" id="Idx.lower"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.Idx.lower">[docs]</a>    <span class="k">def</span> <span class="nf">lower</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">lower</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the lower bound of the Index.</span>
 
 <span class="sd">        Examples</span>
@@ -621,9 +603,9 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
             <span class="k">return</span>
-</div>
+
     <span class="nd">@property</span>
-<div class="viewcode-block" id="Idx.upper"><a class="viewcode-back" href="../../../modules/tensor/indexed.html#sympy.tensor.indexed.Idx.upper">[docs]</a>    <span class="k">def</span> <span class="nf">upper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">upper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the upper bound of the Index.</span>
 
 <span class="sd">        Examples</span>
@@ -642,7 +624,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
             <span class="k">return</span>
-</div>
+
     <span class="k">def</span> <span class="nf">_sympystr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">doprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span></div>
 </pre></div>
@@ -650,12 +632,20 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="../../../index.html">
               <img class="logo" src="../../../_static/sympylogo.png" alt="Logo"/>
-            </a></p>
-<div id="searchbox" style="display: none">
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -663,36 +653,23 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../sympy.html" >sympy</a> &raquo;</li> 
-      </ul>
-    </div>
     <div class="footer">
-        &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Feb 22, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      &copy;2015 SymPy Development Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
     </div>
+
+    
+
+    
   </body>
 </html>

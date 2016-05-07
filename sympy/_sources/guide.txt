@@ -285,7 +285,7 @@ How to create a new function with one variable::
                 if not isinstance(coeff, Basic.One):
                     return cls(coeff) * cls(Basic.Mul(*terms))
 
-        is_bounded = True
+        is_finite = True
 
         def _eval_conjugate(self):
             return self
@@ -341,7 +341,7 @@ This is how to create a function with two variables::
         def eval(cls, n, k):
             if not 0 <= k < n:
                 raise ValueError("must have 0 <= k < n")
-            return C.cos(S.Pi*(2*k + 1)/(2*n))
+            return cos(S.Pi*(2*k + 1)/(2*n))
 
 
 .. note:: the first argument of a @classmethod should be ``cls`` (i.e. not
@@ -522,8 +522,8 @@ Please read our excellent `SymPy Patches Tutorial
 wiki for a guide on how to write patches to SymPy, how to work with Git,
 and how to make your life easier as you get started with SymPy.
 
-.. _issues:             http://code.google.com/p/sympy/issues/list
-.. _mailinglist:        http://groups.google.com/group/sympy
+.. _issues:             https://github.com/sympy/sympy/issues
+.. _mailinglist:        https://groups.google.com/forum/#!forum/sympy
 
 Improving the docs
 ------------------

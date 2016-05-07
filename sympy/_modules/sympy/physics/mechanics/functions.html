@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.physics.mechanics.functions &mdash; SymPy 0.7.5 documentation</title>
+    <title>sympy.physics.mechanics.functions &mdash; SymPy 0.7.3 documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '0.7.5',
+        VERSION:     '0.7.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -28,104 +26,93 @@
     <script type="text/javascript" src="../../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
-    <script type="text/javascript" src="../../../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.5 documentation" href="../../../../index.html" />
-    <link rel="up" title="sympy" href="../../../sympy.html" /> 
+    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../../sympy.html" accesskey="U">sympy</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for sympy.physics.mechanics.functions</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
+<span></span><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cross&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;dot&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;express&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;outer&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;inertia&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;mechanics_printing&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;mprint&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;msprint&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;mpprint&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;mlatex&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;kinematic_equations&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;inertia_of_point_mass&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;partial_velocity&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;linear_momentum&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;angular_momentum&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;kinetic_energy&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;potential_energy&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Lagrangian&#39;</span><span class="p">]</span>
 
-<span class="kn">from</span> <span class="nn">sympy.utilities.exceptions</span> <span class="kn">import</span> <span class="n">SymPyDeprecationWarning</span>
-<span class="kn">from</span> <span class="nn">sympy.utilities.misc</span> <span class="kn">import</span> <span class="n">filldedent</span>
-<span class="kn">from</span> <span class="nn">sympy.physics.vector</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">ReferenceFrame</span><span class="p">,</span> <span class="n">Point</span>
-<span class="kn">from</span> <span class="nn">sympy.physics.vector.printing</span> <span class="kn">import</span> <span class="p">(</span><span class="n">vprint</span><span class="p">,</span> <span class="n">vsprint</span><span class="p">,</span> <span class="n">vpprint</span><span class="p">,</span> <span class="n">vlatex</span><span class="p">,</span>
-                                           <span class="n">init_vprinting</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sympy.physics.mechanics.essential</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Vector</span><span class="p">,</span> <span class="n">Dyadic</span><span class="p">,</span> <span class="n">ReferenceFrame</span><span class="p">,</span>
+                                               <span class="n">MechanicsStrPrinter</span><span class="p">,</span>
+                                               <span class="n">MechanicsPrettyPrinter</span><span class="p">,</span>
+                                               <span class="n">MechanicsLatexPrinter</span><span class="p">,</span>
+                                               <span class="n">dynamicsymbols</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">sympy.physics.mechanics.particle</span> <span class="kn">import</span> <span class="n">Particle</span>
 <span class="kn">from</span> <span class="nn">sympy.physics.mechanics.rigidbody</span> <span class="kn">import</span> <span class="n">RigidBody</span>
-<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sympify</span>
+<span class="kn">from</span> <span class="nn">sympy.physics.mechanics.point</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sympify</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">Matrix</span>
 <span class="kn">from</span> <span class="nn">sympy.core.basic</span> <span class="kn">import</span> <span class="n">S</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;inertia&#39;</span><span class="p">,</span>
-           <span class="s">&#39;inertia_of_point_mass&#39;</span><span class="p">,</span>
-           <span class="s">&#39;linear_momentum&#39;</span><span class="p">,</span>
-           <span class="s">&#39;angular_momentum&#39;</span><span class="p">,</span>
-           <span class="s">&#39;kinetic_energy&#39;</span><span class="p">,</span>
-           <span class="s">&#39;potential_energy&#39;</span><span class="p">,</span>
-           <span class="s">&#39;Lagrangian&#39;</span><span class="p">,</span>
-           <span class="s">&#39;mechanics_printing&#39;</span><span class="p">,</span>
-           <span class="s">&#39;mprint&#39;</span><span class="p">,</span>
-           <span class="s">&#39;msprint&#39;</span><span class="p">,</span>
-           <span class="s">&#39;mpprint&#39;</span><span class="p">,</span>
-           <span class="s">&#39;mlatex&#39;</span><span class="p">]</span>
 
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s">&quot;always&quot;</span><span class="p">,</span> <span class="n">SymPyDeprecationWarning</span><span class="p">)</span>
-
-<span class="c"># These are functions that we&#39;ve moved and renamed during extracting the</span>
-<span class="c"># basic vector calculus code from the mechanics packages.</span>
-
-<span class="n">mprint</span> <span class="o">=</span> <span class="n">vprint</span>
-<span class="n">msprint</span> <span class="o">=</span> <span class="n">vsprint</span>
-<span class="n">mpprint</span> <span class="o">=</span> <span class="n">vpprint</span>
-<span class="n">mlatex</span> <span class="o">=</span> <span class="n">vlatex</span>
+<span class="k">def</span> <span class="nf">cross</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cross product convenience wrapper for Vector.cross(): \n&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="p">(</span><span class="n">Vector</span><span class="p">,</span> <span class="n">Dyadic</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Cross product is between two vectors&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vec1</span> <span class="o">^</span> <span class="n">vec2</span>
+<span class="n">cross</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">+=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">cross</span><span class="o">.</span><span class="n">__doc__</span>
 
 
-<span class="k">def</span> <span class="nf">mechanics_printing</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Dot product convenience wrapper for Vector.dot(): \n&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="p">(</span><span class="n">Vector</span><span class="p">,</span> <span class="n">Dyadic</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Dot product is between two vectors&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vec1</span> <span class="o">&amp;</span> <span class="n">vec2</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">+=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">dot</span><span class="o">.</span><span class="n">__doc__</span>
 
-    <span class="c"># mechanics_printing has slightly different functionality in 0.7.5 but</span>
-    <span class="c"># shouldn&#39;t fundamentally need a deprecation warning so we do this</span>
-    <span class="c"># little wrapper that gives the warning that things have changed.</span>
 
-    <span class="c"># TODO : Remove this warning in the release after SymPy 0.7.5</span>
+<span class="k">def</span> <span class="nf">express</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">frame2</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Express convenience wrapper for Vector.express(): \n&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="p">(</span><span class="n">Vector</span><span class="p">,</span> <span class="n">Dyadic</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Can only express Vectors&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">Vector</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">vec</span><span class="o">.</span><span class="n">express</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">vec</span><span class="o">.</span><span class="n">express</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">frame2</span><span class="p">)</span>
 
-    <span class="c"># The message is only printed if this function is called with no args,</span>
-    <span class="c"># as was the previous only way to call it.</span>
+<span class="n">express</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">+=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">express</span><span class="o">.</span><span class="n">__doc__</span>
 
-    <span class="k">def</span> <span class="nf">dict_is_empty</span><span class="p">(</span><span class="n">D</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">D</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">False</span>
-        <span class="k">return</span> <span class="bp">True</span>
 
-    <span class="k">if</span> <span class="n">dict_is_empty</span><span class="p">(</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;See the doc string for slight changes to this function: &#39;</span>
-               <span class="s">&#39;keyword args may be needed for the desired effect. &#39;</span>
-               <span class="s">&#39;Otherwise use sympy.physics.vector.init_vprinting directly.&#39;</span><span class="p">)</span>
-        <span class="n">SymPyDeprecationWarning</span><span class="p">(</span><span class="n">filldedent</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span><span class="o">.</span><span class="n">warn</span><span class="p">()</span>
-
-    <span class="n">init_vprinting</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="n">mechanics_printing</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">=</span> <span class="n">init_vprinting</span><span class="o">.</span><span class="n">__doc__</span>
+<span class="k">def</span> <span class="nf">outer</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Outer product convenience wrapper for Vector.outer():\n&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">Vector</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Outer product is between two Vectors&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vec1</span> <span class="o">|</span> <span class="n">vec2</span>
+<span class="n">outer</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">+=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">express</span><span class="o">.</span><span class="n">__doc__</span>
 
 
 <div class="viewcode-block" id="inertia"><a class="viewcode-back" href="../../../../modules/physics/mechanics/api/part_bod.html#sympy.physics.mechanics.functions.inertia">[docs]</a><span class="k">def</span> <span class="nf">inertia</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">ixx</span><span class="p">,</span> <span class="n">iyy</span><span class="p">,</span> <span class="n">izz</span><span class="p">,</span> <span class="n">ixy</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">iyz</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">izx</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -163,7 +150,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">ReferenceFrame</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;Need to define the inertia in a frame&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Need to define the inertia in a frame&#39;</span><span class="p">)</span>
     <span class="n">ol</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">ixx</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">x</span> <span class="o">|</span> <span class="n">frame</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
     <span class="n">ol</span> <span class="o">+=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">ixy</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">x</span> <span class="o">|</span> <span class="n">frame</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
     <span class="n">ol</span> <span class="o">+=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">izx</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">x</span> <span class="o">|</span> <span class="n">frame</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
@@ -173,9 +160,9 @@
     <span class="n">ol</span> <span class="o">+=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">izx</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">z</span> <span class="o">|</span> <span class="n">frame</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
     <span class="n">ol</span> <span class="o">+=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">iyz</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">z</span> <span class="o">|</span> <span class="n">frame</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
     <span class="n">ol</span> <span class="o">+=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">izz</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">z</span> <span class="o">|</span> <span class="n">frame</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ol</span>
+    <span class="k">return</span> <span class="n">ol</span></div>
 
-</div>
+
 <div class="viewcode-block" id="inertia_of_point_mass"><a class="viewcode-back" href="../../../../modules/physics/mechanics/api/part_bod.html#sympy.physics.mechanics.functions.inertia_of_point_mass">[docs]</a><span class="k">def</span> <span class="nf">inertia_of_point_mass</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">pos_vec</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Inertia dyadic of a point mass realtive to point O.</span>
 
@@ -204,9 +191,377 @@
 
     <span class="k">return</span> <span class="n">mass</span> <span class="o">*</span> <span class="p">(((</span><span class="n">frame</span><span class="o">.</span><span class="n">x</span> <span class="o">|</span> <span class="n">frame</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">y</span> <span class="o">|</span> <span class="n">frame</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span>
                    <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">z</span> <span class="o">|</span> <span class="n">frame</span><span class="o">.</span><span class="n">z</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">pos_vec</span> <span class="o">&amp;</span> <span class="n">pos_vec</span><span class="p">)</span> <span class="o">-</span>
-                   <span class="p">(</span><span class="n">pos_vec</span> <span class="o">|</span> <span class="n">pos_vec</span><span class="p">))</span>
+                   <span class="p">(</span><span class="n">pos_vec</span> <span class="o">|</span> <span class="n">pos_vec</span><span class="p">))</span></div>
 
-</div>
+
+<span class="k">def</span> <span class="nf">mechanics_printing</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Sets up interactive printing for mechanics&#39; derivatives.</span>
+
+<span class="sd">    The main benefit of this is for printing of time derivatives;</span>
+<span class="sd">    instead of displaying as Derivative(f(t),t), it will display f&#39;</span>
+<span class="sd">    This is only actually needed for when derivatives are present and are not</span>
+<span class="sd">    in a physics.mechanics object.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; # 2 lines below are for tests to function properly</span>
+<span class="sd">    &gt;&gt;&gt; import sys</span>
+<span class="sd">    &gt;&gt;&gt; sys.displayhook = sys.__displayhook__</span>
+<span class="sd">    &gt;&gt;&gt; from sympy import Function, Symbol, diff</span>
+<span class="sd">    &gt;&gt;&gt; from sympy.physics.mechanics import mechanics_printing</span>
+<span class="sd">    &gt;&gt;&gt; f = Function(&#39;f&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; t = Symbol(&#39;t&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; x = Symbol(&#39;x&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; diff(f(t), t)</span>
+<span class="sd">    Derivative(f(t), t)</span>
+<span class="sd">    &gt;&gt;&gt; mechanics_printing()</span>
+<span class="sd">    &gt;&gt;&gt; diff(f(t), t)</span>
+<span class="sd">    f&#39;</span>
+<span class="sd">    &gt;&gt;&gt; diff(f(x), x)</span>
+<span class="sd">    Derivative(f(x), x)</span>
+<span class="sd">    &gt;&gt;&gt; # 2 lines below are for tests to function properly</span>
+<span class="sd">    &gt;&gt;&gt; import sys</span>
+<span class="sd">    &gt;&gt;&gt; sys.displayhook = sys.__displayhook__</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">displayhook</span> <span class="o">=</span> <span class="n">mprint</span>
+
+
+<span class="k">def</span> <span class="nf">mprint</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Function for printing of expressions generated in mechanics.</span>
+
+<span class="sd">    Extends SymPy&#39;s StrPrinter; mprint is equivalent to:</span>
+<span class="sd">    print sstr()</span>
+<span class="sd">    mprint takes the same options as sstr.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    expr : valid sympy object</span>
+<span class="sd">        SymPy expression to print</span>
+<span class="sd">    settings : args</span>
+<span class="sd">        Same as print for SymPy</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.physics.mechanics import mprint, dynamicsymbols</span>
+<span class="sd">    &gt;&gt;&gt; u1 = dynamicsymbols(&#39;u1&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print(u1)</span>
+<span class="sd">    u1(t)</span>
+<span class="sd">    &gt;&gt;&gt; mprint(u1)</span>
+<span class="sd">    u1</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">outstr</span> <span class="o">=</span> <span class="n">msprint</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
+
+    <span class="kn">import</span> <span class="nn">__builtin__</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">outstr</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span><span class="p">):</span>
+        <span class="n">__builtin__</span><span class="o">.</span><span class="n">_</span> <span class="o">=</span> <span class="n">outstr</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">outstr</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">msprint</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Function for displaying expressions generated in mechanics.</span>
+
+<span class="sd">    Returns the output of mprint() as a string.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    expr : valid sympy object</span>
+<span class="sd">        SymPy expression to print</span>
+<span class="sd">    settings : args</span>
+<span class="sd">        Same as print for SymPy</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.physics.mechanics import msprint, dynamicsymbols</span>
+<span class="sd">    &gt;&gt;&gt; u1, u2 = dynamicsymbols(&#39;u1 u2&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; u2d = dynamicsymbols(&#39;u2&#39;, level=1)</span>
+<span class="sd">    &gt;&gt;&gt; print(&quot;%s = %s&quot; % (u1, u2 + u2d))</span>
+<span class="sd">    u1(t) = u2(t) + Derivative(u2(t), t)</span>
+<span class="sd">    &gt;&gt;&gt; print(&quot;%s = %s&quot; % (msprint(u1), msprint(u2 + u2d)))</span>
+<span class="sd">    u1 = u2 + u2&#39;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">pr</span> <span class="o">=</span> <span class="n">MechanicsStrPrinter</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pr</span><span class="o">.</span><span class="n">doprint</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">mpprint</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Function for pretty printing of expressions generated in mechanics.</span>
+
+<span class="sd">    Mainly used for expressions not inside a vector; the output of running</span>
+<span class="sd">    scripts and generating equations of motion. Takes the same options as</span>
+<span class="sd">    SymPy&#39;s pretty_print(); see that function for more information.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    expr : valid sympy object</span>
+<span class="sd">        SymPy expression to pretty print</span>
+<span class="sd">    settings : args</span>
+<span class="sd">        Same as pretty print</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    Use in the same way as pprint</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">mp</span> <span class="o">=</span> <span class="n">MechanicsPrettyPrinter</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">doprint</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">mlatex</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Function for printing latex representation of mechanics objects.</span>
+
+<span class="sd">    For latex representation of Vectors, Dyadics, and dynamicsymbols. Takes the</span>
+<span class="sd">    same options as SymPy&#39;s latex(); see that function for more information;</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    expr : valid sympy object</span>
+<span class="sd">        SymPy expression to represent in LaTeX form</span>
+<span class="sd">    settings : args</span>
+<span class="sd">        Same as latex()</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.physics.mechanics import mlatex, ReferenceFrame, dynamicsymbols</span>
+<span class="sd">    &gt;&gt;&gt; N = ReferenceFrame(&#39;N&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; q1, q2 = dynamicsymbols(&#39;q1 q2&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; q1d, q2d = dynamicsymbols(&#39;q1 q2&#39;, 1)</span>
+<span class="sd">    &gt;&gt;&gt; q1dd, q2dd = dynamicsymbols(&#39;q1 q2&#39;, 2)</span>
+<span class="sd">    &gt;&gt;&gt; mlatex(N.x + N.y)</span>
+<span class="sd">    &#39;\\mathbf{\\hat{n}_x} + \\mathbf{\\hat{n}_y}&#39;</span>
+<span class="sd">    &gt;&gt;&gt; mlatex(q1 + q2)</span>
+<span class="sd">    &#39;q_{1} + q_{2}&#39;</span>
+<span class="sd">    &gt;&gt;&gt; mlatex(q1d)</span>
+<span class="sd">    &#39;\\dot{q}_{1}&#39;</span>
+<span class="sd">    &gt;&gt;&gt; mlatex(q1 * q2d)</span>
+<span class="sd">    &#39;q_{1} \\dot{q}_{2}&#39;</span>
+<span class="sd">    &gt;&gt;&gt; mlatex(q1dd * q1 / q1d)</span>
+<span class="sd">    &#39;\\frac{q_{1} \\ddot{q}_{1}}{\\dot{q}_{1}}&#39;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">MechanicsLatexPrinter</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span><span class="o">.</span><span class="n">doprint</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">kinematic_equations</span><span class="p">(</span><span class="n">speeds</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">rot_type</span><span class="p">,</span> <span class="n">rot_order</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Gives equations relating the qdot&#39;s to u&#39;s for a rotation type.</span>
+
+<span class="sd">    Supply rotation type and order as in orient. Speeds are assumed to be</span>
+<span class="sd">    body-fixed; if we are defining the orientation of B in A using by rot_type,</span>
+<span class="sd">    the angular velocity of B in A is assumed to be in the form: speed[0]*B.x +</span>
+<span class="sd">    speed[1]*B.y + speed[2]*B.z</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    speeds : list of length 3</span>
+<span class="sd">        The body fixed angular velocity measure numbers.</span>
+<span class="sd">    coords : list of length 3 or 4</span>
+<span class="sd">        The coordinates used to define the orientation of the two frames.</span>
+<span class="sd">    rot_type : str</span>
+<span class="sd">        The type of rotation used to create the equations. Body, Space, or</span>
+<span class="sd">        Quaternion only</span>
+<span class="sd">    rot_order : str</span>
+<span class="sd">        If applicable, the order of a series of rotations.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.physics.mechanics import dynamicsymbols</span>
+<span class="sd">    &gt;&gt;&gt; from sympy.physics.mechanics import kinematic_equations, mprint</span>
+<span class="sd">    &gt;&gt;&gt; u1, u2, u3 = dynamicsymbols(&#39;u1 u2 u3&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; q1, q2, q3 = dynamicsymbols(&#39;q1 q2 q3&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; mprint(kinematic_equations([u1,u2,u3], [q1,q2,q3], &#39;body&#39;, &#39;313&#39;),</span>
+<span class="sd">    ...     order=None)</span>
+<span class="sd">    [-(u1*sin(q3) + u2*cos(q3))/sin(q2) + q1&#39;, -u1*cos(q3) + u2*sin(q3) + q2&#39;, (u1*sin(q3) + u2*cos(q3))*cos(q2)/sin(q2) - u3 + q3&#39;]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Code below is checking and sanitizing input</span>
+    <span class="n">approved_orders</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="s1">&#39;231&#39;</span><span class="p">,</span> <span class="s1">&#39;312&#39;</span><span class="p">,</span> <span class="s1">&#39;132&#39;</span><span class="p">,</span> <span class="s1">&#39;213&#39;</span><span class="p">,</span> <span class="s1">&#39;321&#39;</span><span class="p">,</span> <span class="s1">&#39;121&#39;</span><span class="p">,</span> <span class="s1">&#39;131&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;212&#39;</span><span class="p">,</span> <span class="s1">&#39;232&#39;</span><span class="p">,</span> <span class="s1">&#39;313&#39;</span><span class="p">,</span> <span class="s1">&#39;323&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">rot_order</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">rot_order</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>  <span class="c1"># Now we need to make sure XYZ = 123</span>
+    <span class="n">rot_type</span> <span class="o">=</span> <span class="n">rot_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">rot_order</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rot_order</span><span class="p">]</span>
+    <span class="n">rot_order</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rot_order</span><span class="p">]</span>
+    <span class="n">rot_order</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rot_order</span><span class="p">]</span>
+    <span class="n">rot_order</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rot_order</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">speeds</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Need to supply speeds in a list&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">speeds</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Need to supply 3 body-fixed speeds&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Need to supply coordinates in a list&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rot_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;space&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">rot_order</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">approved_orders</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Not an acceptable rotation order&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Need 3 coordinates for body or space&#39;</span><span class="p">)</span>
+        <span class="c1"># Actual hard-coded kinematic differential equations</span>
+        <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">coords</span>
+        <span class="n">q1d</span><span class="p">,</span> <span class="n">q2d</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">=</span> <span class="p">[</span><span class="n">diff</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">dynamicsymbols</span><span class="o">.</span><span class="n">_t</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">]</span>
+        <span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">w3</span> <span class="o">=</span> <span class="n">speeds</span>
+        <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s3</span> <span class="o">=</span> <span class="p">[</span><span class="n">sin</span><span class="p">(</span><span class="n">q1</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">q2</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">q3</span><span class="p">)]</span>
+        <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">c3</span> <span class="o">=</span> <span class="p">[</span><span class="n">cos</span><span class="p">(</span><span class="n">q1</span><span class="p">),</span> <span class="n">cos</span><span class="p">(</span><span class="n">q2</span><span class="p">),</span> <span class="n">cos</span><span class="p">(</span><span class="n">q3</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="n">rot_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;body&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;123&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">s3</span><span class="p">)</span> <span class="o">/</span> <span class="n">c2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span>
+                        <span class="n">c3</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">s3</span><span class="p">)</span> <span class="o">*</span> <span class="n">s2</span> <span class="o">/</span> <span class="n">c2</span> <span class="o">-</span> <span class="n">w3</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;231&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w2</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s3</span><span class="p">)</span> <span class="o">/</span> <span class="n">c2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span>
+                        <span class="n">c3</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s3</span><span class="p">)</span> <span class="o">*</span> <span class="n">s2</span> <span class="o">/</span> <span class="n">c2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;312&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c3</span><span class="p">)</span> <span class="o">/</span> <span class="n">c2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span>
+                        <span class="n">s3</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c3</span><span class="p">)</span> <span class="o">*</span> <span class="n">s2</span> <span class="o">/</span> <span class="n">c2</span> <span class="o">-</span> <span class="n">w2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;132&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s3</span><span class="p">)</span> <span class="o">/</span> <span class="n">c2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">+</span> <span class="n">w1</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span>
+                        <span class="n">c3</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s3</span><span class="p">)</span> <span class="o">*</span> <span class="n">s2</span> <span class="o">/</span> <span class="n">c2</span> <span class="o">-</span> <span class="n">w2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;213&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">c3</span><span class="p">)</span> <span class="o">/</span> <span class="n">c2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span>
+                        <span class="n">s3</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">c3</span><span class="p">)</span> <span class="o">*</span> <span class="n">s2</span> <span class="o">/</span> <span class="n">c2</span> <span class="o">-</span> <span class="n">w3</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;321&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w2</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c3</span><span class="p">)</span> <span class="o">/</span> <span class="n">c2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span>
+                        <span class="n">s3</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">-</span> <span class="p">(</span><span class="n">w2</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c3</span><span class="p">)</span> <span class="o">*</span> <span class="n">s2</span> <span class="o">/</span> <span class="n">c2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;121&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w2</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c3</span><span class="p">)</span> <span class="o">/</span> <span class="n">s2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span>
+                        <span class="n">s3</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">+</span> <span class="p">(</span><span class="n">w2</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c3</span><span class="p">)</span> <span class="o">*</span> <span class="n">c2</span> <span class="o">/</span> <span class="n">s2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;131&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">w2</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s3</span><span class="p">)</span> <span class="o">/</span> <span class="n">s2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span>
+                        <span class="n">c3</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">-</span> <span class="p">(</span><span class="n">w2</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s3</span><span class="p">)</span> <span class="o">*</span> <span class="n">c2</span> <span class="o">/</span> <span class="n">s2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;212&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c3</span><span class="p">)</span> <span class="o">/</span> <span class="n">s2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span>
+                        <span class="n">s3</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c3</span><span class="p">)</span> <span class="o">*</span> <span class="n">c2</span> <span class="o">/</span> <span class="n">s2</span> <span class="o">-</span> <span class="n">w2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;232&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s3</span><span class="p">)</span> <span class="o">/</span> <span class="n">s2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">+</span> <span class="n">w1</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span>
+                        <span class="n">c3</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">+</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s3</span><span class="p">)</span> <span class="o">*</span> <span class="n">c2</span> <span class="o">/</span> <span class="n">s2</span> <span class="o">-</span> <span class="n">w2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;313&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">c3</span><span class="p">)</span> <span class="o">/</span> <span class="n">s2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span>
+                        <span class="n">s3</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">+</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">c3</span><span class="p">)</span> <span class="o">*</span> <span class="n">c2</span> <span class="o">/</span> <span class="n">s2</span> <span class="o">-</span> <span class="n">w3</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;323&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">s3</span><span class="p">)</span> <span class="o">/</span> <span class="n">s2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">*</span> <span class="n">s3</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span>
+                        <span class="n">c3</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c3</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">s3</span><span class="p">)</span> <span class="o">*</span> <span class="n">c2</span> <span class="o">/</span> <span class="n">s2</span> <span class="o">-</span> <span class="n">w3</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">rot_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;space&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;123&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">-</span> <span class="p">(</span><span class="n">w2</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c1</span><span class="p">)</span> <span class="o">*</span> <span class="n">s2</span> <span class="o">/</span> <span class="n">c2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span>
+                        <span class="n">c1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s1</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w2</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c1</span><span class="p">)</span> <span class="o">/</span> <span class="n">c2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;231&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s1</span><span class="p">)</span> <span class="o">*</span> <span class="n">s2</span> <span class="o">/</span> <span class="n">c2</span> <span class="o">-</span> <span class="n">w2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">+</span> <span class="n">w1</span> <span class="o">*</span>
+                        <span class="n">s1</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c1</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s1</span><span class="p">)</span> <span class="o">/</span> <span class="n">c2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;312&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">c1</span><span class="p">)</span> <span class="o">*</span> <span class="n">s2</span> <span class="o">/</span> <span class="n">c2</span> <span class="o">-</span> <span class="n">w3</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">*</span>
+                        <span class="n">c1</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">s1</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">c1</span><span class="p">)</span> <span class="o">/</span> <span class="n">c2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;132&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">w2</span> <span class="o">*</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s1</span><span class="p">)</span> <span class="o">*</span> <span class="n">s2</span> <span class="o">/</span> <span class="n">c2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span>
+                        <span class="n">s1</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c1</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w2</span> <span class="o">*</span> <span class="n">c1</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s1</span><span class="p">)</span> <span class="o">/</span> <span class="n">c2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;213&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c1</span><span class="p">)</span> <span class="o">*</span> <span class="n">s2</span> <span class="o">/</span> <span class="n">c2</span> <span class="o">-</span> <span class="n">w2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">*</span>
+                        <span class="n">c1</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s1</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c1</span><span class="p">)</span> <span class="o">/</span> <span class="n">c2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;321&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">s1</span><span class="p">)</span> <span class="o">*</span> <span class="n">s2</span> <span class="o">/</span> <span class="n">c2</span> <span class="o">-</span> <span class="n">w3</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">*</span>
+                        <span class="n">s1</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">c1</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c1</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">s1</span><span class="p">)</span> <span class="o">/</span> <span class="n">c2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;121&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">+</span> <span class="p">(</span><span class="n">w2</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c1</span><span class="p">)</span> <span class="o">*</span> <span class="n">c2</span> <span class="o">/</span> <span class="n">s2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span>
+                        <span class="n">c1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s1</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w2</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c1</span><span class="p">)</span> <span class="o">/</span> <span class="n">s2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;131&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">-</span> <span class="p">(</span><span class="n">w2</span> <span class="o">*</span> <span class="n">c1</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s1</span><span class="p">)</span> <span class="o">*</span> <span class="n">c2</span> <span class="o">/</span> <span class="n">s2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span>
+                        <span class="n">s1</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c1</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">w2</span> <span class="o">*</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s1</span><span class="p">)</span> <span class="o">/</span> <span class="n">s2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;212&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c1</span><span class="p">)</span> <span class="o">*</span> <span class="n">c2</span> <span class="o">/</span> <span class="n">s2</span> <span class="o">-</span> <span class="n">w2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">*</span>
+                        <span class="n">c1</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s1</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c1</span><span class="p">)</span> <span class="o">/</span> <span class="n">s2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;232&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">+</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s1</span><span class="p">)</span> <span class="o">*</span> <span class="n">c2</span> <span class="o">/</span> <span class="n">s2</span> <span class="o">-</span> <span class="n">w2</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">+</span> <span class="n">w1</span> <span class="o">*</span>
+                        <span class="n">s1</span> <span class="o">-</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">c1</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">w3</span> <span class="o">*</span> <span class="n">s1</span><span class="p">)</span> <span class="o">/</span> <span class="n">s2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;313&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">+</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">c1</span><span class="p">)</span> <span class="o">*</span> <span class="n">c2</span> <span class="o">/</span> <span class="n">s2</span> <span class="o">-</span> <span class="n">w3</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">*</span>
+                        <span class="n">c1</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">s1</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">c1</span><span class="p">)</span> <span class="o">/</span> <span class="n">s2</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rot_order</span> <span class="o">==</span> <span class="s1">&#39;323&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">q1d</span> <span class="o">-</span> <span class="p">(</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c1</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">s1</span><span class="p">)</span> <span class="o">*</span> <span class="n">c2</span> <span class="o">/</span> <span class="n">s2</span> <span class="o">-</span> <span class="n">w3</span><span class="p">,</span> <span class="n">q2d</span> <span class="o">-</span> <span class="n">w1</span> <span class="o">*</span>
+                        <span class="n">s1</span> <span class="o">-</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">c1</span><span class="p">,</span> <span class="n">q3d</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">w1</span> <span class="o">*</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">w2</span> <span class="o">*</span> <span class="n">s1</span><span class="p">)</span> <span class="o">/</span> <span class="n">s2</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">rot_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;quaternion&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">rot_order</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot have rotation order for quaternion&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Need 4 coordinates for quaternion&#39;</span><span class="p">)</span>
+        <span class="c1"># Actual hard-coded kinematic differential equations</span>
+        <span class="n">e0</span><span class="p">,</span> <span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span> <span class="o">=</span> <span class="n">coords</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="n">speeds</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">E</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="n">e0</span><span class="p">,</span> <span class="o">-</span><span class="n">e3</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e1</span><span class="p">],</span> <span class="p">[</span><span class="n">e3</span><span class="p">,</span> <span class="n">e0</span><span class="p">,</span> <span class="o">-</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">e2</span><span class="p">,</span> <span class="n">e1</span><span class="p">,</span> <span class="n">e0</span><span class="p">,</span> <span class="n">e3</span><span class="p">],</span>
+            <span class="p">[</span><span class="o">-</span><span class="n">e1</span><span class="p">,</span> <span class="o">-</span><span class="n">e2</span><span class="p">,</span> <span class="o">-</span><span class="n">e3</span><span class="p">,</span> <span class="n">e0</span><span class="p">]])</span>
+        <span class="n">edots</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="n">diff</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">dynamicsymbols</span><span class="o">.</span><span class="n">_t</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="n">e0</span><span class="p">]])</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">edots</span><span class="o">.</span><span class="n">T</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">w</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">E</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Not an approved rotation type for this function&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">partial_velocity</span><span class="p">(</span><span class="n">vel_list</span><span class="p">,</span> <span class="n">u_list</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a list of partial velocities.</span>
+
+<span class="sd">    For a list of velocity or angular velocity vectors the partial derivatives</span>
+<span class="sd">    with respect to the supplied generalized speeds are computed, in the</span>
+<span class="sd">    specified ReferenceFrame.</span>
+
+<span class="sd">    The output is a list of lists. The outer list has a number of elements</span>
+<span class="sd">    equal to the number of supplied velocity vectors. The inner lists are, for</span>
+<span class="sd">    each velocity vector, the partial derivatives of that velocity vector with</span>
+<span class="sd">    respect to the generalized speeds supplied.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    vel_list : list</span>
+<span class="sd">        List of velocities of Point&#39;s and angular velocities of ReferenceFrame&#39;s</span>
+<span class="sd">    u_list : list</span>
+<span class="sd">        List of independent generalized speeds.</span>
+<span class="sd">    frame : ReferenceFrame</span>
+<span class="sd">        The ReferenceFrame the partial derivatives are going to be taken in.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.physics.mechanics import Point, ReferenceFrame</span>
+<span class="sd">    &gt;&gt;&gt; from sympy.physics.mechanics import dynamicsymbols</span>
+<span class="sd">    &gt;&gt;&gt; from sympy.physics.mechanics import partial_velocity</span>
+<span class="sd">    &gt;&gt;&gt; u = dynamicsymbols(&#39;u&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; N = ReferenceFrame(&#39;N&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; P = Point(&#39;P&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; P.set_vel(N, u * N.x)</span>
+<span class="sd">    &gt;&gt;&gt; vel_list = [P.vel(N)]</span>
+<span class="sd">    &gt;&gt;&gt; u_list = [u]</span>
+<span class="sd">    &gt;&gt;&gt; partial_velocity(vel_list, u_list, N)</span>
+<span class="sd">    [[N.x]]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">vel_list</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Provide velocities in an iterable&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">u_list</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Provide speeds in an iterable&#39;</span><span class="p">)</span>
+    <span class="n">list_of_pvlists</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">vel_list</span><span class="p">:</span>
+        <span class="n">pvlist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">u_list</span><span class="p">:</span>
+            <span class="n">vel</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+            <span class="n">pvlist</span> <span class="o">+=</span> <span class="p">[</span><span class="n">vel</span><span class="p">]</span>
+        <span class="n">list_of_pvlists</span> <span class="o">+=</span> <span class="p">[</span><span class="n">pvlist</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">list_of_pvlists</span>
+
+
 <div class="viewcode-block" id="linear_momentum"><a class="viewcode-back" href="../../../../modules/physics/mechanics/api/part_bod.html#sympy.physics.mechanics.functions.linear_momentum">[docs]</a><span class="k">def</span> <span class="nf">linear_momentum</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="o">*</span><span class="n">body</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Linear momentum of the system.</span>
 
@@ -246,17 +601,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">ReferenceFrame</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;Please specify a valid ReferenceFrame&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Please specify a valid ReferenceFrame&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">linear_momentum_sys</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">linear_momentum_sys</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">body</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="n">RigidBody</span><span class="p">,</span> <span class="n">Particle</span><span class="p">)):</span>
                 <span class="n">linear_momentum_sys</span> <span class="o">+=</span> <span class="n">e</span><span class="o">.</span><span class="n">linear_momentum</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;*body must have only Particle or RigidBody&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">linear_momentum_sys</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;*body must have only Particle or RigidBody&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">linear_momentum_sys</span></div>
 
-</div>
+
 <div class="viewcode-block" id="angular_momentum"><a class="viewcode-back" href="../../../../modules/physics/mechanics/api/part_bod.html#sympy.physics.mechanics.functions.angular_momentum">[docs]</a><span class="k">def</span> <span class="nf">angular_momentum</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="o">*</span><span class="n">body</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Angular momentum of a system</span>
 
@@ -302,19 +657,19 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">ReferenceFrame</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;Please enter a valid ReferenceFrame&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Please enter a valid ReferenceFrame&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">Point</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;Please specify a valid Point&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Please specify a valid Point&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">angular_momentum_sys</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">angular_momentum_sys</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">body</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="n">RigidBody</span><span class="p">,</span> <span class="n">Particle</span><span class="p">)):</span>
                 <span class="n">angular_momentum_sys</span> <span class="o">+=</span> <span class="n">e</span><span class="o">.</span><span class="n">angular_momentum</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;*body must have only Particle or RigidBody&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">angular_momentum_sys</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;*body must have only Particle or RigidBody&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">angular_momentum_sys</span></div>
 
-</div>
+
 <div class="viewcode-block" id="kinetic_energy"><a class="viewcode-back" href="../../../../modules/physics/mechanics/api/part_bod.html#sympy.physics.mechanics.functions.kinetic_energy">[docs]</a><span class="k">def</span> <span class="nf">kinetic_energy</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="o">*</span><span class="n">body</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Kinetic energy of a multibody system.</span>
 
@@ -361,16 +716,16 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">ReferenceFrame</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;Please enter a valid ReferenceFrame&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Please enter a valid ReferenceFrame&#39;</span><span class="p">)</span>
     <span class="n">ke_sys</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">body</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="n">RigidBody</span><span class="p">,</span> <span class="n">Particle</span><span class="p">)):</span>
             <span class="n">ke_sys</span> <span class="o">+=</span> <span class="n">e</span><span class="o">.</span><span class="n">kinetic_energy</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;*body must have only Particle or RigidBody&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ke_sys</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;*body must have only Particle or RigidBody&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ke_sys</span></div>
 
-</div>
+
 <div class="viewcode-block" id="potential_energy"><a class="viewcode-back" href="../../../../modules/physics/mechanics/api/part_bod.html#sympy.physics.mechanics.functions.potential_energy">[docs]</a><span class="k">def</span> <span class="nf">potential_energy</span><span class="p">(</span><span class="o">*</span><span class="n">body</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Potential energy of a multibody system.</span>
 
@@ -419,10 +774,10 @@
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="n">RigidBody</span><span class="p">,</span> <span class="n">Particle</span><span class="p">)):</span>
             <span class="n">pe_sys</span> <span class="o">+=</span> <span class="n">e</span><span class="o">.</span><span class="n">potential_energy</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;*body must have only Particle or RigidBody&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">pe_sys</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;*body must have only Particle or RigidBody&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pe_sys</span></div>
 
-</div>
+
 <div class="viewcode-block" id="Lagrangian"><a class="viewcode-back" href="../../../../modules/physics/mechanics/api/part_bod.html#sympy.physics.mechanics.functions.Lagrangian">[docs]</a><span class="k">def</span> <span class="nf">Lagrangian</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="o">*</span><span class="n">body</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Lagrangian of a multibody system.</span>
 
@@ -473,22 +828,30 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">ReferenceFrame</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;Please supply a valid ReferenceFrame&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Please supply a valid ReferenceFrame&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">body</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">(</span><span class="n">RigidBody</span><span class="p">,</span> <span class="n">Particle</span><span class="p">)):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;*body must have only Particle or RigidBody&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;*body must have only Particle or RigidBody&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">kinetic_energy</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="o">*</span><span class="n">body</span><span class="p">)</span> <span class="o">-</span> <span class="n">potential_energy</span><span class="p">(</span><span class="o">*</span><span class="n">body</span><span class="p">)</span></div>
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="../../../../index.html">
               <img class="logo" src="../../../../_static/sympylogo.png" alt="Logo"/>
-            </a></p>
-<div id="searchbox" style="display: none">
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../../search.html" method="get">
       <input type="text" name="q" />
@@ -496,36 +859,23 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../../sympy.html" >sympy</a> &raquo;</li> 
-      </ul>
-    </div>
     <div class="footer">
-        &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Feb 22, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      &copy;2015 SymPy Development Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
     </div>
+
+    
+
+    
   </body>
 </html>

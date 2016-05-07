@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.assumptions.refine &mdash; SymPy 0.7.5 documentation</title>
+    <title>sympy.assumptions.refine &mdash; SymPy 0.7.3 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.5',
+        VERSION:     '0.7.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -28,45 +26,29 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
-    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.5 documentation" href="../../../index.html" />
-    <link rel="up" title="sympy" href="../../sympy.html" /> 
+    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../sympy.html" accesskey="U">sympy</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for sympy.assumptions.refine</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
-
-<span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">S</span><span class="p">,</span> <span class="n">Add</span><span class="p">,</span> <span class="n">Expr</span>
+<span></span><span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">S</span><span class="p">,</span> <span class="n">Add</span><span class="p">,</span> <span class="n">Expr</span>
 <span class="kn">from</span> <span class="nn">sympy.assumptions</span> <span class="kn">import</span> <span class="n">Q</span><span class="p">,</span> <span class="n">ask</span>
 <span class="kn">from</span> <span class="nn">sympy.core.logic</span> <span class="kn">import</span> <span class="n">fuzzy_not</span>
 
@@ -92,7 +74,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">expr</span><span class="o">.</span><span class="n">is_Atom</span><span class="p">:</span>
         <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">refine</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">assumptions</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">]</span>
-        <span class="c"># TODO: this will probably not work with Integral or Polynomial</span>
+        <span class="c1"># TODO: this will probably not work with Integral or Polynomial</span>
         <span class="n">expr</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
     <span class="n">handler</span> <span class="o">=</span> <span class="n">handlers_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
@@ -103,9 +85,9 @@
         <span class="k">return</span> <span class="n">expr</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_expr</span><span class="p">,</span> <span class="n">Expr</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">new_expr</span>
-    <span class="k">return</span> <span class="n">refine</span><span class="p">(</span><span class="n">new_expr</span><span class="p">,</span> <span class="n">assumptions</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">refine</span><span class="p">(</span><span class="n">new_expr</span><span class="p">,</span> <span class="n">assumptions</span><span class="p">)</span></div>
 
-</div>
+
 <div class="viewcode-block" id="refine_abs"><a class="viewcode-back" href="../../../modules/assumptions/refine.html#sympy.assumptions.refine.refine_abs">[docs]</a><span class="k">def</span> <span class="nf">refine_abs</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">assumptions</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Handler for the absolute value.</span>
@@ -126,12 +108,12 @@
     <span class="n">arg</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">arg</span><span class="p">),</span> <span class="n">assumptions</span><span class="p">)</span> <span class="ow">and</span> \
             <span class="n">fuzzy_not</span><span class="p">(</span><span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">negative</span><span class="p">(</span><span class="n">arg</span><span class="p">),</span> <span class="n">assumptions</span><span class="p">)):</span>
-        <span class="c"># if it&#39;s nonnegative</span>
+        <span class="c1"># if it&#39;s nonnegative</span>
         <span class="k">return</span> <span class="n">arg</span>
     <span class="k">if</span> <span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">negative</span><span class="p">(</span><span class="n">arg</span><span class="p">),</span> <span class="n">assumptions</span><span class="p">):</span>
-        <span class="k">return</span> <span class="o">-</span><span class="n">arg</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">arg</span></div>
 
-</div>
+
 <div class="viewcode-block" id="refine_Pow"><a class="viewcode-back" href="../../../modules/assumptions/refine.html#sympy.assumptions.refine.refine_Pow">[docs]</a><span class="k">def</span> <span class="nf">refine_Pow</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">assumptions</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Handler for instances of Pow.</span>
@@ -177,13 +159,11 @@
         <span class="k">if</span> <span class="n">expr</span><span class="o">.</span><span class="n">base</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">NegativeOne</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">expr</span><span class="o">.</span><span class="n">exp</span><span class="o">.</span><span class="n">is_Add</span><span class="p">:</span>
 
-                <span class="n">old</span> <span class="o">=</span> <span class="n">expr</span>
-
-                <span class="c"># For powers of (-1) we can remove</span>
-                <span class="c">#  - even terms</span>
-                <span class="c">#  - pairs of odd terms</span>
-                <span class="c">#  - a single odd term + 1</span>
-                <span class="c">#  - A numerical constant N can be replaced with mod(N,2)</span>
+                <span class="c1"># For powers of (-1) we can remove</span>
+                <span class="c1">#  - even terms</span>
+                <span class="c1">#  - pairs of odd terms</span>
+                <span class="c1">#  - a single odd term + 1</span>
+                <span class="c1">#  - A numerical constant N can be replaced with mod(N,2)</span>
 
                 <span class="n">coeff</span><span class="p">,</span> <span class="n">terms</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">exp</span><span class="o">.</span><span class="n">as_coeff_add</span><span class="p">()</span>
                 <span class="n">terms</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
@@ -207,29 +187,9 @@
 
                 <span class="k">if</span> <span class="n">new_coeff</span> <span class="o">!=</span> <span class="n">coeff</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">initial_number_of_terms</span><span class="p">:</span>
                     <span class="n">terms</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_coeff</span><span class="p">)</span>
-                    <span class="n">expr</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">base</span><span class="o">**</span><span class="p">(</span><span class="n">Add</span><span class="p">(</span><span class="o">*</span><span class="n">terms</span><span class="p">))</span>
+                    <span class="k">return</span> <span class="n">expr</span><span class="o">.</span><span class="n">base</span><span class="o">**</span><span class="p">(</span><span class="n">Add</span><span class="p">(</span><span class="o">*</span><span class="n">terms</span><span class="p">))</span></div>
 
-                <span class="c"># Handle (-1)**((-1)**n/2 + m/2)</span>
-                <span class="n">e2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">expr</span><span class="o">.</span><span class="n">exp</span>
-                <span class="k">if</span> <span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">even</span><span class="p">(</span><span class="n">e2</span><span class="p">),</span> <span class="n">assumptions</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="n">e2</span><span class="o">.</span><span class="n">could_extract_minus_sign</span><span class="p">():</span>
-                        <span class="n">e2</span> <span class="o">*=</span> <span class="n">expr</span><span class="o">.</span><span class="n">base</span>
-                <span class="k">if</span> <span class="n">e2</span><span class="o">.</span><span class="n">is_Add</span><span class="p">:</span>
-                    <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">e2</span><span class="o">.</span><span class="n">as_two_terms</span><span class="p">()</span>
-                    <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">is_Pow</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">base</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">NegativeOne</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">integer</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">exp</span><span class="p">),</span> <span class="n">assumptions</span><span class="p">):</span>
-                            <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
-                            <span class="k">if</span> <span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">even</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">assumptions</span><span class="p">):</span>
-                                <span class="k">return</span> <span class="n">expr</span><span class="o">.</span><span class="n">base</span><span class="o">**</span><span class="n">p</span><span class="o">.</span><span class="n">exp</span>
-                            <span class="k">elif</span> <span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">odd</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">assumptions</span><span class="p">):</span>
-                                <span class="k">return</span> <span class="n">expr</span><span class="o">.</span><span class="n">base</span><span class="o">**</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">exp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-                            <span class="k">else</span><span class="p">:</span>
-                                <span class="k">return</span> <span class="n">expr</span><span class="o">.</span><span class="n">base</span><span class="o">**</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">exp</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
 
-                <span class="k">if</span> <span class="n">old</span> <span class="o">!=</span> <span class="n">expr</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="n">expr</span>
-
-</div>
 <div class="viewcode-block" id="refine_exp"><a class="viewcode-back" href="../../../modules/assumptions/refine.html#sympy.assumptions.refine.refine_exp">[docs]</a><span class="k">def</span> <span class="nf">refine_exp</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">assumptions</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Handler for exponential function.</span>
@@ -254,8 +214,8 @@
                 <span class="k">elif</span> <span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">even</span><span class="p">(</span><span class="n">coeff</span> <span class="o">+</span> <span class="n">S</span><span class="o">.</span><span class="n">Half</span><span class="p">),</span> <span class="n">assumptions</span><span class="p">):</span>
                     <span class="k">return</span> <span class="o">-</span><span class="n">S</span><span class="o">.</span><span class="n">ImaginaryUnit</span>
                 <span class="k">elif</span> <span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">odd</span><span class="p">(</span><span class="n">coeff</span> <span class="o">+</span> <span class="n">S</span><span class="o">.</span><span class="n">Half</span><span class="p">),</span> <span class="n">assumptions</span><span class="p">):</span>
-                    <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">ImaginaryUnit</span>
-</div>
+                    <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">ImaginaryUnit</span></div>
+
 <div class="viewcode-block" id="refine_Relational"><a class="viewcode-back" href="../../../modules/assumptions/refine.html#sympy.assumptions.refine.refine_Relational">[docs]</a><span class="k">def</span> <span class="nf">refine_Relational</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">assumptions</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Handler for Relational</span>
@@ -266,31 +226,39 @@
 <span class="sd">    &gt;&gt;&gt; refine_Relational(x&lt;0, ~Q.is_true(x&lt;0))</span>
 <span class="sd">    False</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">is_true</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="n">assumptions</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">is_true</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="n">assumptions</span><span class="p">)</span></div>
 
-</div>
+
 <span class="n">handlers_dict</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&#39;Abs&#39;</span><span class="p">:</span> <span class="n">refine_abs</span><span class="p">,</span>
-    <span class="s">&#39;Pow&#39;</span><span class="p">:</span> <span class="n">refine_Pow</span><span class="p">,</span>
-    <span class="s">&#39;exp&#39;</span><span class="p">:</span> <span class="n">refine_exp</span><span class="p">,</span>
-    <span class="s">&#39;Equality&#39;</span> <span class="p">:</span> <span class="n">refine_Relational</span><span class="p">,</span>
-    <span class="s">&#39;Unequality&#39;</span> <span class="p">:</span> <span class="n">refine_Relational</span><span class="p">,</span>
-    <span class="s">&#39;GreaterThan&#39;</span> <span class="p">:</span> <span class="n">refine_Relational</span><span class="p">,</span>
-    <span class="s">&#39;LessThan&#39;</span> <span class="p">:</span> <span class="n">refine_Relational</span><span class="p">,</span>
-    <span class="s">&#39;StrictGreaterThan&#39;</span> <span class="p">:</span> <span class="n">refine_Relational</span><span class="p">,</span>
-    <span class="s">&#39;StrictLessThan&#39;</span> <span class="p">:</span> <span class="n">refine_Relational</span>
+    <span class="s1">&#39;Abs&#39;</span><span class="p">:</span> <span class="n">refine_abs</span><span class="p">,</span>
+    <span class="s1">&#39;Pow&#39;</span><span class="p">:</span> <span class="n">refine_Pow</span><span class="p">,</span>
+    <span class="s1">&#39;exp&#39;</span><span class="p">:</span> <span class="n">refine_exp</span><span class="p">,</span>
+    <span class="s1">&#39;Equality&#39;</span> <span class="p">:</span> <span class="n">refine_Relational</span><span class="p">,</span>
+    <span class="s1">&#39;Unequality&#39;</span> <span class="p">:</span> <span class="n">refine_Relational</span><span class="p">,</span>
+    <span class="s1">&#39;GreaterThan&#39;</span> <span class="p">:</span> <span class="n">refine_Relational</span><span class="p">,</span>
+    <span class="s1">&#39;LessThan&#39;</span> <span class="p">:</span> <span class="n">refine_Relational</span><span class="p">,</span>
+    <span class="s1">&#39;StrictGreaterThan&#39;</span> <span class="p">:</span> <span class="n">refine_Relational</span><span class="p">,</span>
+    <span class="s1">&#39;StrictLessThan&#39;</span> <span class="p">:</span> <span class="n">refine_Relational</span>
 <span class="p">}</span>
 </pre></div>
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="../../../index.html">
               <img class="logo" src="../../../_static/sympylogo.png" alt="Logo"/>
-            </a></p>
-<div id="searchbox" style="display: none">
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -298,36 +266,23 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../sympy.html" >sympy</a> &raquo;</li> 
-      </ul>
-    </div>
     <div class="footer">
-        &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Feb 22, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      &copy;2015 SymPy Development Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
     </div>
+
+    
+
+    
   </body>
 </html>

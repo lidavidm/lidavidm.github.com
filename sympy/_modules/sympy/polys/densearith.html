@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.polys.densearith &mdash; SymPy 0.7.5 documentation</title>
+    <title>sympy.polys.densearith &mdash; SymPy 0.7.3 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://89.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.5',
+        VERSION:     '0.7.3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -28,48 +26,31 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://89.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
-    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.5 documentation" href="../../../index.html" />
-    <link rel="up" title="sympy" href="../../sympy.html" /> 
+    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../sympy.html" accesskey="U">sympy</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <h1>Source code for sympy.polys.densearith</h1><div class="highlight"><pre>
-<span class="sd">&quot;&quot;&quot;Arithmetics for dense recursive polynomials in ``K[x]`` or ``K[X]``. &quot;&quot;&quot;</span>
-
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+<span></span><span class="sd">&quot;&quot;&quot;Arithmetics for dense recursive polynomials in ``K[x]`` or ``K[X]``. &quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">sympy.polys.densebasic</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">dup_slice</span><span class="p">,</span>
     <span class="n">dup_LC</span><span class="p">,</span> <span class="n">dmp_LC</span><span class="p">,</span>
     <span class="n">dup_degree</span><span class="p">,</span> <span class="n">dmp_degree</span><span class="p">,</span>
     <span class="n">dup_normal</span><span class="p">,</span>
@@ -78,9 +59,13 @@
     <span class="n">dmp_one_p</span><span class="p">,</span> <span class="n">dmp_one</span><span class="p">,</span>
     <span class="n">dmp_ground</span><span class="p">,</span> <span class="n">dmp_zeros</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">sympy.polys.polyerrors</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ExactQuotientFailed</span><span class="p">,</span> <span class="n">PolynomialDivisionFailed</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="nb">xrange</span>
+<span class="kn">from</span> <span class="nn">sympy.polys.polyerrors</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ExactQuotientFailed</span><span class="p">)</span>
 
+<span class="kn">from</span> <span class="nn">sympy.utilities</span> <span class="kn">import</span> <span class="n">cythonized</span>
+
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;i,n,m&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dup_add_term</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add ``c*x**i`` to ``f`` in ``K[x]``.</span>
@@ -110,6 +95,7 @@
             <span class="k">return</span> <span class="n">f</span><span class="p">[:</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">f</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;i,u,v,n,m&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_add_term"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_add_term">[docs]</a><span class="k">def</span> <span class="nf">dmp_add_term</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add ``c(x_2..x_u)*x_0**i`` to ``f`` in ``K[X]``.</span>
@@ -141,9 +127,10 @@
         <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">+</span> <span class="n">dmp_zeros</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">n</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">f</span><span class="p">[:</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">dmp_add</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">[:</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">dmp_add</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;i,n,m&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dup_sub_term</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Subtract ``c*x**i`` from ``f`` in ``K[x]``.</span>
@@ -173,6 +160,7 @@
             <span class="k">return</span> <span class="n">f</span><span class="p">[:</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">f</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;i,u,v,n,m&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_sub_term"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_sub_term">[docs]</a><span class="k">def</span> <span class="nf">dmp_sub_term</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Subtract ``c(x_2..x_u)*x_0**i`` from ``f`` in ``K[X]``.</span>
@@ -204,9 +192,10 @@
         <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">dmp_neg</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)]</span> <span class="o">+</span> <span class="n">dmp_zeros</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">n</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">f</span><span class="p">[:</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">dmp_sub</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">[:</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">dmp_sub</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;i&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dup_mul_term</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Multiply ``f`` by ``c*x**i`` in ``K[x]``.</span>
@@ -227,6 +216,7 @@
         <span class="k">return</span> <span class="p">[</span> <span class="n">cf</span> <span class="o">*</span> <span class="n">c</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">K</span><span class="o">.</span><span class="n">zero</span><span class="p">]</span><span class="o">*</span><span class="n">i</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;i,u,v&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_mul_term"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_mul_term">[docs]</a><span class="k">def</span> <span class="nf">dmp_mul_term</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Multiply ``f`` by ``c(x_2..x_u)*x_0**i`` in ``K[X]``.</span>
@@ -251,9 +241,9 @@
     <span class="k">if</span> <span class="n">dmp_zero_p</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">dmp_zero</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span> <span class="n">dmp_mul</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span> <span class="o">+</span> <span class="n">dmp_zeros</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span> <span class="n">dmp_mul</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span> <span class="o">+</span> <span class="n">dmp_zeros</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span></div>
 
-</div>
+
 <span class="k">def</span> <span class="nf">dup_add_ground</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add an element of the ground domain to ``f``.</span>
@@ -285,9 +275,9 @@
 <span class="sd">    x**3 + 2*x**2 + 3*x + 8</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">dmp_add_term</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dmp_ground</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dmp_add_term</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dmp_ground</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span></div>
 
-</div>
+
 <span class="k">def</span> <span class="nf">dup_sub_ground</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Subtract an element of the ground domain from ``f``.</span>
@@ -319,9 +309,9 @@
 <span class="sd">    x**3 + 2*x**2 + 3*x</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">dmp_sub_term</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dmp_ground</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dmp_sub_term</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dmp_ground</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span></div>
 
-</div>
+
 <span class="k">def</span> <span class="nf">dup_mul_ground</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Multiply ``f`` by a constant value in ``K[x]``.</span>
@@ -342,6 +332,7 @@
         <span class="k">return</span> <span class="p">[</span> <span class="n">cf</span> <span class="o">*</span> <span class="n">c</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,v&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_mul_ground"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_mul_ground">[docs]</a><span class="k">def</span> <span class="nf">dmp_mul_ground</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Multiply ``f`` by a constant value in ``K[X]``.</span>
@@ -361,9 +352,9 @@
 
     <span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span>
 
-    <span class="k">return</span> <span class="p">[</span> <span class="n">dmp_mul_ground</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span> <span class="n">dmp_mul_ground</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span></div>
 
-</div>
+
 <span class="k">def</span> <span class="nf">dup_quo_ground</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Quotient by a constant in ``K[x]``.</span>
@@ -383,16 +374,17 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">c</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s">&#39;polynomial division&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s1">&#39;polynomial division&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span>
 
-    <span class="k">if</span> <span class="n">K</span><span class="o">.</span><span class="n">has_Field</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">K</span><span class="o">.</span><span class="n">has_Field</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">K</span><span class="o">.</span><span class="n">is_Exact</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span> <span class="n">K</span><span class="o">.</span><span class="n">quo</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span> <span class="n">cf</span> <span class="o">//</span> <span class="n">c</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,v&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_quo_ground"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_quo_ground">[docs]</a><span class="k">def</span> <span class="nf">dmp_quo_ground</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Quotient by a constant in ``K[X]``.</span>
@@ -416,9 +408,9 @@
 
     <span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span>
 
-    <span class="k">return</span> <span class="p">[</span> <span class="n">dmp_quo_ground</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span> <span class="n">dmp_quo_ground</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span></div>
 
-</div>
+
 <span class="k">def</span> <span class="nf">dup_exquo_ground</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exact quotient by a constant in ``K[x]``.</span>
@@ -434,13 +426,14 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">c</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s">&#39;polynomial division&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s1">&#39;polynomial division&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span>
 
     <span class="k">return</span> <span class="p">[</span> <span class="n">K</span><span class="o">.</span><span class="n">exquo</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,v&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_exquo_ground"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_exquo_ground">[docs]</a><span class="k">def</span> <span class="nf">dmp_exquo_ground</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exact quotient by a constant in ``K[X]``.</span>
@@ -460,9 +453,10 @@
 
     <span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span>
 
-    <span class="k">return</span> <span class="p">[</span> <span class="n">dmp_exquo_ground</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span> <span class="n">dmp_exquo_ground</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;n&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dup_lshift"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dup_lshift">[docs]</a><span class="k">def</span> <span class="nf">dup_lshift</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Efficiently multiply ``f`` by ``x**n`` in ``K[x]``.</span>
@@ -480,9 +474,10 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">f</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">f</span> <span class="o">+</span> <span class="p">[</span><span class="n">K</span><span class="o">.</span><span class="n">zero</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+        <span class="k">return</span> <span class="n">f</span> <span class="o">+</span> <span class="p">[</span><span class="n">K</span><span class="o">.</span><span class="n">zero</span><span class="p">]</span><span class="o">*</span><span class="n">n</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;n&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dup_rshift"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dup_rshift">[docs]</a><span class="k">def</span> <span class="nf">dup_rshift</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Efficiently divide ``f`` by ``x**n`` in ``K[x]``.</span>
@@ -499,9 +494,9 @@
 <span class="sd">    x**2 + 1</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">f</span><span class="p">[:</span><span class="o">-</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">[:</span><span class="o">-</span><span class="n">n</span><span class="p">]</span></div>
 
-</div>
+
 <span class="k">def</span> <span class="nf">dup_abs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Make all coefficients positive in ``K[x]``.</span>
@@ -519,6 +514,7 @@
     <span class="k">return</span> <span class="p">[</span> <span class="n">K</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">coeff</span><span class="p">)</span> <span class="k">for</span> <span class="n">coeff</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,v&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_abs"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_abs">[docs]</a><span class="k">def</span> <span class="nf">dmp_abs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Make all coefficients positive in ``K[X]``.</span>
@@ -538,9 +534,9 @@
 
     <span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span>
 
-    <span class="k">return</span> <span class="p">[</span> <span class="n">dmp_abs</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span> <span class="n">dmp_abs</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span></div>
 
-</div>
+
 <span class="k">def</span> <span class="nf">dup_neg</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Negate a polynomial in ``K[x]``.</span>
@@ -558,6 +554,7 @@
     <span class="k">return</span> <span class="p">[</span> <span class="o">-</span><span class="n">coeff</span> <span class="k">for</span> <span class="n">coeff</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,v&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_neg"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_neg">[docs]</a><span class="k">def</span> <span class="nf">dmp_neg</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Negate a polynomial in ``K[X]``.</span>
@@ -577,9 +574,10 @@
 
     <span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span>
 
-    <span class="k">return</span> <span class="p">[</span> <span class="n">dmp_neg</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span> <span class="n">dmp_neg</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">cf</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">]</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;df,dg,k&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dup_add</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add dense polynomials in ``K[x]``.</span>
@@ -615,6 +613,7 @@
         <span class="k">return</span> <span class="n">h</span> <span class="o">+</span> <span class="p">[</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="p">]</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,v,df,dg,k&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_add"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_add">[docs]</a><span class="k">def</span> <span class="nf">dmp_add</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add dense polynomials in ``K[X]``.</span>
@@ -654,9 +653,10 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">h</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="p">[:</span><span class="n">k</span><span class="p">],</span> <span class="n">g</span><span class="p">[</span><span class="n">k</span><span class="p">:]</span>
 
-        <span class="k">return</span> <span class="n">h</span> <span class="o">+</span> <span class="p">[</span> <span class="n">dmp_add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="p">]</span>
+        <span class="k">return</span> <span class="n">h</span> <span class="o">+</span> <span class="p">[</span> <span class="n">dmp_add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="p">]</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;df,dg,k&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dup_sub</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Subtract dense polynomials in ``K[x]``.</span>
@@ -692,6 +692,7 @@
         <span class="k">return</span> <span class="n">h</span> <span class="o">+</span> <span class="p">[</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="p">]</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,v,df,dg,k&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_sub"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_sub">[docs]</a><span class="k">def</span> <span class="nf">dmp_sub</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Subtract dense polynomials in ``K[X]``.</span>
@@ -731,9 +732,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">h</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">dmp_neg</span><span class="p">(</span><span class="n">g</span><span class="p">[:</span><span class="n">k</span><span class="p">],</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">g</span><span class="p">[</span><span class="n">k</span><span class="p">:]</span>
 
-        <span class="k">return</span> <span class="n">h</span> <span class="o">+</span> <span class="p">[</span> <span class="n">dmp_sub</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="p">]</span>
+        <span class="k">return</span> <span class="n">h</span> <span class="o">+</span> <span class="p">[</span> <span class="n">dmp_sub</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="p">]</span></div>
 
-</div>
+
 <span class="k">def</span> <span class="nf">dup_add_mul</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns ``f + g*h`` where ``f, g, h`` are in ``K[x]``.</span>
@@ -751,6 +752,7 @@
     <span class="k">return</span> <span class="n">dup_add</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dup_mul</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">K</span><span class="p">)</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_add_mul"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_add_mul">[docs]</a><span class="k">def</span> <span class="nf">dmp_add_mul</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns ``f + g*h`` where ``f, g, h`` are in ``K[X]``.</span>
@@ -765,9 +767,9 @@
 <span class="sd">    2*x**2 + 2*x + y</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">dmp_add</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dmp_mul</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dmp_add</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dmp_mul</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span></div>
 
-</div>
+
 <span class="k">def</span> <span class="nf">dup_sub_mul</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns ``f - g*h`` where ``f, g, h`` are in ``K[x]``.</span>
@@ -785,6 +787,7 @@
     <span class="k">return</span> <span class="n">dup_sub</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dup_mul</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">K</span><span class="p">)</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_sub_mul"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_sub_mul">[docs]</a><span class="k">def</span> <span class="nf">dmp_sub_mul</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns ``f - g*h`` where ``f, g, h`` are in ``K[X]``.</span>
@@ -799,9 +802,10 @@
 <span class="sd">    -2*x + y</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">dmp_sub</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dmp_mul</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dmp_sub</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dmp_mul</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;df,dg,i,j&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dup_mul</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Multiply dense polynomials in ``K[x]``.</span>
@@ -825,40 +829,20 @@
     <span class="n">df</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">dg</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dg</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
-        <span class="n">h</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span> <span class="o">+</span> <span class="n">dg</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">coeff</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">zero</span>
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span> <span class="o">+</span> <span class="n">dg</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-            <span class="n">coeff</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">zero</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">dg</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">coeff</span> <span class="o">+=</span> <span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">g</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">]</span>
 
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">dg</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-                <span class="n">coeff</span> <span class="o">+=</span> <span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">g</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">]</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coeff</span><span class="p">)</span>
 
-            <span class="n">h</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coeff</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">dup_strip</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c"># Use Karatsuba&#39;s algorithm (divide and conquer), see e.g.:</span>
-        <span class="c"># Joris van der Hoeven, Relax But Don&#39;t Be Too Lazy,</span>
-        <span class="c"># J. Symbolic Computation, 11 (2002), section 3.1.1.</span>
-        <span class="n">n2</span> <span class="o">=</span> <span class="n">n</span><span class="o">//</span><span class="mi">2</span>
-
-        <span class="n">fl</span><span class="p">,</span> <span class="n">gl</span> <span class="o">=</span> <span class="n">dup_slice</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">dup_slice</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
-
-        <span class="n">fh</span> <span class="o">=</span> <span class="n">dup_rshift</span><span class="p">(</span><span class="n">dup_slice</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">n2</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
-        <span class="n">gh</span> <span class="o">=</span> <span class="n">dup_rshift</span><span class="p">(</span><span class="n">dup_slice</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">n2</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
-
-        <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">dup_mul</span><span class="p">(</span><span class="n">fl</span><span class="p">,</span> <span class="n">gl</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">dup_mul</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">gh</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
-
-        <span class="n">mid</span> <span class="o">=</span> <span class="n">dup_mul</span><span class="p">(</span><span class="n">dup_add</span><span class="p">(</span><span class="n">fl</span><span class="p">,</span> <span class="n">fh</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">dup_add</span><span class="p">(</span><span class="n">gl</span><span class="p">,</span> <span class="n">gh</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">K</span><span class="p">)</span>
-        <span class="n">mid</span> <span class="o">=</span> <span class="n">dup_sub</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="n">dup_add</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">K</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">dup_add</span><span class="p">(</span><span class="n">dup_add</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="n">dup_lshift</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">K</span><span class="p">),</span>
-                       <span class="n">dup_lshift</span><span class="p">(</span><span class="n">hi</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">n2</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">K</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dup_strip</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,v,df,dg,i,j&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_mul"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_mul">[docs]</a><span class="k">def</span> <span class="nf">dmp_mul</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Multiply dense polynomials in ``K[X]``.</span>
@@ -899,9 +883,10 @@
 
         <span class="n">h</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coeff</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">dmp_strip</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dmp_strip</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;df,jmin,jmax,n,i,j&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dup_sqr</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Square dense polynomials in ``K[x]``.</span>
@@ -916,7 +901,7 @@
 <span class="sd">    x**4 + 2*x**2 + 1</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">df</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[]</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">df</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
         <span class="n">c</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">zero</span>
@@ -942,6 +927,7 @@
     <span class="k">return</span> <span class="n">dup_strip</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,v,df,jmin,jmax,n,i,j&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_sqr"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_sqr">[docs]</a><span class="k">def</span> <span class="nf">dmp_sqr</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Square dense polynomials in ``K[X]``.</span>
@@ -987,9 +973,10 @@
 
         <span class="n">h</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">dmp_strip</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dmp_strip</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;n,m&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dup_pow</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Raise ``f`` to the ``n``-th power in ``K[x]``.</span>
@@ -1007,7 +994,7 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">K</span><span class="o">.</span><span class="n">one</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;can&#39;t raise polynomial to a negative power&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;can&#39;t raise polynomial to a negative power&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">f</span> <span class="ow">or</span> <span class="n">f</span> <span class="o">==</span> <span class="p">[</span><span class="n">K</span><span class="o">.</span><span class="n">one</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">f</span>
 
@@ -1027,6 +1014,7 @@
     <span class="k">return</span> <span class="n">g</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,n,m&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_pow"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_pow">[docs]</a><span class="k">def</span> <span class="nf">dmp_pow</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Raise ``f`` to the ``n``-th power in ``K[X]``.</span>
@@ -1047,7 +1035,7 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">dmp_one</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;can&#39;t raise polynomial to a negative power&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;can&#39;t raise polynomial to a negative power&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">dmp_zero_p</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span> <span class="ow">or</span> <span class="n">dmp_one_p</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">f</span>
 
@@ -1064,9 +1052,10 @@
 
         <span class="n">f</span> <span class="o">=</span> <span class="n">dmp_sqr</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">g</span>
+    <span class="k">return</span> <span class="n">g</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;df,dg,dr,N,j&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dup_pdiv</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Polynomial pseudo-division in ``K[x]``.</span>
@@ -1084,10 +1073,10 @@
     <span class="n">df</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">dg</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 
-    <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">f</span><span class="p">,</span> <span class="n">df</span>
+    <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">f</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">g</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s">&quot;polynomial division&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s2">&quot;polynomial division&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">df</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
 
@@ -1095,6 +1084,11 @@
     <span class="n">lc_g</span> <span class="o">=</span> <span class="n">dup_LC</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">dr</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
+            <span class="k">break</span>
+
         <span class="n">lc_r</span> <span class="o">=</span> <span class="n">dup_LC</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
         <span class="n">j</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="n">dr</span> <span class="o">-</span> <span class="n">dg</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
 
@@ -1105,13 +1099,6 @@
         <span class="n">G</span> <span class="o">=</span> <span class="n">dup_mul_term</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">lc_r</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">dup_sub</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-        <span class="n">_dr</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">dr</span><span class="p">,</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
-            <span class="k">break</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="p">(</span><span class="n">dr</span> <span class="o">&lt;</span> <span class="n">_dr</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">PolynomialDivisionFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
-
     <span class="n">c</span> <span class="o">=</span> <span class="n">lc_g</span><span class="o">**</span><span class="n">N</span>
 
     <span class="n">q</span> <span class="o">=</span> <span class="n">dup_mul_ground</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
@@ -1120,6 +1107,7 @@
     <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;df,dg,dr,N,j&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dup_prem</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Polynomial pseudo-remainder in ``K[x]``.</span>
@@ -1137,10 +1125,10 @@
     <span class="n">df</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">dg</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 
-    <span class="n">r</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">f</span><span class="p">,</span> <span class="n">df</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">f</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">g</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s">&quot;polynomial division&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s2">&quot;polynomial division&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">df</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">r</span>
 
@@ -1148,19 +1136,17 @@
     <span class="n">lc_g</span> <span class="o">=</span> <span class="n">dup_LC</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">dr</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
+            <span class="k">break</span>
+
         <span class="n">lc_r</span> <span class="o">=</span> <span class="n">dup_LC</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
         <span class="n">j</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="n">dr</span> <span class="o">-</span> <span class="n">dg</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
 
         <span class="n">R</span> <span class="o">=</span> <span class="n">dup_mul_ground</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">lc_g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
         <span class="n">G</span> <span class="o">=</span> <span class="n">dup_mul_term</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">lc_r</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">dup_sub</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
-
-        <span class="n">_dr</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">dr</span><span class="p">,</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
-            <span class="k">break</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="p">(</span><span class="n">dr</span> <span class="o">&lt;</span> <span class="n">_dr</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">PolynomialDivisionFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">dup_mul_ground</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">lc_g</span><span class="o">**</span><span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
@@ -1212,6 +1198,7 @@
         <span class="k">raise</span> <span class="n">ExactQuotientFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,df,dg,dr,N,j&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_pdiv"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_pdiv">[docs]</a><span class="k">def</span> <span class="nf">dmp_pdiv</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Polynomial pseudo-division in ``K[X]``.</span>
@@ -1233,9 +1220,9 @@
     <span class="n">dg</span> <span class="o">=</span> <span class="n">dmp_degree</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">dg</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s">&quot;polynomial division&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s2">&quot;polynomial division&quot;</span><span class="p">)</span>
 
-    <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">dmp_zero</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">f</span><span class="p">,</span> <span class="n">df</span>
+    <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">dmp_zero</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">f</span>
 
     <span class="k">if</span> <span class="n">df</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
@@ -1244,6 +1231,11 @@
     <span class="n">lc_g</span> <span class="o">=</span> <span class="n">dmp_LC</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">dr</span> <span class="o">=</span> <span class="n">dmp_degree</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
+            <span class="k">break</span>
+
         <span class="n">lc_r</span> <span class="o">=</span> <span class="n">dmp_LC</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
         <span class="n">j</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="n">dr</span> <span class="o">-</span> <span class="n">dg</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
 
@@ -1254,21 +1246,15 @@
         <span class="n">G</span> <span class="o">=</span> <span class="n">dmp_mul_term</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">lc_r</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">dmp_sub</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-        <span class="n">_dr</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">dr</span><span class="p">,</span> <span class="n">dmp_degree</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
-            <span class="k">break</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="p">(</span><span class="n">dr</span> <span class="o">&lt;</span> <span class="n">_dr</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">PolynomialDivisionFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
-
     <span class="n">c</span> <span class="o">=</span> <span class="n">dmp_pow</span><span class="p">(</span><span class="n">lc_g</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
     <span class="n">q</span> <span class="o">=</span> <span class="n">dmp_mul_term</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">dmp_mul_term</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
+    <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,df,dg,dr,N,j&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_prem"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_prem">[docs]</a><span class="k">def</span> <span class="nf">dmp_prem</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Polynomial pseudo-remainder in ``K[X]``.</span>
@@ -1290,9 +1276,9 @@
     <span class="n">dg</span> <span class="o">=</span> <span class="n">dmp_degree</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">dg</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s">&quot;polynomial division&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s2">&quot;polynomial division&quot;</span><span class="p">)</span>
 
-    <span class="n">r</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">f</span><span class="p">,</span> <span class="n">df</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">f</span>
 
     <span class="k">if</span> <span class="n">df</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">r</span>
@@ -1301,6 +1287,11 @@
     <span class="n">lc_g</span> <span class="o">=</span> <span class="n">dmp_LC</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">dr</span> <span class="o">=</span> <span class="n">dmp_degree</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
+            <span class="k">break</span>
+
         <span class="n">lc_r</span> <span class="o">=</span> <span class="n">dmp_LC</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
         <span class="n">j</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="n">dr</span> <span class="o">-</span> <span class="n">dg</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
 
@@ -1308,18 +1299,11 @@
         <span class="n">G</span> <span class="o">=</span> <span class="n">dmp_mul_term</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">lc_r</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">dmp_sub</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-        <span class="n">_dr</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">dr</span><span class="p">,</span> <span class="n">dmp_degree</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
-            <span class="k">break</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="p">(</span><span class="n">dr</span> <span class="o">&lt;</span> <span class="n">_dr</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">PolynomialDivisionFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
-
     <span class="n">c</span> <span class="o">=</span> <span class="n">dmp_pow</span><span class="p">(</span><span class="n">lc_g</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">dmp_mul_term</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dmp_mul_term</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span></div>
 
-</div>
+
 <div class="viewcode-block" id="dmp_pquo"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_pquo">[docs]</a><span class="k">def</span> <span class="nf">dmp_pquo</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Polynomial exact pseudo-quotient in ``K[X]``.</span>
@@ -1341,9 +1325,9 @@
 <span class="sd">    2*x + 2*y - 2</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">dmp_pdiv</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dmp_pdiv</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
 
-</div>
+
 <div class="viewcode-block" id="dmp_pexquo"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_pexquo">[docs]</a><span class="k">def</span> <span class="nf">dmp_pexquo</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Polynomial pseudo-quotient in ``K[X]``.</span>
@@ -1372,9 +1356,10 @@
     <span class="k">if</span> <span class="n">dmp_zero_p</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">q</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ExactQuotientFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">ExactQuotientFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;df,dg,dr,j&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dup_rr_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Univariate division with remainder over a ring.</span>
@@ -1392,16 +1377,21 @@
     <span class="n">df</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">dg</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 
-    <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">f</span><span class="p">,</span> <span class="n">df</span>
+    <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">f</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">g</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s">&quot;polynomial division&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s2">&quot;polynomial division&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">df</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
 
     <span class="n">lc_g</span> <span class="o">=</span> <span class="n">dup_LC</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">dr</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
+            <span class="k">break</span>
+
         <span class="n">lc_r</span> <span class="o">=</span> <span class="n">dup_LC</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">lc_r</span> <span class="o">%</span> <span class="n">lc_g</span><span class="p">:</span>
@@ -1412,18 +1402,13 @@
 
         <span class="n">q</span> <span class="o">=</span> <span class="n">dup_add_term</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
         <span class="n">h</span> <span class="o">=</span> <span class="n">dup_mul_term</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+
         <span class="n">r</span> <span class="o">=</span> <span class="n">dup_sub</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
-
-        <span class="n">_dr</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">dr</span><span class="p">,</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
-            <span class="k">break</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="p">(</span><span class="n">dr</span> <span class="o">&lt;</span> <span class="n">_dr</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">PolynomialDivisionFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,df,dg,dr,j&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_rr_div"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_rr_div">[docs]</a><span class="k">def</span> <span class="nf">dmp_rr_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Multivariate division with remainder over a ring.</span>
@@ -1445,9 +1430,9 @@
     <span class="n">dg</span> <span class="o">=</span> <span class="n">dmp_degree</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">dg</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s">&quot;polynomial division&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s2">&quot;polynomial division&quot;</span><span class="p">)</span>
 
-    <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">dmp_zero</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">f</span><span class="p">,</span> <span class="n">df</span>
+    <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">dmp_zero</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">f</span>
 
     <span class="k">if</span> <span class="n">df</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
@@ -1455,7 +1440,13 @@
     <span class="n">lc_g</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">dmp_LC</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span>
 
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">dr</span> <span class="o">=</span> <span class="n">dmp_degree</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
+            <span class="k">break</span>
+
         <span class="n">lc_r</span> <span class="o">=</span> <span class="n">dmp_LC</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+
         <span class="n">c</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">dmp_rr_div</span><span class="p">(</span><span class="n">lc_r</span><span class="p">,</span> <span class="n">lc_g</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dmp_zero_p</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
@@ -1465,18 +1456,13 @@
 
         <span class="n">q</span> <span class="o">=</span> <span class="n">dmp_add_term</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
         <span class="n">h</span> <span class="o">=</span> <span class="n">dmp_mul_term</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+
         <span class="n">r</span> <span class="o">=</span> <span class="n">dmp_sub</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-        <span class="n">_dr</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">dr</span><span class="p">,</span> <span class="n">dmp_degree</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span></div>
 
-        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
-            <span class="k">break</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="p">(</span><span class="n">dr</span> <span class="o">&lt;</span> <span class="n">_dr</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">PolynomialDivisionFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
-
-</div>
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;df,dg,dr,j&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dup_ff_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Polynomial division with remainder over a field.</span>
@@ -1494,16 +1480,21 @@
     <span class="n">df</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">dg</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 
-    <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">f</span><span class="p">,</span> <span class="n">df</span>
+    <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">f</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">g</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s">&quot;polynomial division&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s2">&quot;polynomial division&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">df</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
 
     <span class="n">lc_g</span> <span class="o">=</span> <span class="n">dup_LC</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">dr</span> <span class="o">=</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
+            <span class="k">break</span>
+
         <span class="n">lc_r</span> <span class="o">=</span> <span class="n">dup_LC</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
         <span class="n">c</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">exquo</span><span class="p">(</span><span class="n">lc_r</span><span class="p">,</span> <span class="n">lc_g</span><span class="p">)</span>
@@ -1511,18 +1502,16 @@
 
         <span class="n">q</span> <span class="o">=</span> <span class="n">dup_add_term</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
         <span class="n">h</span> <span class="o">=</span> <span class="n">dup_mul_term</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+
         <span class="n">r</span> <span class="o">=</span> <span class="n">dup_sub</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-        <span class="n">_dr</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">dr</span><span class="p">,</span> <span class="n">dup_degree</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
-            <span class="k">break</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="p">(</span><span class="n">dr</span> <span class="o">&lt;</span> <span class="n">_dr</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">PolynomialDivisionFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">K</span><span class="o">.</span><span class="n">is_Exact</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">dup_normal</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,df,dg,dr,j&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_ff_div"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_ff_div">[docs]</a><span class="k">def</span> <span class="nf">dmp_ff_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Polynomial division with remainder over a field.</span>
@@ -1544,9 +1533,9 @@
     <span class="n">dg</span> <span class="o">=</span> <span class="n">dmp_degree</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">dg</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s">&quot;polynomial division&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s2">&quot;polynomial division&quot;</span><span class="p">)</span>
 
-    <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">dmp_zero</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">f</span><span class="p">,</span> <span class="n">df</span>
+    <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">dmp_zero</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">f</span>
 
     <span class="k">if</span> <span class="n">df</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
@@ -1554,7 +1543,13 @@
     <span class="n">lc_g</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">dmp_LC</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span>
 
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">dr</span> <span class="o">=</span> <span class="n">dmp_degree</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
+            <span class="k">break</span>
+
         <span class="n">lc_r</span> <span class="o">=</span> <span class="n">dmp_LC</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+
         <span class="n">c</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">dmp_ff_div</span><span class="p">(</span><span class="n">lc_r</span><span class="p">,</span> <span class="n">lc_g</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dmp_zero_p</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
@@ -1564,18 +1559,12 @@
 
         <span class="n">q</span> <span class="o">=</span> <span class="n">dmp_add_term</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
         <span class="n">h</span> <span class="o">=</span> <span class="n">dmp_mul_term</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+
         <span class="n">r</span> <span class="o">=</span> <span class="n">dmp_sub</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-        <span class="n">_dr</span><span class="p">,</span> <span class="n">dr</span> <span class="o">=</span> <span class="n">dr</span><span class="p">,</span> <span class="n">dmp_degree</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span></div>
 
-        <span class="k">if</span> <span class="n">dr</span> <span class="o">&lt;</span> <span class="n">dg</span><span class="p">:</span>
-            <span class="k">break</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="p">(</span><span class="n">dr</span> <span class="o">&lt;</span> <span class="n">_dr</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">PolynomialDivisionFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
-
-</div>
 <span class="k">def</span> <span class="nf">dup_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Polynomial division with remainder in ``K[x]``.</span>
@@ -1594,7 +1583,7 @@
 <span class="sd">    (1/2*x + 1, 5)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">K</span><span class="o">.</span><span class="n">has_Field</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">K</span><span class="o">.</span><span class="n">has_Field</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">K</span><span class="o">.</span><span class="n">is_Exact</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">dup_ff_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">dup_rr_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
@@ -1669,6 +1658,7 @@
         <span class="k">raise</span> <span class="n">ExactQuotientFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_div"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_div">[docs]</a><span class="k">def</span> <span class="nf">dmp_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Polynomial division with remainder in ``K[X]``.</span>
@@ -1687,12 +1677,13 @@
 <span class="sd">    (1/2*x + 1/2*y - 1/2, -y + 1)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">K</span><span class="o">.</span><span class="n">has_Field</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">K</span><span class="o">.</span><span class="n">has_Field</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">K</span><span class="o">.</span><span class="n">is_Exact</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">dmp_ff_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">dmp_rr_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dmp_rr_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_rem"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_rem">[docs]</a><span class="k">def</span> <span class="nf">dmp_rem</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns polynomial remainder in ``K[X]``.</span>
@@ -1711,9 +1702,10 @@
 <span class="sd">    -y + 1</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">dmp_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dmp_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_quo"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_quo">[docs]</a><span class="k">def</span> <span class="nf">dmp_quo</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns exact polynomial quotient in ``K[X]``.</span>
@@ -1732,9 +1724,10 @@
 <span class="sd">    1/2*x + 1/2*y - 1/2</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">dmp_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dmp_div</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
 
-</div>
+
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_exquo"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_exquo">[docs]</a><span class="k">def</span> <span class="nf">dmp_exquo</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns polynomial quotient in ``K[X]``.</span>
@@ -1763,9 +1756,9 @@
     <span class="k">if</span> <span class="n">dmp_zero_p</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">q</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">ExactQuotientFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">ExactQuotientFailed</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span></div>
 
-</div>
+
 <span class="k">def</span> <span class="nf">dup_max_norm</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns maximum norm of a polynomial in ``K[x]``.</span>
@@ -1786,6 +1779,7 @@
         <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">dup_abs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">K</span><span class="p">))</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,v&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_max_norm"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_max_norm">[docs]</a><span class="k">def</span> <span class="nf">dmp_max_norm</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns maximum norm of a polynomial in ``K[X]``.</span>
@@ -1805,9 +1799,9 @@
 
     <span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span>
 
-    <span class="k">return</span> <span class="nb">max</span><span class="p">([</span> <span class="n">dmp_max_norm</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">])</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">([</span> <span class="n">dmp_max_norm</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">])</span></div>
 
-</div>
+
 <span class="k">def</span> <span class="nf">dup_l1_norm</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns l1 norm of a polynomial in ``K[x]``.</span>
@@ -1828,6 +1822,7 @@
         <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">dup_abs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">K</span><span class="p">))</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u,v&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_l1_norm"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_l1_norm">[docs]</a><span class="k">def</span> <span class="nf">dmp_l1_norm</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns l1 norm of a polynomial in ``K[X]``.</span>
@@ -1847,9 +1842,9 @@
 
     <span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span>
 
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span> <span class="n">dmp_l1_norm</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">])</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span> <span class="n">dmp_l1_norm</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">f</span> <span class="p">])</span></div>
 
-</div>
+
 <span class="k">def</span> <span class="nf">dup_expand</span><span class="p">(</span><span class="n">polys</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Multiply together several polynomials in ``K[x]``.</span>
@@ -1875,6 +1870,7 @@
     <span class="k">return</span> <span class="n">f</span>
 
 
+<span class="nd">@cythonized</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">)</span>
 <div class="viewcode-block" id="dmp_expand"><a class="viewcode-back" href="../../../modules/polys/internals.html#sympy.polys.densearith.dmp_expand">[docs]</a><span class="k">def</span> <span class="nf">dmp_expand</span><span class="p">(</span><span class="n">polys</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Multiply together several polynomials in ``K[X]``.</span>
@@ -1903,12 +1899,20 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="../../../index.html">
               <img class="logo" src="../../../_static/sympylogo.png" alt="Logo"/>
-            </a></p>
-<div id="searchbox" style="display: none">
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../../../search.html" method="get">
       <input type="text" name="q" />
@@ -1916,36 +1920,23 @@
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="../../../np-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li><a href="../../../index.html">SymPy 0.7.5 documentation</a> &raquo;</li>
-          <li><a href="../../index.html" >Module code</a> &raquo;</li>
-          <li><a href="../../sympy.html" >sympy</a> &raquo;</li> 
-      </ul>
-    </div>
     <div class="footer">
-        &copy; Copyright 2014 SymPy Development Team.
-      Last updated on Feb 22, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      &copy;2015 SymPy Development Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
     </div>
+
+    
+
+    
   </body>
 </html>

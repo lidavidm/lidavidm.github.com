@@ -1,0 +1,382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>sympy.printing.jscode &mdash; SymPy 0.7.3 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.7.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
+    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for sympy.printing.jscode</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Javascript code printer</span>
+
+<span class="sd">The JavascriptCodePrinter converts single sympy expressions into single</span>
+<span class="sd">Javascript expressions, using the functions defined in the Javascript</span>
+<span class="sd">Math object where possible.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">S</span><span class="p">,</span> <span class="n">C</span>
+<span class="kn">from</span> <span class="nn">sympy.printing.codeprinter</span> <span class="kn">import</span> <span class="n">CodePrinter</span>
+<span class="kn">from</span> <span class="nn">sympy.printing.precedence</span> <span class="kn">import</span> <span class="n">precedence</span>
+<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">default_sort_key</span>
+
+
+<span class="c1"># dictionary mapping sympy function to (argument_conditions, Javascript_function).</span>
+<span class="c1"># Used in JavascriptCodePrinter._print_Function(self)</span>
+<span class="n">known_functions</span> <span class="o">=</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="n">function_translations</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Abs&#39;</span><span class="p">:</span> <span class="s1">&#39;Math.abs&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;acos&#39;</span><span class="p">:</span> <span class="s1">&#39;Math.acos&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;asin&#39;</span><span class="p">:</span> <span class="s1">&#39;Math.asin&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;atan&#39;</span><span class="p">:</span> <span class="s1">&#39;Math.atan&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ceiling&#39;</span><span class="p">:</span> <span class="s1">&#39;Math.ceil&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;cos&#39;</span><span class="p">:</span> <span class="s1">&#39;Math.cos&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;exp&#39;</span><span class="p">:</span> <span class="s1">&#39;Math.exp&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;floor&#39;</span><span class="p">:</span> <span class="s1">&#39;Math.floor&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;log&#39;</span><span class="p">:</span> <span class="s1">&#39;Math.log&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sin&#39;</span><span class="p">:</span> <span class="s1">&#39;Math.sin&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tan&#39;</span><span class="p">:</span> <span class="s1">&#39;Math.tan&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="JavascriptCodePrinter"><a class="viewcode-back" href="../../../modules/printing.html#sympy.printing.jscode.JavascriptCodePrinter">[docs]</a><span class="k">class</span> <span class="nc">JavascriptCodePrinter</span><span class="p">(</span><span class="n">CodePrinter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;&quot;A Printer to convert python expressions to strings of javascript code</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">printmethod</span> <span class="o">=</span> <span class="s1">&#39;_javascript&#39;</span>
+
+    <span class="n">_default_settings</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+        <span class="s1">&#39;full_prec&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;precision&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="s1">&#39;user_functions&#39;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s1">&#39;human&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;Register function mappings supplied by user&quot;&quot;&quot;</span>
+        <span class="n">CodePrinter</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">known_functions</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">known_functions</span><span class="p">)</span>
+        <span class="n">userfuncs</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;user_functions&#39;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">userfuncs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                <span class="n">userfuncs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">known_functions</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">userfuncs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_rate_index_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;function to calculate score based on position among indices</span>
+
+<span class="sd">        This method is used to sort loops in an optimized order, see</span>
+<span class="sd">        CodePrinter._sort_optimized()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">p</span><span class="o">*</span><span class="mi">5</span>
+
+    <span class="k">def</span> <span class="nf">_get_statement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codestring</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">;&quot;</span> <span class="o">%</span> <span class="n">codestring</span>
+
+<div class="viewcode-block" id="JavascriptCodePrinter.doprint"><a class="viewcode-back" href="../../../modules/printing.html#sympy.printing.jscode.JavascriptCodePrinter.doprint">[docs]</a>    <span class="k">def</span> <span class="nf">doprint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">assign_to</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Actually format the expression as Javascript code.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">assign_to</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
+            <span class="n">assign_to</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="n">assign_to</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">assign_to</span><span class="p">,</span> <span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">Basic</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">None</span><span class="p">))):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;JavascriptCodePrinter cannot assign to object of type </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                    <span class="nb">type</span><span class="p">(</span><span class="n">assign_to</span><span class="p">))</span>
+
+        <span class="c1"># keep a set of expressions that are not strictly translatable to Javascript</span>
+        <span class="c1"># and number constants that must be declared and initialized</span>
+        <span class="n">not_js</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_not_supported</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_number_symbols</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="c1"># We treat top level Piecewise here to get if tests outside loops</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">C</span><span class="o">.</span><span class="n">Piecewise</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;if (</span><span class="si">%s</span><span class="s2">) {&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">c</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;else {&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;else if (</span><span class="si">%s</span><span class="s2">) {&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+                <span class="n">code0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_doprint_a_piece</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">assign_to</span><span class="p">)</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">code0</span><span class="p">)</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;}&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">code0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_doprint_a_piece</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">assign_to</span><span class="p">)</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">code0</span><span class="p">)</span>
+
+        <span class="c1"># format the output</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_settings</span><span class="p">[</span><span class="s2">&quot;human&quot;</span><span class="p">]:</span>
+            <span class="n">frontlines</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">not_js</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">frontlines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;// Not Javascript:&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">expr</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">not_js</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">str</span><span class="p">):</span>
+                    <span class="n">frontlines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;// </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">repr</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_number_symbols</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">str</span><span class="p">):</span>
+                <span class="n">frontlines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;var </span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="n">frontlines</span> <span class="o">+</span> <span class="n">lines</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indent_code</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indent_code</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">))</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_number_symbols</span><span class="p">,</span> <span class="n">not_js</span><span class="p">,</span> <span class="n">lines</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_not_supported</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_number_symbols</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_loop_opening_ending</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a tuple (open_lines, close_lines) containing lists of codelines</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">open_lines</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">close_lines</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">loopstart</span> <span class="o">=</span> <span class="s2">&quot;for (var </span><span class="si">%(varble)s</span><span class="s2">=</span><span class="si">%(start)s</span><span class="s2">; </span><span class="si">%(varble)s</span><span class="s2">&lt;</span><span class="si">%(end)s</span><span class="s2">; </span><span class="si">%(varble)s</span><span class="s2">++){&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">:</span>
+            <span class="c1"># Javascript arrays start at 0 and end at dimension-1</span>
+            <span class="n">open_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loopstart</span> <span class="o">%</span> <span class="p">{</span>
+                <span class="s1">&#39;varble&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">label</span><span class="p">),</span>
+                <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">lower</span><span class="p">),</span>
+                <span class="s1">&#39;end&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">upper</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)})</span>
+            <span class="n">close_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;}&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">open_lines</span><span class="p">,</span> <span class="n">close_lines</span>
+
+    <span class="k">def</span> <span class="nf">_print_Pow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="n">PREC</span> <span class="o">=</span> <span class="n">precedence</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">expr</span><span class="o">.</span><span class="n">exp</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;1/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parenthesize</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">PREC</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">expr</span><span class="o">.</span><span class="n">exp</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;Math.sqrt(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;Math.pow(</span><span class="si">%s</span><span class="s1">, </span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">base</span><span class="p">),</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">exp</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_print_Rational</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">p</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">q</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_print_Indexed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="c1"># calculate index for 1d array</span>
+        <span class="n">dims</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">inds</span> <span class="o">=</span> <span class="p">[</span> <span class="n">i</span><span class="o">.</span><span class="n">label</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">expr</span><span class="o">.</span><span class="n">indices</span> <span class="p">]</span>
+        <span class="n">elem</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">Zero</span>
+        <span class="n">offset</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">One</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">rank</span><span class="p">)):</span>
+            <span class="n">elem</span> <span class="o">+=</span> <span class="n">offset</span><span class="o">*</span><span class="n">inds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">offset</span> <span class="o">*=</span> <span class="n">dims</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">label</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">elem</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_print_Exp1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Math.E&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_print_Pi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Math.PI&#39;</span>
+
+    <span class="k">def</span> <span class="nf">_print_Infinity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Number.POSITIVE_INFINITY&#39;</span>
+
+    <span class="k">def</span> <span class="nf">_print_NegativeInfinity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Number.NEGATIVE_INFINITY&#39;</span>
+
+    <span class="k">def</span> <span class="nf">_print_Piecewise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="c1"># This method is called only for inline if constructs</span>
+        <span class="c1"># Top level piecewise is handled in doprint()</span>
+        <span class="n">ecpairs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;(</span><span class="si">%s</span><span class="s2">) {</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+                   <span class="k">for</span> <span class="n">e</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">last_line</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">cond</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">last_line</span> <span class="o">=</span> <span class="s2">&quot;else {</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">}&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">expr</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ecpairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;(</span><span class="si">%s</span><span class="s2">) {</span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span>
+                           <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">cond</span><span class="p">),</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">expr</span><span class="p">)))</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;if </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">last_line</span>
+        <span class="k">return</span> <span class="n">code</span> <span class="o">%</span> <span class="s2">&quot;else if &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ecpairs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_print_And</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="n">PREC</span> <span class="o">=</span> <span class="n">precedence</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39; &amp;&amp; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parenthesize</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">PREC</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">default_sort_key</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_print_Or</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="n">PREC</span> <span class="o">=</span> <span class="n">precedence</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39; || &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parenthesize</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">PREC</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">default_sort_key</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_print_Not</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="n">PREC</span> <span class="o">=</span> <span class="n">precedence</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;!&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">parenthesize</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">PREC</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_print_Function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">expr</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">__name__</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">known_functions</span><span class="p">:</span>
+            <span class="n">cond_cfunc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">known_functions</span><span class="p">[</span><span class="n">expr</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">__name__</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">cond</span><span class="p">,</span> <span class="n">cfunc</span> <span class="ow">in</span> <span class="n">cond_cfunc</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">cond</span><span class="p">(</span><span class="o">*</span><span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">(</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cfunc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stringify</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">expr</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">__name__</span> <span class="ow">in</span> <span class="n">function_translations</span><span class="p">:</span>
+            <span class="n">tr</span> <span class="o">=</span> <span class="n">function_translations</span><span class="p">[</span><span class="n">expr</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">__name__</span><span class="p">]</span>
+            <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">(</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stringify</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="s1">&#39;_imp_&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">_imp_</span><span class="p">,</span> <span class="n">C</span><span class="o">.</span><span class="n">Lambda</span><span class="p">):</span>
+            <span class="c1"># inlined function</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">_imp_</span><span class="p">(</span><span class="o">*</span><span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">CodePrinter</span><span class="o">.</span><span class="n">_print_Function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span>
+
+<div class="viewcode-block" id="JavascriptCodePrinter.indent_code"><a class="viewcode-back" href="../../../modules/printing.html#sympy.printing.jscode.JavascriptCodePrinter.indent_code">[docs]</a>    <span class="k">def</span> <span class="nf">indent_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Accepts a string of code or a list of code lines&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
+            <span class="n">code_lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indent_code</span><span class="p">(</span><span class="n">code</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(</span><span class="bp">True</span><span class="p">))</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">code_lines</span><span class="p">)</span>
+
+        <span class="n">tab</span> <span class="o">=</span> <span class="s2">&quot;   &quot;</span>
+        <span class="n">inc_token</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;{&#39;</span><span class="p">,</span> <span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;{</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;(</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">dec_token</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;}&#39;</span><span class="p">,</span> <span class="s1">&#39;)&#39;</span><span class="p">)</span>
+
+        <span class="n">code</span> <span class="o">=</span> <span class="p">[</span> <span class="n">line</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39; </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">code</span> <span class="p">]</span>
+
+        <span class="n">increase</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">int</span><span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">endswith</span><span class="p">,</span> <span class="n">inc_token</span><span class="p">)))</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">code</span> <span class="p">]</span>
+        <span class="n">decrease</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">int</span><span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">,</span> <span class="n">dec_token</span><span class="p">)))</span>
+                     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">code</span> <span class="p">]</span>
+
+        <span class="n">pretty</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">code</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span> <span class="ow">or</span> <span class="n">line</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">:</span>
+                <span class="n">pretty</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="n">level</span> <span class="o">-=</span> <span class="n">decrease</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+            <span class="n">pretty</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">tab</span><span class="o">*</span><span class="n">level</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
+            <span class="n">level</span> <span class="o">+=</span> <span class="n">increase</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">pretty</span></div></div>
+
+
+<div class="viewcode-block" id="jscode"><a class="viewcode-back" href="../../../modules/printing.html#sympy.printing.jscode.jscode">[docs]</a><span class="k">def</span> <span class="nf">jscode</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">assign_to</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Converts an expr to a string of javascript code</span>
+
+<span class="sd">       Parameters</span>
+<span class="sd">       ==========</span>
+
+<span class="sd">       expr : sympy.core.Expr</span>
+<span class="sd">           a sympy expression to be converted</span>
+<span class="sd">       precision : optional</span>
+<span class="sd">           the precision for numbers such as pi [default=15]</span>
+<span class="sd">       user_functions : optional</span>
+<span class="sd">           A dictionary where keys are FunctionClass instances and values</span>
+<span class="sd">           are their string representations. Alternatively the</span>
+<span class="sd">           dictionary values can be a list of tuples i.e. [(argument_test,</span>
+<span class="sd">           jsfunction_string)].</span>
+<span class="sd">       human : optional</span>
+<span class="sd">           If True, the result is a single string that may contain some</span>
+<span class="sd">           constant declarations for the number symbols. If False, the</span>
+<span class="sd">           same information is returned in a more programmer-friendly</span>
+<span class="sd">           data structure.</span>
+
+<span class="sd">       Examples</span>
+<span class="sd">       ========</span>
+
+<span class="sd">       &gt;&gt;&gt; from sympy import jscode, symbols, Rational, sin</span>
+<span class="sd">       &gt;&gt;&gt; x, tau = symbols([&quot;x&quot;, &quot;tau&quot;])</span>
+<span class="sd">       &gt;&gt;&gt; jscode((2*tau)**Rational(7,2))</span>
+<span class="sd">       &#39;8*Math.sqrt(2)*Math.pow(tau, 7/2)&#39;</span>
+<span class="sd">       &gt;&gt;&gt; jscode(sin(x), assign_to=&quot;s&quot;)</span>
+<span class="sd">       &#39;s = Math.sin(x);&#39;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">JavascriptCodePrinter</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span><span class="o">.</span><span class="n">doprint</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">assign_to</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">print_jscode</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prints the Javascript representation of the given expression.</span>
+
+<span class="sd">       See jscode for the meaning of the optional arguments.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">print</span> <span class="n">jscode</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/sympylogo.png" alt="Logo"/>
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015 SymPy Development Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
