@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Parsing input &mdash; SymPy 0.7.3 documentation</title>
+    <title>Parsing input &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../index.html" />
     <link rel="up" title="SymPy Modules Reference" href="index.html" />
     <link rel="next" title="Calculus" href="calculus/index.html" />
     <link rel="prev" title="Timing Utilities" href="utilities/timeutils.html" />
@@ -55,7 +55,7 @@
 <h2>Parsing Functions Reference<a class="headerlink" href="#parsing-functions-reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="sympy.parsing.sympy_parser.parse_expr">
-<code class="descclassname">sympy.parsing.sympy_parser.</code><code class="descname">parse_expr</code><span class="sig-paren">(</span><em>s</em>, <em>local_dict=None</em>, <em>transformations=(&lt;function auto_symbol at 0x7fcd700fd758&gt;</em>, <em>&lt;function auto_number at 0x7fcd700fd938&gt;</em>, <em>&lt;function factorial_notation at 0x7fcd700fd488&gt;)</em>, <em>global_dict=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/parsing/sympy_parser.html#parse_expr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.parsing.sympy_parser.parse_expr" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">sympy.parsing.sympy_parser.</code><code class="descname">parse_expr</code><span class="sig-paren">(</span><em>s</em>, <em>local_dict=None</em>, <em>transformations=(&lt;function lambda_notation at 0x7fb3261efe60&gt;</em>, <em>&lt;function auto_symbol at 0x7fb3261efcf8&gt;</em>, <em>&lt;function auto_number at 0x7fb3261efa28&gt;</em>, <em>&lt;function factorial_notation at 0x7fb3261efde8&gt;)</em>, <em>global_dict=None</em>, <em>evaluate=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/parsing/sympy_parser.html#parse_expr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.parsing.sympy_parser.parse_expr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts the string <code class="docutils literal"><span class="pre">s</span></code> to a SymPy expression, in <code class="docutils literal"><span class="pre">local_dict</span></code></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -76,12 +76,18 @@ with <code class="docutils literal"><span class="pre">from</span> <span class="p
 this behavior (for instance, to parse <code class="docutils literal"><span class="pre">&quot;Q</span> <span class="pre">&amp;</span> <span class="pre">S&quot;</span></code>).</p>
 </div></blockquote>
 <p><strong>transformations</strong> : tuple, optional</p>
-<blockquote class="last">
+<blockquote>
 <div><p>A tuple of transformation functions used to modify the tokens of the
 parsed expression before evaluation. The default transformations
 convert numeric literals into their SymPy equivalents, convert
 undefined variables into SymPy symbols, and allow the use of standard
 mathematical factorial notation (e.g. <code class="docutils literal"><span class="pre">x!</span></code>).</p>
+</div></blockquote>
+<p><strong>evaluate</strong> : bool, optional</p>
+<blockquote class="last">
+<div><p>When False, the order of the arguments will remain as they were in the
+string and automatic simplification that would normally occur is
+suppressed. (see examples)</p>
 </div></blockquote>
 </td>
 </tr>
@@ -103,6 +109,23 @@ mathematical factorial notation (e.g. <code class="docutils literal"><span class
 <span class="gp">... </span>    <span class="p">(</span><span class="n">implicit_multiplication_application</span><span class="p">,))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">parse_expr</span><span class="p">(</span><span class="s2">&quot;2x&quot;</span><span class="p">,</span> <span class="n">transformations</span><span class="o">=</span><span class="n">transformations</span><span class="p">)</span>
 <span class="go">2*x</span>
+</pre></div>
+</div>
+<p>When evaluate=False, some automatic simplifications will not occur:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_expr</span><span class="p">(</span><span class="s2">&quot;2**3&quot;</span><span class="p">),</span> <span class="n">parse_expr</span><span class="p">(</span><span class="s2">&quot;2**3&quot;</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">(8, 2**3)</span>
+</pre></div>
+</div>
+<p>In addition the order of the arguments will not be made canonical.
+This feature allows one to tell exactly how the expression was entered:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">parse_expr</span><span class="p">(</span><span class="s1">&#39;1 + x&#39;</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">parse_expr</span><span class="p">(</span><span class="s1">&#39;x + 1&#39;</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">args</span>
+<span class="go">(1, x)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">args</span>
+<span class="go">(x, 1)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -156,7 +179,8 @@ only two tokens are passed, the resulting output is poor.</p>
 <span class="n">newcode</span> <span class="o">=</span> <span class="n">untokenize</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
 <span class="n">readline</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">newcode</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">next</span>
 <span class="n">t2</span> <span class="o">=</span> <span class="p">[</span><span class="n">tok</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">tok</span> <span class="ow">in</span> <span class="n">generate_tokens</span><span class="p">(</span><span class="n">readline</span><span class="p">)]</span>
-<span class="k">assert</span> <span class="n">t1</span> <span class="o">==</span> <span class="n">t2</span>
+<span class="k">if</span> <span class="n">t1</span> <span class="o">!=</span> <span class="n">t2</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;t1 should be equal to t2&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -227,7 +251,7 @@ be used by passing a list of functions to <code class="xref py py-func docutils 
 applied in the order given.</p>
 <dl class="data">
 <dt id="sympy.parsing.sympy_parser.standard_transformations">
-<code class="descclassname">sympy.parsing.sympy_parser.</code><code class="descname">standard_transformations</code><em class="property"> = (&lt;function auto_symbol at 0x7fcd700fd758&gt;, &lt;function auto_number at 0x7fcd700fd938&gt;, &lt;function factorial_notation at 0x7fcd700fd488&gt;)</em><a class="headerlink" href="#sympy.parsing.sympy_parser.standard_transformations" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">sympy.parsing.sympy_parser.</code><code class="descname">standard_transformations</code><em class="property"> = (&lt;function lambda_notation at 0x7fb3261efe60&gt;, &lt;function auto_symbol at 0x7fb3261efcf8&gt;, &lt;function auto_number at 0x7fb3261efa28&gt;, &lt;function factorial_notation at 0x7fb3261efde8&gt;)</em><a class="headerlink" href="#sympy.parsing.sympy_parser.standard_transformations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standard transformations for <code class="xref py py-func docutils literal"><span class="pre">parse_expr()</span></code>.
 Inserts calls to <code class="xref py py-class docutils literal"><span class="pre">Symbol</span></code>, <code class="xref py py-class docutils literal"><span class="pre">Integer</span></code>, and other SymPy
 datatypes and allows the use of standard factorial notation (e.g. <code class="docutils literal"><span class="pre">x!</span></code>).</p>
@@ -272,7 +296,7 @@ symbol names, a predicate like this would work:</p>
 <dd><p>Makes the multiplication operator optional in most cases.</p>
 <p>Use this before <code class="xref py py-func docutils literal"><span class="pre">implicit_application()</span></code>, otherwise expressions like
 <code class="docutils literal"><span class="pre">sin</span> <span class="pre">2x</span></code> will be parsed as <code class="docutils literal"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">sin(2)</span></code> rather than <code class="docutils literal"><span class="pre">sin(2*x)</span></code>.</p>
-<p>Example:</p>
+<p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.parsing.sympy_parser</span> <span class="k">import</span> <span class="p">(</span><span class="n">parse_expr</span><span class="p">,</span>
 <span class="gp">... </span><span class="n">standard_transformations</span><span class="p">,</span> <span class="n">implicit_multiplication</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">transformations</span> <span class="o">=</span> <span class="n">standard_transformations</span> <span class="o">+</span> <span class="p">(</span><span class="n">implicit_multiplication</span><span class="p">,)</span>
@@ -289,12 +313,12 @@ symbol names, a predicate like this would work:</p>
 <p>Use this after <code class="xref py py-func docutils literal"><span class="pre">implicit_multiplication()</span></code>, otherwise expressions
 like <code class="docutils literal"><span class="pre">sin</span> <span class="pre">2x</span></code> will be parsed as <code class="docutils literal"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">sin(2)</span></code> rather than
 <code class="docutils literal"><span class="pre">sin(2*x)</span></code>.</p>
-<p>Example:</p>
+<p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.parsing.sympy_parser</span> <span class="k">import</span> <span class="p">(</span><span class="n">parse_expr</span><span class="p">,</span>
 <span class="gp">... </span><span class="n">standard_transformations</span><span class="p">,</span> <span class="n">implicit_application</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">transformations</span> <span class="o">=</span> <span class="n">standard_transformations</span> <span class="o">+</span> <span class="p">(</span><span class="n">implicit_application</span><span class="p">,)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">parse_expr</span><span class="p">(</span><span class="s1">&#39;cot z + csc z&#39;</span><span class="p">,</span> <span class="n">transformations</span><span class="o">=</span><span class="n">transformations</span><span class="p">)</span>
-<span class="go">csc(z) + cot(z)</span>
+<span class="go">cot(z) + csc(z)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -303,7 +327,7 @@ like <code class="docutils literal"><span class="pre">sin</span> <span class="pr
 <dt id="sympy.parsing.sympy_parser.function_exponentiation">
 <code class="descclassname">sympy.parsing.sympy_parser.</code><code class="descname">function_exponentiation</code><span class="sig-paren">(</span><em>tokens</em>, <em>local_dict</em>, <em>global_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/parsing/sympy_parser.html#function_exponentiation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.parsing.sympy_parser.function_exponentiation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Allows functions to be exponentiated, e.g. <code class="docutils literal"><span class="pre">cos**2(x)</span></code>.</p>
-<p>Example:</p>
+<p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.parsing.sympy_parser</span> <span class="k">import</span> <span class="p">(</span><span class="n">parse_expr</span><span class="p">,</span>
 <span class="gp">... </span><span class="n">standard_transformations</span><span class="p">,</span> <span class="n">function_exponentiation</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">transformations</span> <span class="o">=</span> <span class="n">standard_transformations</span> <span class="o">+</span> <span class="p">(</span><span class="n">function_exponentiation</span><span class="p">,)</span>
@@ -324,7 +348,7 @@ like <code class="docutils literal"><span class="pre">sin</span> <span class="pr
 symbols).</li>
 <li>Functions can be exponentiated.</li>
 </ul>
-<p>Example:</p>
+<p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.parsing.sympy_parser</span> <span class="k">import</span> <span class="p">(</span><span class="n">parse_expr</span><span class="p">,</span>
 <span class="gp">... </span><span class="n">standard_transformations</span><span class="p">,</span> <span class="n">implicit_multiplication_application</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">parse_expr</span><span class="p">(</span><span class="s2">&quot;10sin**2 x**2 + 3xyz + tan theta&quot;</span><span class="p">,</span>

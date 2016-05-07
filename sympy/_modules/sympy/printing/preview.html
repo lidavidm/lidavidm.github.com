@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.printing.preview &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.printing.preview &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -48,12 +48,13 @@
           <div class="body" role="main">
             
   <h1>Source code for sympy.printing.preview</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">with_statement</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
 
 <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
-<span class="kn">from</span> <span class="nn">cStringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">STDOUT</span><span class="p">,</span> <span class="n">CalledProcessError</span>
@@ -61,9 +62,11 @@
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="k">pass</span>
 
+<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="nb">unicode</span><span class="p">,</span> <span class="n">u_decode</span>
+
 <span class="kn">from</span> <span class="nn">sympy.utilities.exceptions</span> <span class="kn">import</span> <span class="n">SymPyDeprecationWarning</span>
 <span class="kn">from</span> <span class="nn">sympy.utilities.misc</span> <span class="kn">import</span> <span class="n">find_executable</span>
-<span class="kn">from</span> <span class="nn">latex</span> <span class="kn">import</span> <span class="n">latex</span>
+<span class="kn">from</span> <span class="nn">.latex</span> <span class="kn">import</span> <span class="n">latex</span>
 
 <span class="kn">from</span> <span class="nn">sympy.utilities.decorator</span> <span class="kn">import</span> <span class="n">doctest_depends_on</span>
 
@@ -120,12 +123,12 @@
 <span class="sd">    is unset. However, if it was set, then &#39;preview&#39; writes the genereted</span>
 <span class="sd">    file to this filename instead.</span>
 
-<span class="sd">    There is also support for writing to a StringIO like object, which needs</span>
+<span class="sd">    There is also support for writing to a BytesIO like object, which needs</span>
 <span class="sd">    to be passed to the &#39;outputbuffer&#39; argument.</span>
 
-<span class="sd">    &gt;&gt;&gt; from StringIO import StringIO</span>
-<span class="sd">    &gt;&gt;&gt; obj = StringIO()</span>
-<span class="sd">    &gt;&gt;&gt; preview(x + y, output=&#39;png&#39;, viewer=&#39;StringIO&#39;,</span>
+<span class="sd">    &gt;&gt;&gt; from io import BytesIO</span>
+<span class="sd">    &gt;&gt;&gt; obj = BytesIO()</span>
+<span class="sd">    &gt;&gt;&gt; preview(x + y, output=&#39;png&#39;, viewer=&#39;BytesIO&#39;,</span>
 <span class="sd">    ...         outputbuffer=obj)</span>
 
 <span class="sd">    The LaTeX preamble can be customized by setting the &#39;preamble&#39; keyword</span>
@@ -189,11 +192,19 @@
                 <span class="n">SymPyDeprecationWarning</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;Using viewer=</span><span class="se">\&quot;</span><span class="s2">file</span><span class="se">\&quot;</span><span class="s2"> without a &quot;</span>
                     <span class="s2">&quot;specified filename&quot;</span><span class="p">,</span> <span class="n">deprecated_since_version</span><span class="o">=</span><span class="s2">&quot;0.7.3&quot;</span><span class="p">,</span>
                     <span class="n">useinstead</span><span class="o">=</span><span class="s2">&quot;viewer=</span><span class="se">\&quot;</span><span class="s2">file</span><span class="se">\&quot;</span><span class="s2"> and filename=</span><span class="se">\&quot;</span><span class="s2">desiredname</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">,</span>
-                    <span class="n">issue</span><span class="o">=</span><span class="mi">3919</span><span class="p">)</span><span class="o">.</span><span class="n">warn</span><span class="p">()</span>
+                    <span class="n">issue</span><span class="o">=</span><span class="mi">7018</span><span class="p">)</span><span class="o">.</span><span class="n">warn</span><span class="p">()</span>
         <span class="k">elif</span> <span class="n">viewer</span> <span class="o">==</span> <span class="s2">&quot;StringIO&quot;</span><span class="p">:</span>
+            <span class="n">SymPyDeprecationWarning</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="s2">&quot;The preview() viewer StringIO&quot;</span><span class="p">,</span>
+                <span class="n">useinstead</span><span class="o">=</span><span class="s2">&quot;BytesIO&quot;</span><span class="p">,</span> <span class="n">deprecated_since_version</span><span class="o">=</span><span class="s2">&quot;0.7.4&quot;</span><span class="p">,</span>
+                <span class="n">issue</span><span class="o">=</span><span class="mi">7083</span><span class="p">)</span><span class="o">.</span><span class="n">warn</span><span class="p">()</span>
+            <span class="n">viewer</span> <span class="o">=</span> <span class="s2">&quot;BytesIO&quot;</span>
             <span class="k">if</span> <span class="n">outputbuffer</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;outputbuffer has to be a StringIO &quot;</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;outputbuffer has to be a BytesIO &quot;</span>
                                  <span class="s2">&quot;compatible object if viewer=</span><span class="se">\&quot;</span><span class="s2">StringIO</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">viewer</span> <span class="o">==</span> <span class="s2">&quot;BytesIO&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">outputbuffer</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;outputbuffer has to be a BytesIO &quot;</span>
+                                 <span class="s2">&quot;compatible object if viewer=</span><span class="se">\&quot;</span><span class="s2">BytesIO</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">viewer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">special</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">find_executable</span><span class="p">(</span><span class="n">viewer</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">SystemError</span><span class="p">(</span><span class="s2">&quot;Unrecognized viewer: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">viewer</span><span class="p">)</span>
 
@@ -225,8 +236,8 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="n">workdir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
 
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">workdir</span><span class="p">,</span> <span class="s1">&#39;texput.tex&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
-            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">latex_main</span> <span class="o">%</span> <span class="n">latex_string</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">workdir</span><span class="p">,</span> <span class="s1">&#39;texput.tex&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">unicode</span><span class="p">(</span><span class="n">latex_main</span><span class="p">)</span> <span class="o">%</span> <span class="n">u_decode</span><span class="p">(</span><span class="n">latex_string</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">outputTexFile</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">workdir</span><span class="p">,</span> <span class="s1">&#39;texput.tex&#39;</span><span class="p">),</span> <span class="n">outputTexFile</span><span class="p">)</span>
@@ -237,7 +248,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">check_output</span><span class="p">([</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="s1">&#39;-halt-on-error&#39;</span><span class="p">,</span> <span class="s1">&#39;-interaction=nonstopmode&#39;</span><span class="p">,</span>
                           <span class="s1">&#39;texput.tex&#39;</span><span class="p">],</span> <span class="n">cwd</span><span class="o">=</span><span class="n">workdir</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">STDOUT</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">CalledProcessError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
                 <span class="s2">&quot;&#39;latex&#39; exited abnormally with the following output:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                 <span class="n">e</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
@@ -246,16 +257,21 @@
             <span class="n">defaultoptions</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;ps&quot;</span><span class="p">:</span> <span class="p">[],</span>
                 <span class="s2">&quot;pdf&quot;</span><span class="p">:</span> <span class="p">[],</span>
-                <span class="s2">&quot;png&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;-T&quot;</span><span class="p">,</span> <span class="s2">&quot;tight&quot;</span><span class="p">,</span> <span class="s2">&quot;-z&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;--truecolor&quot;</span><span class="p">]</span>
+                <span class="s2">&quot;png&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;-T&quot;</span><span class="p">,</span> <span class="s2">&quot;tight&quot;</span><span class="p">,</span> <span class="s2">&quot;-z&quot;</span><span class="p">,</span> <span class="s2">&quot;9&quot;</span><span class="p">,</span> <span class="s2">&quot;--truecolor&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;svg&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;--no-fonts&quot;</span><span class="p">],</span>
             <span class="p">}</span>
 
             <span class="n">commandend</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;ps&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;texput.ps&quot;</span><span class="p">,</span> <span class="s2">&quot;texput.dvi&quot;</span><span class="p">],</span>
                 <span class="s2">&quot;pdf&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;texput.dvi&quot;</span><span class="p">,</span> <span class="s2">&quot;texput.pdf&quot;</span><span class="p">],</span>
-                <span class="s2">&quot;png&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;texput.png&quot;</span><span class="p">,</span> <span class="s2">&quot;texput.dvi&quot;</span><span class="p">]</span>
+                <span class="s2">&quot;png&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;texput.png&quot;</span><span class="p">,</span> <span class="s2">&quot;texput.dvi&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;svg&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;texput.svg&quot;</span><span class="p">,</span> <span class="s2">&quot;texput.dvi&quot;</span><span class="p">],</span>
             <span class="p">}</span>
 
-            <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dvi&quot;</span> <span class="o">+</span> <span class="n">output</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">&quot;svg&quot;</span><span class="p">:</span>
+                <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dvisvgm&quot;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dvi&quot;</span> <span class="o">+</span> <span class="n">output</span><span class="p">]</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">find_executable</span><span class="p">(</span><span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> is not installed&quot;</span> <span class="o">%</span> <span class="n">cmd</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="k">try</span><span class="p">:</span>
@@ -269,7 +285,7 @@
 
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">check_output</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="n">workdir</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">STDOUT</span><span class="p">)</span>
-            <span class="k">except</span> <span class="n">CalledProcessError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">except</span> <span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
                     <span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39; exited abnormally with the following output:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                     <span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd</span><span class="p">),</span> <span class="n">e</span><span class="o">.</span><span class="n">output</span><span class="p">))</span>
@@ -278,13 +294,13 @@
 
         <span class="k">if</span> <span class="n">viewer</span> <span class="o">==</span> <span class="s2">&quot;file&quot;</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-                <span class="nb">buffer</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+                <span class="nb">buffer</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
                 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">workdir</span><span class="p">,</span> <span class="n">src</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
                     <span class="nb">buffer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
                 <span class="k">return</span> <span class="nb">buffer</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">workdir</span><span class="p">,</span><span class="n">src</span><span class="p">),</span> <span class="n">filename</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">viewer</span> <span class="o">==</span> <span class="s2">&quot;StringIO&quot;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">viewer</span> <span class="o">==</span> <span class="s2">&quot;BytesIO&quot;</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">workdir</span><span class="p">,</span> <span class="n">src</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
                 <span class="n">outputbuffer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
         <span class="k">elif</span> <span class="n">viewer</span> <span class="o">==</span> <span class="s2">&quot;pyglet&quot;</span><span class="p">:</span>
@@ -302,11 +318,13 @@
 
             <span class="n">offset</span> <span class="o">=</span> <span class="mi">25</span>
 
+            <span class="n">config</span> <span class="o">=</span> <span class="n">gl</span><span class="o">.</span><span class="n">Config</span><span class="p">(</span><span class="n">double_buffer</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
             <span class="n">win</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span>
                 <span class="n">width</span><span class="o">=</span><span class="n">img</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">offset</span><span class="p">,</span>
                 <span class="n">height</span><span class="o">=</span><span class="n">img</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">offset</span><span class="p">,</span>
                 <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;sympy&quot;</span><span class="p">,</span>
-                <span class="n">resizable</span><span class="o">=</span><span class="bp">False</span>
+                <span class="n">resizable</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                <span class="n">config</span><span class="o">=</span><span class="n">config</span>
             <span class="p">)</span>
 
             <span class="n">win</span><span class="o">.</span><span class="n">set_vsync</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
@@ -344,14 +362,14 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">check_output</span><span class="p">([</span><span class="n">viewer</span><span class="p">,</span> <span class="n">src</span><span class="p">],</span> <span class="n">cwd</span><span class="o">=</span><span class="n">workdir</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">STDOUT</span><span class="p">)</span>
-            <span class="k">except</span> <span class="n">CalledProcessError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">except</span> <span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
                     <span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&#39; exited abnormally with the following output:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                     <span class="p">(</span><span class="n">viewer</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">output</span><span class="p">))</span>
     <span class="k">finally</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">workdir</span><span class="p">)</span> <span class="c1"># delete directory</span>
-        <span class="k">except</span> <span class="ne">OSError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># code 2 - no such file or directory</span>
                 <span class="k">raise</span></div>
 </pre></div>

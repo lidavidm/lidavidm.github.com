@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Differential Geometry Module &mdash; SymPy 0.7.3 documentation</title>
+    <title>Differential Geometry Module &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../index.html" />
     <link rel="up" title="SymPy Modules Reference" href="index.html" />
     <link rel="next" title="Vector Module" href="vector/index.html" />
     <link rel="prev" title="Category Theory Module" href="categories.html" />
@@ -58,7 +58,7 @@
 <h2>Base Class Reference<a class="headerlink" href="#base-class-reference" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="sympy.diffgeom.Manifold">
-<em class="property">class </em><code class="descclassname">sympy.diffgeom.</code><code class="descname">Manifold</code><span class="sig-paren">(</span><em>name</em>, <em>dim</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#Manifold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.Manifold" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sympy.diffgeom.</code><code class="descname">Manifold</code><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#Manifold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.Manifold" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object representing a mathematical manifold.</p>
 <p>The only role that this object plays is to keep a list of all patches
 defined on the manifold. It does not provide any means to study the
@@ -67,7 +67,7 @@ topological characteristics of the manifold that it represents.</p>
 
 <dl class="class">
 <dt id="sympy.diffgeom.Patch">
-<em class="property">class </em><code class="descclassname">sympy.diffgeom.</code><code class="descname">Patch</code><span class="sig-paren">(</span><em>name</em>, <em>manifold</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#Patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.Patch" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sympy.diffgeom.</code><code class="descname">Patch</code><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#Patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.Patch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object representing a patch on a manifold.</p>
 <p>On a manifold one can have many patches that do not always include the
 whole manifold. On these patches coordinate charts can be defined that
@@ -75,7 +75,7 @@ permit the parametrization of any point on the patch in terms of a tuple
 of real numbers (the coordinates).</p>
 <p>This object serves as a container/parent for all coordinate system charts
 that can be defined on the patch it represents.</p>
-<p class="rubric">Examples:</p>
+<p class="rubric">Examples</p>
 <p>Define a Manifold and a Patch on that Manifold:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom</span> <span class="k">import</span> <span class="n">Manifold</span><span class="p">,</span> <span class="n">Patch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -88,13 +88,14 @@ that can be defined on the patch it represents.</p>
 
 <dl class="class">
 <dt id="sympy.diffgeom.CoordSystem">
-<em class="property">class </em><code class="descclassname">sympy.diffgeom.</code><code class="descname">CoordSystem</code><span class="sig-paren">(</span><em>name</em>, <em>patch</em>, <em>names=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#CoordSystem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.CoordSystem" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sympy.diffgeom.</code><code class="descname">CoordSystem</code><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#CoordSystem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.CoordSystem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Contains all coordinate transformation logic.</p>
 <p class="rubric">Examples</p>
 <p>Define a Manifold and a Patch, and then define two coord systems on that
 patch:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom</span> <span class="k">import</span> <span class="n">Manifold</span><span class="p">,</span> <span class="n">Patch</span><span class="p">,</span> <span class="n">CoordSystem</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.simplify</span> <span class="k">import</span> <span class="n">simplify</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;r, theta&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Manifold</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">patch</span> <span class="o">=</span> <span class="n">Patch</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
@@ -115,7 +116,7 @@ found by <code class="docutils literal"><span class="pre">solve</span></code> wh
 <span class="go">Matrix([</span>
 <span class="go">[0],</span>
 <span class="go">[2]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rect</span><span class="o">.</span><span class="n">coord_tuple_transform_to</span><span class="p">(</span><span class="n">polar</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rect</span><span class="o">.</span><span class="n">coord_tuple_transform_to</span><span class="p">(</span><span class="n">polar</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">applyfunc</span><span class="p">(</span><span class="n">simplify</span><span class="p">)</span>
 <span class="go">Matrix([</span>
 <span class="go">[sqrt(2)],</span>
 <span class="go">[   pi/4]])</span>
@@ -333,7 +334,7 @@ which the point was defined.</p>
 
 <dl class="class">
 <dt id="sympy.diffgeom.BaseScalarField">
-<em class="property">class </em><code class="descclassname">sympy.diffgeom.</code><code class="descname">BaseScalarField</code><span class="sig-paren">(</span><em>coord_sys</em>, <em>index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#BaseScalarField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.BaseScalarField" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sympy.diffgeom.</code><code class="descname">BaseScalarField</code><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#BaseScalarField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.BaseScalarField" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base Scalar Field over a Manifold for a given Coordinate System.</p>
 <p>A scalar field takes a point as an argument and returns a scalar.</p>
 <p>A base scalar field of a coordinate system takes a point and returns one of
@@ -381,18 +382,18 @@ expressions containing <code class="docutils literal"><span class="pre">BaseScal
 
 <dl class="class">
 <dt id="sympy.diffgeom.BaseVectorField">
-<em class="property">class </em><code class="descclassname">sympy.diffgeom.</code><code class="descname">BaseVectorField</code><span class="sig-paren">(</span><em>coord_sys</em>, <em>index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#BaseVectorField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.BaseVectorField" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sympy.diffgeom.</code><code class="descname">BaseVectorField</code><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#BaseVectorField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.BaseVectorField" title="Permalink to this definition">¶</a></dt>
 <dd><p>Vector Field over a Manifold.</p>
 <p>A vector field is an operator taking a scalar field and returning a
 directional derivative (which is also a scalar field).</p>
 <p>A base vector field is the same type of operator, however the derivation is
-specifically done wrt a chosen coordinate.</p>
+specifically done with respect to a chosen coordinate.</p>
 <p>To define a base vector field you need to choose the coordinate system and
 the index of the coordinate.</p>
 <p>The use of the vector field after its definition is independent of the
-coordinate system in which it was defined, however due to limitations in
-the simplification routines you may arrive at more complicated
-expression if you use unappropriate coordinate systems.</p>
+coordinate system in which it was defined, however due to limitations in the
+simplification routines you may arrive at more complicated expression if you
+use unappropriate coordinate systems.</p>
 <p class="rubric">Examples</p>
 <p>Use the predefined R2 manifold, setup some boilerplate.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">Function</span>
@@ -453,10 +454,17 @@ to <span class="math">\(v_1(v_2(f)) - v_2(v_1(f))\)</span>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">e_x</span><span class="p">,</span> <span class="n">e_y</span><span class="p">,</span> <span class="n">e_r</span> <span class="o">=</span> <span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">e_y</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">e_r</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c_xy</span> <span class="o">=</span> <span class="n">Commutator</span><span class="p">(</span><span class="n">e_x</span><span class="p">,</span> <span class="n">e_y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c_xr</span> <span class="o">=</span> <span class="n">Commutator</span><span class="p">(</span><span class="n">e_x</span><span class="p">,</span> <span class="n">e_r</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c_xy</span>
+<span class="go">0</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c_xy</span>
-<span class="go">0</span>
+<p>Unfortunately, the current code is not able to compute everything:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c_xr</span>
+<span class="go">Commutator(e_x, e_r)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">simplify</span><span class="p">(</span><span class="n">c_xr</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">doit</span><span class="p">())</span>
+<span class="go">-2*cos(theta)*y**2/(x**2 + y**2)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -514,7 +522,7 @@ as <span class="math">\(df(v) = v(f)\)</span>.</p>
 <p>The tensor product permits the creation of multilinear functionals (i.e.
 higher order tensors) out of lower order forms (e.g. 1-forms). However, the
 higher tensors thus created lack the interesting features provided by the
-other type of product, the wedge product, namely they are not antisymetric
+other type of product, the wedge product, namely they are not antisymmetric
 and hence are not form fields.</p>
 <p class="rubric">Examples</p>
 <p>Use the predefined R2 manifold, setup some boilerplate.</p>
@@ -538,14 +546,16 @@ and hence are not form fields.</p>
 <span class="go">1</span>
 </pre></div>
 </div>
-<p>You can make partial contaction for instance when &#8216;raising an index&#8217;.</p>
+<p>You can make partial contraction for instance when &#8216;raising an index&#8217;.
+Putting <code class="docutils literal"><span class="pre">None</span></code> in the second argument of <code class="docutils literal"><span class="pre">rcall</span></code> means that the
+respective position in the tensor product is left as it is.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">TP</span> <span class="o">=</span> <span class="n">TensorProduct</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">metric</span> <span class="o">=</span> <span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">metric</span><span class="o">.</span><span class="n">rcall</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_y</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="go">3*dy</span>
 </pre></div>
 </div>
-<p>Or automatically pad the args with <a href="#id1"><span class="problematic" id="id2">``</span></a>None``s.</p>
+<p>Or automatically pad the args with <code class="docutils literal"><span class="pre">None</span></code> without specifying them.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">metric</span><span class="o">.</span><span class="n">rcall</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_y</span><span class="p">)</span>
 <span class="go">3*dy</span>
 </pre></div>
@@ -556,7 +566,7 @@ and hence are not form fields.</p>
 <dt id="sympy.diffgeom.WedgeProduct">
 <em class="property">class </em><code class="descclassname">sympy.diffgeom.</code><code class="descname">WedgeProduct</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#WedgeProduct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.WedgeProduct" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wedge product of forms.</p>
-<p>In the context of integration only completely antisymetric forms make
+<p>In the context of integration only completely antisymmetric forms make
 sense. The wedge product permits the creation of such forms.</p>
 <p class="rubric">Examples</p>
 <p>Use the predefined R2 manifold, setup some boilerplate.</p>
@@ -585,12 +595,32 @@ sense. The wedge product permits the creation of such forms.</p>
 <dl class="class">
 <dt id="sympy.diffgeom.LieDerivative">
 <em class="property">class </em><code class="descclassname">sympy.diffgeom.</code><code class="descname">LieDerivative</code><span class="sig-paren">(</span><em>v_field</em>, <em>expr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#LieDerivative"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.LieDerivative" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lie derivative wrt a vector field.</p>
-<p>The transport operator that defines the Lie derivative is the pushforward
-of the field to be derived along the integral curve of the field wrt which
-one derives.</p>
+<dd><p>Lie derivative with respect to a vector field.</p>
+<p>The transport operator that defines the Lie derivative is the pushforward of
+the field to be derived along the integral curve of the field with respect
+to which one derives.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#TODO</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom</span> <span class="k">import</span> <span class="p">(</span><span class="n">LieDerivative</span><span class="p">,</span> <span class="n">TensorProduct</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom.rn</span> <span class="k">import</span> <span class="n">R2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">)</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+<p>The Lie derivative of a tensor field by another tensor field is equal to
+their commutator:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">e_r</span><span class="p">)</span>
+<span class="go">Commutator(e_x, e_r)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span> <span class="o">+</span> <span class="n">R2</span><span class="o">.</span><span class="n">e_y</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tp</span> <span class="o">=</span> <span class="n">TensorProduct</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">tp</span><span class="p">)</span>
+<span class="go">LieDerivative(e_x, TensorProduct(dx, dy))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LieDerivative</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">tp</span><span class="p">)</span><span class="o">.</span><span class="n">doit</span><span class="p">()</span>
+<span class="go">LieDerivative(e_x, TensorProduct(dx, dy))</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -598,7 +628,7 @@ one derives.</p>
 <dl class="class">
 <dt id="sympy.diffgeom.BaseCovarDerivativeOp">
 <em class="property">class </em><code class="descclassname">sympy.diffgeom.</code><code class="descname">BaseCovarDerivativeOp</code><span class="sig-paren">(</span><em>coord_sys</em>, <em>index</em>, <em>christoffel</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#BaseCovarDerivativeOp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.BaseCovarDerivativeOp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Covariant derivative operator wrt a base vector.</p>
+<dd><p>Covariant derivative operator with respect to a base vector.</p>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom.rn</span> <span class="k">import</span> <span class="n">R2</span><span class="p">,</span> <span class="n">R2_r</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom</span> <span class="k">import</span> <span class="n">BaseCovarDerivativeOp</span>
@@ -606,7 +636,7 @@ one derives.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">TP</span> <span class="o">=</span> <span class="n">TensorProduct</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ch</span> <span class="o">=</span> <span class="n">metric_to_Christoffel_2nd</span><span class="p">(</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ch</span>
-<span class="go">(((0, 0), (0, 0)), ((0, 0), (0, 0)))</span>
+<span class="go">[[[0, 0], [0, 0]], [[0, 0], [0, 0]]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cvd</span> <span class="o">=</span> <span class="n">BaseCovarDerivativeOp</span><span class="p">(</span><span class="n">R2_r</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cvd</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 <span class="go">1</span>
@@ -627,7 +657,7 @@ one derives.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">TP</span> <span class="o">=</span> <span class="n">TensorProduct</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ch</span> <span class="o">=</span> <span class="n">metric_to_Christoffel_2nd</span><span class="p">(</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ch</span>
-<span class="go">(((0, 0), (0, 0)), ((0, 0), (0, 0)))</span>
+<span class="go">[[[0, 0], [0, 0]], [[0, 0], [0, 0]]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cvd</span> <span class="o">=</span> <span class="n">CovarDerivativeOp</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">x</span><span class="o">*</span><span class="n">R2</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cvd</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 <span class="go">x</span>
@@ -641,12 +671,15 @@ one derives.</p>
 <dt id="sympy.diffgeom.intcurve_series">
 <code class="descclassname">sympy.diffgeom.</code><code class="descname">intcurve_series</code><span class="sig-paren">(</span><em>vector_field</em>, <em>param</em>, <em>start_point</em>, <em>n=6</em>, <em>coord_sys=None</em>, <em>coeffs=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#intcurve_series"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.intcurve_series" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the series expansion for an integral curve of the field.</p>
-<p>Integral curve is a function <span class="math">\(gamma\)</span> taking a parameter in R to a point
+<p>Integral curve is a function <span class="math">\(\gamma\)</span> taking a parameter in <span class="math">\(R\)</span> to a point
 in the manifold. It verifies the equation:</p>
-<p><span class="math">\(vector_field(f)(gamma(param)) = diff(f(gamma(t)), t)\)</span></p>
-<p>for any value <span class="math">\(t\)</span> for the parameter and any scalar field <span class="math">\(f\)</span>.</p>
-<p>This function returns a series expansion of <span class="math">\(gamma(t)\)</span> in terms of the
-coordinate system <span class="math">\(coord_sys\)</span>. The equations and expansions are necessarily
+<p><span class="math">\(V(f)\big(\gamma(t)\big) = \frac{d}{dt}f\big(\gamma(t)\big)\)</span></p>
+<p>where the given <code class="docutils literal"><span class="pre">vector_field</span></code> is denoted as <span class="math">\(V\)</span>. This holds for any
+value <span class="math">\(t\)</span> for the parameter and any scalar field <span class="math">\(f\)</span>.</p>
+<p>This equation can also be decomposed of a basis of coordinate functions</p>
+<p><span class="math">\(V(f_i)\big(\gamma(t)\big) = \frac{d}{dt}f_i\big(\gamma(t)\big) \quad \forall i\)</span></p>
+<p>This function returns a series expansion of <span class="math">\(\gamma(t)\)</span> in terms of the
+coordinate system <code class="docutils literal"><span class="pre">coord_sys</span></code>. The equations and expansions are necessarily
 done in coordinate-system-dependent way as there is no other way to
 represent movement between points on the manifold (i.e. there is no such
 thing as a difference of points for a general manifold).</p>
@@ -660,26 +693,29 @@ thing as a difference of points for a general manifold).</p>
 </div></blockquote>
 <p><strong>param</strong></p>
 <blockquote>
-<div><p>the argument of the function <span class="math">\(gamma\)</span> from R to the curve</p>
+<div><p>the argument of the function <span class="math">\(\gamma\)</span> from R to the curve</p>
 </div></blockquote>
 <p><strong>start_point</strong></p>
 <blockquote>
-<div><p>the point which coresponds to <span class="math">\(gamma(0)\)</span></p>
+<div><p>the point which coresponds to <span class="math">\(\gamma(0)\)</span></p>
 </div></blockquote>
 <p><strong>n</strong></p>
 <blockquote>
 <div><p>the order to which to expand</p>
 </div></blockquote>
 <p><strong>coord_sys</strong></p>
-<blockquote>
+<blockquote class="last">
 <div><p>the coordinate system in which to expand
 coeffs (default False) - if True return a list of elements of the expansion</p>
 </div></blockquote>
-<p class="last"><strong>See Also: intcurve_diffequ</strong></p>
 </td>
 </tr>
 </tbody>
 </table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.diffgeom.intcurve_diffequ" title="sympy.diffgeom.intcurve_diffequ"><code class="xref py py-obj docutils literal"><span class="pre">intcurve_diffequ</span></code></a></p>
+</div>
 <p class="rubric">Examples</p>
 <p>Use the predefined R2 manifold:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
@@ -738,12 +774,13 @@ coeffs (default False) - if True return a list of elements of the expansion</p>
 <dt id="sympy.diffgeom.intcurve_diffequ">
 <code class="descclassname">sympy.diffgeom.</code><code class="descname">intcurve_diffequ</code><span class="sig-paren">(</span><em>vector_field</em>, <em>param</em>, <em>start_point</em>, <em>coord_sys=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/diffgeom/diffgeom.html#intcurve_diffequ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.diffgeom.intcurve_diffequ" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the differential equation for an integral curve of the field.</p>
-<p>Integral curve is a function <span class="math">\(gamma\)</span> taking a parameter in R to a point
+<p>Integral curve is a function <span class="math">\(\gamma\)</span> taking a parameter in <span class="math">\(R\)</span> to a point
 in the manifold. It verifies the equation:</p>
-<p><span class="math">\(vector_field(f)(gamma(param)) = diff(f(gamma(t)), t)\)</span></p>
-<p>for any value <span class="math">\(t\)</span> for the parameter and any scalar field <span class="math">\(f\)</span>.</p>
-<p>This function returns the differential equation of <span class="math">\(gamma(t)\)</span> in terms of the
-coordinate system <span class="math">\(coord_sys\)</span>. The equations and expansions are necessarily
+<p><span class="math">\(V(f)\big(\gamma(t)\big) = \frac{d}{dt}f\big(\gamma(t)\big)\)</span></p>
+<p>where the given <code class="docutils literal"><span class="pre">vector_field</span></code> is denoted as <span class="math">\(V\)</span>. This holds for any
+value <span class="math">\(t\)</span> for the parameter and any scalar field <span class="math">\(f\)</span>.</p>
+<p>This function returns the differential equation of <span class="math">\(\gamma(t)\)</span> in terms of the
+coordinate system <code class="docutils literal"><span class="pre">coord_sys</span></code>. The equations and expansions are necessarily
 done in coordinate-system-dependent way as there is no other way to
 represent movement between points on the manifold (i.e. there is no such
 thing as a difference of points for a general manifold).</p>
@@ -757,11 +794,11 @@ thing as a difference of points for a general manifold).</p>
 </div></blockquote>
 <p><strong>param</strong></p>
 <blockquote>
-<div><p>the argument of the function <span class="math">\(gamma\)</span> from R to the curve</p>
+<div><p>the argument of the function <span class="math">\(\gamma\)</span> from R to the curve</p>
 </div></blockquote>
 <p><strong>start_point</strong></p>
 <blockquote>
-<div><p>the point which coresponds to <span class="math">\(gamma(0)\)</span></p>
+<div><p>the point which coresponds to <span class="math">\(\gamma(0)\)</span></p>
 </div></blockquote>
 <p><strong>coord_sys</strong></p>
 <blockquote>
@@ -769,12 +806,15 @@ thing as a difference of points for a general manifold).</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a tuple of (equations, initial conditions)</p>
-<p class="last">See Also: intcurve_series</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a tuple of (equations, initial conditions)</p>
 </td>
 </tr>
 </tbody>
 </table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.diffgeom.intcurve_series" title="sympy.diffgeom.intcurve_series"><code class="xref py py-obj docutils literal"><span class="pre">intcurve_series</span></code></a></p>
+</div>
 <p class="rubric">Examples</p>
 <p>Use the predefined R2 manifold:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">t</span>
@@ -815,7 +855,7 @@ coefficients are kept in the old system.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom</span> <span class="k">import</span> <span class="n">vectors_in_basis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom.rn</span> <span class="k">import</span> <span class="n">R2_r</span><span class="p">,</span> <span class="n">R2_p</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vectors_in_basis</span><span class="p">(</span><span class="n">R2_r</span><span class="o">.</span><span class="n">e_x</span><span class="p">,</span> <span class="n">R2_p</span><span class="p">)</span>
-<span class="go">(x**2 + y**2)**(-1/2)*x*e_r - y*(x**2 + y**2)**(-1)*e_theta</span>
+<span class="go">-y*e_theta/(x**2 + y**2) + x*e_r/sqrt(x**2 + y**2)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vectors_in_basis</span><span class="p">(</span><span class="n">R2_p</span><span class="o">.</span><span class="n">e_r</span><span class="p">,</span> <span class="n">R2_r</span><span class="p">)</span>
 <span class="go">sin(theta)*e_y + cos(theta)*e_x</span>
 </pre></div>
@@ -860,9 +900,9 @@ Levi-Civita connection for the given metric.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom</span> <span class="k">import</span> <span class="n">metric_to_Christoffel_1st</span><span class="p">,</span> <span class="n">TensorProduct</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">TP</span> <span class="o">=</span> <span class="n">TensorProduct</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">metric_to_Christoffel_1st</span><span class="p">(</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">))</span>
-<span class="go">(((0, 0), (0, 0)), ((0, 0), (0, 0)))</span>
+<span class="go">[[[0, 0], [0, 0]], [[0, 0], [0, 0]]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">metric_to_Christoffel_1st</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">x</span><span class="o">*</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">))</span>
-<span class="go">(((1/2, 0), (0, 0)), ((0, 0), (0, 0)))</span>
+<span class="go">[[[1/2, 0], [0, 0]], [[0, 0], [0, 0]]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -878,9 +918,9 @@ Levi-Civita connection for the given metric.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom</span> <span class="k">import</span> <span class="n">metric_to_Christoffel_2nd</span><span class="p">,</span> <span class="n">TensorProduct</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">TP</span> <span class="o">=</span> <span class="n">TensorProduct</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">metric_to_Christoffel_2nd</span><span class="p">(</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">))</span>
-<span class="go">(((0, 0), (0, 0)), ((0, 0), (0, 0)))</span>
+<span class="go">[[[0, 0], [0, 0]], [[0, 0], [0, 0]]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">metric_to_Christoffel_2nd</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">x</span><span class="o">*</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">))</span>
-<span class="go">(((x**(-1)/2, 0), (0, 0)), ((0, 0), (0, 0)))</span>
+<span class="go">[[[1/(2*x), 0], [0, 0]], [[0, 0], [0, 0]]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -898,19 +938,17 @@ given.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom</span> <span class="k">import</span> <span class="n">metric_to_Riemann_components</span><span class="p">,</span> <span class="n">TensorProduct</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">TP</span> <span class="o">=</span> <span class="n">TensorProduct</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">metric_to_Riemann_components</span><span class="p">(</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">))</span>
-<span class="go">((((0, 0), (0, 0)), ((0, 0), (0, 0))), (((0, 0), (0, 0)), ((0, 0),</span>
-<span class="go"> (0, 0))))</span>
+<span class="go">[[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]</span>
 </pre></div>
 </div>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">non_trivial_metric</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">R2</span><span class="o">.</span><span class="n">r</span><span class="p">)</span><span class="o">*</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dr</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dr</span><span class="p">)</span> <span class="o">+</span>         <span class="n">R2</span><span class="o">.</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dtheta</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dtheta</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">non_trivial_metric</span>
 <span class="go">exp(2*r)*TensorProduct(dr, dr) + r**2*TensorProduct(dtheta, dtheta)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">riemann</span> <span class="o">=</span> <span class="n">metric_to_Riemann_components</span><span class="p">(</span><span class="n">non_trivial_metric</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">riemann</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="go">(((0, 0), (0, 0)), ((0, -exp(-2*r)*r + 2*r*exp(-2*r)),</span>
-<span class="go">    (exp(-2*r)*r - 2*r*exp(-2*r), 0)))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">riemann</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="go">(((0, -r**(-1)), (r**(-1), 0)), ((0, 0), (0, 0)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">riemann</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="go">[[[0, 0], [0, 0]], [[0, exp(-2*r)*r], [-exp(-2*r)*r, 0]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">riemann</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="go">[[[0, -1/r], [1/r, 0]], [[0, 0], [0, 0]]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -928,14 +966,14 @@ given.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.diffgeom</span> <span class="k">import</span> <span class="n">metric_to_Ricci_components</span><span class="p">,</span> <span class="n">TensorProduct</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">TP</span> <span class="o">=</span> <span class="n">TensorProduct</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">metric_to_Ricci_components</span><span class="p">(</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dx</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dy</span><span class="p">))</span>
-<span class="go">((0, 0), (0, 0))</span>
+<span class="go">[[0, 0], [0, 0]]</span>
 </pre></div>
 </div>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">non_trivial_metric</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">R2</span><span class="o">.</span><span class="n">r</span><span class="p">)</span><span class="o">*</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dr</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dr</span><span class="p">)</span> <span class="o">+</span>                              <span class="n">R2</span><span class="o">.</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">TP</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">dtheta</span><span class="p">,</span> <span class="n">R2</span><span class="o">.</span><span class="n">dtheta</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">non_trivial_metric</span>
 <span class="go">exp(2*r)*TensorProduct(dr, dr) + r**2*TensorProduct(dtheta, dtheta)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">metric_to_Ricci_components</span><span class="p">(</span><span class="n">non_trivial_metric</span><span class="p">)</span> <span class="c1">#TODO why is this not simpler</span>
-<span class="go">((r**(-1), 0), (0, -exp(-2*r)*r + 2*r*exp(-2*r)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">metric_to_Ricci_components</span><span class="p">(</span><span class="n">non_trivial_metric</span><span class="p">)</span>
+<span class="go">[[1/r, 0], [0, exp(-2*r)*r]]</span>
 </pre></div>
 </div>
 </dd></dl>

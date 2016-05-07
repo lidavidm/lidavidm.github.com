@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Number Theory &mdash; SymPy 0.7.3 documentation</title>
+    <title>Number Theory &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../index.html" />
     <link rel="up" title="SymPy Modules Reference" href="index.html" />
     <link rel="next" title="Basic Cryptography Module" href="crypto.html" />
     <link rel="prev" title="Tensor Canonicalization" href="combinatorics/tensor_can.html" />
@@ -114,7 +114,7 @@ likely that it will be longer than requested.</p>
 <dd><p>Generate all prime numbers in the range [a, b).</p>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">sieve</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sieve</span><span class="o">.</span><span class="n">primerange</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">18</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sieve</span><span class="o">.</span><span class="n">primerange</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">18</span><span class="p">)])</span>
 <span class="go">[7, 11, 13, 17]</span>
 </pre></div>
 </div>
@@ -252,7 +252,7 @@ property is used during searching.</p>
 <dd><p>Generate a list of all prime numbers in the range [a, b).</p>
 <p>If the range exists in the default sieve, the values will
 be returned from there; otherwise values will be returned
-but will not modifiy the sieve.</p>
+but will not modify the sieve.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <dl class="last docutils">
@@ -312,7 +312,7 @@ n! + 2, n! + 3 ... n! + n are all composite.</p>
 </ol>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">primerange</span><span class="p">,</span> <span class="n">sieve</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">primerange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">primerange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)])</span>
 <span class="go">[2, 3, 5, 7, 11, 13, 17, 19, 23, 29]</span>
 </pre></div>
 </div>
@@ -431,7 +431,7 @@ proper ending point were determined, e.g. by using Floyd&#8217;s method.</p>
 </pre></div>
 </div>
 <p>and given a seed of 4 and the mu and lambda terms calculated:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cycle_length</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">cycle_length</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="go">(6, 2)</span>
 </pre></div>
 </div>
@@ -444,7 +444,7 @@ proper ending point were determined, e.g. by using Floyd&#8217;s method.</p>
 <p>There are 6 repeating values after the first 2.</p>
 <p>If a sequence is suspected of being longer than you might wish, <code class="docutils literal"><span class="pre">nmax</span></code>
 can be used to exit early (and mu will be returned as None):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cycle_length</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">nmax</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">cycle_length</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">nmax</span> <span class="o">=</span> <span class="mi">4</span><span class="p">))</span>
 <span class="go">(4, None)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">ni</span> <span class="k">for</span> <span class="n">ni</span> <span class="ow">in</span> <span class="n">cycle_length</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">nmax</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
 <span class="go">[17, 35, 2, 5]</span>
@@ -485,7 +485,7 @@ where:</p>
 <ol class="arabic simple">
 <li>p**M is the base-p divisor of n</li>
 <li>sm(p + m) is the smoothness of p + m (m = -1 by default)</li>
-<li>psm(p + n) is the power smoothness of p + m</li>
+<li>psm(p + m) is the power smoothness of p + m</li>
 </ol>
 <p>The list is sorted according to smoothness (default) or by power smoothness
 if power=1.</p>
@@ -502,7 +502,7 @@ methods.</p>
 </pre></div>
 </div>
 <p>If visual=True then an annotated string will be returned:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">smoothness_p</span><span class="p">(</span><span class="mi">21477639576571</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">smoothness_p</span><span class="p">(</span><span class="mi">21477639576571</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 <span class="go">p**i=4410317**1 has p-1 B=1787, B-pow=1787</span>
 <span class="go">p**i=4869863**1 has p-1 B=2434931, B-pow=2434931</span>
 </pre></div>
@@ -651,7 +651,7 @@ so it is a good idea to allow for retries:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">16843009</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:(</span><span class="mi">2048</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">32767</span><span class="p">)</span> <span class="o">%</span> <span class="n">n</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="nb">print</span> <span class="s1">&#39;loop length = </span><span class="si">%4i</span><span class="s1">; leader length = </span><span class="si">%3i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">cycle_length</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;loop length = </span><span class="si">%4i</span><span class="s1">; leader length = </span><span class="si">%3i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">next</span><span class="p">(</span><span class="n">cycle_length</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">s</span><span class="p">)))</span>
 <span class="gp">...</span>
 <span class="go">loop length = 2489; leader length =  42</span>
 <span class="go">loop length =   78; leader length = 120</span>
@@ -665,10 +665,18 @@ a sequence of 3 numbers (11, 14, 4) that then repeat:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">=</span><span class="mi">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">12</span><span class="p">)</span><span class="o">%</span><span class="mi">17</span>
-<span class="gp">... </span>    <span class="nb">print</span> <span class="n">x</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">...</span>
-<span class="go">16 13 11 14 4 11 14 4 11</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">cycle_length</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">12</span><span class="p">)</span><span class="o">%</span><span class="mi">17</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="go">16</span>
+<span class="go">13</span>
+<span class="go">11</span>
+<span class="go">14</span>
+<span class="go">4</span>
+<span class="go">11</span>
+<span class="go">14</span>
+<span class="go">4</span>
+<span class="go">11</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">cycle_length</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">12</span><span class="p">)</span><span class="o">%</span><span class="mi">17</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="go">(3, 2)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">cycle_length</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">12</span><span class="p">)</span><span class="o">%</span><span class="mi">17</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 <span class="go">[16, 13, 11, 14, 4]</span>
@@ -776,18 +784,11 @@ does not exceed B</li>
 <p>By trying more than one <code class="docutils literal"><span class="pre">a</span></code> it is possible that one of them
 will yield a factor.</p>
 <p class="rubric">References</p>
-<ul>
-<li><p class="first">Richard Crandall &amp; Carl Pomerance (2005), &#8220;Prime Numbers:
-A Computational Perspective&#8221;, Springer, 2nd edition, 236-238</p>
-</li>
-<li><dl class="first docutils">
-<dt><a class="reference external" href="http://modular.math.washington.edu/edu/2007/spring/ent/ent-html/">http://modular.math.washington.edu/edu/2007/spring/ent/ent-html/</a></dt>
-<dd><p class="first last">node81.html</p>
-</dd>
-</dl>
-</li>
-<li><p class="first"><a class="reference external" href="http://www.cs.toronto.edu/~yuvalf/Factorization.pdf">http://www.cs.toronto.edu/~yuvalf/Factorization.pdf</a></p>
-</li>
+<ul class="simple">
+<li>Richard Crandall &amp; Carl Pomerance (2005), &#8220;Prime Numbers:
+A Computational Perspective&#8221;, Springer, 2nd edition, 236-238</li>
+<li><a class="reference external" href="http://modular.math.washington.edu/edu/2007/spring/ent/ent-html/node81.html">http://modular.math.washington.edu/edu/2007/spring/ent/ent-html/node81.html</a></li>
+<li><a class="reference external" href="http://www.cs.toronto.edu/~yuvalf/Factorization.pdf">http://www.cs.toronto.edu/~yuvalf/Factorization.pdf</a></li>
 </ul>
 <p class="rubric">Examples</p>
 <p>With the default smoothness bound, this number can&#8217;t be cracked:</p>
@@ -803,7 +804,7 @@ A Computational Perspective&#8221;, Springer, 2nd edition, 236-238</p>
 <p>Looking at the smoothness of the factors of this number we find:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.utilities</span> <span class="k">import</span> <span class="n">flatten</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.factor_</span> <span class="k">import</span> <span class="n">smoothness_p</span><span class="p">,</span> <span class="n">factorint</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">smoothness_p</span><span class="p">(</span><span class="mi">21477639576571</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">smoothness_p</span><span class="p">(</span><span class="mi">21477639576571</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 <span class="go">p**i=4410317**1 has p-1 B=1787, B-pow=1787</span>
 <span class="go">p**i=4869863**1 has p-1 B=2434931, B-pow=2434931</span>
 </pre></div>
@@ -869,9 +870,10 @@ done regardless of the limit setting.</p>
 <p>This number, for example, has two small factors and a huge
 semi-prime factor that cannot be reduced easily:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory</span> <span class="k">import</span> <span class="n">isprime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="k">import</span> <span class="n">long</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">1407633717262338957430697921446883</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">factorint</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">==</span> <span class="p">{</span><span class="mi">991</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">202916782076162456022877024859</span><span class="n">L</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">==</span> <span class="p">{</span><span class="mi">991</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">long</span><span class="p">(</span><span class="mi">202916782076162456022877024859</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">isprime</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
 <span class="go">False</span>
@@ -911,7 +913,7 @@ factorint:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">visual</span> <span class="o">=</span> <span class="n">factorint</span><span class="p">(</span><span class="mi">1764</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span> <span class="n">pprint</span><span class="p">(</span><span class="n">visual</span><span class="p">)</span>
 <span class="go"> 2  2  2</span>
 <span class="go">2 *3 *7</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">factorint</span><span class="p">(</span><span class="n">visual</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">factorint</span><span class="p">(</span><span class="n">visual</span><span class="p">))</span>
 <span class="go">{2: 2, 3: 2, 7: 2}</span>
 </pre></div>
 </div>
@@ -919,7 +921,7 @@ factorint:</p>
 you can do so with a dictionary or unevaluated expression:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">factorint</span><span class="p">(</span><span class="n">factorint</span><span class="p">({</span><span class="mi">4</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">:</span> <span class="mi">3</span><span class="p">}))</span> <span class="c1"># twice to toggle to dict form</span>
 <span class="go">{2: 10, 3: 3}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">factorint</span><span class="p">(</span><span class="n">Mul</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">factorint</span><span class="p">(</span><span class="n">Mul</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 <span class="go">{2: 4, 3: 1}</span>
 </pre></div>
 </div>
@@ -975,7 +977,7 @@ will often find factors of the order of 10 digits within a few
 seconds:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">factors</span> <span class="o">=</span> <span class="n">factorint</span><span class="p">(</span><span class="mi">12345678910111213141516</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">base</span><span class="p">,</span> <span class="n">exp</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">factors</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-<span class="gp">... </span>    <span class="nb">print</span> <span class="n">base</span><span class="p">,</span> <span class="n">exp</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">exp</span><span class="p">))</span>
 <span class="gp">...</span>
 <span class="go">2 2</span>
 <span class="go">2507191691 1</span>
@@ -1035,7 +1037,7 @@ not return -1 or 0.</p>
 <dt id="sympy.ntheory.factor_.divisors">
 <code class="descclassname">sympy.ntheory.factor_.</code><code class="descname">divisors</code><span class="sig-paren">(</span><em>n</em>, <em>generator=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/factor_.html#divisors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.factor_.divisors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all divisors of n sorted from 1..n by default.
-If generator is True an unordered generator is returned.</p>
+If generator is <code class="docutils literal"><span class="pre">True</span></code> an unordered generator is returned.</p>
 <p>The number of divisors of n can be quite large if there are many
 prime factors (counting repeated factors). If only the number of
 factors is desired use divisor_count(n).</p>
@@ -1080,6 +1082,110 @@ those that are divisible by <code class="docutils literal"><span class="pre">mod
 </dd></dl>
 
 <dl class="function">
+<dt id="sympy.ntheory.factor_.udivisors">
+<code class="descclassname">sympy.ntheory.factor_.</code><code class="descname">udivisors</code><span class="sig-paren">(</span><em>n</em>, <em>generator=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/factor_.html#udivisors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.factor_.udivisors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all unitary divisors of n sorted from 1..n by default.
+If generator is <code class="docutils literal"><span class="pre">True</span></code> an unordered generator is returned.</p>
+<p>The number of unitary divisors of n can be quite large if there are many
+prime factors. If only the number of unitary divisors is desired use
+udivisor_count(n).</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.ntheory.factor_.primefactors" title="sympy.ntheory.factor_.primefactors"><code class="xref py py-obj docutils literal"><span class="pre">primefactors</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.factorint" title="sympy.ntheory.factor_.factorint"><code class="xref py py-obj docutils literal"><span class="pre">factorint</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.divisors" title="sympy.ntheory.factor_.divisors"><code class="xref py py-obj docutils literal"><span class="pre">divisors</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.divisor_count" title="sympy.ntheory.factor_.divisor_count"><code class="xref py py-obj docutils literal"><span class="pre">divisor_count</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.udivisor_count" title="sympy.ntheory.factor_.udivisor_count"><code class="xref py py-obj docutils literal"><span class="pre">udivisor_count</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><a class="reference external" href="http://en.wikipedia.org/wiki/Unitary_divisor">http://en.wikipedia.org/wiki/Unitary_divisor</a></li>
+<li><a class="reference external" href="http://mathworld.wolfram.com/UnitaryDivisor.html">http://mathworld.wolfram.com/UnitaryDivisor.html</a></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.factor_</span> <span class="k">import</span> <span class="n">udivisors</span><span class="p">,</span> <span class="n">udivisor_count</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">udivisors</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="go">[1, 3, 5, 15]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">udivisor_count</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">udivisors</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="go">[1, 3, 5, 8, 15, 24, 40, 120]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.factor_.udivisor_count">
+<code class="descclassname">sympy.ntheory.factor_.</code><code class="descname">udivisor_count</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/factor_.html#udivisor_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.factor_.udivisor_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of unitary divisors of <code class="docutils literal"><span class="pre">n</span></code>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.ntheory.factor_.factorint" title="sympy.ntheory.factor_.factorint"><code class="xref py py-obj docutils literal"><span class="pre">factorint</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.divisors" title="sympy.ntheory.factor_.divisors"><code class="xref py py-obj docutils literal"><span class="pre">divisors</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.udivisors" title="sympy.ntheory.factor_.udivisors"><code class="xref py py-obj docutils literal"><span class="pre">udivisors</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.divisor_count" title="sympy.ntheory.factor_.divisor_count"><code class="xref py py-obj docutils literal"><span class="pre">divisor_count</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.totient" title="sympy.ntheory.factor_.totient"><code class="xref py py-obj docutils literal"><span class="pre">totient</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><a class="reference external" href="http://mathworld.wolfram.com/UnitaryDivisorFunction.html">http://mathworld.wolfram.com/UnitaryDivisorFunction.html</a></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.factor_</span> <span class="k">import</span> <span class="n">udivisor_count</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">udivisor_count</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="go">8</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.factor_.antidivisors">
+<code class="descclassname">sympy.ntheory.factor_.</code><code class="descname">antidivisors</code><span class="sig-paren">(</span><em>n</em>, <em>generator=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/factor_.html#antidivisors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.factor_.antidivisors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all antidivisors of n sorted from 1..n by default.</p>
+<p>Antidivisors <a class="reference internal" href="#r387" id="id1">[R387]</a> of n are numbers that do not divide n by the largest
+possible margin.  If generator is True an unordered generator is returned.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.ntheory.factor_.primefactors" title="sympy.ntheory.factor_.primefactors"><code class="xref py py-obj docutils literal"><span class="pre">primefactors</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.factorint" title="sympy.ntheory.factor_.factorint"><code class="xref py py-obj docutils literal"><span class="pre">factorint</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.divisors" title="sympy.ntheory.factor_.divisors"><code class="xref py py-obj docutils literal"><span class="pre">divisors</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.divisor_count" title="sympy.ntheory.factor_.divisor_count"><code class="xref py py-obj docutils literal"><span class="pre">divisor_count</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.antidivisor_count" title="sympy.ntheory.factor_.antidivisor_count"><code class="xref py py-obj docutils literal"><span class="pre">antidivisor_count</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r387" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R387]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id2">2</a>)</em> definition is described in <a class="reference external" href="http://oeis.org/A066272/a066272a.html">http://oeis.org/A066272/a066272a.html</a></td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.factor_</span> <span class="k">import</span> <span class="n">antidivisors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">antidivisors</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+<span class="go">[7, 16]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">antidivisors</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="go">[3, 5, 15, 17, 51, 85]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.factor_.antidivisor_count">
+<code class="descclassname">sympy.ntheory.factor_.</code><code class="descname">antidivisor_count</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/factor_.html#antidivisor_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.factor_.antidivisor_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of antidivisors <a class="reference internal" href="#r388" id="id3">[R388]</a> of <code class="docutils literal"><span class="pre">n</span></code>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.ntheory.factor_.factorint" title="sympy.ntheory.factor_.factorint"><code class="xref py py-obj docutils literal"><span class="pre">factorint</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.divisors" title="sympy.ntheory.factor_.divisors"><code class="xref py py-obj docutils literal"><span class="pre">divisors</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.antidivisors" title="sympy.ntheory.factor_.antidivisors"><code class="xref py py-obj docutils literal"><span class="pre">antidivisors</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.divisor_count" title="sympy.ntheory.factor_.divisor_count"><code class="xref py py-obj docutils literal"><span class="pre">divisor_count</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.totient" title="sympy.ntheory.factor_.totient"><code class="xref py py-obj docutils literal"><span class="pre">totient</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r388" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R388]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id4">2</a>)</em> formula from <a class="reference external" href="https://oeis.org/A066272">https://oeis.org/A066272</a></td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.factor_</span> <span class="k">import</span> <span class="n">antidivisor_count</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">antidivisor_count</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">antidivisor_count</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
 <dt id="sympy.ntheory.factor_.totient">
 <code class="descclassname">sympy.ntheory.factor_.</code><code class="descname">totient</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/factor_.html#totient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.factor_.totient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the Euler totient function phi(n)</p>
@@ -1094,18 +1200,178 @@ those that are divisible by <code class="docutils literal"><span class="pre">mod
 <p class="first admonition-title">See also</p>
 <p class="last"><a class="reference internal" href="#sympy.ntheory.factor_.divisor_count" title="sympy.ntheory.factor_.divisor_count"><code class="xref py py-obj docutils literal"><span class="pre">divisor_count</span></code></a></p>
 </div>
-<p class="rubric">Attributes</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="33%" />
-<col width="67%" />
-</colgroup>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.factor_.divisor_sigma">
+<code class="descclassname">sympy.ntheory.factor_.</code><code class="descname">divisor_sigma</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/factor_.html#divisor_sigma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.factor_.divisor_sigma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the divisor function <span class="math">\(\sigma_k(n)\)</span> for positive integer n</p>
+<p><code class="docutils literal"><span class="pre">divisor_sigma(n,</span> <span class="pre">k)</span></code> is equal to <code class="docutils literal"><span class="pre">sum([x**k</span> <span class="pre">for</span> <span class="pre">x</span> <span class="pre">in</span> <span class="pre">divisors(n)])</span></code></p>
+<p>If n&#8217;s prime factorization is:</p>
+<div class="math">
+\[n = \prod_{i=1}^\omega p_i^{m_i},\]</div>
+<p>then</p>
+<div class="math">
+\[\sigma_k(n) = \prod_{i=1}^\omega (1+p_i^k+p_i^{2k}+\cdots
++ p_i^{m_ik}).\]</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-odd"><td>nargs</td>
-<td>&nbsp;</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>k</strong> : power of divisors in the sum</p>
+<blockquote class="last">
+<div><p>for k = 0, 1:
+<code class="docutils literal"><span class="pre">divisor_sigma(n,</span> <span class="pre">0)</span></code> is equal to <code class="docutils literal"><span class="pre">divisor_count(n)</span></code>
+<code class="docutils literal"><span class="pre">divisor_sigma(n,</span> <span class="pre">1)</span></code> is equal to <code class="docutils literal"><span class="pre">sum(divisors(n))</span></code></p>
+<p>Default for k is 1.</p>
+</div></blockquote>
+</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.ntheory.factor_.divisor_count" title="sympy.ntheory.factor_.divisor_count"><code class="xref py py-obj docutils literal"><span class="pre">divisor_count</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.totient" title="sympy.ntheory.factor_.totient"><code class="xref py py-obj docutils literal"><span class="pre">totient</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.divisors" title="sympy.ntheory.factor_.divisors"><code class="xref py py-obj docutils literal"><span class="pre">divisors</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.factorint" title="sympy.ntheory.factor_.factorint"><code class="xref py py-obj docutils literal"><span class="pre">factorint</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r389" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[R389]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Divisor_function">http://en.wikipedia.org/wiki/Divisor_function</a></td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory</span> <span class="k">import</span> <span class="n">divisor_sigma</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">divisor_sigma</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">divisor_sigma</span><span class="p">(</span><span class="mi">39</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">56</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">divisor_sigma</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">210</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">divisor_sigma</span><span class="p">(</span><span class="mi">37</span><span class="p">)</span>
+<span class="go">38</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.factor_.udivisor_sigma">
+<code class="descclassname">sympy.ntheory.factor_.</code><code class="descname">udivisor_sigma</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/factor_.html#udivisor_sigma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.factor_.udivisor_sigma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the unitary divisor function <span class="math">\(\sigma_k^*(n)\)</span> for positive integer n</p>
+<p><code class="docutils literal"><span class="pre">udivisor_sigma(n,</span> <span class="pre">k)</span></code> is equal to <code class="docutils literal"><span class="pre">sum([x**k</span> <span class="pre">for</span> <span class="pre">x</span> <span class="pre">in</span> <span class="pre">udivisors(n)])</span></code></p>
+<p>If n&#8217;s prime factorization is:</p>
+<div class="math">
+\[n = \prod_{i=1}^\omega p_i^{m_i},\]</div>
+<p>then</p>
+<div class="math">
+\[\sigma_k^*(n) = \prod_{i=1}^\omega (1+ p_i^{m_ik}).\]</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>k</strong> : power of divisors in the sum</p>
+<blockquote class="last">
+<div><p>for k = 0, 1:
+<code class="docutils literal"><span class="pre">udivisor_sigma(n,</span> <span class="pre">0)</span></code> is equal to <code class="docutils literal"><span class="pre">udivisor_count(n)</span></code>
+<code class="docutils literal"><span class="pre">udivisor_sigma(n,</span> <span class="pre">1)</span></code> is equal to <code class="docutils literal"><span class="pre">sum(udivisors(n))</span></code></p>
+<p>Default for k is 1.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.ntheory.factor_.divisor_count" title="sympy.ntheory.factor_.divisor_count"><code class="xref py py-obj docutils literal"><span class="pre">divisor_count</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.totient" title="sympy.ntheory.factor_.totient"><code class="xref py py-obj docutils literal"><span class="pre">totient</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.divisors" title="sympy.ntheory.factor_.divisors"><code class="xref py py-obj docutils literal"><span class="pre">divisors</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.udivisors" title="sympy.ntheory.factor_.udivisors"><code class="xref py py-obj docutils literal"><span class="pre">udivisors</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.udivisor_count" title="sympy.ntheory.factor_.udivisor_count"><code class="xref py py-obj docutils literal"><span class="pre">udivisor_count</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.divisor_sigma" title="sympy.ntheory.factor_.divisor_sigma"><code class="xref py py-obj docutils literal"><span class="pre">divisor_sigma</span></code></a>, <a class="reference internal" href="#sympy.ntheory.factor_.factorint" title="sympy.ntheory.factor_.factorint"><code class="xref py py-obj docutils literal"><span class="pre">factorint</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r390" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[R390]</a></td><td><a class="reference external" href="http://mathworld.wolfram.com/UnitaryDivisorFunction.html">http://mathworld.wolfram.com/UnitaryDivisorFunction.html</a></td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.factor_</span> <span class="k">import</span> <span class="n">udivisor_sigma</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">udivisor_sigma</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">udivisor_sigma</span><span class="p">(</span><span class="mi">74</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">114</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">udivisor_sigma</span><span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">47450</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">udivisor_sigma</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="go">152</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.factor_.core">
+<code class="descclassname">sympy.ntheory.factor_.</code><code class="descname">core</code><span class="sig-paren">(</span><em>n</em>, <em>t=2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/factor_.html#core"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.factor_.core" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate core(n,t) = <span class="math">\(core_t(n)\)</span> of a positive integer n</p>
+<p><code class="docutils literal"><span class="pre">core_2(n)</span></code> is equal to the squarefree part of n</p>
+<p>If n&#8217;s prime factorization is:</p>
+<div class="math">
+\[n = \prod_{i=1}^\omega p_i^{m_i},\]</div>
+<p>then</p>
+<div class="math">
+\[core_t(n) = \prod_{i=1}^\omega p_i^{m_i \mod t}.\]</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>t</strong> : core(n,t) calculates the t-th power free part of n</p>
+<blockquote class="last">
+<div><p><code class="docutils literal"><span class="pre">core(n,</span> <span class="pre">2)</span></code> is the squarefree part of <code class="docutils literal"><span class="pre">n</span></code>
+<code class="docutils literal"><span class="pre">core(n,</span> <span class="pre">3)</span></code> is the cubefree part of <code class="docutils literal"><span class="pre">n</span></code></p>
+<p>Default for t is 2.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.ntheory.factor_.factorint" title="sympy.ntheory.factor_.factorint"><code class="xref py py-obj docutils literal"><span class="pre">factorint</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r391" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[R391]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Square-free_integer#Squarefree_core">http://en.wikipedia.org/wiki/Square-free_integer#Squarefree_core</a></td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.factor_</span> <span class="k">import</span> <span class="n">core</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">core</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">core</span><span class="p">(</span><span class="mi">9424</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">1178</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">core</span><span class="p">(</span><span class="mi">379238</span><span class="p">)</span>
+<span class="go">379238</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">core</span><span class="p">(</span><span class="mi">15</span><span class="o">**</span><span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">15</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.factor_.digits">
+<code class="descclassname">sympy.ntheory.factor_.</code><code class="descname">digits</code><span class="sig-paren">(</span><em>n</em>, <em>b=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/factor_.html#digits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.factor_.digits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of the digits of n in base b. The first element in the list
+is b (or -b if n is negative).</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.factor_</span> <span class="k">import</span> <span class="n">digits</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span>
+<span class="go">[10, 3, 5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span><span class="p">(</span><span class="mi">27</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">[2, 1, 1, 0, 1, 1]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span><span class="p">(</span><span class="mi">65536</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+<span class="go">[256, 1, 0, 0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span><span class="p">(</span><span class="o">-</span><span class="mi">3958</span><span class="p">,</span> <span class="mi">27</span><span class="p">)</span>
+<span class="go">[-27, 5, 11, 16]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <span class="target" id="module-sympy.ntheory.modular"></span><dl class="function">
@@ -1333,7 +1599,7 @@ precomputed to save memory and time.</p>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.multinomial</span> <span class="k">import</span> <span class="n">multinomial_coefficients_iterator</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">it</span> <span class="o">=</span> <span class="n">multinomial_coefficients_iterator</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">it</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
 <span class="go">((3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 1)</span>
 </pre></div>
 </div>
@@ -1367,8 +1633,7 @@ given list of bases/witnesses.</p>
 A Computational Perspective&#8221;, Springer, 2nd edition, 135-138</li>
 </ul>
 <p>A list of thresholds and the bases they require are here:
-<a class="reference external" href="http://en.wikipedia.org/wiki/">http://en.wikipedia.org/wiki/</a>
-Miller%E2%80%93Rabin_primality_test#Deterministic_variants_of_the_test</p>
+<a class="reference external" href="http://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Deterministic_variants_of_the_test">http://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Deterministic_variants_of_the_test</a></p>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.primetest</span> <span class="k">import</span> <span class="n">mr</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mr</span><span class="p">(</span><span class="mi">1373651</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -1452,13 +1717,117 @@ totient(p) is the smallest positive number s.t.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="sympy.ntheory.residue_ntheory.primitive_root">
+<code class="descclassname">sympy.ntheory.residue_ntheory.</code><code class="descname">primitive_root</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/residue_ntheory.html#primitive_root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.residue_ntheory.primitive_root" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the smallest primitive root or None</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>p</strong> : positive integer</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<p>[1] W. Stein &#8220;Elementary Number Theory&#8221; (2011), page 44
+[2] P. Hackman &#8220;Elementary Number Theory&#8221; (2009),  Chapter C</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.residue_ntheory</span> <span class="k">import</span> <span class="n">primitive_root</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">primitive_root</span><span class="p">(</span><span class="mi">19</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.residue_ntheory.sqrt_mod">
+<code class="descclassname">sympy.ntheory.residue_ntheory.</code><code class="descname">sqrt_mod</code><span class="sig-paren">(</span><em>a</em>, <em>p</em>, <em>all_roots=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/residue_ntheory.html#sqrt_mod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.residue_ntheory.sqrt_mod" title="Permalink to this definition">¶</a></dt>
+<dd><p>find a root of <code class="docutils literal"><span class="pre">x**2</span> <span class="pre">=</span> <span class="pre">a</span> <span class="pre">mod</span> <span class="pre">p</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : integer</p>
+<p><strong>p</strong> : positive integer</p>
+<p class="last"><strong>all_roots</strong> : if True the list of roots is returned or None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>If there is no root it is returned None; else the returned root
+is less or equal to <code class="docutils literal"><span class="pre">p</span> <span class="pre">//</span> <span class="pre">2</span></code>; in general is not the smallest one.
+It is returned <code class="docutils literal"><span class="pre">p</span> <span class="pre">//</span> <span class="pre">2</span></code> only if it is the only root.</p>
+<p>Use <code class="docutils literal"><span class="pre">all_roots</span></code> only when it is expected that all the roots fit
+in memory; otherwise use <code class="docutils literal"><span class="pre">sqrt_mod_iter</span></code>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory</span> <span class="k">import</span> <span class="n">sqrt_mod</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqrt_mod</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">43</span><span class="p">)</span>
+<span class="go">21</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqrt_mod</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="go">[7, 9, 23, 25]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.residue_ntheory.quadratic_residues">
+<code class="descclassname">sympy.ntheory.residue_ntheory.</code><code class="descname">quadratic_residues</code><span class="sig-paren">(</span><em>p</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/residue_ntheory.html#quadratic_residues"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.residue_ntheory.quadratic_residues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of quadratic residues.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.residue_ntheory</span> <span class="k">import</span> <span class="n">quadratic_residues</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">quadratic_residues</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">[0, 1, 2, 4]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.residue_ntheory.nthroot_mod">
+<code class="descclassname">sympy.ntheory.residue_ntheory.</code><code class="descname">nthroot_mod</code><span class="sig-paren">(</span><em>a</em>, <em>n</em>, <em>p</em>, <em>all_roots=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/residue_ntheory.html#nthroot_mod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.residue_ntheory.nthroot_mod" title="Permalink to this definition">¶</a></dt>
+<dd><p>find the solutions to <code class="docutils literal"><span class="pre">x**n</span> <span class="pre">=</span> <span class="pre">a</span> <span class="pre">mod</span> <span class="pre">p</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : integer</p>
+<p><strong>n</strong> : positive integer</p>
+<p><strong>p</strong> : positive integer</p>
+<p class="last"><strong>all_roots</strong> : if False returns the smallest root, else the list of roots</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.residue_ntheory</span> <span class="k">import</span> <span class="n">nthroot_mod</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nthroot_mod</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">19</span><span class="p">)</span>
+<span class="go">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nthroot_mod</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="go">[8, 11]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nthroot_mod</span><span class="p">(</span><span class="mi">68</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">109</span><span class="p">)</span>
+<span class="go">23</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.residue_ntheory.is_nthpow_residue">
+<code class="descclassname">sympy.ntheory.residue_ntheory.</code><code class="descname">is_nthpow_residue</code><span class="sig-paren">(</span><em>a</em>, <em>n</em>, <em>m</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/residue_ntheory.html#is_nthpow_residue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.residue_ntheory.is_nthpow_residue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if <code class="docutils literal"><span class="pre">x**n</span> <span class="pre">==</span> <span class="pre">a</span> <span class="pre">(mod</span> <span class="pre">m)</span></code> has solutions.</p>
+<p class="rubric">References</p>
+<ol class="upperalpha simple" start="16">
+<li>Hackman &#8220;Elementary Number Theory&#8221; (2009),  page 76</li>
+</ol>
+</dd></dl>
+
+<dl class="function">
 <dt id="sympy.ntheory.residue_ntheory.is_quad_residue">
 <code class="descclassname">sympy.ntheory.residue_ntheory.</code><code class="descname">is_quad_residue</code><span class="sig-paren">(</span><em>a</em>, <em>p</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/residue_ntheory.html#is_quad_residue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.residue_ntheory.is_quad_residue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns True if <code class="docutils literal"><span class="pre">a</span></code> (mod <code class="docutils literal"><span class="pre">p</span></code>) is in the set of squares mod <code class="docutils literal"><span class="pre">p</span></code>,
 i.e a % p in set([i**2 % p for i in range(p)]). If <code class="docutils literal"><span class="pre">p</span></code> is an odd
 prime, an iterative method is used to make the determination:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory</span> <span class="k">import</span> <span class="n">is_quad_residue</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="o">%</span> <span class="mi">7</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="o">%</span> <span class="mi">7</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]))</span>
 <span class="go">[0, 1, 2, 4]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="k">if</span> <span class="n">is_quad_residue</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="mi">7</span><span class="p">)]</span>
 <span class="go">[0, 1, 2, 4]</span>
@@ -1495,7 +1864,7 @@ prime, an iterative method is used to make the determination:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory</span> <span class="k">import</span> <span class="n">legendre_symbol</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">legendre_symbol</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]</span>
 <span class="go">[0, 1, 1, -1, 1, -1, -1]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="o">%</span> <span class="mi">7</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="o">%</span> <span class="mi">7</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]))</span>
 <span class="go">[0, 1, 2, 4]</span>
 </pre></div>
 </div>
@@ -1543,7 +1912,362 @@ be demonstrated as follows:</p>
 </div>
 </dd></dl>
 
-<span class="target" id="module-sympy.ntheory.egyptian_fraction"></span></div>
+<span class="target" id="module-sympy.ntheory.continued_fraction"></span><dl class="function">
+<dt id="sympy.ntheory.continued_fraction.continued_fraction_convergents">
+<code class="descclassname">sympy.ntheory.continued_fraction.</code><code class="descname">continued_fraction_convergents</code><span class="sig-paren">(</span><em>cf</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/continued_fraction.html#continued_fraction_convergents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.continued_fraction.continued_fraction_convergents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterator over the convergents of a continued fraction (cf).</p>
+<p>The parameter should be an iterable returning successive
+partial quotients of the continued fraction, such as might be
+returned by continued_fraction_iterator.  In computing the
+convergents, the continued fraction need not be strictly in
+canonical form (all integers, all but the first positive).
+Rational and negative elements may be present in the expansion.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.ntheory.continued_fraction.continued_fraction_iterator" title="sympy.ntheory.continued_fraction.continued_fraction_iterator"><code class="xref py py-obj docutils literal"><span class="pre">continued_fraction_iterator</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.core</span> <span class="k">import</span> <span class="n">Rational</span><span class="p">,</span> <span class="n">pi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">S</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.continued_fraction</span> <span class="k">import</span>             <span class="n">continued_fraction_convergents</span><span class="p">,</span> <span class="n">continued_fraction_iterator</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">continued_fraction_convergents</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="go">[0, 1/2, 1/3, 3/8]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">continued_fraction_convergents</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">S</span><span class="p">(</span><span class="s1">&#39;1/2&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="n">S</span><span class="p">(</span><span class="s1">&#39;1/4&#39;</span><span class="p">)]))</span>
+<span class="go">[1, 3, 19/5, 7]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">it</span> <span class="o">=</span> <span class="n">continued_fraction_convergents</span><span class="p">(</span><span class="n">continued_fraction_iterator</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">))</span>
+<span class="go">3</span>
+<span class="go">22/7</span>
+<span class="go">333/106</span>
+<span class="go">355/113</span>
+<span class="go">103993/33102</span>
+<span class="go">104348/33215</span>
+<span class="go">208341/66317</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.continued_fraction.continued_fraction_iterator">
+<code class="descclassname">sympy.ntheory.continued_fraction.</code><code class="descname">continued_fraction_iterator</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/continued_fraction.html#continued_fraction_iterator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.continued_fraction.continued_fraction_iterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return continued fraction expansion of x as iterator.</p>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r392" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[R392]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Continued_fraction">http://en.wikipedia.org/wiki/Continued_fraction</a></td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.core</span> <span class="k">import</span> <span class="n">Rational</span><span class="p">,</span> <span class="n">pi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.continued_fraction</span> <span class="k">import</span> <span class="n">continued_fraction_iterator</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">continued_fraction_iterator</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)))</span>
+<span class="go">[0, 2, 1, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">continued_fraction_iterator</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)))</span>
+<span class="go">[-1, 1, 1, 1, 2]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">continued_fraction_iterator</span><span class="p">(</span><span class="n">pi</span><span class="p">)):</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">break</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="go">7</span>
+<span class="go">15</span>
+<span class="go">1</span>
+<span class="go">292</span>
+<span class="go">1</span>
+<span class="go">1</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.continued_fraction.continued_fraction_periodic">
+<code class="descclassname">sympy.ntheory.continued_fraction.</code><code class="descname">continued_fraction_periodic</code><span class="sig-paren">(</span><em>p</em>, <em>q</em>, <em>d=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/continued_fraction.html#continued_fraction_periodic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.continued_fraction.continued_fraction_periodic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the periodic continued fraction expansion of a quadratic irrational.</p>
+<p>Compute the continued fraction expansion of a rational or a
+quadratic irrational number, i.e. <span class="math">\(\frac{p + \sqrt{d}}{q}\)</span>, where
+<span class="math">\(p\)</span>, <span class="math">\(q\)</span> and <span class="math">\(d \ge 0\)</span> are integers.</p>
+<p>Returns the continued fraction representation (canonical form) as
+a list of integers, optionally ending (for quadratic irrationals)
+with repeating block as the last term of this list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>p</strong> : int</p>
+<blockquote>
+<div><p>the rational part of the number&#8217;s numerator</p>
+</div></blockquote>
+<p><strong>q</strong> : int</p>
+<blockquote>
+<div><p>the denominator of the number</p>
+</div></blockquote>
+<p><strong>d</strong> : int, optional</p>
+<blockquote class="last">
+<div><p>the irrational part (discriminator) of the number&#8217;s numerator</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.ntheory.continued_fraction.continued_fraction_iterator" title="sympy.ntheory.continued_fraction.continued_fraction_iterator"><code class="xref py py-obj docutils literal"><span class="pre">continued_fraction_iterator</span></code></a>, <a class="reference internal" href="#sympy.ntheory.continued_fraction.continued_fraction_reduce" title="sympy.ntheory.continued_fraction.continued_fraction_reduce"><code class="xref py py-obj docutils literal"><span class="pre">continued_fraction_reduce</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r393" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[R393]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Periodic_continued_fraction">http://en.wikipedia.org/wiki/Periodic_continued_fraction</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r394" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[R394]</a></td><td>K. Rosen. Elementary Number theory and its applications.
+Addison-Wesley, 3 Sub edition, pages 379-381, January 1992.</td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.continued_fraction</span> <span class="k">import</span> <span class="n">continued_fraction_periodic</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">continued_fraction_periodic</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="go">[2, [1, 4, 1, 1]]</span>
+</pre></div>
+</div>
+<p>Golden ratio has the simplest continued fraction expansion:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">continued_fraction_periodic</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">[[1]]</span>
+</pre></div>
+</div>
+<p>If the discriminator is zero or a perfect square then the number will be a
+rational number:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">continued_fraction_periodic</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">[1, 3]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">continued_fraction_periodic</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">49</span><span class="p">)</span>
+<span class="go">[3, 1, 2]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.ntheory.continued_fraction.continued_fraction_reduce">
+<code class="descclassname">sympy.ntheory.continued_fraction.</code><code class="descname">continued_fraction_reduce</code><span class="sig-paren">(</span><em>cf</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/continued_fraction.html#continued_fraction_reduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.continued_fraction.continued_fraction_reduce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduce a continued fraction to a rational or quadratic irrational.</p>
+<p>Compute the rational or quadratic irrational number from its
+terminating or periodic continued fraction expansion.  The
+continued fraction expansion (cf) should be supplied as a
+terminating iterator supplying the terms of the expansion.  For
+terminating continued fractions, this is equivalent to
+<code class="docutils literal"><span class="pre">list(continued_fraction_convergents(cf))[-1]</span></code>, only a little more
+efficient.  If the expansion has a repeating part, a list of the
+repeating terms should be returned as the last element from the
+iterator.  This is the format returned by
+continued_fraction_periodic.</p>
+<p>For quadratic irrationals, returns the largest solution found,
+which is generally the one sought, if the fraction is in canonical
+form (all terms positive except possibly the first).</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.ntheory.continued_fraction.continued_fraction_periodic" title="sympy.ntheory.continued_fraction.continued_fraction_periodic"><code class="xref py py-obj docutils literal"><span class="pre">continued_fraction_periodic</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.continued_fraction</span> <span class="k">import</span> <span class="n">continued_fraction_reduce</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">continued_fraction_reduce</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="go">225/157</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">continued_fraction_reduce</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="go">-256/233</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">continued_fraction_reduce</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">2.718281835</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">continued_fraction_reduce</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="go">(sqrt(21) + 287)/238</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">continued_fraction_reduce</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="go">1/2 + sqrt(5)/2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.continued_fraction</span> <span class="k">import</span> <span class="n">continued_fraction_periodic</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">continued_fraction_reduce</span><span class="p">(</span><span class="n">continued_fraction_periodic</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>
+<span class="go">(sqrt(13) + 8)/5</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="sympy.ntheory.mobius">
+<em class="property">class </em><code class="descclassname">sympy.ntheory.</code><code class="descname">mobius</code><a class="reference internal" href="../_modules/sympy/ntheory/residue_ntheory.html#mobius"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.mobius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Möbius function maps natural number to {-1, 0, 1}</p>
+<dl class="docutils">
+<dt>It is defined as follows:</dt>
+<dd><ol class="first last arabic simple">
+<li><span class="math">\(1\)</span> if <span class="math">\(n = 1\)</span>.</li>
+<li><span class="math">\(0\)</span> if <span class="math">\(n\)</span> has a squared prime factor.</li>
+<li><span class="math">\((-1)^k\)</span> if <span class="math">\(n\)</span> is a square-free positive integer with <span class="math">\(k\)</span>
+number of prime factors.</li>
+</ol>
+</dd>
+</dl>
+<p>It is an important multiplicative function in number theory
+and combinatorics.  It has applications in mathematical series,
+algebraic number theory and also physics (Fermion operator has very
+concrete realization with Möbius Function model).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> : positive integer</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r395" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[R395]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/M%C3%B6bius_function">http://en.wikipedia.org/wiki/M%C3%B6bius_function</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r396" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id12">[R396]</a></td><td>Thomas Koshy &#8220;Elementary Number Theory with Applications&#8221;</td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory</span> <span class="k">import</span> <span class="n">mobius</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mobius</span><span class="p">(</span><span class="mi">13</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mobius</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mobius</span><span class="p">(</span><span class="mi">13</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">-1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mobius</span><span class="p">(</span><span class="mi">13</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<span class="target" id="module-sympy.ntheory.egyptian_fraction"></span><dl class="function">
+<dt id="sympy.ntheory.egyptian_fraction.egyptian_fraction">
+<code class="descclassname">sympy.ntheory.egyptian_fraction.</code><code class="descname">egyptian_fraction</code><span class="sig-paren">(</span><em>r</em>, <em>algorithm='Greedy'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/egyptian_fraction.html#egyptian_fraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.egyptian_fraction.egyptian_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of denominators of an Egyptian fraction
+expansion <a class="reference internal" href="#r397" id="id13">[R397]</a> of the said rational <span class="math">\(r\)</span>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>r</strong> : Rational</p>
+<blockquote>
+<div><p>a positive rational number.</p>
+</div></blockquote>
+<p><strong>algorithm</strong> : { &#8220;Greedy&#8221;, &#8220;Graham Jewett&#8221;, &#8220;Takenouchi&#8221;, &#8220;Golomb&#8221; }, optional</p>
+<blockquote class="last">
+<div><p>Denotes the algorithm to be used (the default is &#8220;Greedy&#8221;).</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="core.html#sympy.core.numbers.Rational" title="sympy.core.numbers.Rational"><code class="xref py py-obj docutils literal"><span class="pre">sympy.core.numbers.Rational</span></code></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>Currently the following algorithms are supported:</p>
+<ol class="arabic">
+<li><p class="first">Greedy Algorithm</p>
+<p>Also called the Fibonacci-Sylvester algorithm <a class="reference internal" href="#r398" id="id14">[R398]</a>.
+At each step, extract the largest unit fraction less
+than the target and replace the target with the remainder.</p>
+<p>It has some distinct properties:</p>
+<ol class="loweralpha simple">
+<li>Given <span class="math">\(p/q\)</span> in lowest terms, generates an expansion of maximum
+length <span class="math">\(p\)</span>. Even as the numerators get large, the number of
+terms is seldom more than a handful.</li>
+<li>Uses minimal memory.</li>
+<li>The terms can blow up (standard examples of this are 5/121 and
+31/311).  The denominator is at most squared at each step
+(doubly-exponential growth) and typically exhibits
+singly-exponential growth.</li>
+</ol>
+</li>
+<li><p class="first">Graham Jewett Algorithm</p>
+<p>The algorithm suggested by the result of Graham and Jewett.
+Note that this has a tendency to blow up: the length of the
+resulting expansion is always <code class="docutils literal"><span class="pre">2**(x/gcd(x,</span> <span class="pre">y))</span> <span class="pre">-</span> <span class="pre">1</span></code>.  See <a class="reference internal" href="#r399" id="id15">[R399]</a>.</p>
+</li>
+<li><p class="first">Takenouchi Algorithm</p>
+<p>The algorithm suggested by Takenouchi (1921).
+Differs from the Graham-Jewett algorithm only in the handling
+of duplicates.  See <a class="reference internal" href="#r399" id="id16">[R399]</a>.</p>
+</li>
+<li><p class="first">Golomb&#8217;s Algorithm</p>
+<p>A method given by Golumb (1962), using modular arithmetic and
+inverses.  It yields the same results as a method using continued
+fractions proposed by Bleicher (1972).  See <a class="reference internal" href="#r400" id="id17">[R400]</a>.</p>
+</li>
+</ol>
+<p>If the given rational is greater than or equal to 1, a greedy algorithm
+of summing the harmonic sequence 1/1 + 1/2 + 1/3 + ... is used, taking
+all the unit fractions of this sequence until adding one more would be
+greater than the given number.  This list of denominators is prefixed
+to the result from the requested algorithm used on the remainder.  For
+example, if r is 8/3, using the Greedy algorithm, we get [1, 2, 3, 4,
+5, 6, 7, 14, 420], where the beginning of the sequence, [1, 2, 3, 4, 5,
+6, 7] is part of the harmonic sequence summing to 363/140, leaving a
+remainder of 31/420, which yields [14, 420] by the Greedy algorithm.
+The result of egyptian_fraction(Rational(8, 3), &#8220;Golomb&#8221;) is [1, 2, 3,
+4, 5, 6, 7, 14, 574, 2788, 6460, 11590, 33062, 113820], and so on.</p>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r397" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R397]</td><td><em>(<a class="fn-backref" href="#id13">1</a>, <a class="fn-backref" href="#id18">2</a>)</em> <a class="reference external" href="http://en.wikipedia.org/wiki/Egyptian_fraction">http://en.wikipedia.org/wiki/Egyptian_fraction</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r398" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R398]</td><td><em>(<a class="fn-backref" href="#id14">1</a>, <a class="fn-backref" href="#id19">2</a>)</em> <a class="reference external" href="https://en.wikipedia.org/wiki/Greedy_algorithm_for_Egyptian_fractions">https://en.wikipedia.org/wiki/Greedy_algorithm_for_Egyptian_fractions</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r399" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R399]</td><td><em>(<a class="fn-backref" href="#id15">1</a>, <a class="fn-backref" href="#id16">2</a>, <a class="fn-backref" href="#id20">3</a>)</em> <a class="reference external" href="http://www.ics.uci.edu/~eppstein/numth/egypt/conflict.html">http://www.ics.uci.edu/~eppstein/numth/egypt/conflict.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r400" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R400]</td><td><em>(<a class="fn-backref" href="#id17">1</a>, <a class="fn-backref" href="#id21">2</a>)</em> <a class="reference external" href="http://ami.ektf.hu/uploads/papers/finalpdf/AMI_42_from129to134.pdf">http://ami.ektf.hu/uploads/papers/finalpdf/AMI_42_from129to134.pdf</a></td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Rational</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.egyptian_fraction</span> <span class="k">import</span> <span class="n">egyptian_fraction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">egyptian_fraction</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="go">[3, 11, 231]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">egyptian_fraction</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="s2">&quot;Graham Jewett&quot;</span><span class="p">)</span>
+<span class="go">[7, 8, 9, 56, 57, 72, 3192]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">egyptian_fraction</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="s2">&quot;Takenouchi&quot;</span><span class="p">)</span>
+<span class="go">[4, 7, 28]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">egyptian_fraction</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="s2">&quot;Golomb&quot;</span><span class="p">)</span>
+<span class="go">[3, 15, 35]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">egyptian_fraction</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="s2">&quot;Golomb&quot;</span><span class="p">)</span>
+<span class="go">[1, 2, 3, 4, 9, 234, 1118, 2580]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
 </div>
 
 

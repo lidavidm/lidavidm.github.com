@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Sparse Matrices &mdash; SymPy 0.7.3 documentation</title>
+    <title>Sparse Matrices &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
     <link rel="up" title="Matrices" href="index.html" />
     <link rel="next" title="Immutable Matrices" href="immutablematrices.html" />
     <link rel="prev" title="Dense Matrices" href="dense.html" />
@@ -136,9 +136,11 @@ the diagonal entries of L are 1.</p>
 </pre></div>
 </div>
 <p>Only the non-zero elements are stored, so the resulting dictionary
-that is used to represent the sparse matrix is empty:
-&gt;&gt;&gt; _._smat
-{}</p>
+that is used to represent the sparse matrix is empty:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">.</span><span class="n">_smat</span>
+<span class="go">{}</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -244,6 +246,45 @@ and non-singular matrix</p>
 </div>
 </dd></dl>
 
+<dl class="method">
+<dt id="sympy.matrices.sparse.SparseMatrix.extract">
+<code class="descname">extract</code><span class="sig-paren">(</span><em>rowsList</em>, <em>colsList</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/sparse.html#SparseMatrix.extract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.sparse.SparseMatrix.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a submatrix by specifying a list of rows and columns.
+Negative indices can be given. All indices must be in the range
+-n &lt;= i &lt; n where n is the number of rows or columns.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
+<span class="go">Matrix([</span>
+<span class="go">[0,  1,  2],</span>
+<span class="go">[3,  4,  5],</span>
+<span class="go">[6,  7,  8],</span>
+<span class="go">[9, 10, 11]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">extract</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="go">Matrix([</span>
+<span class="go">[0,  1],</span>
+<span class="go">[3,  4],</span>
+<span class="go">[9, 10]])</span>
+</pre></div>
+</div>
+<p>Rows or columns can be repeated:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">extract</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">Matrix([</span>
+<span class="go">[2],</span>
+<span class="go">[2],</span>
+<span class="go">[5]])</span>
+</pre></div>
+</div>
+<p>Every other row can be taken by using range to provide the indices:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">rows</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">Matrix([</span>
+<span class="go">[2],</span>
+<span class="go">[8]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="classmethod">
 <dt id="sympy.matrices.sparse.SparseMatrix.eye">
 <em class="property">classmethod </em><code class="descname">eye</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/sparse.html#SparseMatrix.eye"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.sparse.SparseMatrix.eye" title="Permalink to this definition">¶</a></dt>
@@ -264,6 +305,35 @@ and non-singular matrix</p>
 <span class="go">False</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">has</span><span class="p">(</span><span class="n">Float</span><span class="p">)</span>
 <span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sympy.matrices.sparse.SparseMatrix.is_hermitian">
+<code class="descname">is_hermitian</code><a class="headerlink" href="#sympy.matrices.sparse.SparseMatrix.is_hermitian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the matrix is Hermitian.</p>
+<p>In a Hermitian matrix element i,j is the complex conjugate of
+element j,i.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="k">import</span> <span class="n">SparseMatrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">I</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">SparseMatrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="n">I</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">I</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">Matrix([</span>
+<span class="go">[ 1, I],</span>
+<span class="go">[-I, 1]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">is_hermitian</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">I</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">is_hermitian</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">is_hermitian</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">I</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">is_hermitian</span>
+<span class="go">False</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -292,8 +362,7 @@ the given matrix, used in row-based symbolic Cholesky factorization.</p>
 <p class="rubric">References</p>
 <p>Symbolic Sparse Cholesky Factorization using Elimination Trees,
 Jeroen Van Grondelle (1999)
-<a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.7582">http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.7582</a>,
-downloaded from <a class="reference external" href="http://tinyurl.com/9o2jsxj">http://tinyurl.com/9o2jsxj</a></p>
+<a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.7582">http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.7582</a></p>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="k">import</span> <span class="n">SparseMatrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">SparseMatrix</span><span class="p">([</span>
@@ -391,8 +460,7 @@ non-zero structure of the Cholesky factororization.</p>
 <p class="rubric">References</p>
 <p>Symbolic Sparse Cholesky Factorization using Elimination Trees,
 Jeroen Van Grondelle (1999)
-<a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.7582">http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.7582</a>,
-downloaded from <a class="reference external" href="http://tinyurl.com/9o2jsxj">http://tinyurl.com/9o2jsxj</a></p>
+<a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.7582">http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.7582</a></p>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="k">import</span> <span class="n">SparseMatrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">SparseMatrix</span><span class="p">([</span>
@@ -786,6 +854,23 @@ interpreted as <code class="docutils literal"><span class="pre">(self[i,</span> 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="go">Matrix([[y]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Matrix</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="go">Matrix([[x]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sympy.matrices.immutable.ImmutableSparseMatrix.xreplace">
+<code class="descname">xreplace</code><span class="sig-paren">(</span><em>rule</em><span class="sig-paren">)</span><a class="headerlink" href="#sympy.matrices.immutable.ImmutableSparseMatrix.xreplace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new matrix with xreplace applied to each entry.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="k">import</span> <span class="n">SparseMatrix</span><span class="p">,</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="go">Matrix([[x]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">.</span><span class="n">xreplace</span><span class="p">({</span><span class="n">x</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span>
+<span class="go">Matrix([[y]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Matrix</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="o">.</span><span class="n">xreplace</span><span class="p">({</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="p">})</span>
 <span class="go">Matrix([[x]])</span>
 </pre></div>
 </div>

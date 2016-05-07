@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.ntheory.primetest &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.ntheory.primetest &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -52,6 +52,9 @@
 <span class="sd">Primality testing</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="nb">range</span>
 
 <span class="c1"># pseudoprimes that will pass through last mr_safe test</span>
 <span class="n">_pseudos</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span>
@@ -93,16 +96,20 @@
     <span class="sd">&quot;&quot;&quot;Miller-Rabin strong pseudoprime test for one base.</span>
 <span class="sd">    Return False if n is definitely composite, True if n is</span>
 <span class="sd">    probably prime, with a probability greater than 3/4.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># do the Fermat test</span>
     <span class="n">b</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">b</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">True</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
             <span class="n">b</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">True</span>
+            <span class="c1"># see I. Niven et al. &quot;An Introduction to Theory of Numbers&quot;, page 78</span>
+            <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
     <span class="k">return</span> <span class="bp">False</span>
 
 
@@ -117,8 +124,7 @@
 <span class="sd">      A Computational Perspective&quot;, Springer, 2nd edition, 135-138</span>
 
 <span class="sd">    A list of thresholds and the bases they require are here:</span>
-<span class="sd">    http://en.wikipedia.org/wiki/</span>
-<span class="sd">    Miller%E2%80%93Rabin_primality_test#Deterministic_variants_of_the_test</span>
+<span class="sd">    http://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Deterministic_variants_of_the_test</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    ========</span>
@@ -128,6 +134,7 @@
 <span class="sd">    False</span>
 <span class="sd">    &gt;&gt;&gt; mr(479001599, [31, 73])</span>
 <span class="sd">    True</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">sympy.ntheory.factor_</span> <span class="kn">import</span> <span class="n">trailing</span>
     <span class="kn">from</span> <span class="nn">sympy.polys.domains</span> <span class="kn">import</span> <span class="n">ZZ</span>
@@ -135,7 +142,7 @@
     <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">False</span>
-    <span class="c1"># remove powers of 2 from n (= t * 2**s)</span>
+    <span class="c1"># remove powers of 2 from n = t * 2**s + 1</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">trailing</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">s</span>
     <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">bases</span><span class="p">:</span>
@@ -173,11 +180,9 @@
 <span class="sd">    2. http://www.trnicely.net/misc/mpzspsp.html</span>
 <span class="sd">    3. http://en.wikipedia.org/wiki/Miller-Rabin_primality_test#</span>
 <span class="sd">        Accuracy_of_the_test</span>
-<span class="sd">    4. http://zdu.spaces.live.com/?_c11_BlogPart_pagedir=</span>
-<span class="sd">        Next&amp;_c11_BlogPart_handle=cns!C95152CB25EF2037!</span>
-<span class="sd">        138&amp;_c11_BlogPart_BlogPart=blogview&amp;_c=BlogPart</span>
-<span class="sd">    5. http://primes.utm.edu/glossary/xpage/Pseudoprime.html</span>
-<span class="sd">    6. http://uucode.com/obf/dalbec/alg.html#sprp</span>
+<span class="sd">    4. http://primes.utm.edu/glossary/xpage/Pseudoprime.html</span>
+<span class="sd">    5. http://uucode.com/obf/dalbec/alg.html#sprp</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1373653</span><span class="p">:</span>
@@ -247,7 +252,11 @@
 <span class="sd">    sympy.ntheory.generate.primerange : Generates all primes in a given range</span>
 <span class="sd">    sympy.ntheory.generate.primepi : Return the number of primes less than or equal to n</span>
 <span class="sd">    sympy.ntheory.generate.prime : Return the nth prime</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">sympy.core.numbers</span> <span class="kn">import</span> <span class="n">Float</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">Float</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="bp">False</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">False</span>
@@ -282,11 +291,13 @@
 <span class="sd">    by a previous test.</span>
 
 <span class="sd">    e.g.</span>
+
 <span class="sd">    &gt;&gt;&gt; from sympy.ntheory.primetest import _mr_safe_helper</span>
-<span class="sd">    &gt;&gt;&gt; print _mr_safe_helper(&quot;if n &lt; 170584961: return mr(n, [350, 3958281543])&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; print(_mr_safe_helper(&quot;if n &lt; 170584961: return mr(n, [350, 3958281543])&quot;))</span>
 <span class="sd">     # [350, 3958281543] stot = 1 clear [2, 3, 5, 7, 29, 67, 679067]</span>
-<span class="sd">    &gt;&gt;&gt; print _mr_safe_helper(&#39;return mr(n, [2, 379215, 457083754])&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print(_mr_safe_helper(&#39;return mr(n, [2, 379215, 457083754])&#39;))</span>
 <span class="sd">     # [2, 379215, 457083754] stot = 1 clear [2, 3, 5, 53, 228541877]</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_info</span><span class="p">(</span><span class="n">bases</span><span class="p">):</span>
@@ -298,6 +309,7 @@
 <span class="sd">        This info tag should then be appended to any new mr_safe line</span>
 <span class="sd">        that is added so someone can easily see whether that line satisfies</span>
 <span class="sd">        the requirements of mr_safe (see docstring there for details).</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">sympy.ntheory.factor_</span> <span class="kn">import</span> <span class="n">factorint</span><span class="p">,</span> <span class="n">trailing</span>
 

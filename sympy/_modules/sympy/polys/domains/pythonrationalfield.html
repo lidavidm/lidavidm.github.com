@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.polys.domains.pythonrationalfield &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.polys.domains.pythonrationalfield &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../../index.html" />
     <link rel="up" title="Module code" href="../../../index.html" />
    
   
@@ -50,14 +50,15 @@
   <h1>Source code for sympy.polys.domains.pythonrationalfield</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Implementation of :class:`PythonRationalField` class. &quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">sympy.polys.domains.rationalfield</span> <span class="kn">import</span> <span class="n">RationalField</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
 
-<span class="kn">from</span> <span class="nn">sympy.polys.domains.groundtypes</span> <span class="kn">import</span> <span class="n">PythonInteger</span>
-<span class="kn">from</span> <span class="nn">sympy.polys.domains.groundtypes</span> <span class="kn">import</span> <span class="n">PythonRational</span>
-<span class="kn">from</span> <span class="nn">sympy.polys.domains.groundtypes</span> <span class="kn">import</span> <span class="n">SymPyRational</span>
+<span class="kn">from</span> <span class="nn">sympy.polys.domains.rationalfield</span> <span class="kn">import</span> <span class="n">RationalField</span>
+<span class="kn">from</span> <span class="nn">sympy.polys.domains.groundtypes</span> <span class="kn">import</span> <span class="n">PythonInteger</span><span class="p">,</span> <span class="n">PythonRational</span><span class="p">,</span> <span class="n">SymPyRational</span>
 
 <span class="kn">from</span> <span class="nn">sympy.polys.polyerrors</span> <span class="kn">import</span> <span class="n">CoercionFailed</span>
+<span class="kn">from</span> <span class="nn">sympy.utilities</span> <span class="kn">import</span> <span class="n">public</span>
 
+<span class="nd">@public</span>
 <div class="viewcode-block" id="PythonRationalField"><a class="viewcode-back" href="../../../../modules/polys/internals.html#sympy.polys.domains.PythonRationalField">[docs]</a><span class="k">class</span> <span class="nc">PythonRationalField</span><span class="p">(</span><span class="n">RationalField</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Rational field based on Python rational number type. &quot;&quot;&quot;</span>
 
@@ -84,7 +85,8 @@
             <span class="k">return</span> <span class="n">PythonRational</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">q</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">a</span><span class="o">.</span><span class="n">is_Float</span><span class="p">:</span>
             <span class="kn">from</span> <span class="nn">sympy.polys.domains</span> <span class="kn">import</span> <span class="n">RR</span>
-            <span class="k">return</span> <span class="n">PythonRational</span><span class="p">(</span><span class="o">*</span><span class="n">RR</span><span class="o">.</span><span class="n">as_integer_ratio</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+            <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">RR</span><span class="o">.</span><span class="n">to_rational</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">PythonRational</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">CoercionFailed</span><span class="p">(</span><span class="s2">&quot;expected `Rational` object, got </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">a</span><span class="p">)</span>
 
@@ -105,9 +107,10 @@
         <span class="k">return</span> <span class="n">PythonRational</span><span class="p">(</span><span class="n">PythonInteger</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">numer</span><span class="p">()),</span>
                               <span class="n">PythonInteger</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">denom</span><span class="p">()))</span>
 
-    <span class="k">def</span> <span class="nf">from_RR_mpmath</span><span class="p">(</span><span class="n">K1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">K0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_RealField</span><span class="p">(</span><span class="n">K1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">K0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convert a mpmath `mpf` object to `dtype`. &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">PythonRational</span><span class="p">(</span><span class="o">*</span><span class="n">K0</span><span class="o">.</span><span class="n">as_integer_ratio</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+        <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">K0</span><span class="o">.</span><span class="n">to_rational</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">PythonRational</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">numer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns numerator of `a`. &quot;&quot;&quot;</span>

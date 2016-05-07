@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.core.multidimensional &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.core.multidimensional &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -53,7 +53,10 @@
 
 <span class="sd">Read the vectorize docstring for more details.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
 <span class="kn">from</span> <span class="nn">sympy.core.decorators</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="nb">range</span>
 
 
 <span class="k">def</span> <span class="nf">apply_on_element</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
@@ -73,7 +76,7 @@
     <span class="c1"># Define reduced function that is only dependend of the specified argument.</span>
     <span class="k">def</span> <span class="nf">f_reduced</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;__iter__&quot;</span><span class="p">):</span>
-            <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="n">f_reduced</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">f_reduced</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">is_arg</span><span class="p">:</span>
                 <span class="n">args</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
@@ -83,7 +86,7 @@
 
     <span class="c1"># f_reduced will call itself recursively so that in the end f is applied to</span>
     <span class="c1"># all basic elements.</span>
-    <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="n">f_reduced</span><span class="p">,</span> <span class="n">structure</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">f_reduced</span><span class="p">,</span> <span class="n">structure</span><span class="p">))</span>
 
 
 <span class="k">def</span> <span class="nf">iter_copy</span><span class="p">(</span><span class="n">structure</span><span class="p">):</span>
@@ -117,7 +120,7 @@
 <span class="sd">    &gt;&gt;&gt; from sympy import diff, sin, symbols, Function</span>
 <span class="sd">    &gt;&gt;&gt; from sympy.core.multidimensional import vectorize</span>
 <span class="sd">    &gt;&gt;&gt; x, y, z = symbols(&#39;x y z&#39;)</span>
-<span class="sd">    &gt;&gt;&gt; f, g, h = map(Function, &#39;fgh&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; f, g, h = list(map(Function, &#39;fgh&#39;))</span>
 
 <span class="sd">    &gt;&gt;&gt; @vectorize(0)</span>
 <span class="sd">    ... def vsin(x):</span>
@@ -141,7 +144,8 @@
 <span class="sd">        If no argument is given, everything is treated multidimensional.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">mdargs</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;a is of invalid type&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mdargs</span> <span class="o">=</span> <span class="n">mdargs</span>
 
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>

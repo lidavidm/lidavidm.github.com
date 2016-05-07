@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Solveset &mdash; SymPy 0.7.3 documentation</title>
+    <title>Solveset &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
     <link rel="up" title="SymPy Modules Reference" href="../index.html" />
     <link rel="next" title="Tensor Module" href="../tensor/index.html" />
     <link rel="prev" title="Inequality Solvers" href="inequalities.html" />
@@ -388,7 +388,7 @@ Solveset returns this information as well to ensure correctness.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">pprint</span><span class="p">,</span> <span class="n">solveset</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x, n&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">solveset</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="n">S</span><span class="o">.</span><span class="n">Reals</span><span class="p">),</span> <span class="n">use_unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="go">[0, ∞) ∩ {n}</span>
+<span class="go">([0, ∞) ∩ {n}) ∪ ((-∞, 0] ∩ {-n})</span>
 </pre></div>
 </div>
 <p>Though, there still a lot of work needs to be done in this regard.</p>
@@ -585,7 +585,7 @@ For example:</p>
 </div>
 <div class="section" id="solveset-module-reference">
 <h2>Solveset Module Reference<a class="headerlink" href="#solveset-module-reference" title="Permalink to this headline">¶</a></h2>
-<p>Use <code class="xref py py-func docutils literal"><span class="pre">solveset()</span></code> to solve equations or expressions (assumed to be equal to 0) for a single variable.
+<p>Use <a class="reference internal" href="#sympy.solvers.solveset.solveset" title="sympy.solvers.solveset.solveset"><code class="xref py py-func docutils literal"><span class="pre">solveset()</span></code></a> to solve equations or expressions (assumed to be equal to 0) for a single variable.
 Solving an equation like <span class="math">\(x^2 == 1\)</span> can be done as follows:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">solveset</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">Eq</span>
@@ -599,14 +599,455 @@ Solving an equation like <span class="math">\(x^2 == 1\)</span> can be done as f
 <span class="go">{-1, 1}</span>
 </pre></div>
 </div>
-<p>The first argument for <code class="xref py py-func docutils literal"><span class="pre">solveset()</span></code> is an expression (equal to zero) or an equation and the second argument
+<p>The first argument for <a class="reference internal" href="#sympy.solvers.solveset.solveset" title="sympy.solvers.solveset.solveset"><code class="xref py py-func docutils literal"><span class="pre">solveset()</span></code></a> is an expression (equal to zero) or an equation and the second argument
 is the symbol that we want to solve the equation for.</p>
+<dl class="function">
+<dt id="sympy.solvers.solveset.solveset">
+<code class="descclassname">sympy.solvers.solveset.</code><code class="descname">solveset</code><span class="sig-paren">(</span><em>f</em>, <em>symbol=None</em>, <em>domain=S.Complexes</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/solvers/solveset.html#solveset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.solvers.solveset.solveset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solves a given inequality or equation with set as output</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>f</strong> : Expr or a relational.</p>
+<blockquote>
+<div><p>The target equation or inequality</p>
+</div></blockquote>
+<p><strong>symbol</strong> : Symbol</p>
+<blockquote>
+<div><p>The variable for which the equation is solved</p>
+</div></blockquote>
+<p><strong>domain</strong> : Set</p>
+<blockquote>
+<div><p>The domain over which the equation is solved</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Set</p>
+<blockquote>
+<div><p>A set of values for <span class="math">\(symbol\)</span> for which <span class="math">\(f\)</span> is True or is equal to
+zero. An <span class="math">\(EmptySet\)</span> is returned if <span class="math">\(f\)</span> is False or nonzero.
+A <span class="math">\(ConditionSet\)</span> is returned as unsolved object if algorithms
+to evaluatee complete solution are not yet implemented.</p>
+</div></blockquote>
+<p><span class="math">\(solveset\)</span> claims to be complete in the solution set that it returns.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>NotImplementedError</strong></p>
+<blockquote>
+<div><p>The algorithms to solve inequalities in complex domain  are
+not yet implemented.</p>
+</div></blockquote>
+<p><strong>ValueError</strong></p>
+<blockquote>
+<div><p>The input is not valid.</p>
+</div></blockquote>
+<p><strong>RuntimeError</strong></p>
+<blockquote class="last">
+<div><p>It is a bug, please report to the github issue tracker.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="#sympy.solvers.solveset.solveset_real" title="sympy.solvers.solveset.solveset_real"><code class="xref py py-obj docutils literal"><span class="pre">solveset_real</span></code></a></dt>
+<dd>solver for real domain</dd>
+<dt><a class="reference internal" href="#sympy.solvers.solveset.solveset_complex" title="sympy.solvers.solveset.solveset_complex"><code class="xref py py-obj docutils literal"><span class="pre">solveset_complex</span></code></a></dt>
+<dd>solver for complex domain</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Python interprets 0 and 1 as False and True, respectively, but
+in this function they refer to solutions of an expression. So 0 and 1
+return the Domain and EmptySet, respectively, while True and False
+return the opposite (as they are assumed to be solutions of relational
+expressions).</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">pprint</span><span class="p">,</span> <span class="n">S</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.solvers.solveset</span> <span class="k">import</span> <span class="n">solveset</span><span class="p">,</span> <span class="n">solveset_real</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>The default domain is complex. Not specifying a domain will lead
+to the solving of the equation in the complex domain (and this
+is not affected by the assumptions on the symbol):</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">solveset</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">use_unicode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">{2*n*I*pi | n in Integers()}</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">solveset</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">use_unicode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">{2*n*I*pi | n in Integers()}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>If you want to use <span class="math">\(solveset\)</span> to solve the equation in the
+real domain, provide a real domain. (Using <span class="math">\(solveset\_real\)</span>
+does this automatically.)</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">R</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">Reals</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solveset</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+<span class="go">{0}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solveset_real</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="go">{0}</span>
+</pre></div>
+</div>
+<p>The solution is mostly unaffected by assumptions on the symbol,
+but there may be some slight difference:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">solveset</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="n">use_unicode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">({2*n*pi | n in Integers()} \ {0}) U ({2*n*pi + pi | n in Integers()} \ {0})</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">solveset</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">use_unicode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">{2*n*pi | n in Integers()} U {2*n*pi + pi | n in Integers()}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Inequalities can be solved over the real domain only. Use of a complex
+domain leads to a NotImplementedError.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">solveset</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+<span class="go">(0, oo)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.solvers.solveset.solveset_real">
+<code class="descclassname">sympy.solvers.solveset.</code><code class="descname">solveset_real</code><span class="sig-paren">(</span><em>f</em>, <em>symbol</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/solvers/solveset.html#solveset_real"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.solvers.solveset.solveset_real" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sympy.solvers.solveset.solveset_complex">
+<code class="descclassname">sympy.solvers.solveset.</code><code class="descname">solveset_complex</code><span class="sig-paren">(</span><em>f</em>, <em>symbol</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/solvers/solveset.html#solveset_complex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.solvers.solveset.solveset_complex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sympy.solvers.solveset.invert_real">
+<code class="descclassname">sympy.solvers.solveset.</code><code class="descname">invert_real</code><span class="sig-paren">(</span><em>f_x</em>, <em>y</em>, <em>x</em>, <em>domain=(-oo</em>, <em>oo)</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/solvers/solveset.html#invert_real"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.solvers.solveset.invert_real" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sympy.solvers.solveset.invert_complex">
+<code class="descclassname">sympy.solvers.solveset.</code><code class="descname">invert_complex</code><span class="sig-paren">(</span><em>f_x</em>, <em>y</em>, <em>x</em>, <em>domain=S.Complexes</em><span class="sig-paren">)</span><a class="headerlink" href="#sympy.solvers.solveset.invert_complex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduce the complex valued equation <code class="docutils literal"><span class="pre">f(x)</span> <span class="pre">=</span> <span class="pre">y</span></code> to a set of equations
+<code class="docutils literal"><span class="pre">{g(x)</span> <span class="pre">=</span> <span class="pre">h_1(y),</span> <span class="pre">g(x)</span> <span class="pre">=</span> <span class="pre">h_2(y),</span> <span class="pre">...,</span> <span class="pre">g(x)</span> <span class="pre">=</span> <span class="pre">h_n(y)</span> <span class="pre">}</span></code> where <code class="docutils literal"><span class="pre">g(x)</span></code> is
+a simpler function than <code class="docutils literal"><span class="pre">f(x)</span></code>.  The return value is a tuple <code class="docutils literal"><span class="pre">(g(x),</span>
+<span class="pre">set_h)</span></code>, where <code class="docutils literal"><span class="pre">g(x)</span></code> is a function of <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">set_h</span></code> is
+the set of function <code class="docutils literal"><span class="pre">{h_1(y),</span> <span class="pre">h_2(y),</span> <span class="pre">...,</span> <span class="pre">h_n(y)}</span></code>.
+Here, <code class="docutils literal"><span class="pre">y</span></code> is not necessarily a symbol.</p>
+<p>The <code class="docutils literal"><span class="pre">set_h</span></code> contains the functions along with the information
+about their domain in which they are valid, through set
+operations. For instance, if <code class="docutils literal"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">Abs(x)</span> <span class="pre">-</span> <span class="pre">n</span></code>, is inverted
+in the real domain, then, the <code class="docutils literal"><span class="pre">set_h</span></code> doesn&#8217;t simply return
+<span class="math">\({-n, n}\)</span>, as the nature of <span class="math">\(n\)</span> is unknown; rather it will return:
+<span class="math">\(Intersection([0, oo) {n}) U Intersection((-oo, 0], {-n})\)</span></p>
+<p>By default, the complex domain is used but note that inverting even
+seemingly simple functions like <code class="docutils literal"><span class="pre">exp(x)</span></code> can give very different
+result in the complex domain than are obtained in the real domain.
+(In the case of <code class="docutils literal"><span class="pre">exp(x)</span></code>, the inversion via <code class="docutils literal"><span class="pre">log</span></code> is multi-valued
+in the complex domain, having infinitely many branches.)</p>
+<p>If you are working with real values only (or you are not sure which
+function to use) you should probably use set the domain to
+<code class="docutils literal"><span class="pre">S.Reals</span></code> (or use <span class="math">\(invert\_real\)</span> which does that automatically).</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.solvers.solveset.invert_real" title="sympy.solvers.solveset.invert_real"><code class="xref py py-obj docutils literal"><span class="pre">invert_real</span></code></a>, <a class="reference internal" href="#sympy.solvers.solveset.invert_complex" title="sympy.solvers.solveset.invert_complex"><code class="xref py py-obj docutils literal"><span class="pre">invert_complex</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.solvers.solveset</span> <span class="k">import</span> <span class="n">invert_complex</span><span class="p">,</span> <span class="n">invert_real</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">exp</span><span class="p">,</span> <span class="n">log</span>
+</pre></div>
+</div>
+<p>When does exp(x) == y?</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">invert_complex</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="go">(x, ImageSet(Lambda(_n, I*(2*_n*pi + arg(y)) + log(Abs(y))), Integers()))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">invert_real</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="go">(x, Intersection((-oo, oo), {log(y)}))</span>
+</pre></div>
+</div>
+<p>When does exp(x) == 1?</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">invert_complex</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="go">(x, ImageSet(Lambda(_n, 2*_n*I*pi), Integers()))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">invert_real</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="go">(x, {0})</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.solvers.solveset.domain_check">
+<code class="descclassname">sympy.solvers.solveset.</code><code class="descname">domain_check</code><span class="sig-paren">(</span><em>f</em>, <em>symbol</em>, <em>p</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/solvers/solveset.html#domain_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.solvers.solveset.domain_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns False if point p is infinite or any subexpression of f
+is infinite or becomes so after replacing symbol with p. If none of
+these conditions is met then True will be returned.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Mul</span><span class="p">,</span> <span class="n">oo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.solvers.solveset</span> <span class="k">import</span> <span class="n">domain_check</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain_check</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain_check</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">domain_check</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">oo</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>The function relies on the assumption that the original form
+of the equation has not been changed by automatic simplification.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain_check</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># x/x is automatically simplified to 1</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>To deal with automatic evaluations use evaluate=False:</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain_check</span><span class="p">(</span><span class="n">Mul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">x</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </div>
 <div class="section" id="linear-eq-to-matrix">
 <h2>linear_eq_to_matrix<a class="headerlink" href="#linear-eq-to-matrix" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="sympy.solvers.solveset.linear_eq_to_matrix">
+<code class="descclassname">sympy.solvers.solveset.</code><code class="descname">linear_eq_to_matrix</code><span class="sig-paren">(</span><em>equations</em>, <em>*symbols</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/solvers/solveset.html#linear_eq_to_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.solvers.solveset.linear_eq_to_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a given System of Equations into Matrix form.
+Here <span class="math">\(equations\)</span> must be a linear system of equations in
+<span class="math">\(symbols\)</span>. The order of symbols in input <span class="math">\(symbols\)</span> will
+determine the order of coefficients in the returned
+Matrix.</p>
+<p>The Matrix form corresponds to the augmented matrix form.
+For example:</p>
+<div class="math">
+\[4x + 2y + 3z  = 1\]</div>
+<div class="math">
+\[3x +  y +  z  = -6\]</div>
+<div class="math">
+\[2x + 4y + 9z  = 2\]</div>
+<p>This system would return <span class="math">\(A\)</span> &amp; <span class="math">\(b\)</span> as given below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="p">[</span> <span class="mi">4</span>  <span class="mi">2</span>  <span class="mi">3</span> <span class="p">]</span>          <span class="p">[</span> <span class="mi">1</span> <span class="p">]</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">3</span>  <span class="mi">1</span>  <span class="mi">1</span> <span class="p">]</span>   <span class="n">b</span>  <span class="o">=</span>   <span class="p">[</span><span class="o">-</span><span class="mi">6</span> <span class="p">]</span>
+    <span class="p">[</span> <span class="mi">2</span>  <span class="mi">4</span>  <span class="mi">9</span> <span class="p">]</span>          <span class="p">[</span> <span class="mi">2</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">linear_eq_to_matrix</span><span class="p">,</span> <span class="n">symbols</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x, y, z&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eqns</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">z</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span> <span class="o">+</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">9</span><span class="o">*</span><span class="n">z</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">linear_eq_to_matrix</span><span class="p">(</span><span class="n">eqns</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
+<span class="go">Matrix([</span>
+<span class="go">[1, 2, 3],</span>
+<span class="go">[3, 1, 1],</span>
+<span class="go">[2, 4, 9]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">Matrix([</span>
+<span class="go">[ 1],</span>
+<span class="go">[-6],</span>
+<span class="go">[ 2]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eqns</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">z</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">linear_eq_to_matrix</span><span class="p">(</span><span class="n">eqns</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
+<span class="go">Matrix([</span>
+<span class="go">[1,  0, 1],</span>
+<span class="go">[0,  1, 1],</span>
+<span class="go">[1, -1, 0]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">Matrix([</span>
+<span class="go">[1],</span>
+<span class="go">[0],</span>
+<span class="go">[0]])</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Symbolic coefficients are also supported</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a, b, c, d, e, f&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eqns</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">e</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">f</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">linear_eq_to_matrix</span><span class="p">(</span><span class="n">eqns</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
+<span class="go">Matrix([</span>
+<span class="go">[a, b],</span>
+<span class="go">[d, e]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span>
+<span class="go">Matrix([</span>
+<span class="go">[c],</span>
+<span class="go">[f]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </div>
 <div class="section" id="linsolve">
 <h2>linsolve<a class="headerlink" href="#linsolve" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="sympy.solvers.solveset.linsolve">
+<code class="descclassname">sympy.solvers.solveset.</code><code class="descname">linsolve</code><span class="sig-paren">(</span><em>system</em>, <em>*symbols</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/solvers/solveset.html#linsolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.solvers.solveset.linsolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve system of N linear equations with M variables, which
+means both under - and overdetermined systems are supported.
+The possible number of solutions is zero, one or infinite.
+Zero solutions throws a ValueError, where as infinite
+solutions are represented parametrically in terms of given
+symbols. For unique solution a FiniteSet of ordered tuple
+is returned.</p>
+<p>All Standard input formats are supported:
+For the given set of Equations, the respective input types
+are given below:</p>
+<div class="math">
+\[3x + 2y -   z = 1\]</div>
+<div class="math">
+\[2x - 2y + 4z = -2\]</div>
+<div class="math">
+\[2x -   y + 2z = 0\]</div>
+<ul class="simple">
+<li>Augmented Matrix Form, <span class="math">\(system\)</span> given below:</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>         <span class="p">[</span><span class="mi">3</span>   <span class="mi">2</span>  <span class="o">-</span><span class="mi">1</span>  <span class="mi">1</span><span class="p">]</span>
+<span class="n">system</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span>  <span class="o">-</span><span class="mi">2</span>   <span class="mi">4</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+         <span class="p">[</span><span class="mi">2</span>  <span class="o">-</span><span class="mi">1</span>   <span class="mi">2</span>  <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>List Of Equations Form</li>
+</ul>
+<p><span class="math">\(system  =  [3x + 2y - z - 1, 2x - 2y + 4z + 2, 2x - y + 2z]\)</span></p>
+<ul class="simple">
+<li>Input A &amp; b Matrix Form (from Ax = b) are given as below:</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>    <span class="p">[</span><span class="mi">3</span>   <span class="mi">2</span>  <span class="o">-</span><span class="mi">1</span> <span class="p">]</span>         <span class="p">[</span>  <span class="mi">1</span> <span class="p">]</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span>  <span class="o">-</span><span class="mi">2</span>   <span class="mi">4</span> <span class="p">]</span>    <span class="n">b</span> <span class="o">=</span>  <span class="p">[</span> <span class="o">-</span><span class="mi">2</span> <span class="p">]</span>
+    <span class="p">[</span><span class="mi">2</span>  <span class="o">-</span><span class="mi">1</span>   <span class="mi">2</span> <span class="p">]</span>         <span class="p">[</span>  <span class="mi">0</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p><span class="math">\(system = (A, b)\)</span></p>
+<p>Symbols to solve for should be given as input in all the
+cases either in an iterable or as comma separated arguments.
+This is done to maintain consistency in returning solutions
+in the form of variable input by the user.</p>
+<p>The algorithm used here is Gauss-Jordan elimination, which
+results, after elimination, in an row echelon form matrix.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A FiniteSet of ordered tuple of values of <span class="math">\(symbols\)</span> for which</p>
+<p>the <span class="math">\(system\)</span> has solution.</p>
+<p>Please note that general FiniteSet is unordered, the solution</p>
+<p>returned here is not simply a FiniteSet of solutions, rather</p>
+<p>it is a FiniteSet of ordered tuple, i.e. the first &amp; only</p>
+<p>argument to FiniteSet is a tuple of solutions, which is ordered,</p>
+<p>&amp; hence the returned solution is ordered.</p>
+<p>Also note that solution could also have been returned as an</p>
+<p>ordered tuple, FiniteSet is just a wrapper <span class="math">\({}\)</span> around</p>
+<p>the tuple. It has no other significance except for</p>
+<p>the fact it is just used to maintain a consistent output</p>
+<p>format throughout the solveset.</p>
+<p>Returns EmptySet(), if the linear system is inconsistent.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>ValueError</strong></p>
+<blockquote class="last">
+<div><p>The input is not valid.
+The symbols are not given.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">linsolve</span><span class="p">,</span> <span class="n">symbols</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x, y, z&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
+<span class="go">Matrix([</span>
+<span class="go">[1, 2,  3],</span>
+<span class="go">[4, 5,  6],</span>
+<span class="go">[7, 8, 10]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">Matrix([</span>
+<span class="go">[3],</span>
+<span class="go">[6],</span>
+<span class="go">[9]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linsolve</span><span class="p">((</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">])</span>
+<span class="go">{(-1, 2, 0)}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Parametric Solution: In case the system is under determined, the function
+will return parametric solution in terms of the given symbols.
+Free symbols in the system are returned as it is. For e.g. in the system
+below, <span class="math">\(z\)</span> is returned as the solution for variable z, which means z is a
+free symbol, i.e. it can take arbitrary values.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linsolve</span><span class="p">((</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">])</span>
+<span class="go">{(z - 1, -2*z + 2, z)}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>List of Equations as input</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Eqns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">z</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span> <span class="n">x</span> <span class="o">+</span> <span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">z</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linsolve</span><span class="p">(</span><span class="n">Eqns</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="go">{(1, -2, -2)}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Augmented Matrix as input</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aug</span>
+<span class="go">Matrix([</span>
+<span class="go">[2, 1,  3, 1],</span>
+<span class="go">[2, 6,  8, 3],</span>
+<span class="go">[6, 8, 18, 5]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linsolve</span><span class="p">(</span><span class="n">aug</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="go">{(3/10, 2/5, 0)}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Solve for symbolic coefficients</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a, b, c, d, e, f&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eqns</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">e</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">f</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linsolve</span><span class="p">(</span><span class="n">eqns</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="go">{((-b*f + c*e)/(a*e - b*d), (a*f - c*d)/(a*e - b*d))}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>A degenerate system returns solution as set of given
+symbols.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">system</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linsolve</span><span class="p">(</span><span class="n">system</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="go">{(x, y)}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>For an empty system linsolve returns empty set</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">linsolve</span><span class="p">([</span> <span class="p">],</span> <span class="n">x</span><span class="p">)</span>
+<span class="go">EmptySet()</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </div>
 <div class="section" id="diophantine-equations-des">
 <h2>Diophantine Equations (DEs)<a class="headerlink" href="#diophantine-equations-des" title="Permalink to this headline">¶</a></h2>

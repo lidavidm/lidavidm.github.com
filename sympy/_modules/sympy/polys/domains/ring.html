@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.polys.domains.ring &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.polys.domains.ring &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../../index.html" />
     <link rel="up" title="Module code" href="../../../index.html" />
    
   
@@ -50,10 +50,14 @@
   <h1>Source code for sympy.polys.domains.ring</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Implementation of :class:`Ring` class. &quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
 <span class="kn">from</span> <span class="nn">sympy.polys.domains.domain</span> <span class="kn">import</span> <span class="n">Domain</span>
 <span class="kn">from</span> <span class="nn">sympy.polys.polyerrors</span> <span class="kn">import</span> <span class="n">ExactQuotientFailed</span><span class="p">,</span> <span class="n">NotInvertible</span><span class="p">,</span> <span class="n">NotReversible</span>
 
+<span class="kn">from</span> <span class="nn">sympy.utilities</span> <span class="kn">import</span> <span class="n">public</span>
 
+<span class="nd">@public</span>
 <div class="viewcode-block" id="Ring"><a class="viewcode-back" href="../../../../modules/polys/internals.html#sympy.polys.domains.ring.Ring">[docs]</a><span class="k">class</span> <span class="nc">Ring</span><span class="p">(</span><span class="n">Domain</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represents a ring domain. &quot;&quot;&quot;</span>
 
@@ -119,7 +123,7 @@
 
 <span class="sd">        &gt;&gt;&gt; from sympy.abc import x</span>
 <span class="sd">        &gt;&gt;&gt; from sympy import QQ</span>
-<span class="sd">        &gt;&gt;&gt; QQ[x].free_module(2)</span>
+<span class="sd">        &gt;&gt;&gt; QQ.old_poly_ring(x).free_module(2)</span>
 <span class="sd">        QQ[x]**2</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
@@ -130,7 +134,7 @@
 
 <span class="sd">        &gt;&gt;&gt; from sympy.abc import x</span>
 <span class="sd">        &gt;&gt;&gt; from sympy import QQ</span>
-<span class="sd">        &gt;&gt;&gt; QQ[x].ideal(x**2)</span>
+<span class="sd">        &gt;&gt;&gt; QQ.old_poly_ring(x).ideal(x**2)</span>
 <span class="sd">        &lt;x**2&gt;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">sympy.polys.agca.ideals</span> <span class="kn">import</span> <span class="n">ModuleImplementedIdeal</span>
@@ -145,18 +149,18 @@
 
 <span class="sd">        &gt;&gt;&gt; from sympy.abc import x</span>
 <span class="sd">        &gt;&gt;&gt; from sympy import QQ</span>
-<span class="sd">        &gt;&gt;&gt; QQ[x].quotient_ring(QQ[x].ideal(x**2))</span>
+<span class="sd">        &gt;&gt;&gt; QQ.old_poly_ring(x).quotient_ring(QQ.old_poly_ring(x).ideal(x**2))</span>
 <span class="sd">        QQ[x]/&lt;x**2&gt;</span>
-<span class="sd">        &gt;&gt;&gt; QQ[x].quotient_ring([x**2])</span>
+<span class="sd">        &gt;&gt;&gt; QQ.old_poly_ring(x).quotient_ring([x**2])</span>
 <span class="sd">        QQ[x]/&lt;x**2&gt;</span>
 
 <span class="sd">        The division operator has been overloaded for this:</span>
 
-<span class="sd">        &gt;&gt;&gt; QQ[x]/[x**2]</span>
+<span class="sd">        &gt;&gt;&gt; QQ.old_poly_ring(x)/[x**2]</span>
 <span class="sd">        QQ[x]/&lt;x**2&gt;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">sympy.polys.agca.ideals</span> <span class="kn">import</span> <span class="n">Ideal</span>
-        <span class="kn">from</span> <span class="nn">sympy.polys.domains</span> <span class="kn">import</span> <span class="n">QuotientRing</span>
+        <span class="kn">from</span> <span class="nn">sympy.polys.domains.quotientring</span> <span class="kn">import</span> <span class="n">QuotientRing</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">Ideal</span><span class="p">):</span>
             <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ideal</span><span class="p">(</span><span class="o">*</span><span class="n">e</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">QuotientRing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span></div>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Tensor &mdash; SymPy 0.7.3 documentation</title>
+    <title>Tensor &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
     <link rel="up" title="Tensor Module" href="index.html" />
     <link rel="next" title="Utilities" href="../utilities/index.html" />
     <link rel="prev" title="Methods" href="index_methods.html" />
@@ -113,7 +113,7 @@ for commuting, anticommuting tensors and tensors not commuting
 with any other group apart with the commuting tensors.
 For the remaining cases, use this method to set the commutation rules;
 by default <code class="docutils literal"><span class="pre">c=None</span></code>.</p>
-<p>The group commutation number <code class="docutils literal"><span class="pre">c</span></code> is assigned in corrispondence
+<p>The group commutation number <code class="docutils literal"><span class="pre">c</span></code> is assigned in correspondence
 to the group commutation symbols; it can be</p>
 <p>0        commuting</p>
 <p>1        anticommuting</p>
@@ -198,11 +198,23 @@ if <code class="docutils literal"><span class="pre">eps_dim</span></code> is not
 <span class="go">metric(Lorentz,Lorentz)</span>
 </pre></div>
 </div>
+<p>Examples with metric components data added, this means it is working on a
+fixed basis:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Lorentz</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Lorentz</span>
+<span class="go">TensorIndexType(Lorentz, 0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Lorentz</span><span class="o">.</span><span class="n">data</span>
+<span class="go">[[1 0 0 0]</span>
+<span class="go">[0 -1 0 0]</span>
+<span class="go">[0 0 -1 0]</span>
+<span class="go">[0 0 0 -1]]</span>
+</pre></div>
+</div>
 <p class="rubric">Attributes</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="33%" />
-<col width="67%" />
+<col width="21%" />
+<col width="79%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">name</span></code></td>
@@ -232,6 +244,9 @@ if <code class="docutils literal"><span class="pre">eps_dim</span></code> is not
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">dummy_fmt</span></code></td>
 <td>&nbsp;</td>
 </tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">data</span></code></td>
+<td>(a property to add <code class="docutils literal"><span class="pre">ndarray</span></code> values, to work in a specified basis.)</td>
+</tr>
 </tbody>
 </table>
 </dd></dl>
@@ -244,7 +259,7 @@ if <code class="docutils literal"><span class="pre">eps_dim</span></code> is not
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>name</strong> : name of the index</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>name</strong> : name of the index, or <code class="docutils literal"><span class="pre">True</span></code> if you want it to be automatically assigned</p>
 <p><strong>tensortype</strong> : <code class="docutils literal"><span class="pre">TensorIndexType</span></code> of the index</p>
 <p class="last"><strong>is_up</strong> :  flag for contravariant index</p>
 </td>
@@ -255,16 +270,32 @@ if <code class="docutils literal"><span class="pre">eps_dim</span></code> is not
 <p>Tensor indices are contracted with the Einstein summation convention.</p>
 <p>An index can be in contravariant or in covariant form; in the latter
 case it is represented prepending a <code class="docutils literal"><span class="pre">-</span></code> to the index name.</p>
-<p>Dummy indices have a name with head given by <code class="docutils literal"><span class="pre">tensortype.dummy_fmt</span></code></p>
+<p>Dummy indices have a name with head given by <code class="docutils literal"><span class="pre">tensortype._dummy_fmt</span></code></p>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="k">import</span> <span class="n">TensorIndexType</span><span class="p">,</span> <span class="n">TensorIndex</span><span class="p">,</span> <span class="n">TensorSymmetry</span><span class="p">,</span> <span class="n">TensorType</span><span class="p">,</span> <span class="n">get_symmetric_group_sgs</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Lorentz</span> <span class="o">=</span> <span class="n">TensorIndexType</span><span class="p">(</span><span class="s1">&#39;Lorentz&#39;</span><span class="p">,</span> <span class="n">dummy_fmt</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="n">TensorIndex</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="n">Lorentz</span><span class="p">);</span> <span class="n">i</span>
 <span class="go">i</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sym1</span> <span class="o">=</span> <span class="n">TensorSymmetry</span><span class="p">(</span><span class="n">get_symmetric_group_sgs</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sym1</span> <span class="o">=</span> <span class="n">TensorSymmetry</span><span class="p">(</span><span class="o">*</span><span class="n">get_symmetric_group_sgs</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S1</span> <span class="o">=</span> <span class="n">TensorType</span><span class="p">([</span><span class="n">Lorentz</span><span class="p">],</span> <span class="n">sym1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">S1</span><span class="p">(</span><span class="s1">&#39;A,B&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">B</span><span class="p">(</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+<span class="go">A(L_0)*B(-L_0)</span>
+</pre></div>
+</div>
+<p>If you want the index name to be automatically assigned, just put <code class="docutils literal"><span class="pre">True</span></code>
+in the <code class="docutils literal"><span class="pre">name</span></code> field, it will be generated using the reserved character
+<code class="docutils literal"><span class="pre">_</span></code> in front of its name, in order to avoid conflicts with possible
+existing indices:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">i0</span> <span class="o">=</span> <span class="n">TensorIndex</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">Lorentz</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i0</span>
+<span class="go">_i0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i1</span> <span class="o">=</span> <span class="n">TensorIndex</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">Lorentz</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i1</span>
+<span class="go">_i1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">(</span><span class="n">i0</span><span class="p">)</span><span class="o">*</span><span class="n">B</span><span class="p">(</span><span class="o">-</span><span class="n">i1</span><span class="p">)</span>
+<span class="go">A(_i0)*B(-_i1)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">(</span><span class="n">i0</span><span class="p">)</span><span class="o">*</span><span class="n">B</span><span class="p">(</span><span class="o">-</span><span class="n">i0</span><span class="p">)</span>
 <span class="go">A(L_0)*B(-L_0)</span>
 </pre></div>
 </div>
@@ -393,11 +424,13 @@ cyclic symmetry.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">V</span> <span class="o">=</span> <span class="n">S2</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Symmetric tensor using a BSGS
-&gt;&gt;&gt; from sympy.tensor.tensor import TensorSymmetry, get_symmetric_group_sgs
-&gt;&gt;&gt; sym2 = tensorsymmetry(<a href="#id1"><span class="problematic" id="id2">*</span></a>get_symmetric_group_sgs(2))
-&gt;&gt;&gt; S2 = TensorType([Lorentz]*2, sym2)
-&gt;&gt;&gt; V = S2(&#8216;V&#8217;)</p>
+<p>Symmetric tensor using a <code class="docutils literal"><span class="pre">BSGS</span></code> (base, strong generator set)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="k">import</span> <span class="n">TensorSymmetry</span><span class="p">,</span> <span class="n">get_symmetric_group_sgs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sym2</span> <span class="o">=</span> <span class="n">tensorsymmetry</span><span class="p">(</span><span class="o">*</span><span class="n">get_symmetric_group_sgs</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S2</span> <span class="o">=</span> <span class="n">TensorType</span><span class="p">([</span><span class="n">Lorentz</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">sym2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">V</span> <span class="o">=</span> <span class="n">S2</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="class">
@@ -464,11 +497,151 @@ symbol on number <code class="docutils literal"><span class="pre">comm</span></c
 tensors in a commutation group have the same commutation properties;
 by default <code class="docutils literal"><span class="pre">comm</span></code> is <code class="docutils literal"><span class="pre">0</span></code>, the group of the commuting tensors.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="k">import</span> <span class="n">TensorIndexType</span><span class="p">,</span> <span class="n">tensorsymmetry</span><span class="p">,</span> <span class="n">TensorType</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="k">import</span> <span class="n">TensorIndexType</span><span class="p">,</span> <span class="n">tensorhead</span><span class="p">,</span> <span class="n">TensorType</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Lorentz</span> <span class="o">=</span> <span class="n">TensorIndexType</span><span class="p">(</span><span class="s1">&#39;Lorentz&#39;</span><span class="p">,</span> <span class="n">dummy_fmt</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sym2</span> <span class="o">=</span> <span class="n">tensorsymmetry</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">S2</span> <span class="o">=</span> <span class="n">TensorType</span><span class="p">([</span><span class="n">Lorentz</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">sym2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">S2</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">tensorhead</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">Lorentz</span><span class="p">,</span> <span class="n">Lorentz</span><span class="p">],</span> <span class="p">[[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>Examples with ndarray values, the components data assigned to the
+<code class="docutils literal"><span class="pre">TensorHead</span></code> object are assumed to be in a fully-contravariant
+representation. In case it is necessary to assign components data which
+represents the values of a non-fully covariant tensor, see the other
+examples.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="k">import</span> <span class="n">tensor_indices</span><span class="p">,</span> <span class="n">tensorhead</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Lorentz</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i0</span><span class="p">,</span> <span class="n">i1</span> <span class="o">=</span> <span class="n">tensor_indices</span><span class="p">(</span><span class="s1">&#39;i0:2&#39;</span><span class="p">,</span> <span class="n">Lorentz</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>in order to retrieve data, it is also necessary to specify abstract indices
+enclosed by round brackets, then numerical indices inside square brackets.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span> <span class="n">i1</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span> <span class="n">i1</span><span class="p">)[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="mi">2</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Notice that square brackets create a valued tensor expression instance:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span> <span class="n">i1</span><span class="p">)</span>
+<span class="go">A(i0, i1)</span>
+</pre></div>
+</div>
+<p>To view the data, just type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">data</span>
+<span class="go">[[0 1 2 3]</span>
+<span class="go"> [2 3 4 5]</span>
+<span class="go"> [4 5 6 7]</span>
+<span class="go"> [6 7 8 9]]</span>
+</pre></div>
+</div>
+<p>Turning to a tensor expression, covariant indices get the corresponding
+components data corrected by the metric:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span> <span class="o">-</span><span class="n">i1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="go">[[0 -1 -2 -3]</span>
+<span class="go"> [2 -3 -4 -5]</span>
+<span class="go"> [4 -5 -6 -7]</span>
+<span class="go"> [6 -7 -8 -9]]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">(</span><span class="o">-</span><span class="n">i0</span><span class="p">,</span> <span class="o">-</span><span class="n">i1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="go">[[0 -1 -2 -3]</span>
+<span class="go"> [-2 3 4 5]</span>
+<span class="go"> [-4 5 6 7]</span>
+<span class="go"> [-6 7 8 9]]</span>
+</pre></div>
+</div>
+<p>while if all indices are contravariant, the <code class="docutils literal"><span class="pre">ndarray</span></code> remains the same</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span> <span class="n">i1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="go"> [[0 1 2 3]</span>
+<span class="go"> [2 3 4 5]</span>
+<span class="go"> [4 5 6 7]</span>
+<span class="go"> [6 7 8 9]]</span>
+</pre></div>
+</div>
+<p>When all indices are contracted and components data are added to the tensor,
+accessing the data will return a scalar, no numpy object. In fact, numpy
+ndarrays are dropped to scalars if they contain only one element.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span> <span class="o">-</span><span class="n">i0</span><span class="p">)</span>
+<span class="go">A(L_0, -L_0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span> <span class="o">-</span><span class="n">i0</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="go">-18</span>
+</pre></div>
+</div>
+<p>It is also possible to assign components data to an indexed tensor, i.e. a
+tensor with specified covariant and contravariant components. In this
+example, the covariant components data of the Electromagnetic tensor are
+injected into <span class="math">\(A\)</span>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">symbols</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Ex</span><span class="p">,</span> <span class="n">Ey</span><span class="p">,</span> <span class="n">Ez</span><span class="p">,</span> <span class="n">Bx</span><span class="p">,</span> <span class="n">By</span><span class="p">,</span> <span class="n">Bz</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;E_x E_y E_z B_x B_y B_z&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let&#8217;s define <span class="math">\(F\)</span>, an antisymmetric tensor, we have to assign an
+antisymmetric matrix to it, because <span class="math">\([[2]]\)</span> stands for the Young tableau
+representation of an antisymmetric set of two elements:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">F</span> <span class="o">=</span> <span class="n">tensorhead</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">Lorentz</span><span class="p">,</span> <span class="n">Lorentz</span><span class="p">],</span> <span class="p">[[</span><span class="mi">2</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F</span><span class="p">(</span><span class="o">-</span><span class="n">i0</span><span class="p">,</span> <span class="o">-</span><span class="n">i1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">Ex</span><span class="o">/</span><span class="n">c</span><span class="p">,</span> <span class="n">Ey</span><span class="o">/</span><span class="n">c</span><span class="p">,</span> <span class="n">Ez</span><span class="o">/</span><span class="n">c</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">[</span><span class="o">-</span><span class="n">Ex</span><span class="o">/</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">Bz</span><span class="p">,</span> <span class="n">By</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">[</span><span class="o">-</span><span class="n">Ey</span><span class="o">/</span><span class="n">c</span><span class="p">,</span> <span class="n">Bz</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">Bx</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">[</span><span class="o">-</span><span class="n">Ez</span><span class="o">/</span><span class="n">c</span><span class="p">,</span> <span class="o">-</span><span class="n">By</span><span class="p">,</span> <span class="n">Bx</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Now it is possible to retrieve the contravariant form of the Electromagnetic
+tensor:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">F</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span> <span class="n">i1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="go">[[0 -E_x/c -E_y/c -E_z/c]</span>
+<span class="go"> [E_x/c 0 -B_z B_y]</span>
+<span class="go"> [E_y/c B_z 0 -B_x]</span>
+<span class="go"> [E_z/c -B_y B_x 0]]</span>
+</pre></div>
+</div>
+<p>and the mixed contravariant-covariant form:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">F</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span> <span class="o">-</span><span class="n">i1</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="go">[[0 E_x/c E_y/c E_z/c]</span>
+<span class="go"> [E_x/c 0 B_z -B_y]</span>
+<span class="go"> [E_y/c -B_z 0 B_x]</span>
+<span class="go"> [E_z/c B_y -B_x 0]]</span>
+</pre></div>
+</div>
+<p>To convert the numpy&#8217;s ndarray to a sympy matrix, just cast:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Matrix</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="go">Matrix([</span>
+<span class="go">[    0, -E_x/c, -E_y/c, -E_z/c],</span>
+<span class="go">[E_x/c,      0,   -B_z,    B_y],</span>
+<span class="go">[E_y/c,    B_z,      0,   -B_x],</span>
+<span class="go">[E_z/c,   -B_y,    B_x,      0]])</span>
+</pre></div>
+</div>
+<p>Still notice, in this last example, that accessing components data from a
+tensor without specifying the indices is equivalent to assume that all
+indices are contravariant.</p>
+<p>It is also possible to store symbolic components data inside a tensor, for
+example, define a four-momentum-like tensor:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">symbols</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">P</span> <span class="o">=</span> <span class="n">tensorhead</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">Lorentz</span><span class="p">],</span> <span class="p">[[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">E</span><span class="p">,</span> <span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="n">pz</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;E p_x p_y p_z&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">P</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">E</span><span class="p">,</span> <span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="n">pz</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The contravariant and covariant components are, respectively:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">P</span><span class="p">(</span><span class="n">i0</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="go">[E p_x p_y p_z]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">P</span><span class="p">(</span><span class="o">-</span><span class="n">i0</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="go">[E -p_x -p_y -p_z]</span>
+</pre></div>
+</div>
+<p>The contraction of a 1-index tensor by itself is usually indicated by a
+power by two:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">P</span><span class="p">(</span><span class="n">i0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="go">E**2 - p_x**2 - p_y**2 - p_z**2</span>
+</pre></div>
+</div>
+<p>As the power by two is clearly identical to <span class="math">\(P_\mu P^\mu\)</span>, it is possible to
+simply contract the <code class="docutils literal"><span class="pre">TensorHead</span></code> object, without specifying the indices</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">P</span><span class="o">**</span><span class="mi">2</span>
+<span class="go">E**2 - p_x**2 - p_y**2 - p_z**2</span>
 </pre></div>
 </div>
 <p class="rubric">Attributes</p>
@@ -501,8 +674,8 @@ by default <code class="docutils literal"><span class="pre">comm</span></code> i
 <dl class="method">
 <dt id="sympy.tensor.tensor.TensorHead.commutes_with">
 <code class="descname">commutes_with</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/tensor/tensor.html#TensorHead.commutes_with"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.tensor.tensor.TensorHead.commutes_with" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns 0 (1) if self and other (anti)commute.</p>
-<p>Returns None if self and other do not (anti)commute.</p>
+<dd><p>Returns <code class="docutils literal"><span class="pre">0</span></code> if <code class="docutils literal"><span class="pre">self</span></code> and <code class="docutils literal"><span class="pre">other</span></code> commute, <code class="docutils literal"><span class="pre">1</span></code> if they anticommute.</p>
+<p>Returns <code class="docutils literal"><span class="pre">None</span></code> if <code class="docutils literal"><span class="pre">self</span></code> and <code class="docutils literal"><span class="pre">other</span></code> neither commute nor anticommute.</p>
 </dd></dl>
 
 </dd></dl>
@@ -524,6 +697,49 @@ by <code class="docutils literal"><span class="pre">(ipos1,</span> <span class="
 of the component tensor with contravariant index, <code class="docutils literal"><span class="pre">ipos1</span></code> is the
 slot which the index occupies in that component tensor.</p>
 <p>Contracted indices are therefore nameless in the internal representation.</p>
+<dl class="method">
+<dt id="sympy.tensor.tensor.TensExpr.get_matrix">
+<code class="descname">get_matrix</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/tensor/tensor.html#TensExpr.get_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.tensor.tensor.TensExpr.get_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns ndarray components data as a matrix, if components data are
+available and ndarray dimension does not exceed 2.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="k">import</span> <span class="n">TensorIndexType</span><span class="p">,</span> <span class="n">tensorsymmetry</span><span class="p">,</span> <span class="n">TensorType</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">ones</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Lorentz</span> <span class="o">=</span> <span class="n">TensorIndexType</span><span class="p">(</span><span class="s1">&#39;Lorentz&#39;</span><span class="p">,</span> <span class="n">dummy_fmt</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sym2</span> <span class="o">=</span> <span class="n">tensorsymmetry</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S2</span> <span class="o">=</span> <span class="n">TensorType</span><span class="p">([</span><span class="n">Lorentz</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">sym2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">S2</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The tensor <code class="docutils literal"><span class="pre">A</span></code> is symmetric in its indices, as can be deduced by the
+<code class="docutils literal"><span class="pre">[1,</span> <span class="pre">1]</span></code> Young tableau when constructing <span class="math">\(sym2\)</span>. One has to be
+careful to assign symmetric component data to <code class="docutils literal"><span class="pre">A</span></code>, as the symmetry
+properties of data are currently not checked to be compatible with the
+defined tensor symmetry.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="k">import</span> <span class="n">tensor_indices</span><span class="p">,</span> <span class="n">tensorhead</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Lorentz</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i0</span><span class="p">,</span> <span class="n">i1</span> <span class="o">=</span> <span class="n">tensor_indices</span><span class="p">(</span><span class="s1">&#39;i0:2&#39;</span><span class="p">,</span> <span class="n">Lorentz</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">j</span><span class="o">+</span><span class="n">i</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span> <span class="n">i1</span><span class="p">)</span><span class="o">.</span><span class="n">get_matrix</span><span class="p">()</span>
+<span class="go">Matrix([</span>
+<span class="go">[0, 1, 2, 3],</span>
+<span class="go">[1, 2, 3, 4],</span>
+<span class="go">[2, 3, 4, 5],</span>
+<span class="go">[3, 4, 5, 6]])</span>
+</pre></div>
+</div>
+<p>It is possible to perform usual operation on matrices, such as the
+matrix multiplication:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span> <span class="n">i1</span><span class="p">)</span><span class="o">.</span><span class="n">get_matrix</span><span class="p">()</span><span class="o">*</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">Matrix([</span>
+<span class="go">[ 6],</span>
+<span class="go">[10],</span>
+<span class="go">[14],</span>
+<span class="go">[18]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -549,6 +765,25 @@ slot which the index occupies in that component tensor.</p>
 <span class="go">p(a) + q(a)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 <span class="go">p(b) + q(b)</span>
+</pre></div>
+</div>
+<p>Examples with components data added to the tensor expression:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">eye</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Lorentz</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">tensor_indices</span><span class="p">(</span><span class="s1">&#39;a, b&#39;</span><span class="p">,</span> <span class="n">Lorentz</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="n">q</span><span class="p">(</span><span class="n">a</span><span class="p">);</span> <span class="n">t</span>
+<span class="go">p(a) + q(a)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">p(b) + q(b)</span>
+</pre></div>
+</div>
+<p>The following are: 2**2 - 3**2 - 2**2 - 7**2 ==&gt; -58</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">))</span><span class="o">.</span><span class="n">data</span>
+<span class="go">-58</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="go">-58</span>
 </pre></div>
 </div>
 <p class="rubric">Attributes</p>
@@ -578,7 +813,7 @@ under monoterm symmetries.</p>
 
 <dl class="method">
 <dt id="sympy.tensor.tensor.TensAdd.contract_metric">
-<code class="descname">contract_metric</code><span class="sig-paren">(</span><em>g</em>, <em>contract_all=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/tensor/tensor.html#TensAdd.contract_metric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.tensor.tensor.TensAdd.contract_metric" title="Permalink to this definition">¶</a></dt>
+<code class="descname">contract_metric</code><span class="sig-paren">(</span><em>g</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/tensor/tensor.html#TensAdd.contract_metric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.tensor.tensor.TensAdd.contract_metric" title="Permalink to this definition">¶</a></dt>
 <dd><p>Raise or lower indices with the metric <code class="docutils literal"><span class="pre">g</span></code></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -592,6 +827,35 @@ under monoterm symmetries.</p>
 </table>
 <p class="rubric">Notes</p>
 <p>see the <code class="docutils literal"><span class="pre">TensorIndexType</span></code> docstring for the contraction conventions</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="sympy.tensor.tensor.TensAdd.from_TIDS_list">
+<em class="property">static </em><code class="descname">from_TIDS_list</code><span class="sig-paren">(</span><em>coeff</em>, <em>tids_list</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/tensor/tensor.html#TensAdd.from_TIDS_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.tensor.tensor.TensAdd.from_TIDS_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of coefficients and a list of <code class="docutils literal"><span class="pre">TIDS</span></code> objects, construct
+a <code class="docutils literal"><span class="pre">TensAdd</span></code> instance, equivalent to the one that would result from
+creating single instances of <code class="docutils literal"><span class="pre">TensMul</span></code> and then adding them.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="k">import</span> <span class="n">TensorIndexType</span><span class="p">,</span> <span class="n">tensor_indices</span><span class="p">,</span> <span class="n">tensorhead</span><span class="p">,</span> <span class="n">TensAdd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Lorentz</span> <span class="o">=</span> <span class="n">TensorIndexType</span><span class="p">(</span><span class="s1">&#39;Lorentz&#39;</span><span class="p">,</span> <span class="n">dummy_fmt</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">tensor_indices</span><span class="p">(</span><span class="s1">&#39;i,j&#39;</span><span class="p">,</span> <span class="n">Lorentz</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">tensorhead</span><span class="p">(</span><span class="s1">&#39;A,B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">Lorentz</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="p">[[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eA</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eB</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">B</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t1</span> <span class="o">=</span> <span class="n">eA</span><span class="o">.</span><span class="n">_tids</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t2</span> <span class="o">=</span> <span class="n">eB</span><span class="o">.</span><span class="n">_tids</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c1</span> <span class="o">=</span> <span class="n">eA</span><span class="o">.</span><span class="n">coeff</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c2</span> <span class="o">=</span> <span class="n">eB</span><span class="o">.</span><span class="n">coeff</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TensAdd</span><span class="o">.</span><span class="n">from_TIDS_list</span><span class="p">([</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">],</span> <span class="p">[</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">])</span>
+<span class="go">2*B(i, j) + 3*A(i, j)</span>
+</pre></div>
+</div>
+<p>If the coefficient parameter is a scalar, then it will be applied
+as a coefficient on all <code class="docutils literal"><span class="pre">TIDS</span></code> objects.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">TensAdd</span><span class="o">.</span><span class="n">from_TIDS_list</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">])</span>
+<span class="go">4*A(i, j) + 4*B(i, j)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -676,7 +940,7 @@ in the <code class="docutils literal"><span class="pre">ipos2</span></code> slot
 <col width="79%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">_components</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">components</span></code></td>
 <td>(list of <code class="docutils literal"><span class="pre">TensorHead</span></code> of the component tensors)</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">types</span></code></td>
@@ -706,16 +970,9 @@ in the <code class="docutils literal"><span class="pre">ipos2</span></code> slot
 </tbody>
 </table>
 <dl class="method">
-<dt id="sympy.tensor.tensor.TensMul.canon_args">
-<code class="descname">canon_args</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/tensor/tensor.html#TensMul.canon_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.tensor.tensor.TensMul.canon_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns <code class="docutils literal"><span class="pre">(g,</span> <span class="pre">dummies,</span> <span class="pre">msym,</span> <span class="pre">v)</span></code>, the entries of <code class="docutils literal"><span class="pre">canonicalize</span></code></p>
-<p>see <code class="docutils literal"><span class="pre">canonicalize</span></code> in <code class="docutils literal"><span class="pre">tensor_can.py</span></code></p>
-</dd></dl>
-
-<dl class="method">
 <dt id="sympy.tensor.tensor.TensMul.canon_bp">
 <code class="descname">canon_bp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/tensor/tensor.html#TensMul.canon_bp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.tensor.tensor.TensMul.canon_bp" title="Permalink to this definition">¶</a></dt>
-<dd><p>canonicalize using the Butler-Portugal algorithm for canonicalization
+<dd><p>Canonicalize using the Butler-Portugal algorithm for canonicalization
 under monoterm symmetries.</p>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="k">import</span> <span class="n">TensorIndexType</span><span class="p">,</span> <span class="n">tensor_indices</span><span class="p">,</span> <span class="n">tensorhead</span>
@@ -734,10 +991,16 @@ under monoterm symmetries.</p>
 
 <dl class="method">
 <dt id="sympy.tensor.tensor.TensMul.contract_metric">
-<code class="descname">contract_metric</code><span class="sig-paren">(</span><em>g</em>, <em>contract_all=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/tensor/tensor.html#TensMul.contract_metric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.tensor.tensor.TensMul.contract_metric" title="Permalink to this definition">¶</a></dt>
+<code class="descname">contract_metric</code><span class="sig-paren">(</span><em>g</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/tensor/tensor.html#TensMul.contract_metric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.tensor.tensor.TensMul.contract_metric" title="Permalink to this definition">¶</a></dt>
 <dd><p>Raise or lower indices with the metric <code class="docutils literal"><span class="pre">g</span></code></p>
-<p><code class="docutils literal"><span class="pre">g</span></code>  metric</p>
-<p><code class="docutils literal"><span class="pre">contract_all</span></code> if True, eliminate all <code class="docutils literal"><span class="pre">g</span></code> which are contracted</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>g</strong> : metric</td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Notes</p>
 <p>see the <code class="docutils literal"><span class="pre">TensorIndexType</span></code> docstring for the contraction conventions</p>
 <p class="rubric">Examples</p>
@@ -751,26 +1014,6 @@ under monoterm symmetries.</p>
 <span class="go">metric(L_0, L_1)*p(-L_0)*q(-L_1)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">contract_metric</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">canon_bp</span><span class="p">()</span>
 <span class="go">p(L_0)*q(-L_0)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="staticmethod">
-<dt id="sympy.tensor.tensor.TensMul.from_indices">
-<em class="property">static </em><code class="descname">from_indices</code><span class="sig-paren">(</span><em>*indices</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/tensor/tensor.html#TensMul.from_indices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.tensor.tensor.TensMul.from_indices" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert <code class="docutils literal"><span class="pre">indices</span></code> into <code class="docutils literal"><span class="pre">free</span></code>, <code class="docutils literal"><span class="pre">dum</span></code> for single component tensor</p>
-<dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">free</span></code>     list of tuples <code class="docutils literal"><span class="pre">(index,</span> <span class="pre">pos,</span> <span class="pre">0)</span></code>,</dt>
-<dd>where <code class="docutils literal"><span class="pre">pos</span></code> is the position of index in
-the list of indices formed by the component tensors</dd>
-</dl>
-<p><code class="docutils literal"><span class="pre">dum</span></code>      list of tuples <code class="docutils literal"><span class="pre">(pos_contr,</span> <span class="pre">pos_cov,</span> <span class="pre">0,</span> <span class="pre">0)</span></code></p>
-<p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="k">import</span> <span class="n">TensorIndexType</span><span class="p">,</span> <span class="n">tensor_indices</span><span class="p">,</span> <span class="n">TensMul</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Lorentz</span> <span class="o">=</span> <span class="n">TensorIndexType</span><span class="p">(</span><span class="s1">&#39;Lorentz&#39;</span><span class="p">,</span> <span class="n">dummy_fmt</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m0</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">m3</span> <span class="o">=</span> <span class="n">tensor_indices</span><span class="p">(</span><span class="s1">&#39;m0,m1,m2,m3&#39;</span><span class="p">,</span> <span class="n">Lorentz</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">TensMul</span><span class="o">.</span><span class="n">from_indices</span><span class="p">(</span><span class="n">m0</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="o">-</span><span class="n">m1</span><span class="p">,</span> <span class="n">m3</span><span class="p">)</span>
-<span class="go">([(m0, 0, 0), (m3, 3, 0)], [(1, 2, 0, 0)])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -818,18 +1061,14 @@ the names of the free indices.</p>
 <dt id="sympy.tensor.tensor.TensMul.perm2tensor">
 <code class="descname">perm2tensor</code><span class="sig-paren">(</span><em>g</em>, <em>canon_bp=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/tensor/tensor.html#TensMul.perm2tensor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.tensor.tensor.TensMul.perm2tensor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the tensor corresponding to the permutation <code class="docutils literal"><span class="pre">g</span></code></p>
-<p><code class="docutils literal"><span class="pre">g</span></code>  permutation corrisponding to the tensor in the representation
-used in canonicalization</p>
-<p><code class="docutils literal"><span class="pre">canon_bp</span></code>   if True, then <code class="docutils literal"><span class="pre">g</span></code> is the permutation
-corresponding to the canonical form of the tensor</p>
+<p>For further details, see the method in <code class="docutils literal"><span class="pre">TIDS</span></code> with the same name.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="sympy.tensor.tensor.TensMul.sorted_components">
 <code class="descname">sorted_components</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/tensor/tensor.html#TensMul.sorted_components"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.tensor.tensor.TensMul.sorted_components" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a tensor with sorted components</p>
-<p>The sorting is done taking into account the commutation group
-of the component tensors.</p>
+<dd><p>Returns a tensor with sorted components
+calling the corresponding method in a <code class="docutils literal"><span class="pre">TIDS</span></code> object.</p>
 </dd></dl>
 
 <dl class="method">
@@ -849,24 +1088,6 @@ represent the dummy indices.</p>
 <span class="go">A(a, L_0)*B(-L_0, c)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 <span class="go">[A(a, L_0), B(-L_0, c)]</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="sympy.tensor.tensor.TensMul.substitute_indices">
-<code class="descname">substitute_indices</code><span class="sig-paren">(</span><em>*index_tuples</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/tensor/tensor.html#TensMul.substitute_indices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.tensor.tensor.TensMul.substitute_indices" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a tensor with free indices substituted according to <code class="docutils literal"><span class="pre">index_tuples</span></code></p>
-<p><code class="docutils literal"><span class="pre">index_types</span></code> list of tuples <code class="docutils literal"><span class="pre">(old_index,</span> <span class="pre">new_index)</span></code></p>
-<p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.tensor.tensor</span> <span class="k">import</span> <span class="n">TensorIndexType</span><span class="p">,</span> <span class="n">tensor_indices</span><span class="p">,</span> <span class="n">tensorhead</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Lorentz</span> <span class="o">=</span> <span class="n">TensorIndexType</span><span class="p">(</span><span class="s1">&#39;Lorentz&#39;</span><span class="p">,</span> <span class="n">dummy_fmt</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">tensor_indices</span><span class="p">(</span><span class="s1">&#39;i,j,k,l&#39;</span><span class="p">,</span> <span class="n">Lorentz</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">tensorhead</span><span class="p">(</span><span class="s1">&#39;A,B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">Lorentz</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="p">[[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">B</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="p">,</span> <span class="o">-</span><span class="n">j</span><span class="p">);</span> <span class="n">t</span>
-<span class="go">A(i, L_0)*B(-L_0, -j)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">substitute_indices</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">),</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
-<span class="go">A(j, L_0)*B(-L_0, -k)</span>
 </pre></div>
 </div>
 </dd></dl>

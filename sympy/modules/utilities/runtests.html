@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Run Tests &mdash; SymPy 0.7.3 documentation</title>
+    <title>Run Tests &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
     <link rel="up" title="Utilities" href="index.html" />
     <link rel="next" title="Source Code Inspection" href="source.html" />
     <link rel="prev" title="Randomised Testing" href="randtest.html" />
@@ -63,7 +63,7 @@
 </ul>
 <dl class="class">
 <dt id="sympy.utilities.runtests.PyTestReporter">
-<em class="property">class </em><code class="descclassname">sympy.utilities.runtests.</code><code class="descname">PyTestReporter</code><span class="sig-paren">(</span><em>verbose=False</em>, <em>tb='short'</em>, <em>colors=True</em>, <em>force_colors=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/utilities/runtests.html#PyTestReporter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.utilities.runtests.PyTestReporter" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sympy.utilities.runtests.</code><code class="descname">PyTestReporter</code><span class="sig-paren">(</span><em>verbose=False</em>, <em>tb='short'</em>, <em>colors=True</em>, <em>force_colors=False</em>, <em>split=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/utilities/runtests.html#PyTestReporter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.utilities.runtests.PyTestReporter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Py.test like reporter. Should produce output identical to py.test.</p>
 <dl class="method">
 <dt id="sympy.utilities.runtests.PyTestReporter.write">
@@ -118,7 +118,7 @@ The <code class="docutils literal"><span class="pre">run</span></code> method is
 returns a tuple <code class="docutils literal"><span class="pre">(f,</span> <span class="pre">t)</span></code>, where <code class="docutils literal"><span class="pre">t</span></code> is the number of test cases
 tried, and <code class="docutils literal"><span class="pre">f</span></code> is the number of test cases that failed.</p>
 <p>Modified from the doctest version to not reset the sys.displayhook (see
-issue 2041).</p>
+issue 5140).</p>
 <p>See the docstring of the original DocTestRunner for more information.</p>
 <dl class="method">
 <dt id="sympy.utilities.runtests.SymPyDocTestRunner.run">
@@ -209,6 +209,15 @@ sympy/functions/special/polynomials.py, and sympy/polys/polynomial.py:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sympy</span><span class="o">.</span><span class="n">doctest</span><span class="p">(</span><span class="s2">&quot;polynomial&quot;</span><span class="p">)</span> 
 </pre></div>
 </div>
+<p>The <code class="docutils literal"><span class="pre">split</span></code> option can be passed to split the test run into parts. The
+split currently only splits the test files, though this may change in the
+future. <code class="docutils literal"><span class="pre">split</span></code> should be a string of the form &#8216;a/b&#8217;, which will run
+part <code class="docutils literal"><span class="pre">a</span></code> of <code class="docutils literal"><span class="pre">b</span></code>. Note that the regular doctests and the Sphinx
+doctests are split independently. For instance, to run the first half of
+the test suite:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sympy</span><span class="o">.</span><span class="n">doctest</span><span class="p">(</span><span class="n">split</span><span class="o">=</span><span class="s1">&#39;1/2&#39;</span><span class="p">)</span>  
+</pre></div>
+</div>
 <p>The <code class="docutils literal"><span class="pre">subprocess</span></code> and <code class="docutils literal"><span class="pre">verbose</span></code> options are the same as with the function
 <code class="docutils literal"><span class="pre">test()</span></code>.  See the docstring of that function for more information.</p>
 </dd></dl>
@@ -218,15 +227,6 @@ sympy/functions/special/polynomials.py, and sympy/polys/polynomial.py:</p>
 <code class="descclassname">sympy.utilities.runtests.</code><code class="descname">get_sympy_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/utilities/runtests.html#get_sympy_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.utilities.runtests.get_sympy_dir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the root sympy directory and set the global value
 indicating whether the system is case sensitive or not.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="sympy.utilities.runtests.isgeneratorfunction">
-<code class="descclassname">sympy.utilities.runtests.</code><code class="descname">isgeneratorfunction</code><span class="sig-paren">(</span><em>object</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/utilities/runtests.html#isgeneratorfunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.utilities.runtests.isgeneratorfunction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return True if the object is a user-defined generator function.</p>
-<p>Generator function objects provides same attributes as functions.</p>
-<p>See isfunction.__doc__ for attributes listing.</p>
-<p>Adapted from Python 2.6.</p>
 </dd></dl>
 
 <dl class="function">
@@ -287,6 +287,26 @@ and including 3.3.0.</p>
 <span class="go"># Will return 0 if sys.executable supports hash randomization and tests</span>
 <span class="go"># pass, 1 if they fail, and False if it does not support hash</span>
 <span class="go"># randomization.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.utilities.runtests.split_list">
+<code class="descclassname">sympy.utilities.runtests.</code><code class="descname">split_list</code><span class="sig-paren">(</span><em>l</em>, <em>split</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/utilities/runtests.html#split_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.utilities.runtests.split_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits a list into part a of b</p>
+<p>split should be a string of the form &#8216;a/b&#8217;. For instance, &#8216;1/3&#8217; would give
+the split one of three.</p>
+<p>If the length of the list is not divisible by the number of splits, the
+last split will have more items.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.utilities.runtests</span> <span class="k">import</span> <span class="n">split_list</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">split_list</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;1/3&#39;</span><span class="p">)</span>
+<span class="go">[0, 1, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">split_list</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;2/3&#39;</span><span class="p">)</span>
+<span class="go">[3, 4, 5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">split_list</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;3/3&#39;</span><span class="p">)</span>
+<span class="go">[6, 7, 8, 9]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -371,6 +391,8 @@ tests in all test_*.py files are run.</p>
 <li>If sort=False, tests are run in random order (not default).</li>
 <li>Paths can be entered in native system format or in unix,
 forward-slash format.</li>
+<li>Files that are on the blacklist can be tested by providing
+their path; they are only excluded if no paths are given.</li>
 </ul>
 <p><strong>Explanation of test results</strong></p>
 <table border="1" class="docutils">
@@ -470,6 +492,13 @@ e.g., if you are piping to <code class="docutils literal"><span class="pre">less
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sympy</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">tb</span><span class="o">=</span><span class="s1">&#39;no&#39;</span><span class="p">)</span>    
 </pre></div>
 </div>
+<p>The <code class="docutils literal"><span class="pre">split</span></code> option can be passed to split the test run into parts. The
+split currently only splits the test files, though this may change in the
+future. <code class="docutils literal"><span class="pre">split</span></code> should be a string of the form &#8216;a/b&#8217;, which will run
+part <code class="docutils literal"><span class="pre">a</span></code> of <code class="docutils literal"><span class="pre">b</span></code>. For instance, to run the first half of the test suite:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sympy</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">split</span><span class="o">=</span><span class="s1">&#39;1/2&#39;</span><span class="p">)</span>  
+</pre></div>
+</div>
 <p>You can disable running the tests in a separate subprocess using
 <code class="docutils literal"><span class="pre">subprocess=False</span></code>.  This is done to support seeding hash randomization,
 which is enabled by default in the Python versions where it is supported.
@@ -495,8 +524,8 @@ Python using</p>
 <p>Or from the command line using</p>
 <p>$ PYTHONHASHSEED=42 ./bin/test</p>
 <p>If the seed is not set, a random seed will be chosen.</p>
-<p>Note that to reproduce the same hash values, you must use both the same as
-well as the same architecture (32-bit vs. 64-bit).</p>
+<p>Note that to reproduce the same hash values, you must use both the same seed
+as well as the same architecture (32-bit vs. 64-bit).</p>
 </dd></dl>
 
 </div>

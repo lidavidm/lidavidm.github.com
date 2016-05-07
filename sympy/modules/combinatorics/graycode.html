@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Gray Code &mdash; SymPy 0.7.3 documentation</title>
+    <title>Gray Code &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
     <link rel="up" title="Combinatorics Module" href="index.html" />
     <link rel="next" title="Named Groups" href="named_groups.html" />
     <link rel="prev" title="Subsets" href="subsets.html" />
@@ -160,7 +160,7 @@ Gray code (BRGC) &#8216;0101&#8217; has a rank of 6 as it appears in
 the 6th position in the canonical ordering of the family
 of 4 bit Gray codes.</p>
 <p>References:
-[1] <a class="reference external" href="http://www-stat.stanford.edu/~susan/courses/s208/node12.html">http://www-stat.stanford.edu/~susan/courses/s208/node12.html</a></p>
+[1] <a class="reference external" href="http://statweb.stanford.edu/~susan/courses/s208/node12.html">http://statweb.stanford.edu/~susan/courses/s208/node12.html</a></p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last"><a class="reference internal" href="#sympy.combinatorics.graycode.GrayCode.unrank" title="sympy.combinatorics.graycode.GrayCode.unrank"><code class="xref py py-obj docutils literal"><span class="pre">unrank</span></code></a></p>
@@ -205,7 +205,7 @@ of 4 bit Gray codes.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">generate_gray</span><span class="p">():</span>
 <span class="gp">... </span>    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;010&#39;</span><span class="p">:</span>
 <span class="gp">... </span>        <span class="n">a</span><span class="o">.</span><span class="n">skip</span><span class="p">()</span>
-<span class="gp">... </span>    <span class="nb">print</span> <span class="n">i</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="go">000</span>
 <span class="go">001</span>
@@ -298,9 +298,9 @@ optimization.</p>
 </div>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.graycode</span> <span class="k">import</span> <span class="n">get_subset_from_bitstring</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">get_subset_from_bitstring</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">],</span> <span class="s1">&#39;0011&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_subset_from_bitstring</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">],</span> <span class="s1">&#39;0011&#39;</span><span class="p">)</span>
 <span class="go">[&#39;c&#39;, &#39;d&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">get_subset_from_bitstring</span><span class="p">([</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="s1">&#39;1100&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_subset_from_bitstring</span><span class="p">([</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="s1">&#39;1100&#39;</span><span class="p">)</span>
 <span class="go">[&#39;c&#39;, &#39;a&#39;]</span>
 </pre></div>
 </div>
@@ -316,9 +316,9 @@ optimization.</p>
 </div>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.graycode</span> <span class="k">import</span> <span class="n">graycode_subsets</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">graycode_subsets</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">graycode_subsets</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]))</span>
 <span class="go">[[], [&#39;c&#39;], [&#39;b&#39;, &#39;c&#39;], [&#39;b&#39;], [&#39;a&#39;, &#39;b&#39;], [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;],     [&#39;a&#39;, &#39;c&#39;], [&#39;a&#39;]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">graycode_subsets</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">graycode_subsets</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]))</span>
 <span class="go">[[], [&#39;c&#39;], [&#39;c&#39;, &#39;c&#39;], [&#39;c&#39;], [&#39;b&#39;, &#39;c&#39;], [&#39;b&#39;, &#39;c&#39;, &#39;c&#39;],     [&#39;b&#39;, &#39;c&#39;], [&#39;b&#39;], [&#39;a&#39;, &#39;b&#39;], [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;c&#39;],     [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], [&#39;a&#39;, &#39;c&#39;], [&#39;a&#39;, &#39;c&#39;, &#39;c&#39;], [&#39;a&#39;, &#39;c&#39;], [&#39;a&#39;]]</span>
 </pre></div>
 </div>

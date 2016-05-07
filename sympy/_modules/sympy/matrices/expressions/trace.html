@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.matrices.expressions.trace &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.matrices.expressions.trace &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../../index.html" />
     <link rel="up" title="Module code" href="../../../index.html" />
    
   
@@ -48,8 +48,11 @@
           <div class="body" role="main">
             
   <h1>Source code for sympy.matrices.expressions.trace</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Basic</span><span class="p">,</span> <span class="n">Expr</span>
-<span class="kn">from</span> <span class="nn">matexpr</span> <span class="kn">import</span> <span class="n">ShapeError</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Basic</span><span class="p">,</span> <span class="n">Expr</span><span class="p">,</span> <span class="n">sympify</span>
+<span class="kn">from</span> <span class="nn">sympy.matrices.matrices</span> <span class="kn">import</span> <span class="n">MatrixBase</span>
+<span class="kn">from</span> <span class="nn">.matexpr</span> <span class="kn">import</span> <span class="n">ShapeError</span>
 
 
 <div class="viewcode-block" id="Trace"><a class="viewcode-back" href="../../../../modules/matrices/expressions.html#sympy.matrices.expressions.Trace">[docs]</a><span class="k">class</span> <span class="nc">Trace</span><span class="p">(</span><span class="n">Expr</span><span class="p">):</span>
@@ -68,6 +71,8 @@
     <span class="n">is_Trace</span> <span class="o">=</span> <span class="bp">True</span>
 
     <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">mat</span><span class="p">):</span>
+        <span class="n">mat</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+
         <span class="k">if</span> <span class="ow">not</span> <span class="n">mat</span><span class="o">.</span><span class="n">is_Matrix</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;input to Trace, </span><span class="si">%s</span><span class="s2">, is not a matrix&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">mat</span><span class="p">))</span>
 
@@ -84,14 +89,19 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">doit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;deep&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">):</span>
-            <span class="n">arg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arg</span><span class="o">.</span><span class="n">doit</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;deep&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">):</span>
+            <span class="n">arg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arg</span><span class="o">.</span><span class="n">doit</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">arg</span><span class="o">.</span><span class="n">_eval_trace</span><span class="p">()</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">NotImplementedError</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">Trace</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">arg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arg</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">arg</span><span class="o">.</span><span class="n">_eval_trace</span><span class="p">()</span>
-        <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">NotImplementedError</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">Trace</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+            <span class="c1"># _eval_trace would go too deep here</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arg</span><span class="p">,</span> <span class="n">MatrixBase</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">trace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Trace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
+
 
     <span class="k">def</span> <span class="nf">_eval_rewrite_as_Sum</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Sum</span><span class="p">,</span> <span class="n">Dummy</span>

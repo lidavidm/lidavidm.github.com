@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Decorator &mdash; SymPy 0.7.3 documentation</title>
+    <title>Decorator &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
     <link rel="up" title="Utilities" href="index.html" />
     <link rel="next" title="Enumerative" href="enumerative.html" />
     <link rel="prev" title="Codegen" href="codegen.html" />
@@ -51,6 +51,7 @@
             
   <div class="section" id="module-sympy.utilities.decorator">
 <span id="decorator"></span><h1>Decorator<a class="headerlink" href="#module-sympy.utilities.decorator" title="Permalink to this headline">¶</a></h1>
+<p>Useful utility decorators.</p>
 <dl class="function">
 <dt id="sympy.utilities.decorator.conserve_mpmath_dps">
 <code class="descclassname">sympy.utilities.decorator.</code><code class="descname">conserve_mpmath_dps</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/utilities/decorator.html#conserve_mpmath_dps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.utilities.decorator.conserve_mpmath_dps" title="Permalink to this definition">¶</a></dt>
@@ -63,6 +64,12 @@ the value it had before the function was run.</p>
 <code class="descclassname">sympy.utilities.decorator.</code><code class="descname">doctest_depends_on</code><span class="sig-paren">(</span><em>exe=None</em>, <em>modules=None</em>, <em>disable_viewers=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/utilities/decorator.html#doctest_depends_on"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.utilities.decorator.doctest_depends_on" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds metadata about the depenencies which need to be met for doctesting
 the docstrings of the decorated objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.utilities.decorator.memoize_property">
+<code class="descclassname">sympy.utilities.decorator.</code><code class="descname">memoize_property</code><span class="sig-paren">(</span><em>storage</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/utilities/decorator.html#memoize_property"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.utilities.decorator.memoize_property" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a property, where the lookup is stored in <code class="docutils literal"><span class="pre">storage</span></code></p>
 </dd></dl>
 
 <dl class="class">
@@ -87,6 +94,39 @@ the docstrings of the decorated objects.</p>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">hasattr</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sympy.utilities.decorator.public">
+<code class="descclassname">sympy.utilities.decorator.</code><code class="descname">public</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/utilities/decorator.html#public"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.utilities.decorator.public" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append <code class="docutils literal"><span class="pre">obj</span></code>&#8216;s name to global <code class="docutils literal"><span class="pre">__all__</span></code> variable (call site).</p>
+<p>By using this decorator on functions or classes you achieve the same goal
+as by filling <code class="docutils literal"><span class="pre">__all__</span></code> variables manually, you just don&#8217;t have to repeat
+yourself (object&#8217;s name). You also know if object is public at definition
+site, not at some random location (where <code class="docutils literal"><span class="pre">__all__</span></code> was set).</p>
+<p>Note that in multiple decorator setup (in almost all cases) <code class="docutils literal"><span class="pre">&#64;public</span></code>
+decorator must be applied before any other decorators, because it relies
+on the pointer to object&#8217;s global namespace. If you apply other decorators
+first, <code class="docutils literal"><span class="pre">&#64;public</span></code> may end up modifying the wrong namespace.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.utilities.decorator</span> <span class="k">import</span> <span class="n">public</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">__all__</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="c">...</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;__all__&#39; is not defined</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@public</span>
+<span class="gp">... </span><span class="k">def</span> <span class="nf">some_function</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">__all__</span>
+<span class="go">[&#39;some_function&#39;]</span>
 </pre></div>
 </div>
 </dd></dl>

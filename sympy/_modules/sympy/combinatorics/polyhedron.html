@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.combinatorics.polyhedron &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.combinatorics.polyhedron &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -48,8 +48,11 @@
           <div class="body" role="main">
             
   <h1>Source code for sympy.combinatorics.polyhedron</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">Basic</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">FiniteSet</span>
-<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">as_int</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">Basic</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">sympy.sets</span> <span class="kn">import</span> <span class="n">FiniteSet</span>
+<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">as_int</span><span class="p">,</span> <span class="nb">range</span>
 <span class="kn">from</span> <span class="nn">sympy.combinatorics</span> <span class="kn">import</span> <span class="n">Permutation</span> <span class="k">as</span> <span class="n">Perm</span>
 <span class="kn">from</span> <span class="nn">sympy.combinatorics.perm_groups</span> <span class="kn">import</span> <span class="n">PermutationGroup</span>
 <span class="kn">from</span> <span class="nn">sympy.utilities.iterables</span> <span class="kn">import</span> <span class="p">(</span><span class="n">minlex</span><span class="p">,</span> <span class="n">unflatten</span><span class="p">,</span> <span class="n">flatten</span><span class="p">)</span>
@@ -113,7 +116,7 @@
 <span class="sd">        Here we construct the Polyhedron object for a tetrahedron.</span>
 
 <span class="sd">        &gt;&gt;&gt; corners = [w, x, y, z]</span>
-<span class="sd">        &gt;&gt;&gt; faces = [(0,1,2), (0,2,3), (0,3,1), (1,2,3)]</span>
+<span class="sd">        &gt;&gt;&gt; faces = [(0, 1, 2), (0, 2, 3), (0, 3, 1), (1, 2, 3)]</span>
 
 <span class="sd">        Next, allowed transformations of the polyhedron must be given. This</span>
 <span class="sd">        is given as permutations of vertices.</span>
@@ -125,13 +128,13 @@
 <span class="sd">        permutation, Permutation(range(4)), is not included since it does</span>
 <span class="sd">        not change the orientation of the vertices.)</span>
 
-<span class="sd">        &gt;&gt;&gt; pgroup = [Permutation([[0,1,2], [3]]), \</span>
-<span class="sd">                      Permutation([[0,1,3], [2]]), \</span>
-<span class="sd">                      Permutation([[0,2,3], [1]]), \</span>
-<span class="sd">                      Permutation([[1,2,3], [0]]), \</span>
-<span class="sd">                      Permutation([[0,1], [2,3]]), \</span>
-<span class="sd">                      Permutation([[0,2], [1,3]]), \</span>
-<span class="sd">                      Permutation([[0,3], [1,2]])]</span>
+<span class="sd">        &gt;&gt;&gt; pgroup = [Permutation([[0, 1, 2], [3]]), \</span>
+<span class="sd">                      Permutation([[0, 1, 3], [2]]), \</span>
+<span class="sd">                      Permutation([[0, 2, 3], [1]]), \</span>
+<span class="sd">                      Permutation([[1, 2, 3], [0]]), \</span>
+<span class="sd">                      Permutation([[0, 1], [2, 3]]), \</span>
+<span class="sd">                      Permutation([[0, 2], [1, 3]]), \</span>
+<span class="sd">                      Permutation([[0, 3], [1, 2]])]</span>
 
 <span class="sd">        The Polyhedron is now constructed and demonstrated:</span>
 
@@ -223,7 +226,7 @@
 <span class="sd">        ---------------------------</span>
 
 <span class="sd">        It is not necessary to enter any permutations, nor is necessary to</span>
-<span class="sd">        enter a complete set of transforations. In fact, for a polyhedron,</span>
+<span class="sd">        enter a complete set of transformations. In fact, for a polyhedron,</span>
 <span class="sd">        all configurations can be constructed from just two permutations.</span>
 <span class="sd">        For example, the orientations of a tetrahedron can be generated from</span>
 <span class="sd">        an axis passing through a vertex and face and another axis passing</span>
@@ -281,15 +284,17 @@
 
 <span class="sd">        To rotate the square with a single permutation we can do:</span>
 
-<span class="sd">        &gt;&gt;&gt; square.rotate(square.pgroup[0]); square.corners</span>
+<span class="sd">        &gt;&gt;&gt; square.rotate(square.pgroup[0])</span>
+<span class="sd">        &gt;&gt;&gt; square.corners</span>
 <span class="sd">        (1, 3, 2, 4)</span>
 
 <span class="sd">        To use more than one permutation (or to use one permutation more</span>
 <span class="sd">        than once) it is more convenient to use the make_perm method:</span>
 
-<span class="sd">        &gt;&gt;&gt; p011 = square.pgroup.make_perm([0,1,1]) # diag flip + 2 rotations</span>
+<span class="sd">        &gt;&gt;&gt; p011 = square.pgroup.make_perm([0, 1, 1]) # diag flip + 2 rotations</span>
 <span class="sd">        &gt;&gt;&gt; square.reset() # return to initial orientation</span>
-<span class="sd">        &gt;&gt;&gt; square.rotate(p011); square.corners</span>
+<span class="sd">        &gt;&gt;&gt; square.rotate(p011)</span>
+<span class="sd">        &gt;&gt;&gt; square.corners</span>
 <span class="sd">        (4, 2, 3, 1)</span>
 
 <span class="sd">        Thinking outside the box</span>
@@ -308,8 +313,8 @@
 <span class="sd">        &gt;&gt;&gt; facelets = flatten([symbols(s+&#39;1:5&#39;) for s in &#39;UFRBLD&#39;])</span>
 <span class="sd">        &gt;&gt;&gt; def show():</span>
 <span class="sd">        ...     pairs = unflatten(r2.corners, 2)</span>
-<span class="sd">        ...     print pairs[::2]</span>
-<span class="sd">        ...     print pairs[1::2]</span>
+<span class="sd">        ...     print(pairs[::2])</span>
+<span class="sd">        ...     print(pairs[1::2])</span>
 <span class="sd">        ...</span>
 <span class="sd">        &gt;&gt;&gt; r2 = Polyhedron(facelets, pgroup=RubikGroup(2))</span>
 <span class="sd">        &gt;&gt;&gt; show()</span>
@@ -341,7 +346,7 @@
 
 <span class="sd">            4 faces:</span>
 
-<span class="sd">            (0,1,2) (0,2,3) (0,3,1) (1,2,3)</span>
+<span class="sd">            (0, 1, 2) (0, 2, 3) (0, 3, 1) (1, 2, 3)</span>
 
 <span class="sd">        cube, cube_faces</span>
 <span class="sd">        ----------------</span>
@@ -353,9 +358,9 @@
 
 <span class="sd">            6 faces:</span>
 
-<span class="sd">            (0,1,2,3)</span>
-<span class="sd">            (0,1,5,4) (1,2,6,5) (2,3,7,6) (0,3,7,4)</span>
-<span class="sd">            (4,5,6,7)</span>
+<span class="sd">            (0, 1, 2, 3)</span>
+<span class="sd">            (0, 1, 5, 4) (1, 2, 6, 5) (2, 3, 7, 6) (0, 3, 7, 4)</span>
+<span class="sd">            (4, 5, 6, 7)</span>
 
 <span class="sd">        octahedron, octahedron_faces</span>
 <span class="sd">        ----------------------------</span>
@@ -368,8 +373,8 @@
 
 <span class="sd">            8 faces:</span>
 
-<span class="sd">            (0,1,2) (0,2,3) (0,3,4) (0,1,4)</span>
-<span class="sd">            (1,2,5) (2,3,5) (3,4,5) (1,4,5)</span>
+<span class="sd">            (0, 1, 2) (0, 2, 3) (0, 3, 4) (0, 1, 4)</span>
+<span class="sd">            (1, 2, 5) (2, 3, 5) (3, 4, 5) (1, 4, 5)</span>
 
 <span class="sd">        dodecahedron, dodecahedron_faces</span>
 <span class="sd">        --------------------------------</span>
@@ -383,11 +388,10 @@
 
 <span class="sd">            12 faces:</span>
 
-<span class="sd">            (0,1,2,3,4)</span>
-<span class="sd">            (0,1,6,10,5) (1,2,7,11,6) (2,3,8,12,7) (3,4,9,13,8) (0,4,9,14,5)</span>
-<span class="sd">            (5,10,16,15,14) (</span>
-<span class="sd">                6,10,16,17,11) (7,11,17,18,12) (8,12,18,19,13) (9,13,19,15,14)</span>
-<span class="sd">            (15,16,17,18,19)</span>
+<span class="sd">            (0, 1, 2, 3, 4) (0, 1, 6, 10, 5) (1, 2, 7, 11, 6)</span>
+<span class="sd">            (2, 3, 8, 12, 7) (3, 4, 9, 13, 8) (0, 4, 9, 14, 5)</span>
+<span class="sd">            (5, 10, 16, 15, 14) (6, 10, 16, 17, 11) (7, 11, 17, 18, 12)</span>
+<span class="sd">            (8, 12, 18, 19, 13) (9, 13, 19, 15, 14)(15, 16, 17, 18, 19)</span>
 
 <span class="sd">        icosahedron, icosahedron_faces</span>
 <span class="sd">        ------------------------------</span>
@@ -401,10 +405,13 @@
 
 <span class="sd">            20 faces:</span>
 
-<span class="sd">            (0,1,2) (0,2,3) (0,3,4) (0,4,5) (0,1,5)</span>
-<span class="sd">            (1,2,6) (2,3,7) (3,4,8) (4,5,9) (1,5,10)</span>
-<span class="sd">            (2,6,7) (3,7,8) (4,8,9) (5,9,10) (1,6,10)</span>
-<span class="sd">            (6,7,11,) (7,8,11) (8,9,11) (9,10,11) (6,10,11)</span>
+<span class="sd">            (0, 1, 2) (0, 2, 3) (0, 3, 4)</span>
+<span class="sd">            (0, 4, 5) (0, 1, 5) (1, 2, 6)</span>
+<span class="sd">            (2, 3, 7) (3, 4, 8) (4, 5, 9)</span>
+<span class="sd">            (1, 5, 10) (2, 6, 7) (3, 7, 8)</span>
+<span class="sd">            (4, 8, 9) (5, 9, 10) (1, 6, 10)</span>
+<span class="sd">            (6, 7, 11) (7, 8, 11) (8, 9, 11)</span>
+<span class="sd">            (9, 10, 11) (6, 10, 11)</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.polyhedron import cube</span>
 <span class="sd">        &gt;&gt;&gt; cube.edges</span>
@@ -428,7 +435,7 @@
             <span class="p">[</span><span class="n">Tuple</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">(</span><span class="n">corners</span><span class="p">,</span> <span class="n">faces</span><span class="p">,</span> <span class="n">pgroup</span><span class="p">)]</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">Basic</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
         <span class="n">obj</span><span class="o">.</span><span class="n">_corners</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">corners</span><span class="p">)</span>  <span class="c1"># in order given</span>
-        <span class="n">obj</span><span class="o">.</span><span class="n">_faces</span> <span class="o">=</span> <span class="n">FiniteSet</span><span class="p">(</span><span class="n">faces</span><span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">_faces</span> <span class="o">=</span> <span class="n">FiniteSet</span><span class="p">(</span><span class="o">*</span><span class="n">faces</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">pgroup</span> <span class="ow">and</span> <span class="n">pgroup</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">corners</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Permutation size unequal to number of corners.&quot;</span><span class="p">)</span>
         <span class="c1"># use the identity permutation if none are given</span>
@@ -585,7 +592,7 @@
 <span class="sd">        A non-physical &quot;rotation&quot; that is not prohibited by this method:</span>
 
 <span class="sd">        &gt;&gt;&gt; cube.reset()</span>
-<span class="sd">        &gt;&gt;&gt; cube.rotate(Permutation([[1,2]], size=8))</span>
+<span class="sd">        &gt;&gt;&gt; cube.rotate(Permutation([[1, 2]], size=8))</span>
 <span class="sd">        &gt;&gt;&gt; cube.corners</span>
 <span class="sd">        (0, 2, 1, 3, 4, 5, 6, 7)</span>
 
@@ -680,9 +687,9 @@
 <span class="sd">    ... tetrahedron, cube, octahedron, dodecahedron, icosahedron)</span>
 <span class="sd">    ...</span>
 <span class="sd">    &gt;&gt;&gt; polyhedra = (tetrahedron, cube, octahedron, dodecahedron, icosahedron)</span>
-<span class="sd">    &gt;&gt;&gt; [h.pgroup.is_group() for h in polyhedra]</span>
+<span class="sd">    &gt;&gt;&gt; [h.pgroup.is_group for h in polyhedra]</span>
 <span class="sd">    ...</span>
-<span class="sd">    [False, False, False, False, False]</span>
+<span class="sd">    [True, True, True, True, True]</span>
 
 <span class="sd">    Although tests in polyhedron&#39;s test suite check that powers of the</span>
 <span class="sd">    permutations in the groups generate all permutations of the vertices</span>
@@ -699,7 +706,7 @@
 <span class="sd">    ...             perms.add(p)</span>
 <span class="sd">    ...</span>
 <span class="sd">    ...     perms = [Permutation(p) for p in perms]</span>
-<span class="sd">    ...     assert PermutationGroup(perms).is_group()</span>
+<span class="sd">    ...     assert PermutationGroup(perms).is_group</span>
 
 <span class="sd">    In addition to doing the above, the tests in the suite confirm that the</span>
 <span class="sd">    faces are all present after the application of each permutation.</span>
@@ -848,8 +855,8 @@
 
     <span class="n">icosahedron_faces</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span> <span class="p">],</span>
-        <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span> <span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span> <span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span> <span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
         <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">]]</span>
 
     <span class="n">icosahedron</span> <span class="o">=</span> <span class="n">Polyhedron</span><span class="p">(</span>

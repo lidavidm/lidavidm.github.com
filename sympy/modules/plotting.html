@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plotting Module &mdash; SymPy 0.7.3 documentation</title>
+    <title>Plotting Module &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../index.html" />
     <link rel="up" title="SymPy Modules Reference" href="index.html" />
     <link rel="next" title="Assumptions module" href="assumptions/index.html" />
     <link rel="prev" title="Printing System" href="printing.html" />
@@ -147,14 +147,49 @@ Parametric3DLineSeries support the following:</p>
 </ul>
 <dl class="method">
 <dt id="sympy.plotting.plot.Plot.append">
-<code class="descname">append</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/plotting/plot.html#Plot.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.plotting.plot.Plot.append" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds one more graph to the figure.</p>
+<code class="descname">append</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/plotting/plot.html#Plot.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.plotting.plot.Plot.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an element from a plot&#8217;s series to an existing plot.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.plotting.plot.Plot.extend" title="sympy.plotting.plot.Plot.extend"><code class="xref py py-obj docutils literal"><span class="pre">extend</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<p>Consider two <code class="docutils literal"><span class="pre">Plot</span></code> objects, <code class="docutils literal"><span class="pre">p1</span></code> and <code class="docutils literal"><span class="pre">p2</span></code>. To add the
+second plot&#8217;s first series object to the first, use the
+<code class="docutils literal"><span class="pre">append</span></code> method, like so:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">symbols</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="k">import</span> <span class="n">plot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span>
+<span class="go">Plot object containing:</span>
+<span class="go">[0]: cartesian line: x**2 for x over (-10.0, 10.0)</span>
+<span class="go">[1]: cartesian line: x for x over (-10.0, 10.0)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="sympy.plotting.plot.Plot.extend">
 <code class="descname">extend</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/plotting/plot.html#Plot.extend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.plotting.plot.Plot.extend" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds the series from another plot or a list of series.</p>
+<dd><p>Adds all series from another plot.</p>
+<p class="rubric">Examples</p>
+<p>Consider two <code class="docutils literal"><span class="pre">Plot</span></code> objects, <code class="docutils literal"><span class="pre">p1</span></code> and <code class="docutils literal"><span class="pre">p2</span></code>. To add the
+second plot to the first, use the <code class="docutils literal"><span class="pre">extend</span></code> method, like so:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">symbols</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="k">import</span> <span class="n">plot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span>
+<span class="go">Plot object containing:</span>
+<span class="go">[0]: cartesian line: x**2 for x over (-10.0, 10.0)</span>
+<span class="go">[1]: cartesian line: x for x over (-10.0, 10.0)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -165,7 +200,9 @@ Parametric3DLineSeries support the following:</p>
 <dl class="function">
 <dt id="sympy.plotting.plot.plot">
 <code class="descclassname">sympy.plotting.plot.</code><code class="descname">plot</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/plotting/plot.html#plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.plotting.plot.plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plots a function of a single variable.</p>
+<dd><p>Plots a function of a single variable and returns an instance of
+the <code class="docutils literal"><span class="pre">Plot</span></code> class (also, see the description of the
+<code class="docutils literal"><span class="pre">show</span></code> keyword argument below).</p>
 <p>The plotting uses an adaptive algorithm which samples recursively to
 accurately plot the plot. The adaptive algorithm uses a random point near
 the midpoint of two points that has to be further sampled. Hence the same
@@ -223,6 +260,12 @@ detection algorithm is implemented.</p>
 <p><code class="docutils literal"><span class="pre">expr</span></code> : Expression representing the function of single variable</p>
 <p><code class="docutils literal"><span class="pre">range</span></code>: (x, 0, 5), A 3-tuple denoting the range of the free variable.</p>
 <p class="rubric">Keyword Arguments</p>
+<p>Arguments for <code class="docutils literal"><span class="pre">plot</span></code> function:</p>
+<p><code class="docutils literal"><span class="pre">show</span></code>: Boolean. The default value is set to <code class="docutils literal"><span class="pre">True</span></code>. Set show to
+<code class="docutils literal"><span class="pre">False</span></code> and the function will not display the plot. The returned
+instance of the <code class="docutils literal"><span class="pre">Plot</span></code> class can then be used to save or display
+the plot by calling the <code class="docutils literal"><span class="pre">save()</span></code> and <code class="docutils literal"><span class="pre">show()</span></code> methods
+respectively.</p>
 <p>Arguments for <code class="docutils literal"><span class="pre">LineOver1DRangeSeries</span></code> class:</p>
 <p><code class="docutils literal"><span class="pre">adaptive</span></code>: Boolean. The default value is set to True. Set adaptive to False and
 specify <code class="docutils literal"><span class="pre">nb_of_points</span></code> if uniform sampling is required.</p>
@@ -239,14 +282,14 @@ the <code class="docutils literal"><span class="pre">Plot</span></code> object r
 <p>Arguments for <code class="docutils literal"><span class="pre">Plot</span></code> class:</p>
 <p><code class="docutils literal"><span class="pre">title</span></code> : str. Title of the plot. It is set to the latex representation of
 the expression, if the plot has only one expression.</p>
-<p><code class="docutils literal"><span class="pre">xlabel</span></code> : str. Label for the x - axis.</p>
-<p><code class="docutils literal"><span class="pre">ylabel</span></code> : str. Label for the y - axis.</p>
-<p><code class="docutils literal"><span class="pre">xscale</span></code>: {&#8216;linear&#8217;, &#8216;log&#8217;} Sets the scaling of the x - axis.</p>
-<p><code class="docutils literal"><span class="pre">yscale</span></code>: {&#8216;linear&#8217;, &#8216;log&#8217;} Sets the scaling if the y - axis.</p>
+<p><code class="docutils literal"><span class="pre">xlabel</span></code> : str. Label for the x-axis.</p>
+<p><code class="docutils literal"><span class="pre">ylabel</span></code> : str. Label for the y-axis.</p>
+<p><code class="docutils literal"><span class="pre">xscale</span></code>: {&#8216;linear&#8217;, &#8216;log&#8217;} Sets the scaling of the x-axis.</p>
+<p><code class="docutils literal"><span class="pre">yscale</span></code>: {&#8216;linear&#8217;, &#8216;log&#8217;} Sets the scaling if the y-axis.</p>
 <p><code class="docutils literal"><span class="pre">axis_center</span></code>: tuple of two floats denoting the coordinates of the center or
 {&#8216;center&#8217;, &#8216;auto&#8217;}</p>
-<p><code class="docutils literal"><span class="pre">xlim</span></code> : tuple of two floats, denoting the x - axis limits.</p>
-<p><code class="docutils literal"><span class="pre">ylim</span></code> : tuple of two floats, denoting the y - axis limits.</p>
+<p><code class="docutils literal"><span class="pre">xlim</span></code> : tuple of two floats, denoting the x-axis limits.</p>
+<p><code class="docutils literal"><span class="pre">ylim</span></code> : tuple of two floats, denoting the y-axis limits.</p>
 </dd></dl>
 
 <dl class="function">
@@ -320,14 +363,14 @@ plot. See <code class="docutils literal"><span class="pre">sympy.plotting.Plot</
 all the plots. If you want to set these options separately, you can index
 the returned <code class="docutils literal"><span class="pre">Plot</span></code> object and set it.</p>
 <p>Arguments for <code class="docutils literal"><span class="pre">Plot</span></code> class:</p>
-<p><code class="docutils literal"><span class="pre">xlabel</span></code> : str. Label for the x - axis.</p>
-<p><code class="docutils literal"><span class="pre">ylabel</span></code> : str. Label for the y - axis.</p>
-<p><code class="docutils literal"><span class="pre">xscale</span></code>: {&#8216;linear&#8217;, &#8216;log&#8217;} Sets the scaling of the x - axis.</p>
-<p><code class="docutils literal"><span class="pre">yscale</span></code>: {&#8216;linear&#8217;, &#8216;log&#8217;} Sets the scaling if the y - axis.</p>
+<p><code class="docutils literal"><span class="pre">xlabel</span></code> : str. Label for the x-axis.</p>
+<p><code class="docutils literal"><span class="pre">ylabel</span></code> : str. Label for the y-axis.</p>
+<p><code class="docutils literal"><span class="pre">xscale</span></code>: {&#8216;linear&#8217;, &#8216;log&#8217;} Sets the scaling of the x-axis.</p>
+<p><code class="docutils literal"><span class="pre">yscale</span></code>: {&#8216;linear&#8217;, &#8216;log&#8217;} Sets the scaling if the y-axis.</p>
 <p><code class="docutils literal"><span class="pre">axis_center</span></code>: tuple of two floats denoting the coordinates of the center
 or {&#8216;center&#8217;, &#8216;auto&#8217;}</p>
-<p><code class="docutils literal"><span class="pre">xlim</span></code> : tuple of two floats, denoting the x - axis limits.</p>
-<p><code class="docutils literal"><span class="pre">ylim</span></code> : tuple of two floats, denoting the y - axis limits.</p>
+<p><code class="docutils literal"><span class="pre">xlim</span></code> : tuple of two floats, denoting the x-axis limits.</p>
+<p><code class="docutils literal"><span class="pre">ylim</span></code> : tuple of two floats, denoting the y-axis limits.</p>
 </dd></dl>
 
 <dl class="function">
@@ -514,50 +557,9 @@ the returned <code class="docutils literal"><span class="pre">Plot</span></code>
 
 <dl class="function">
 <dt id="sympy.plotting.plot_implicit.plot_implicit">
-<code class="descclassname">sympy.plotting.plot_implicit.</code><code class="descname">plot_implicit</code><span class="sig-paren">(</span><em>expr</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/plotting/plot_implicit.html#plot_implicit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.plotting.plot_implicit.plot_implicit" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">sympy.plotting.plot_implicit.</code><code class="descname">plot_implicit</code><span class="sig-paren">(</span><em>expr</em>, <em>x_var=None</em>, <em>y_var=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/plotting/plot_implicit.html#plot_implicit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.plotting.plot_implicit.plot_implicit" title="Permalink to this definition">¶</a></dt>
 <dd><p>A plot function to plot implicit equations / inequalities.</p>
-<p class="rubric">Arguments</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">expr</span></code> : The equation / inequality that is to be plotted.</li>
-<li><code class="docutils literal"><span class="pre">(x,</span> <span class="pre">xmin,</span> <span class="pre">xmax)</span></code> optional, 3-tuple denoting the range of symbol
-<code class="docutils literal"><span class="pre">x</span></code></li>
-<li><code class="docutils literal"><span class="pre">(y,</span> <span class="pre">ymin,</span> <span class="pre">ymax)</span></code> optional, 3-tuple denoting the range of symbol
-<code class="docutils literal"><span class="pre">y</span></code></li>
-</ul>
-<p>The following arguments can be passed as named parameters.</p>
-<ul>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">adaptive</span></code>. Boolean. The default value is set to True. It has to be</dt>
-<dd><p class="first last">set to False if you want to use a mesh grid.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">depth</span></code> integer. The depth of recursion for adaptive mesh grid.</dt>
-<dd><p class="first last">Default value is 0. Takes value in the range (0, 4).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">points</span></code> integer. The number of points if adaptive mesh grid is not</dt>
-<dd><p class="first last">used. Default value is 200.</p>
-</dd>
-</dl>
-</li>
-<li><p class="first"><code class="docutils literal"><span class="pre">title</span></code> string .The title for the plot.</p>
-</li>
-<li><p class="first"><code class="docutils literal"><span class="pre">xlabel</span></code> string. The label for the x - axis</p>
-</li>
-<li><p class="first"><code class="docutils literal"><span class="pre">ylabel</span></code> string. The label for the y - axis</p>
-</li>
-</ul>
-<p>plot_implicit, by default, uses interval arithmetic to plot functions. If
-the expression cannot be plotted using interval arithmetic, it defaults to
-a generating a contour using a mesh grid of fixed number of points. By
-setting adaptive to False, you can force plot_implicit to use the mesh
-grid. The mesh grid method can be effective when adaptive plotting using
-interval arithmetic, fails to plot with small line width.</p>
-<p class="rubric">Examples:</p>
+<p class="rubric">Examples</p>
 <p>Plot expressions:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">plot_implicit</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">Eq</span><span class="p">,</span> <span class="n">And</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x y&#39;</span><span class="p">)</span>
@@ -596,6 +598,64 @@ interval arithmetic, fails to plot with small line width.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p7</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span><span class="n">And</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="o">-</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
+<p>When plotting an expression with a single variable (y - 1, for example),
+specify the x or the y variable explicitly:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p8</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y_var</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p9</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x_var</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">expr</span></code> : The equation / inequality that is to be plotted.</li>
+<li><code class="docutils literal"><span class="pre">x_var</span></code> (optional) : symbol to plot on x-axis or tuple giving symbol
+and range as <code class="docutils literal"><span class="pre">(symbol,</span> <span class="pre">xmin,</span> <span class="pre">xmax)</span></code></li>
+<li><code class="docutils literal"><span class="pre">y_var</span></code> (optional) : symbol to plot on y-axis or tuple giving symbol
+and range as <code class="docutils literal"><span class="pre">(symbol,</span> <span class="pre">ymin,</span> <span class="pre">ymax)</span></code></li>
+</ul>
+<p>If neither <code class="docutils literal"><span class="pre">x_var</span></code> nor <code class="docutils literal"><span class="pre">y_var</span></code> are given then the free symbols in the
+expression will be assigned in the order they are sorted.</p>
+<p>The following keyword arguments can also be used:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">adaptive</span></code>. Boolean. The default value is set to True. It has to be</dt>
+<dd><p class="first last">set to False if you want to use a mesh grid.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">depth</span></code> integer. The depth of recursion for adaptive mesh grid.</dt>
+<dd><p class="first last">Default value is 0. Takes value in the range (0, 4).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">points</span></code> integer. The number of points if adaptive mesh grid is not</dt>
+<dd><p class="first last">used. Default value is 200.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">title</span></code> string .The title for the plot.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">xlabel</span></code> string. The label for the x-axis</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">ylabel</span></code> string. The label for the y-axis</p>
+</li>
+</ul>
+<p>Aesthetics options:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">line_color</span></code>: float or string. Specifies the color for the plot.</dt>
+<dd><p class="first last">See <code class="docutils literal"><span class="pre">Plot</span></code> to see how to set color for the plots.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>plot_implicit, by default, uses interval arithmetic to plot functions. If
+the expression cannot be plotted using interval arithmetic, it defaults to
+a generating a contour using a mesh grid of fixed number of points. By
+setting adaptive to False, you can force plot_implicit to use the mesh
+grid. The mesh grid method can be effective when adaptive plotting using
+interval arithmetic, fails to plot with small line width.</p>
 </dd></dl>
 
 </div>
@@ -630,7 +690,7 @@ TextBackend does not use the get_points method).</p>
 <dl class="class">
 <dt id="sympy.plotting.plot.LineOver1DRangeSeries">
 <em class="property">class </em><code class="descclassname">sympy.plotting.plot.</code><code class="descname">LineOver1DRangeSeries</code><span class="sig-paren">(</span><em>expr</em>, <em>var_start_end</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/plotting/plot.html#LineOver1DRangeSeries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.plotting.plot.LineOver1DRangeSeries" title="Permalink to this definition">¶</a></dt>
-<dd><p>Representation for a line consisting of a sympy expression over a range.</p>
+<dd><p>Representation for a line consisting of a SymPy expression over a range.</p>
 <dl class="method">
 <dt id="sympy.plotting.plot.LineOver1DRangeSeries.get_segments">
 <code class="descname">get_segments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/plotting/plot.html#LineOver1DRangeSeries.get_segments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.plotting.plot.LineOver1DRangeSeries.get_segments" title="Permalink to this definition">¶</a></dt>
@@ -704,7 +764,7 @@ expressions and a range.</p>
 
 <dl class="class">
 <dt id="sympy.plotting.plot_implicit.ImplicitSeries">
-<em class="property">class </em><code class="descclassname">sympy.plotting.plot_implicit.</code><code class="descname">ImplicitSeries</code><span class="sig-paren">(</span><em>expr</em>, <em>var_start_end_x</em>, <em>var_start_end_y</em>, <em>has_equality</em>, <em>use_interval_math</em>, <em>depth</em>, <em>nb_of_points</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/plotting/plot_implicit.html#ImplicitSeries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.plotting.plot_implicit.ImplicitSeries" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sympy.plotting.plot_implicit.</code><code class="descname">ImplicitSeries</code><span class="sig-paren">(</span><em>expr</em>, <em>var_start_end_x</em>, <em>var_start_end_y</em>, <em>has_equality</em>, <em>use_interval_math</em>, <em>depth</em>, <em>nb_of_points</em>, <em>line_color</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/plotting/plot_implicit.html#ImplicitSeries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.plotting.plot_implicit.ImplicitSeries" title="Permalink to this definition">¶</a></dt>
 <dd><p>Representation for Implicit plot</p>
 </dd></dl>
 

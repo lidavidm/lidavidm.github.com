@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.polys.domains.gmpyfinitefield &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.polys.domains.gmpyfinitefield &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../../index.html" />
     <link rel="up" title="Module code" href="../../../index.html" />
    
   
@@ -50,15 +50,21 @@
   <h1>Source code for sympy.polys.domains.gmpyfinitefield</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Implementation of :class:`GMPYFiniteField` class. &quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
 <span class="kn">from</span> <span class="nn">sympy.polys.domains.finitefield</span> <span class="kn">import</span> <span class="n">FiniteField</span>
 <span class="kn">from</span> <span class="nn">sympy.polys.domains.gmpyintegerring</span> <span class="kn">import</span> <span class="n">GMPYIntegerRing</span>
 
+<span class="kn">from</span> <span class="nn">sympy.utilities</span> <span class="kn">import</span> <span class="n">public</span>
 
+<span class="nd">@public</span>
 <div class="viewcode-block" id="GMPYFiniteField"><a class="viewcode-back" href="../../../../modules/polys/internals.html#sympy.polys.domains.GMPYFiniteField">[docs]</a><span class="k">class</span> <span class="nc">GMPYFiniteField</span><span class="p">(</span><span class="n">FiniteField</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Finite field based on Python&#39;s integers. &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Finite field based on GMPY integers. &quot;&quot;&quot;</span>
 
-    <span class="n">dom</span> <span class="o">=</span> <span class="n">GMPYIntegerRing</span><span class="p">()</span>
-    <span class="n">alias</span> <span class="o">=</span> <span class="s1">&#39;FF_gmpy&#39;</span></div>
+    <span class="n">alias</span> <span class="o">=</span> <span class="s1">&#39;FF_gmpy&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod</span><span class="p">,</span> <span class="n">symmetric</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">GMPYFiniteField</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">GMPYIntegerRing</span><span class="p">(),</span> <span class="n">symmetric</span><span class="p">)</span></div>
 </pre></div>
 
           </div>

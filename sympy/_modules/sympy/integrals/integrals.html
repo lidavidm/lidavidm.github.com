@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.integrals.integrals &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.integrals.integrals &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -48,261 +48,34 @@
           <div class="body" role="main">
             
   <h1>Source code for sympy.integrals.integrals</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">sympy.core.add</span> <span class="kn">import</span> <span class="n">Add</span>
-<span class="kn">from</span> <span class="nn">sympy.core.basic</span> <span class="kn">import</span> <span class="n">Basic</span><span class="p">,</span> <span class="n">C</span>
-<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">is_sequence</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="kn">from</span> <span class="nn">sympy.concrete.expr_with_limits</span> <span class="kn">import</span> <span class="n">AddWithLimits</span>
+<span class="kn">from</span> <span class="nn">sympy.core.add</span> <span class="kn">import</span> <span class="n">Add</span>
+<span class="kn">from</span> <span class="nn">sympy.core.basic</span> <span class="kn">import</span> <span class="n">Basic</span>
+<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">is_sequence</span><span class="p">,</span> <span class="nb">range</span>
 <span class="kn">from</span> <span class="nn">sympy.core.containers</span> <span class="kn">import</span> <span class="n">Tuple</span>
 <span class="kn">from</span> <span class="nn">sympy.core.expr</span> <span class="kn">import</span> <span class="n">Expr</span>
 <span class="kn">from</span> <span class="nn">sympy.core.function</span> <span class="kn">import</span> <span class="n">diff</span>
+<span class="kn">from</span> <span class="nn">sympy.core.mul</span> <span class="kn">import</span> <span class="n">Mul</span>
 <span class="kn">from</span> <span class="nn">sympy.core.numbers</span> <span class="kn">import</span> <span class="n">oo</span>
 <span class="kn">from</span> <span class="nn">sympy.core.relational</span> <span class="kn">import</span> <span class="n">Eq</span>
-<span class="kn">from</span> <span class="nn">sympy.core.sets</span> <span class="kn">import</span> <span class="n">Interval</span>
 <span class="kn">from</span> <span class="nn">sympy.core.singleton</span> <span class="kn">import</span> <span class="n">S</span>
 <span class="kn">from</span> <span class="nn">sympy.core.symbol</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Dummy</span><span class="p">,</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">Wild</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">sympy.core.sympify</span> <span class="kn">import</span> <span class="n">sympify</span>
 <span class="kn">from</span> <span class="nn">sympy.integrals.manualintegrate</span> <span class="kn">import</span> <span class="n">manualintegrate</span>
 <span class="kn">from</span> <span class="nn">sympy.integrals.trigonometry</span> <span class="kn">import</span> <span class="n">trigintegrate</span>
-<span class="kn">from</span> <span class="nn">sympy.integrals.deltafunctions</span> <span class="kn">import</span> <span class="n">deltaintegrate</span>
-<span class="kn">from</span> <span class="nn">sympy.integrals.rationaltools</span> <span class="kn">import</span> <span class="n">ratint</span>
-<span class="kn">from</span> <span class="nn">sympy.integrals.heurisch</span> <span class="kn">import</span> <span class="n">heurisch</span><span class="p">,</span> <span class="n">heurisch_wrapper</span>
 <span class="kn">from</span> <span class="nn">sympy.integrals.meijerint</span> <span class="kn">import</span> <span class="n">meijerint_definite</span><span class="p">,</span> <span class="n">meijerint_indefinite</span>
-<span class="kn">from</span> <span class="nn">sympy.utilities</span> <span class="kn">import</span> <span class="n">xthreaded</span><span class="p">,</span> <span class="n">flatten</span>
+<span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="kn">import</span> <span class="n">MatrixBase</span>
 <span class="kn">from</span> <span class="nn">sympy.utilities.misc</span> <span class="kn">import</span> <span class="n">filldedent</span>
 <span class="kn">from</span> <span class="nn">sympy.polys</span> <span class="kn">import</span> <span class="n">Poly</span><span class="p">,</span> <span class="n">PolynomialError</span>
-<span class="kn">from</span> <span class="nn">sympy.solvers.solvers</span> <span class="kn">import</span> <span class="n">solve</span><span class="p">,</span> <span class="n">posify</span>
 <span class="kn">from</span> <span class="nn">sympy.functions</span> <span class="kn">import</span> <span class="n">Piecewise</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">sign</span>
-<span class="kn">from</span> <span class="nn">sympy.geometry</span> <span class="kn">import</span> <span class="n">Curve</span>
-<span class="kn">from</span> <span class="nn">sympy.functions.elementary.piecewise</span> <span class="kn">import</span> <span class="n">piecewise_fold</span>
+<span class="kn">from</span> <span class="nn">sympy.functions.elementary.exponential</span> <span class="kn">import</span> <span class="n">log</span>
 <span class="kn">from</span> <span class="nn">sympy.series</span> <span class="kn">import</span> <span class="n">limit</span>
+<span class="kn">from</span> <span class="nn">sympy.series.order</span> <span class="kn">import</span> <span class="n">Order</span>
 
 
-<span class="c1"># TODO get these helper functions into a super class for sum-like</span>
-<span class="c1"># objects: Sum, Product, Integral (issue 3662)</span>
-
-<span class="k">def</span> <span class="nf">_free_symbols</span><span class="p">(</span><span class="n">expr_with_limits</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This method returns the symbols that will exist when the object is</span>
-<span class="sd">    evaluated. This is useful if one is trying to determine whether the</span>
-<span class="sd">    objet contains a certain symbol or not.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    ========</span>
-
-<span class="sd">    &gt;&gt;&gt; from sympy import Sum</span>
-<span class="sd">    &gt;&gt;&gt; from sympy.abc import x, y</span>
-<span class="sd">    &gt;&gt;&gt; Sum(x, (x, y, 1)).free_symbols</span>
-<span class="sd">    set([y])</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span> <span class="o">=</span> <span class="n">expr_with_limits</span>
-    <span class="n">function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span>
-    <span class="k">if</span> <span class="n">function</span><span class="o">.</span><span class="n">is_zero</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">set</span><span class="p">()</span>
-    <span class="n">limits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span>
-    <span class="n">isyms</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">free_symbols</span>
-    <span class="k">for</span> <span class="n">xab</span> <span class="ow">in</span> <span class="n">limits</span><span class="p">:</span>
-        <span class="c1"># take out the target symbol</span>
-        <span class="k">if</span> <span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">isyms</span><span class="p">:</span>
-            <span class="n">isyms</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="c1"># add in the new symbols</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xab</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-            <span class="n">isyms</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">free_symbols</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">isyms</span>
-
-
-<span class="k">def</span> <span class="nf">_process_limits</span><span class="p">(</span><span class="o">*</span><span class="n">symbols</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Process the list of symbols and convert them to canonical limits,</span>
-<span class="sd">    storing them as Tuple(symbol, lower, upper). The sign of</span>
-<span class="sd">    the function is also returned when the upper limit is missing</span>
-<span class="sd">    so (x, 1, None) becomes (x, None, 1) and the sign is changed.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">limits</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">sign</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">V</span> <span class="ow">in</span> <span class="n">symbols</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">Symbol</span><span class="p">):</span>
-            <span class="n">limits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Tuple</span><span class="p">(</span><span class="n">V</span><span class="p">))</span>
-            <span class="k">continue</span>
-        <span class="k">elif</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">):</span>
-            <span class="n">V</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">flatten</span><span class="p">(</span><span class="n">V</span><span class="p">))</span>
-            <span class="k">if</span> <span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">is_Symbol</span><span class="p">:</span>
-                <span class="n">newsymbol</span> <span class="o">=</span> <span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Interval</span><span class="p">):</span>
-                    <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="p">[</span><span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">end</span><span class="p">]</span>
-
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">V</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-                        <span class="n">nlim</span> <span class="o">=</span> <span class="p">[</span><span class="n">V</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
-                    <span class="k">elif</span> <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">V</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-                        <span class="n">sign</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
-                        <span class="n">nlim</span> <span class="o">=</span> <span class="p">[</span><span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
-                    <span class="k">elif</span> <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">V</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-                        <span class="n">nlim</span> <span class="o">=</span> <span class="p">[]</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">nlim</span> <span class="o">=</span> <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-                    <span class="n">limits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Tuple</span><span class="p">(</span><span class="n">newsymbol</span><span class="p">,</span> <span class="o">*</span><span class="n">nlim</span> <span class="p">))</span>
-                    <span class="k">continue</span>
-                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
-                    <span class="n">limits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Tuple</span><span class="p">(</span><span class="n">newsymbol</span><span class="p">))</span>
-                    <span class="k">continue</span>
-                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">V</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-                    <span class="n">limits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Tuple</span><span class="p">(</span><span class="n">newsymbol</span><span class="p">,</span> <span class="n">V</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-                    <span class="k">continue</span>
-
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid limits given: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">symbols</span><span class="p">))</span>
-
-    <span class="k">return</span> <span class="n">limits</span><span class="p">,</span> <span class="n">sign</span>
-
-
-<span class="k">def</span> <span class="nf">_as_dummy</span><span class="p">(</span><span class="n">expr_with_limits</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Replace instances of the limit variables with their dummy</span>
-<span class="sd">    counterparts to make clear what are dummy variables and what</span>
-<span class="sd">    are real-world symbols in an object.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    ========</span>
-
-<span class="sd">    &gt;&gt;&gt; from sympy import Integral</span>
-<span class="sd">    &gt;&gt;&gt; from sympy.abc import x, y</span>
-<span class="sd">    &gt;&gt;&gt; Integral(x, (x, x, y), (y, x, y)).as_dummy()</span>
-<span class="sd">    Integral(_x, (_x, x, _y), (_y, x, y))</span>
-
-<span class="sd">    If the object supperts the &quot;integral at&quot; limit ``(x,)`` it</span>
-<span class="sd">    is not treated as a dummy, but the explicit form, ``(x, x)``</span>
-<span class="sd">    of length 2 does treat the variable as a dummy.</span>
-
-<span class="sd">    &gt;&gt;&gt; Integral(x, x).as_dummy()</span>
-<span class="sd">    Integral(x, x)</span>
-<span class="sd">    &gt;&gt;&gt; Integral(x, (x, x)).as_dummy()</span>
-<span class="sd">    Integral(_x, (_x, x))</span>
-
-<span class="sd">    If there were no dummies in the original expression, then the</span>
-<span class="sd">    the symbols which cannot be changed by subs() are clearly seen as</span>
-<span class="sd">    those with an underscore prefix.</span>
-
-<span class="sd">    See Also</span>
-<span class="sd">    ========</span>
-
-<span class="sd">    variables : Lists the integration variables</span>
-<span class="sd">    transform : Perform mapping on the integration variable</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span> <span class="o">=</span> <span class="n">expr_with_limits</span>
-    <span class="n">reps</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span>
-    <span class="n">limits</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">limits</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">xab</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">limits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">as_dummy</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)):</span>
-            <span class="n">xab</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">xab</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">reps</span><span class="p">)</span>
-        <span class="n">reps</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">limits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">xab</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">reps</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">limits</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">_eval_subs</span><span class="p">(</span><span class="n">expr_with_limits</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Substitute old with new in the function and the limits, but don&#39;t</span>
-<span class="sd">        change anything that is (or corresponds to) a bound symbol,</span>
-
-<span class="sd">        The normal substitution semantics -- traversing all arguments looking</span>
-<span class="sd">        for matching patterns -- should not be applied to the sum-like objects</span>
-<span class="sd">        since changing the limit variables should also entail a change in the</span>
-<span class="sd">        limits (which should be done with the transform method). So</span>
-<span class="sd">        this method just makes changes in the function and the limits.</span>
-
-<span class="sd">        Not all instances of a given variable are conceptually the same: the</span>
-<span class="sd">        first argument of the limit tuple with length greater than 1 and any</span>
-<span class="sd">        corresponding variable in the function are dummy variables while</span>
-<span class="sd">        every other symbol is a symbol that will be unchanged when the integral</span>
-<span class="sd">        is evaluated. For example, the dummy variables for ``i`` can be seen</span>
-<span class="sd">        as symbols with a preppended underscore. (The discussion below applies</span>
-<span class="sd">        ti Integral and any other &quot;function with limits&quot; sort of objects.)</span>
-
-<span class="sd">        &gt;&gt;&gt; from sympy import Integral</span>
-<span class="sd">        &gt;&gt;&gt; from sympy.abc import a, b, c, x, y</span>
-<span class="sd">        &gt;&gt;&gt; i = Integral(a + x, (a, a, b))</span>
-<span class="sd">        &gt;&gt;&gt; i.as_dummy()</span>
-<span class="sd">        Integral(_a + x, (_a, a, b))</span>
-
-<span class="sd">        If you want to change the lower limit to 1 there is no reason to</span>
-<span class="sd">        prohibit this since it is not conceptually related to the integration</span>
-<span class="sd">        variable, ``_a``. Nor is there reason to disallow changing the ``b``</span>
-<span class="sd">        to 1.</span>
-
-<span class="sd">        If a second limit were added, however, as in:</span>
-
-<span class="sd">        &gt;&gt;&gt; i = Integral(x + a, (a, a, b), (b, 1, 2))</span>
-
-<span class="sd">        the dummy variables become:</span>
-
-<span class="sd">        &gt;&gt;&gt; i.as_dummy()</span>
-<span class="sd">        Integral(_a + x, (_a, a, _b), (_b, 1, 2))</span>
-
-<span class="sd">        Note that the ``b`` of the first limit is now a dummy variable since</span>
-<span class="sd">        ``b`` is a dummy variable in the second limit.</span>
-
-<span class="sd">        The &quot;evaluate at&quot; form of an integral allows some flexibility in how</span>
-<span class="sd">        the integral will be treated by subs: if there is no second argument,</span>
-<span class="sd">        none of the symbols matching the integration symbol are considered to</span>
-<span class="sd">        be dummy variables, but if an explicit expression is given for a limit</span>
-<span class="sd">        then the usual interpretation of the integration symbol as a dummy</span>
-<span class="sd">        symbol applies:</span>
-
-<span class="sd">        &gt;&gt;&gt; Integral(x).as_dummy() # implicit integration wrt x</span>
-<span class="sd">        Integral(x, x)</span>
-<span class="sd">        &gt;&gt;&gt; Integral(x, x).as_dummy()</span>
-<span class="sd">        Integral(x, x)</span>
-<span class="sd">        &gt;&gt;&gt; _.subs(x, 1)</span>
-<span class="sd">        Integral(1, x)</span>
-<span class="sd">        &gt;&gt;&gt; i = Integral(x, (x, x))</span>
-<span class="sd">        &gt;&gt;&gt; i.as_dummy()</span>
-<span class="sd">        Integral(_x, (_x, x))</span>
-<span class="sd">        &gt;&gt;&gt; i.subs(x, 1)</span>
-<span class="sd">        Integral(x, (x, 1))</span>
-
-<span class="sd">        Summary</span>
-<span class="sd">        =======</span>
-
-<span class="sd">        No variable of the integrand or limit can be the target of</span>
-<span class="sd">        substitution if it appears as a variable of integration in a limit</span>
-<span class="sd">        positioned to the right of it. The only exception is for a variable</span>
-<span class="sd">        that defines an indefinite integral limit (a single symbol): that</span>
-<span class="sd">        symbol *can* be replaced in the integrand.</span>
-
-<span class="sd">        &gt;&gt;&gt; i = Integral(a + x, (a, a, 3), (b, x, c))</span>
-<span class="sd">        &gt;&gt;&gt; i.free_symbols # only these can be changed</span>
-<span class="sd">        set([a, c, x])</span>
-<span class="sd">        &gt;&gt;&gt; i.subs(a, c) # note that the variable of integration is unchanged</span>
-<span class="sd">        Integral(a + x, (a, c, 3), (b, x, c))</span>
-<span class="sd">        &gt;&gt;&gt; i.subs(a + x, b) == i # there is no x + a, only x + &lt;a&gt;</span>
-<span class="sd">        True</span>
-<span class="sd">        &gt;&gt;&gt; i.subs(x, y - c)</span>
-<span class="sd">        Integral(a - c + y, (a, a, 3), (b, -c + y, c))</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span> <span class="o">=</span> <span class="n">expr_with_limits</span>
-        <span class="n">func</span><span class="p">,</span> <span class="n">limits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span>
-        <span class="n">old_atoms</span> <span class="o">=</span> <span class="n">old</span><span class="o">.</span><span class="n">free_symbols</span>
-        <span class="n">limits</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">limits</span><span class="p">)</span>
-
-        <span class="n">dummies</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">limits</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">xab</span> <span class="o">=</span> <span class="n">limits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="k">continue</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">dummies</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">old_atoms</span><span class="p">):</span>
-                <span class="n">limits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">(</span>
-                    <span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">_subs</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">xab</span><span class="p">[</span><span class="mi">1</span><span class="p">:]])</span>
-            <span class="n">dummies</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">dummies</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">old_atoms</span><span class="p">):</span>
-            <span class="n">func</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">limits</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="Integral"><a class="viewcode-back" href="../../../modules/integrals/integrals.html#sympy.integrals.Integral">[docs]</a><span class="k">class</span> <span class="nc">Integral</span><span class="p">(</span><span class="n">Expr</span><span class="p">):</span>
+<div class="viewcode-block" id="Integral"><a class="viewcode-back" href="../../../modules/integrals/integrals.html#sympy.integrals.Integral">[docs]</a><span class="k">class</span> <span class="nc">Integral</span><span class="p">(</span><span class="n">AddWithLimits</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represents unevaluated integral.&quot;&quot;&quot;</span>
 
     <span class="n">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;is_commutative&#39;</span><span class="p">]</span>
@@ -327,27 +100,16 @@
 <span class="sd">        ``x`` as though it were the variable of integration):</span>
 
 <span class="sd">            (x,) or x - indefinite integral</span>
-<span class="sd">            (x, a) - &quot;evaluate at&quot; integral</span>
+<span class="sd">            (x, a) - &quot;evaluate at&quot; integral is an abstract antiderivative</span>
 <span class="sd">            (x, a, b) - definite integral</span>
-
-<span class="sd">        Although the same integral will be obtained from an indefinite</span>
-<span class="sd">        integral and an &quot;evaluate at&quot; integral when ``a == x``, they</span>
-<span class="sd">        respond differently to substitution:</span>
-
-<span class="sd">        &gt;&gt;&gt; i = Integral(x, x)</span>
-<span class="sd">        &gt;&gt;&gt; at = Integral(x, (x, x))</span>
-<span class="sd">        &gt;&gt;&gt; i.doit() == at.doit()</span>
-<span class="sd">        True</span>
-<span class="sd">        &gt;&gt;&gt; i.subs(x, 1)</span>
-<span class="sd">        Integral(1, x)</span>
-<span class="sd">        &gt;&gt;&gt; at.subs(x, 1)</span>
-<span class="sd">        Integral(x, (x, 1))</span>
 
 <span class="sd">        The ``as_dummy`` method can be used to see which symbols cannot be</span>
 <span class="sd">        targeted by subs: those with a preppended underscore cannot be</span>
 <span class="sd">        changed with ``subs``. (Also, the integration variables themselves --</span>
 <span class="sd">        the first element of a limit -- can never be changed by subs.)</span>
 
+<span class="sd">        &gt;&gt;&gt; i = Integral(x, x)</span>
+<span class="sd">        &gt;&gt;&gt; at = Integral(x, (x, x))</span>
 <span class="sd">        &gt;&gt;&gt; i.as_dummy()</span>
 <span class="sd">        Integral(x, x)</span>
 <span class="sd">        &gt;&gt;&gt; at.as_dummy()</span>
@@ -355,98 +117,16 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># Any embedded piecewise functions need to be brought out to the</span>
-        <span class="c1"># top level so that integration can go into piecewise mode at the</span>
-        <span class="c1"># earliest possible moment.</span>
-        <span class="n">function</span> <span class="o">=</span> <span class="n">piecewise_fold</span><span class="p">(</span><span class="n">sympify</span><span class="p">(</span><span class="n">function</span><span class="p">))</span>
+        <span class="c1">#This will help other classes define their own definitions</span>
+        <span class="c1">#of behaviour with Integral.</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="s1">&#39;_eval_Integral&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">function</span><span class="o">.</span><span class="n">_eval_Integral</span><span class="p">(</span><span class="o">*</span><span class="n">symbols</span><span class="p">,</span> <span class="o">**</span><span class="n">assumptions</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">function</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">NaN</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">NaN</span>
-
-        <span class="k">if</span> <span class="n">symbols</span><span class="p">:</span>
-            <span class="n">limits</span><span class="p">,</span> <span class="n">sign</span> <span class="o">=</span> <span class="n">_process_limits</span><span class="p">(</span><span class="o">*</span><span class="n">symbols</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># no symbols provided -- let&#39;s compute full anti-derivative</span>
-            <span class="n">free</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">free_symbols</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">free</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;specify variables of integration for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">function</span><span class="p">)</span>
-            <span class="n">limits</span><span class="p">,</span> <span class="n">sign</span> <span class="o">=</span> <span class="p">[</span><span class="n">Tuple</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">free</span><span class="p">],</span> <span class="mi">1</span>
-
-        <span class="k">while</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">Integral</span><span class="p">):</span>
-            <span class="c1"># denest the integrand</span>
-            <span class="n">limits</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">function</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span> <span class="o">+</span> <span class="n">limits</span>
-            <span class="n">function</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">function</span>
-
-        <span class="n">obj</span> <span class="o">=</span> <span class="n">Expr</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">assumptions</span><span class="p">)</span>
-        <span class="n">arglist</span> <span class="o">=</span> <span class="p">[</span><span class="n">sign</span><span class="o">*</span><span class="n">function</span><span class="p">]</span>
-        <span class="n">arglist</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">limits</span><span class="p">)</span>
-        <span class="n">obj</span><span class="o">.</span><span class="n">_args</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">arglist</span><span class="p">)</span>
-        <span class="n">obj</span><span class="o">.</span><span class="n">is_commutative</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">is_commutative</span>  <span class="c1"># limits already checked</span>
-
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">AddWithLimits</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="o">*</span><span class="n">symbols</span><span class="p">,</span> <span class="o">**</span><span class="n">assumptions</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj</span>
 
     <span class="k">def</span> <span class="nf">__getnewargs__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">,)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">([</span><span class="nb">tuple</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="k">for</span> <span class="n">xab</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">])</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the function to be integrated.</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        ========</span>
-
-<span class="sd">        &gt;&gt;&gt; from sympy import Integral</span>
-<span class="sd">        &gt;&gt;&gt; from sympy.abc import x</span>
-<span class="sd">        &gt;&gt;&gt; Integral(x**2, (x,)).function</span>
-<span class="sd">        x**2</span>
-
-<span class="sd">        See Also</span>
-<span class="sd">        ========</span>
-
-<span class="sd">        limits, variables, free_symbols</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">limits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the limits of integration.</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        ========</span>
-
-<span class="sd">        &gt;&gt;&gt; from sympy import Integral</span>
-<span class="sd">        &gt;&gt;&gt; from sympy.abc import x, i</span>
-<span class="sd">        &gt;&gt;&gt; Integral(x**i, (i, 1, 3)).limits</span>
-<span class="sd">        ((i, 1, 3),)</span>
-
-<span class="sd">        See Also</span>
-<span class="sd">        ========</span>
-
-<span class="sd">        function, variables, free_symbols</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return a list of the integration variables.</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        ========</span>
-
-<span class="sd">        &gt;&gt;&gt; from sympy import Integral</span>
-<span class="sd">        &gt;&gt;&gt; from sympy.abc import x, i</span>
-<span class="sd">        &gt;&gt;&gt; Integral(x**i, (i, 1, 3)).variables</span>
-<span class="sd">        [i]</span>
-
-<span class="sd">        See Also</span>
-<span class="sd">        ========</span>
-
-<span class="sd">        function, limits, free_symbols</span>
-<span class="sd">        as_dummy : Replace integration variables with dummy ones</span>
-<span class="sd">        transform : Perform mapping on the integration variable</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">free_symbols</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -469,119 +149,44 @@
 
 <span class="sd">        function, limits, variables</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">function</span><span class="p">,</span> <span class="n">limits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span>
-        <span class="k">if</span> <span class="n">function</span><span class="o">.</span><span class="n">is_zero</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="n">isyms</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">free_symbols</span>
-        <span class="k">for</span> <span class="n">xab</span> <span class="ow">in</span> <span class="n">limits</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">AddWithLimits</span><span class="o">.</span><span class="n">free_symbols</span><span class="o">.</span><span class="n">fget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_eval_is_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># This is a very naive and quick test, not intended to do the integral to</span>
+        <span class="c1"># answer whether it is zero or not, e.g. Integral(sin(x), (x, 0, 2*pi))</span>
+        <span class="c1"># is zero but this routine should return None for that case. But, like</span>
+        <span class="c1"># Mul, there are trivial situations for which the integral will be</span>
+        <span class="c1"># zero so we check for those.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">is_zero</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="n">got_none</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">is_zero</span>
+                <span class="k">if</span> <span class="n">z</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">True</span>
+                <span class="k">elif</span> <span class="n">z</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">got_none</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">free</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">free_symbols</span>
+        <span class="k">for</span> <span class="n">xab</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">isyms</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">free</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
                 <span class="k">continue</span>
-            <span class="c1"># take out the target symbol</span>
-            <span class="k">if</span> <span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">isyms</span><span class="p">:</span>
-                <span class="n">isyms</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">xab</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">xab</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
-                <span class="c1"># if two limits are the same the integral is 0</span>
-                <span class="c1"># and there are no symbols</span>
-                <span class="k">return</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">free</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">xab</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">is_zero</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">True</span>
+                <span class="k">elif</span> <span class="n">xab</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">is_zero</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">got_none</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="c1"># take integration symbol out of free since it will be replaced</span>
+            <span class="c1"># with the free symbols in the limits</span>
+            <span class="n">free</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="c1"># add in the new symbols</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xab</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-                <span class="n">isyms</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">free_symbols</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">isyms</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">is_zero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Since Integral doesn&#39;t autosimplify it it useful to see if</span>
-<span class="sd">        it would simplify to zero or not in a trivial manner, i.e. when</span>
-<span class="sd">        the function is 0 or two limits of a definite integral are the same.</span>
-
-<span class="sd">        This is a very naive and quick test, not intended to check for special</span>
-<span class="sd">        patterns like Integral(sin(m*x)*cos(n*x), (x, 0, 2*pi)) == 0.</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        ========</span>
-
-<span class="sd">        &gt;&gt;&gt; from sympy import Integral</span>
-<span class="sd">        &gt;&gt;&gt; from sympy.abc import x, y, z</span>
-<span class="sd">        &gt;&gt;&gt; Integral(1, (x, 1, 1)).is_zero</span>
-<span class="sd">        True</span>
-<span class="sd">        &gt;&gt;&gt; Integral(0, (x, y, z)).is_zero</span>
-<span class="sd">        True</span>
-<span class="sd">        &gt;&gt;&gt; Integral(1, (x, 1, 2)).is_zero</span>
-<span class="sd">        False</span>
-
-<span class="sd">        See Also</span>
-<span class="sd">        ========</span>
-
-<span class="sd">        is_number</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">is_zero</span> <span class="ow">or</span>
-                <span class="nb">any</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">xab</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">xab</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">xab</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)):</span>
-            <span class="k">return</span> <span class="bp">True</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">free_symbols</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">is_number</span><span class="p">:</span>
-            <span class="c1"># the integrand is a number and the limits are numerical</span>
+                <span class="n">free</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">free_symbols</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">is_zero</span> <span class="ow">is</span> <span class="bp">False</span> <span class="ow">and</span> <span class="n">got_none</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">is_number</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return True if the Integral will result in a number, else False.</span>
-
-<span class="sd">        Integrals are a special case since they contain symbols that can</span>
-<span class="sd">        be replaced with numbers. Whether the integral can be done or not is</span>
-<span class="sd">        another issue. But answering whether the final result is a number is</span>
-<span class="sd">        not difficult.</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        ========</span>
-
-<span class="sd">        &gt;&gt;&gt; from sympy import Integral</span>
-<span class="sd">        &gt;&gt;&gt; from sympy.abc import x, y</span>
-<span class="sd">        &gt;&gt;&gt; Integral(x).is_number</span>
-<span class="sd">        False</span>
-<span class="sd">        &gt;&gt;&gt; Integral(x, y).is_number</span>
-<span class="sd">        False</span>
-<span class="sd">        &gt;&gt;&gt; Integral(x, (y, 1, x)).is_number</span>
-<span class="sd">        False</span>
-<span class="sd">        &gt;&gt;&gt; Integral(x, (y, 1, 2)).is_number</span>
-<span class="sd">        False</span>
-<span class="sd">        &gt;&gt;&gt; Integral(x, (y, 1, 1)).is_number</span>
-<span class="sd">        True</span>
-<span class="sd">        &gt;&gt;&gt; Integral(x, (x, 1, 2)).is_number</span>
-<span class="sd">        True</span>
-<span class="sd">        &gt;&gt;&gt; Integral(x*y, (x, 1, 2), (y, 1, 3)).is_number</span>
-<span class="sd">        True</span>
-<span class="sd">        &gt;&gt;&gt; Integral(1, x, (x, 1, 2)).is_number</span>
-<span class="sd">        True</span>
-
-<span class="sd">        See Also</span>
-<span class="sd">        ========</span>
-
-<span class="sd">        is_zero</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">integrand</span><span class="p">,</span> <span class="n">limits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span>
-        <span class="n">isyms</span> <span class="o">=</span> <span class="n">integrand</span><span class="o">.</span><span class="n">atoms</span><span class="p">(</span><span class="n">Symbol</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">xab</span> <span class="ow">in</span> <span class="n">limits</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">isyms</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-                <span class="k">continue</span>  <span class="c1"># it may be removed later</span>
-            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">xab</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">xab</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>  <span class="c1"># XXX naive equality test</span>
-                <span class="k">return</span> <span class="bp">True</span>  <span class="c1"># integral collapsed</span>
-            <span class="k">if</span> <span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">isyms</span><span class="p">:</span>
-                <span class="c1"># take it out of the symbols since it will be replace</span>
-                <span class="c1"># with whatever the limits of the integral are</span>
-                <span class="n">isyms</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="c1"># add in the new symbols</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xab</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-                <span class="n">isyms</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">free_symbols</span><span class="p">)</span>
-        <span class="c1"># if there are no surviving symbols then the result is a number</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">isyms</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
-
-    <span class="k">def</span> <span class="nf">as_dummy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">_as_dummy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-<div class="viewcode-block" id="Integral.transform"><a class="viewcode-back" href="../../../modules/integrals/integrals.html#sympy.integrals.Integral.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Integral.transform"><a class="viewcode-back" href="../../../modules/integrals/integrals.html#sympy.integrals.Integral.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
         <span class="sd">r&quot;&quot;&quot;</span>
 <span class="sd">        Performs a change of variables from `x` to `u` using the relationship</span>
 <span class="sd">        given by `x` and `u` which will define the transformations `f` and `F`</span>
@@ -594,9 +199,6 @@
 <span class="sd">        2) If `u` is a Symbol then `x` will be interpreted as some function,</span>
 <span class="sd">           F(x), with inverse f(u). This is commonly referred to as</span>
 <span class="sd">           u-substitution.</span>
-
-<span class="sd">        The `inverse` option will reverse `x` and `u`. It is a deprecated option</span>
-<span class="sd">        since `x` and `u` can just be passed in reverse order.</span>
 
 <span class="sd">        Once f and F have been identified, the transformation is made as</span>
 <span class="sd">        follows:</span>
@@ -687,21 +289,7 @@
 <span class="sd">        variables : Lists the integration variables</span>
 <span class="sd">        as_dummy : Replace integration variables with dummy ones</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">inverse</span><span class="p">:</span>
-            <span class="c1"># when this is removed, update the docstring</span>
-            <span class="kn">from</span> <span class="nn">sympy.utilities.exceptions</span> <span class="kn">import</span> <span class="n">SymPyDeprecationWarning</span>
-            <span class="n">SymPyDeprecationWarning</span><span class="p">(</span>
-                <span class="n">feature</span><span class="o">=</span><span class="s2">&quot;transform(x, f(x), inverse=True)&quot;</span><span class="p">,</span>
-                <span class="n">useinstead</span><span class="o">=</span><span class="s2">&quot;transform(f(x), x)&quot;</span><span class="p">,</span>
-                <span class="n">issue</span><span class="o">=</span><span class="mi">3380</span><span class="p">,</span> <span class="n">deprecated_since_version</span><span class="o">=</span><span class="s2">&quot;0.7.2&quot;</span><span class="p">,</span>
-            <span class="p">)</span><span class="o">.</span><span class="n">warn</span><span class="p">()</span>
-            <span class="c1"># in the old style x and u contained the same variable so</span>
-            <span class="c1"># don&#39;t worry about using the old-style feature with the</span>
-            <span class="c1"># new style input...but it will still work:</span>
-            <span class="c1"># i.transform(x, u).transform(x, u, inverse=True) -&gt; i</span>
-            <span class="n">x</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="n">u</span><span class="p">,</span> <span class="n">x</span>
-
+        <span class="kn">from</span> <span class="nn">sympy.solvers.solvers</span> <span class="kn">import</span> <span class="n">solve</span><span class="p">,</span> <span class="n">posify</span>
         <span class="n">d</span> <span class="o">=</span> <span class="n">Dummy</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
 
         <span class="n">xfree</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">free_symbols</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span>
@@ -740,7 +328,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;either x or u must be a symbol&#39;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">uvar</span> <span class="o">==</span> <span class="n">xvar</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">uvar</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span><span class="o">.</span><span class="n">xreplace</span><span class="p">({</span><span class="n">d</span><span class="p">:</span> <span class="n">uvar</span><span class="p">})</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">uvar</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">d</span><span class="p">))</span><span class="o">.</span><span class="n">xreplace</span><span class="p">({</span><span class="n">d</span><span class="p">:</span> <span class="n">uvar</span><span class="p">})</span>
 
         <span class="k">if</span> <span class="n">uvar</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">filldedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
@@ -756,7 +344,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">uvar</span><span class="p">,</span> <span class="n">d</span><span class="p">)]</span>
             <span class="n">pdiff</span><span class="p">,</span> <span class="n">reps</span> <span class="o">=</span> <span class="n">posify</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
-            <span class="n">puvar</span> <span class="o">=</span> <span class="n">uvar</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">v</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">reps</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()])</span>
+            <span class="n">puvar</span> <span class="o">=</span> <span class="n">uvar</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">v</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">reps</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
             <span class="n">soln</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">reps</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">solve</span><span class="p">(</span><span class="n">pdiff</span><span class="p">,</span> <span class="n">puvar</span><span class="p">)]</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">soln</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;no solution for solve(F(x) - f(u), u)&#39;</span><span class="p">)</span>
@@ -776,7 +364,7 @@
 <span class="sd">            where sign of b is considered</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="n">wok</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">wok</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">NaN</span> <span class="ow">or</span> <span class="n">wok</span><span class="o">.</span><span class="n">is_bounded</span> <span class="ow">is</span> <span class="bp">False</span> <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">is_bounded</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">wok</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">NaN</span> <span class="ow">or</span> <span class="n">wok</span><span class="o">.</span><span class="n">is_finite</span> <span class="ow">is</span> <span class="bp">False</span> <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">is_finite</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">limit</span><span class="p">(</span><span class="n">sign</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">F</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">wok</span>
 
@@ -799,7 +387,7 @@
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
                     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">xab</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
                     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">_calc_limit</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">_calc_limit</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span>
                         <span class="n">newfunc</span> <span class="o">=</span> <span class="o">-</span><span class="n">newfunc</span>
                     <span class="n">newlimits</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">uvar</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
@@ -823,7 +411,7 @@
 <span class="sd">        &gt;&gt;&gt; from sympy import Integral</span>
 <span class="sd">        &gt;&gt;&gt; from sympy.abc import x, i</span>
 <span class="sd">        &gt;&gt;&gt; Integral(x**i, (i, 1, 3)).doit()</span>
-<span class="sd">        Piecewise((2, log(x) == 0), (x**3/log(x) - x/log(x), True))</span>
+<span class="sd">        Piecewise((2, Eq(log(x), 0)), (x**3/log(x) - x/log(x), True))</span>
 
 <span class="sd">        See Also</span>
 <span class="sd">        ========</span>
@@ -849,7 +437,7 @@
         <span class="k">if</span> <span class="n">risch</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">xab</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;risch=True is only allowed for indefinite integrals.&#39;</span><span class="p">)</span>
 
-        <span class="c1"># check for the trivial case of equal upper and lower limits</span>
+        <span class="c1"># check for the trivial zero</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_zero</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">Zero</span>
 
@@ -857,9 +445,11 @@
         <span class="n">function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span>
         <span class="k">if</span> <span class="n">deep</span><span class="p">:</span>
             <span class="n">function</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">doit</span><span class="p">(</span><span class="o">**</span><span class="n">hints</span><span class="p">)</span>
-
         <span class="k">if</span> <span class="n">function</span><span class="o">.</span><span class="n">is_zero</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">Zero</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">MatrixBase</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">function</span><span class="o">.</span><span class="n">applyfunc</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span><span class="o">.</span><span class="n">doit</span><span class="p">(</span><span class="o">**</span><span class="n">hints</span><span class="p">))</span>
 
         <span class="c1"># There is no trivial answer, so continue</span>
 
@@ -882,9 +472,13 @@
             <span class="k">if</span> <span class="n">xab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">ulj</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">uli</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">undone_limits</span><span class="p">):</span>
                 <span class="n">undone_limits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span>
                 <span class="n">ulj</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">uli</span><span class="p">)</span>
+                <span class="n">function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="p">([</span><span class="n">function</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">xab</span><span class="p">]))</span>
+                <span class="n">factored_function</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">factor</span><span class="p">()</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">factored_function</span><span class="p">,</span> <span class="n">Integral</span><span class="p">):</span>
+                    <span class="n">function</span> <span class="o">=</span> <span class="n">factored_function</span>
                 <span class="k">continue</span>
 
-            <span class="c1"># There are a number of tradeoffs in using the meijer g method.</span>
+            <span class="c1"># There are a number of tradeoffs in using the Meijer G method.</span>
             <span class="c1"># It can sometimes be a lot faster than other methods, and</span>
             <span class="c1"># sometimes slower. And there are certain types of integrals for</span>
             <span class="c1"># which it is more likely to work than others.</span>
@@ -905,7 +499,7 @@
                         <span class="n">f</span><span class="p">,</span> <span class="n">cond</span> <span class="o">=</span> <span class="n">res</span>
                         <span class="k">if</span> <span class="n">conds</span> <span class="o">==</span> <span class="s1">&#39;piecewise&#39;</span><span class="p">:</span>
                             <span class="n">ret</span> <span class="o">=</span> <span class="n">Piecewise</span><span class="p">((</span><span class="n">f</span><span class="p">,</span> <span class="n">cond</span><span class="p">),</span>
-                                          <span class="p">(</span><span class="n">Integral</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)),</span> <span class="bp">True</span><span class="p">))</span>
+                                          <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)),</span> <span class="bp">True</span><span class="p">))</span>
                         <span class="k">elif</span> <span class="n">conds</span> <span class="o">==</span> <span class="s1">&#39;separate&#39;</span><span class="p">:</span>
                             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
                                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;conds=separate not supported in &#39;</span>
@@ -926,12 +520,12 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">meijerg1</span> <span class="o">=</span> <span class="bp">False</span>
 
-            <span class="c1"># If the special meijerg code did not succeed finding a definite</span>
+            <span class="c1"># If the special meijerg code did not succeed in finding a definite</span>
             <span class="c1"># integral, then the code using meijerint_indefinite will not either</span>
             <span class="c1"># (it might find an antiderivative, but the answer is likely to be</span>
             <span class="c1">#  nonsensical).</span>
-            <span class="c1"># Thus if we are requested to only use meijer g-function methods,</span>
-            <span class="c1"># we give up at this stage. Otherwise we just disable g-function</span>
+            <span class="c1"># Thus if we are requested to only use Meijer G-function methods,</span>
+            <span class="c1"># we give up at this stage. Otherwise we just disable G-function</span>
             <span class="c1"># methods.</span>
             <span class="k">if</span> <span class="n">meijerg1</span> <span class="ow">is</span> <span class="bp">False</span> <span class="ow">and</span> <span class="n">meijerg</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
                 <span class="n">antideriv</span> <span class="o">=</span> <span class="bp">None</span>
@@ -948,15 +542,22 @@
 
             <span class="k">if</span> <span class="n">antideriv</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="n">undone_limits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span>
+                <span class="n">function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="p">([</span><span class="n">function</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">xab</span><span class="p">]))</span><span class="o">.</span><span class="n">factor</span><span class="p">()</span>
+                <span class="n">factored_function</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">factor</span><span class="p">()</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">factored_function</span><span class="p">,</span> <span class="n">Integral</span><span class="p">):</span>
+                    <span class="n">function</span> <span class="o">=</span> <span class="n">factored_function</span>
+                <span class="k">continue</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                     <span class="n">function</span> <span class="o">=</span> <span class="n">antideriv</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
                         <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">xab</span>
-                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
                         <span class="n">x</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">xab</span>
                         <span class="n">a</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
                     <span class="k">if</span> <span class="n">deep</span><span class="p">:</span>
                         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Basic</span><span class="p">):</span>
@@ -973,26 +574,43 @@
                         <span class="n">function</span> <span class="o">=</span> <span class="n">antideriv</span><span class="o">.</span><span class="n">_eval_interval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
                         <span class="n">function</span> <span class="o">=</span> <span class="n">Poly</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="o">*</span><span class="n">gens</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
+                        <span class="k">def</span> <span class="nf">is_indef_int</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+                            <span class="k">return</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">Integral</span><span class="p">)</span> <span class="ow">and</span>
+                                    <span class="nb">any</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span><span class="p">,)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">limits</span><span class="p">))</span>
+
+                        <span class="k">def</span> <span class="nf">eval_factored</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+                            <span class="c1"># _eval_interval for integrals with</span>
+                            <span class="c1"># (constant) factors</span>
+                            <span class="c1"># a single indefinite integral is assumed</span>
+                            <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
+                            <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">Mul</span><span class="o">.</span><span class="n">make_args</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+                                <span class="k">if</span> <span class="n">is_indef_int</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+                                    <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">_eval_interval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+                                <span class="k">else</span><span class="p">:</span>
+                                    <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+                            <span class="k">return</span> <span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+                        <span class="n">integrals</span><span class="p">,</span> <span class="n">others</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+                        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">Add</span><span class="o">.</span><span class="n">make_args</span><span class="p">(</span><span class="n">antideriv</span><span class="p">):</span>
+                            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">is_indef_int</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+                                   <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">Mul</span><span class="o">.</span><span class="n">make_args</span><span class="p">(</span><span class="n">f</span><span class="p">)):</span>
+                                <span class="n">integrals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">others</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                        <span class="n">uneval</span> <span class="o">=</span> <span class="n">Add</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">eval_factored</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+                                       <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">integrals</span><span class="p">])</span>
                         <span class="k">try</span><span class="p">:</span>
-                            <span class="n">function</span> <span class="o">=</span> <span class="n">antideriv</span><span class="o">.</span><span class="n">_eval_interval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+                            <span class="n">evalued</span> <span class="o">=</span> <span class="n">Add</span><span class="p">(</span><span class="o">*</span><span class="n">others</span><span class="p">)</span><span class="o">.</span><span class="n">_eval_interval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+                            <span class="n">function</span> <span class="o">=</span> <span class="n">uneval</span> <span class="o">+</span> <span class="n">evalued</span>
                         <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
                             <span class="c1"># This can happen if _eval_interval depends in a</span>
                             <span class="c1"># complicated way on limits that cannot be computed</span>
                             <span class="n">undone_limits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xab</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">undone_limits</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="p">([</span><span class="n">function</span><span class="p">]</span> <span class="o">+</span> <span class="n">undone_limits</span><span class="p">))</span>
+                            <span class="n">function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="p">([</span><span class="n">function</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">xab</span><span class="p">]))</span>
+                            <span class="n">factored_function</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">factor</span><span class="p">()</span>
+                            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">factored_function</span><span class="p">,</span> <span class="n">Integral</span><span class="p">):</span>
+                                <span class="n">function</span> <span class="o">=</span> <span class="n">factored_function</span>
         <span class="k">return</span> <span class="n">function</span></div>
-
-    <span class="k">def</span> <span class="nf">_eval_adjoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">is_real</span><span class="p">,</span> <span class="n">flatten</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">))):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">adjoint</span><span class="p">(),</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">None</span>
-
-    <span class="k">def</span> <span class="nf">_eval_conjugate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">is_real</span><span class="p">,</span> <span class="n">flatten</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">))):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(),</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">None</span>
 
     <span class="k">def</span> <span class="nf">_eval_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sym</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Evaluate the derivative of the current Integral object by</span>
@@ -1022,6 +640,7 @@
 <span class="sd">        0</span>
 
 <span class="sd">        The previous must be true since there is no y in the evaluated integral:</span>
+
 <span class="sd">        &gt;&gt;&gt; i.free_symbols</span>
 <span class="sd">        set([x])</span>
 <span class="sd">        &gt;&gt;&gt; i.doit()</span>
@@ -1030,7 +649,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># differentiate under the integral sign; we do not</span>
-        <span class="c1"># check for regularity conditions (TODO), see issue 1116</span>
+        <span class="c1"># check for regularity conditions (TODO), see issue 4215</span>
 
         <span class="c1"># get limits and the function</span>
         <span class="n">f</span><span class="p">,</span> <span class="n">limits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span>
@@ -1159,10 +778,13 @@
 <span class="sd">             it can be very slow.  It is still used because not enough of the</span>
 <span class="sd">             full Risch algorithm is implemented, so that there are still some</span>
 <span class="sd">             integrals that can only be computed using this method.  The goal</span>
-<span class="sd">             is to implement enough of the Risch and Meijer G methods so that</span>
-<span class="sd">             this can be deleted.</span>
+<span class="sd">             is to implement enough of the Risch and Meijer G-function methods</span>
+<span class="sd">             so that this can be deleted.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">sympy.integrals.deltafunctions</span> <span class="kn">import</span> <span class="n">deltaintegrate</span>
+        <span class="kn">from</span> <span class="nn">sympy.integrals.heurisch</span> <span class="kn">import</span> <span class="n">heurisch</span><span class="p">,</span> <span class="n">heurisch_wrapper</span>
+        <span class="kn">from</span> <span class="nn">sympy.integrals.rationaltools</span> <span class="kn">import</span> <span class="n">ratint</span>
         <span class="kn">from</span> <span class="nn">sympy.integrals.risch</span> <span class="kn">import</span> <span class="n">risch_integrate</span>
 
         <span class="k">if</span> <span class="n">risch</span><span class="p">:</span>
@@ -1199,7 +821,6 @@
 
         <span class="c1"># try to convert to poly(x) and then integrate if successful (fast)</span>
         <span class="n">poly</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">as_poly</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
         <span class="k">if</span> <span class="n">poly</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">meijerg</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">poly</span><span class="o">.</span><span class="n">integrate</span><span class="p">()</span><span class="o">.</span><span class="n">as_expr</span><span class="p">()</span>
 
@@ -1266,11 +887,11 @@
 
                 <span class="k">if</span> <span class="n">M</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">exp</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                        <span class="n">h</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
+                        <span class="n">h</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
                     <span class="k">elif</span> <span class="n">conds</span> <span class="o">!=</span> <span class="s1">&#39;piecewise&#39;</span><span class="p">:</span>
                         <span class="n">h</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">base</span><span class="o">**</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">exp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">exp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">h1</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
+                        <span class="n">h1</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
                         <span class="n">h2</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">base</span><span class="o">**</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">exp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">exp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
                         <span class="n">h</span> <span class="o">=</span> <span class="n">Piecewise</span><span class="p">((</span><span class="n">h1</span><span class="p">,</span> <span class="n">Eq</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">exp</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)),</span> <span class="p">(</span><span class="n">h2</span><span class="p">,</span> <span class="bp">True</span><span class="p">))</span>
 
@@ -1361,7 +982,7 @@
             <span class="c1"># a product that could have been expanded,</span>
             <span class="c1"># so let&#39;s try an expansion of the whole</span>
             <span class="c1"># thing before giving up; we don&#39;t try this</span>
-            <span class="c1"># out the outset because there are things</span>
+            <span class="c1"># at the outset because there are things</span>
             <span class="c1"># that cannot be solved unless they are</span>
             <span class="c1"># NOT expanded e.g., x**x*(1+log(x)). There</span>
             <span class="c1"># should probably be a checker somewhere in this</span>
@@ -1383,22 +1004,26 @@
 
         <span class="k">return</span> <span class="n">Add</span><span class="p">(</span><span class="o">*</span><span class="n">parts</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_eval_lseries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">lseries</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-            <span class="k">yield</span> <span class="n">integrate</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_eval_lseries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">logx</span><span class="p">):</span>
+        <span class="n">expr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_dummy</span><span class="p">()</span>
+        <span class="n">symb</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">expr</span><span class="o">.</span><span class="n">limits</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+                <span class="n">symb</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">break</span>
+        <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">expr</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">lseries</span><span class="p">(</span><span class="n">symb</span><span class="p">,</span> <span class="n">logx</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">integrate</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="o">*</span><span class="n">expr</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_eval_nseries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">logx</span><span class="p">):</span>
-        <span class="n">terms</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">nseries</span><span class="p">(</span>
-            <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">logx</span><span class="o">=</span><span class="n">logx</span><span class="p">)</span><span class="o">.</span><span class="n">as_coeff_add</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">Order</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">integrate</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span> <span class="o">+</span> <span class="n">Add</span><span class="p">(</span><span class="o">*</span><span class="n">order</span><span class="p">)</span><span class="o">*</span><span class="n">x</span>
-
-    <span class="k">def</span> <span class="nf">_eval_subs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">_eval_subs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_eval_transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">is_real</span><span class="p">,</span> <span class="n">flatten</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">))):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">None</span>
+        <span class="n">expr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_dummy</span><span class="p">()</span>
+        <span class="n">symb</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">expr</span><span class="o">.</span><span class="n">limits</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+                <span class="n">symb</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">break</span>
+        <span class="n">terms</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">nseries</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">symb</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">logx</span><span class="o">=</span><span class="n">logx</span><span class="p">)</span><span class="o">.</span><span class="n">as_coeff_add</span><span class="p">(</span><span class="n">Order</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">integrate</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="o">*</span><span class="n">expr</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span> <span class="o">+</span> <span class="n">Add</span><span class="p">(</span><span class="o">*</span><span class="n">order</span><span class="p">)</span><span class="o">*</span><span class="n">x</span>
 
 <div class="viewcode-block" id="Integral.as_sum"><a class="viewcode-back" href="../../../modules/integrals/integrals.html#sympy.integrals.Integral.as_sum">[docs]</a>    <span class="k">def</span> <span class="nf">as_sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;midpoint&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1493,8 +1118,8 @@
         <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">upper_limit</span> <span class="o">-</span> <span class="n">lower_limit</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
 
         <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;trapezoid&#39;</span><span class="p">:</span>
-            <span class="n">l</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">lower_limit</span><span class="p">)</span>
-            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">upper_limit</span><span class="p">)</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">lower_limit</span><span class="p">)</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">upper_limit</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
             <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
                 <span class="n">x</span> <span class="o">=</span> <span class="n">lower_limit</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="n">dx</span>
@@ -1509,13 +1134,42 @@
                 <span class="n">xi</span> <span class="o">=</span> <span class="n">lower_limit</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">dx</span><span class="o">/</span><span class="mi">2</span>
             <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
                 <span class="n">xi</span> <span class="o">=</span> <span class="n">lower_limit</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="n">dx</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">lower_limit</span><span class="p">)</span>
+                    <span class="k">continue</span>
             <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span>
                 <span class="n">xi</span> <span class="o">=</span> <span class="n">lower_limit</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">dx</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">upper_limit</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
+                    <span class="k">continue</span>
             <span class="n">result</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">result</span><span class="o">*</span><span class="n">dx</span></div></div>
+        <span class="k">return</span> <span class="n">result</span><span class="o">*</span><span class="n">dx</span></div>
+
+    <span class="k">def</span> <span class="nf">_sage_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">sage.all</span> <span class="kn">as</span> <span class="nn">sage</span>
+        <span class="n">f</span><span class="p">,</span> <span class="n">limits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">_sage_</span><span class="p">(),</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">limits</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">limit</span> <span class="ow">in</span> <span class="n">limits</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">limit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">f</span> <span class="o">=</span> <span class="n">sage</span><span class="o">.</span><span class="n">integral</span><span class="p">(</span><span class="n">f</span><span class="p">,</span>
+                                    <span class="n">x</span><span class="o">.</span><span class="n">_sage_</span><span class="p">(),</span>
+                                    <span class="n">hold</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">x</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">limit</span>
+                <span class="n">f</span> <span class="o">=</span> <span class="n">sage</span><span class="o">.</span><span class="n">integral</span><span class="p">(</span><span class="n">f</span><span class="p">,</span>
+                                    <span class="n">x</span><span class="o">.</span><span class="n">_sage_</span><span class="p">(),</span>
+                                    <span class="n">b</span><span class="o">.</span><span class="n">_sage_</span><span class="p">(),</span>
+                                    <span class="n">hold</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">limit</span>
+                <span class="n">f</span> <span class="o">=</span> <span class="n">sage</span><span class="o">.</span><span class="n">integral</span><span class="p">(</span><span class="n">f</span><span class="p">,</span>
+                                  <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">_sage_</span><span class="p">(),</span>
+                                    <span class="n">a</span><span class="o">.</span><span class="n">_sage_</span><span class="p">(),</span>
+                                    <span class="n">b</span><span class="o">.</span><span class="n">_sage_</span><span class="p">()),</span>
+                                    <span class="n">hold</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">f</span></div>
 
 
-<span class="nd">@xthreaded</span>
 <div class="viewcode-block" id="integrate"><a class="viewcode-back" href="../../../modules/integrals/integrals.html#sympy.integrals.integrate">[docs]</a><span class="k">def</span> <span class="nf">integrate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;integrate(f, var, ...)</span>
 
@@ -1604,8 +1258,8 @@
 
 <span class="sd">    - Try to find an antiderivative, using all available methods, ordered</span>
 <span class="sd">      by performance (that is try fastest method first, slowest last; in</span>
-<span class="sd">      particular polynomial integration is tried first, meijer</span>
-<span class="sd">      g-functions second to last, and heuristic risch last).</span>
+<span class="sd">      particular polynomial integration is tried first, Meijer</span>
+<span class="sd">      G-functions second to last, and heuristic Risch last).</span>
 
 <span class="sd">    - If still not successful, try G-functions irrespective of the</span>
 <span class="sd">      limits.</span>
@@ -1678,7 +1332,6 @@
         <span class="k">return</span> <span class="n">integral</span></div>
 
 
-<span class="nd">@xthreaded</span>
 <div class="viewcode-block" id="line_integrate"><a class="viewcode-back" href="../../../modules/integrals/integrals.html#sympy.integrals.line_integrate">[docs]</a><span class="k">def</span> <span class="nf">line_integrate</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">curve</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;line_integrate(field, Curve, variables)</span>
 
@@ -1698,6 +1351,7 @@
 
 <span class="sd">    integrate, Integral</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">sympy.geometry</span> <span class="kn">import</span> <span class="n">Curve</span>
     <span class="n">F</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">F</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>

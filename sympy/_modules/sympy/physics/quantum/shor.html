@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.physics.quantum.shor &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.physics.quantum.shor &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../../index.html" />
     <link rel="up" title="Module code" href="../../../index.html" />
    
   
@@ -57,12 +57,16 @@
 <span class="sd">* Update docstrings and reformat.</span>
 <span class="sd">* Remove print statements. We may want to think about a better API for this.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">random</span>
 
 <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Mul</span><span class="p">,</span> <span class="n">S</span>
 <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">sqrt</span>
 <span class="kn">from</span> <span class="nn">sympy.core.numbers</span> <span class="kn">import</span> <span class="n">igcd</span>
+<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="nb">range</span>
+<span class="kn">from</span> <span class="nn">sympy.ntheory</span> <span class="kn">import</span> <span class="n">continued_fraction_periodic</span> <span class="k">as</span> <span class="n">continued_fraction</span>
 <span class="kn">from</span> <span class="nn">sympy.utilities.iterables</span> <span class="kn">import</span> <span class="n">variations</span>
 
 <span class="kn">from</span> <span class="nn">sympy.physics.quantum.gate</span> <span class="kn">import</span> <span class="n">Gate</span>
@@ -144,14 +148,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span>
     <span class="k">if</span> <span class="n">igcd</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s2">&quot;got lucky with rand&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;got lucky with rand&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">igcd</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s2">&quot;a= &quot;</span><span class="p">,</span> <span class="n">a</span>
-    <span class="k">print</span> <span class="s2">&quot;N= &quot;</span><span class="p">,</span> <span class="n">N</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;a= &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;N= &quot;</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">period_find</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s2">&quot;r= &quot;</span><span class="p">,</span> <span class="n">r</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;r= &quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">r</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s2">&quot;r is not even, begin again&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;r is not even, begin again&quot;</span><span class="p">)</span>
         <span class="n">shor</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
     <span class="n">answer</span> <span class="o">=</span> <span class="p">(</span><span class="n">igcd</span><span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="n">igcd</span><span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">answer</span></div>
@@ -170,26 +174,6 @@
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="nb">list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">ratioize</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">N</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="continued_fraction"><a class="viewcode-back" href="../../../../modules/physics/quantum/shor.html#sympy.physics.quantum.shor.continued_fraction">[docs]</a><span class="k">def</span> <span class="nf">continued_fraction</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This applies the continued fraction expansion to two numbers x/y</span>
-
-<span class="sd">    x is the numerator and y is the denominator</span>
-
-<span class="sd">    &gt;&gt;&gt; from sympy.physics.quantum.shor import continued_fraction</span>
-<span class="sd">    &gt;&gt;&gt; continued_fraction(3, 8)</span>
-<span class="sd">    [0, 2, 1, 2]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="n">temp</span> <span class="o">=</span> <span class="n">x</span><span class="o">//</span><span class="n">y</span>
-    <span class="k">if</span> <span class="n">temp</span><span class="o">*</span><span class="n">y</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">temp</span><span class="p">,</span> <span class="p">]</span>
-
-    <span class="nb">list</span> <span class="o">=</span> <span class="n">continued_fraction</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="n">temp</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
-    <span class="nb">list</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">list</span></div>
 
 
 <div class="viewcode-block" id="period_find"><a class="viewcode-back" href="../../../../modules/physics/quantum/shor.html#sympy.physics.quantum.shor.period_find">[docs]</a><span class="k">def</span> <span class="nf">period_find</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
@@ -217,20 +201,16 @@
     <span class="n">circuit</span> <span class="o">=</span> <span class="n">CMod</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">circuit</span>
     <span class="c1">#will measure first half of register giving one of the a**k%N&#39;s</span>
     <span class="n">circuit</span> <span class="o">=</span> <span class="n">qapply</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s2">&quot;controlled Mod&#39;d&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;controlled Mod&#39;d&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
         <span class="n">circuit</span> <span class="o">=</span> <span class="n">measure_partial_oneshot</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-        <span class="c1"># circuit = measure(i)*circuit</span>
-    <span class="c1"># circuit = qapply(circuit)</span>
-    <span class="k">print</span> <span class="s2">&quot;measured 1&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;measured 1&quot;</span><span class="p">)</span>
     <span class="c1">#Now apply Inverse Quantum Fourier Transform on the second half of the register</span>
     <span class="n">circuit</span> <span class="o">=</span> <span class="n">qapply</span><span class="p">(</span><span class="n">QFT</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">*</span><span class="n">circuit</span><span class="p">,</span> <span class="n">floatingPoint</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s2">&quot;QFT&#39;d&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;QFT&#39;d&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
         <span class="n">circuit</span> <span class="o">=</span> <span class="n">measure_partial_oneshot</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">t</span><span class="p">)</span>
-        <span class="c1"># circuit = measure(i+t)*circuit</span>
-    <span class="c1"># circuit = qapply(circuit)</span>
-    <span class="k">print</span> <span class="n">circuit</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">Qubit</span><span class="p">):</span>
         <span class="n">register</span> <span class="o">=</span> <span class="n">circuit</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">Mul</span><span class="p">):</span>
@@ -238,7 +218,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">register</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="k">print</span> <span class="n">register</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">register</span><span class="p">)</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">register</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span>
@@ -249,7 +229,7 @@
             <span class="s2">&quot;Order finder returned 0. Happens with chance </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">epsilon</span><span class="p">)</span>
     <span class="c1">#turn answer into r using continued fractions</span>
     <span class="n">g</span> <span class="o">=</span> <span class="n">getr</span><span class="p">(</span><span class="n">answer</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">g</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">g</span></div>
 </pre></div>
 

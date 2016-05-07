@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Permutation Groups &mdash; SymPy 0.7.3 documentation</title>
+    <title>Permutation Groups &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
     <link rel="up" title="Combinatorics Module" href="index.html" />
     <link rel="next" title="Polyhedron" href="polyhedron.html" />
     <link rel="prev" title="Permutations" href="permutations.html" />
@@ -225,8 +225,8 @@ discussion of the algorithm.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">base</span><span class="p">,</span> <span class="n">gens</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">baseswap</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">strong_gens</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">randomized</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">base</span><span class="p">,</span> <span class="n">gens</span>
 <span class="go">([0, 2, 1],</span>
-<span class="go">[Permutation(0, 1, 2, 3), Permutation(3)(0, 1), Permutation(1, 3, 2),</span>
-<span class="go"> Permutation(2, 3), Permutation(1, 3)])</span>
+<span class="go">[(0 1 2 3), (3)(0 1), (1 3 2),</span>
+<span class="go"> (2 3), (1 3)])</span>
 </pre></div>
 </div>
 <p>check that base, gens is a BSGS</p>
@@ -278,13 +278,13 @@ information, see [1], pp. 87-89.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">base</span>
 <span class="go">[0, 1]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">A</span><span class="o">.</span><span class="n">basic_stabilizers</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="nb">print</span> <span class="n">g</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="go">PermutationGroup([</span>
-<span class="go">    Permutation(3)(0, 1, 2),</span>
-<span class="go">    Permutation(1, 2, 3)])</span>
+<span class="go">    (3)(0 1 2),</span>
+<span class="go">    (1 2 3)])</span>
 <span class="go">PermutationGroup([</span>
-<span class="go">    Permutation(1, 2, 3)])</span>
+<span class="go">    (1 2 3)])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -306,13 +306,7 @@ information.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.named_groups</span> <span class="k">import</span> <span class="n">AlternatingGroup</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">AlternatingGroup</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">basic_transversals</span>
-<span class="go">[{0: Permutation(3),</span>
-<span class="go">  1: Permutation(3)(0, 1, 2),</span>
-<span class="go">  2: Permutation(3)(0, 2, 1),</span>
-<span class="go">  3: Permutation(0, 3, 1)},</span>
-<span class="go"> {1: Permutation(3),</span>
-<span class="go">  2: Permutation(1, 2, 3),</span>
-<span class="go">  3: Permutation(1, 3, 2)}]</span>
+<span class="go">[{0: (3), 1: (3)(0 1 2), 2: (3)(0 2 1), 3: (0 3 1)}, {1: (3), 2: (1 2 3), 3: (1 3 2)}]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -546,7 +540,7 @@ If <code class="docutils literal"><span class="pre">g</span></code> does not bel
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">coset_rank</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="go">16</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">coset_unrank</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
-<span class="go">Permutation(7)(2, 4)(3, 5)</span>
+<span class="go">(7)(2 4)(3 5)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -583,7 +577,7 @@ by the group is given by group.order().</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">order</span><span class="p">()</span>
 <span class="go">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">generate</span><span class="p">())</span>
-<span class="go">[Permutation(2), Permutation(2)(0, 1)]</span>
+<span class="go">[(2), (2)(0 1)]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -654,6 +648,17 @@ equal to the normal closure of the set of commutators of the generators
 </div>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="sympy.combinatorics.perm_groups.PermutationGroup.elements">
+<code class="descname">elements</code><a class="headerlink" href="#sympy.combinatorics.perm_groups.PermutationGroup.elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all the elements of the permutatio group in
+a list</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics</span> <span class="k">import</span> <span class="n">Permutation</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="method">
 <dt id="sympy.combinatorics.perm_groups.PermutationGroup.generate">
 <code class="descname">generate</code><span class="sig-paren">(</span><em>method='coset'</em>, <em>af=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/combinatorics/perm_groups.html#PermutationGroup.generate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.combinatorics.perm_groups.PermutationGroup.generate" title="Permalink to this definition">¶</a></dt>
@@ -671,31 +676,31 @@ equal to the normal closure of the set of commutators of the generators
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.polyhedron</span> <span class="k">import</span> <span class="n">tetrahedron</span>
 </pre></div>
 </div>
-<p>The permutation group given in the tetrahedron object is not
+<p>The permutation group given in the tetrahedron object is also
 true groups:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">tetrahedron</span><span class="o">.</span><span class="n">pgroup</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">is_group</span><span class="p">()</span>
-<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">is_group</span>
+<span class="go">True</span>
 </pre></div>
 </div>
-<p>But the group generated by the permutations in the tetrahedron
+<p>Also the group generated by the permutations in the tetrahedron
 pgroup &#8211; even the first two &#8211; is a proper group:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">H</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">J</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">generate</span><span class="p">()));</span> <span class="n">J</span>
 <span class="go">PermutationGroup([</span>
-<span class="go">    Permutation(0, 1)(2, 3),</span>
-<span class="go">    Permutation(3),</span>
-<span class="go">    Permutation(1, 2, 3),</span>
-<span class="go">    Permutation(1, 3, 2),</span>
-<span class="go">    Permutation(0, 3, 1),</span>
-<span class="go">    Permutation(0, 2, 3),</span>
-<span class="go">    Permutation(0, 3)(1, 2),</span>
-<span class="go">    Permutation(0, 1, 3),</span>
-<span class="go">    Permutation(3)(0, 2, 1),</span>
-<span class="go">    Permutation(0, 3, 2),</span>
-<span class="go">    Permutation(3)(0, 1, 2),</span>
-<span class="go">    Permutation(0, 2)(1, 3)])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">.</span><span class="n">is_group</span><span class="p">()</span>
+<span class="go">    (0 1)(2 3),</span>
+<span class="go">    (3),</span>
+<span class="go">    (1 2 3),</span>
+<span class="go">    (1 3 2),</span>
+<span class="go">    (0 3 1),</span>
+<span class="go">    (0 2 3),</span>
+<span class="go">    (0 3)(1 2),</span>
+<span class="go">    (0 1 3),</span>
+<span class="go">    (3)(0 2 1),</span>
+<span class="go">    (0 3 2),</span>
+<span class="go">    (3)(0 1 2),</span>
+<span class="go">    (0 2)(1 3)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">.</span><span class="n">is_group</span>
 <span class="go">True</span>
 </pre></div>
 </div>
@@ -755,7 +760,7 @@ in coset_rank order</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">generators</span>
-<span class="go">[Permutation(1, 2), Permutation(2)(0, 1)]</span>
+<span class="go">[(1 2), (2)(0 1)]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -814,83 +819,6 @@ go over the cycles in a permutation and look for ones satisfying 1).</p>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="sympy.combinatorics.perm_groups.PermutationGroup.is_group">
-<code class="descname">is_group</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/combinatorics/perm_groups.html#PermutationGroup.is_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.combinatorics.perm_groups.PermutationGroup.is_group" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return True if the group meets three criteria: identity is present,
-the inverse of every element is also an element, and the product of
-any two elements is also an element. If any of the tests fail, False
-is returned.</p>
-<p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics</span> <span class="k">import</span> <span class="n">Permutation</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Permutation</span><span class="o">.</span><span class="n">print_cyclic</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics</span> <span class="k">import</span> <span class="n">PermutationGroup</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.polyhedron</span> <span class="k">import</span> <span class="n">tetrahedron</span>
-</pre></div>
-</div>
-<p>The permutation group given in the tetrahedron object is not
-a true group:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">tetrahedron</span><span class="o">.</span><span class="n">pgroup</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">is_group</span><span class="p">()</span>
-<span class="go">False</span>
-</pre></div>
-</div>
-<p>But the group generated by the permutations in the tetrahedron
-pgroup is a proper group:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">H</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">generate</span><span class="p">()))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="o">.</span><span class="n">is_group</span><span class="p">()</span>
-<span class="go">True</span>
-</pre></div>
-</div>
-<p>The identity permutation is present:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">H</span><span class="o">.</span><span class="n">has</span><span class="p">(</span><span class="n">Permutation</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-<span class="go">True</span>
-</pre></div>
-</div>
-<p>The product of any two elements from the group is also in the group:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">TableForm</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="n">m</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">g</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">H</span><span class="p">)</span> <span class="k">for</span> <span class="n">H</span> <span class="ow">in</span> <span class="n">g</span><span class="p">])</span>
-<span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">TableForm</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">headings</span><span class="o">=</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)],</span> <span class="n">wipe_zeros</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="go">   | 0  1  2  3  4  5  6  7  8  9  10 11</span>
-<span class="go">----------------------------------------</span>
-<span class="go"> 0 | 11 0  8  10 6  2  7  4  5  3  9  1</span>
-<span class="go"> 1 | 0  1  2  3  4  5  6  7  8  9  10 11</span>
-<span class="go"> 2 | 6  2  7  4  5  3  9  1  11 0  8  10</span>
-<span class="go"> 3 | 5  3  9  1  11 0  8  10 6  2  7  4</span>
-<span class="go"> 4 | 3  4  0  2  10 6  11 8  9  7  1  5</span>
-<span class="go"> 5 | 4  5  6  7  8  9  10 11 0  1  2  3</span>
-<span class="go"> 6 | 10 6  11 8  9  7  1  5  3  4  0  2</span>
-<span class="go"> 7 | 9  7  1  5  3  4  0  2  10 6  11 8</span>
-<span class="go"> 8 | 7  8  4  6  2  10 3  0  1  11 5  9</span>
-<span class="go"> 9 | 8  9  10 11 0  1  2  3  4  5  6  7</span>
-<span class="go">10 | 2  10 3  0  1  11 5  9  7  8  4  6</span>
-<span class="go">11 | 1  11 5  9  7  8  4  6  2  10 3  0</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="go">The entries in the table give the element in the group corresponding</span>
-<span class="go">to the product of a given column element and row element:</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">g</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">g</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
-<span class="go">True</span>
-</pre></div>
-</div>
-<p>The inverse of every element is also in the group:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">TableForm</span><span class="p">([[</span><span class="n">g</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="o">~</span><span class="n">gi</span><span class="p">)</span> <span class="k">for</span> <span class="n">gi</span> <span class="ow">in</span> <span class="n">g</span><span class="p">]],</span> <span class="n">headings</span><span class="o">=</span><span class="p">[[],</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)],</span>
-<span class="gp">... </span>   <span class="n">wipe_zeros</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="go">0  1 2 3 4  5 6 7 8 9 10 11</span>
-<span class="go">---------------------------</span>
-<span class="go">11 1 7 3 10 9 6 2 8 5 4  0</span>
-</pre></div>
-</div>
-<p>So we see that g[1] and g[3] are equivalent to their inverse while
-g[7] == ~g[2].</p>
-</dd></dl>
-
 <dl class="attribute">
 <dt id="sympy.combinatorics.perm_groups.PermutationGroup.is_nilpotent">
 <code class="descname">is_nilpotent</code><a class="headerlink" href="#sympy.combinatorics.perm_groups.PermutationGroup.is_nilpotent" title="Permalink to this definition">¶</a></dt>
@@ -918,7 +846,7 @@ with the trivial group. Every nilpotent group is also solvable
 
 <dl class="method">
 <dt id="sympy.combinatorics.perm_groups.PermutationGroup.is_normal">
-<code class="descname">is_normal</code><span class="sig-paren">(</span><em>gr</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/combinatorics/perm_groups.html#PermutationGroup.is_normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.combinatorics.perm_groups.PermutationGroup.is_normal" title="Permalink to this definition">¶</a></dt>
+<code class="descname">is_normal</code><span class="sig-paren">(</span><em>gr</em>, <em>strict=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/combinatorics/perm_groups.html#PermutationGroup.is_normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.combinatorics.perm_groups.PermutationGroup.is_normal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test if G=self is a normal subgroup of gr.</p>
 <p>G is normal in gr if
 for each g2 in G, g1 in gr, g = g1*g2*g1**-1 belongs to G
@@ -1055,8 +983,8 @@ a single orbit of length different from 1.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G2</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G2</span><span class="o">.</span><span class="n">is_transitive</span><span class="p">()</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G3</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G3</span><span class="o">.</span><span class="n">is_transitive</span><span class="p">()</span> <span class="ow">or</span> <span class="n">G3</span><span class="o">.</span><span class="n">is_transitive</span><span class="p">(</span><span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="go">False</span>
@@ -1137,11 +1065,11 @@ in the order give. This is mainly used for testing purposes.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">Permutation</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">make_perm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="go">Permutation(0, 1)(2, 3)</span>
+<span class="go">(0 1)(2 3)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">make_perm</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="go">Permutation(0, 2, 3, 1)</span>
+<span class="go">(0 2 3 1)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">make_perm</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="go">Permutation(0, 2, 3, 1)</span>
+<span class="go">(0 2 3 1)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1163,7 +1091,7 @@ This function is also used as an optimization tool for the functions
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics</span> <span class="k">import</span> <span class="n">Permutation</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.perm_groups</span> <span class="k">import</span> <span class="n">PermutationGroup</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">Permutation</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">Permutation</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">max_div</span>
 <span class="go">2</span>
 </pre></div>
@@ -1204,9 +1132,9 @@ union-find data structure. The running time is just above
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.perm_groups</span> <span class="k">import</span> <span class="n">PermutationGroup</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.named_groups</span> <span class="k">import</span> <span class="n">DihedralGroup</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">DihedralGroup</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">minimal_block</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">minimal_block</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 <span class="go">[0, 6, 2, 8, 4, 0, 6, 2, 8, 4]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">minimal_block</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">minimal_block</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="go">[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]</span>
 </pre></div>
 </div>
@@ -1283,11 +1211,11 @@ tuple under the group action ( i.e., g((1,2,3)) = (g(1), g(2), g(3)) )
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics</span> <span class="k">import</span> <span class="n">Permutation</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.perm_groups</span> <span class="k">import</span> <span class="n">PermutationGroup</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">a</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">orbit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="go">set([0, 1, 2])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">orbit</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;union&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">orbit</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;union&#39;</span><span class="p">)</span>
 <span class="go">set([0, 1, 2, 3, 4, 5, 6])</span>
 </pre></div>
 </div>
@@ -1311,7 +1239,7 @@ For a proof of correctness, see [1], p.80</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.named_groups</span> <span class="k">import</span> <span class="n">AlternatingGroup</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">AlternatingGroup</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">orbit_rep</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="go">Permutation(0, 4, 1, 2, 3)</span>
+<span class="go">(0 4 1 2 3)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1337,12 +1265,7 @@ If <code class="docutils literal"><span class="pre">pairs</span></code> is set t
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.named_groups</span> <span class="k">import</span> <span class="n">DihedralGroup</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">DihedralGroup</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">orbit_transversal</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="go">[Permutation(5),</span>
-<span class="go"> Permutation(0, 1, 2, 3, 4, 5),</span>
-<span class="go"> Permutation(0, 5)(1, 4)(2, 3),</span>
-<span class="go"> Permutation(0, 2, 4)(1, 3, 5),</span>
-<span class="go"> Permutation(5)(0, 4)(1, 3),</span>
-<span class="go"> Permutation(0, 3)(1, 4)(2, 5)]</span>
+<span class="go">[(5), (0 1 2 3 4 5), (0 5)(1 4)(2 3), (0 2 4)(1 3 5), (5)(0 4)(1 3), (0 3)(1 4)(2 5)]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1355,8 +1278,8 @@ in each orbit.</p>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.permutations</span> <span class="k">import</span> <span class="n">Permutation</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.perm_groups</span> <span class="k">import</span> <span class="n">PermutationGroup</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)(</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">orbits</span><span class="p">()</span>
 <span class="go">[set([0, 2, 3, 4, 6]), set([1, 5])]</span>
@@ -1390,7 +1313,7 @@ given by group.size.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">order</span><span class="p">()</span>
 <span class="go">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">generate</span><span class="p">())</span>
-<span class="go">[Permutation(2), Permutation(2)(0, 1)]</span>
+<span class="go">[(2), (2)(0 1)]</span>
 </pre></div>
 </div>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
@@ -1482,8 +1405,8 @@ h_1*..*h_s.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">schreier_sims</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">basic_transversals</span>
-<span class="go">[{0: Permutation(2)(0, 1), 1: Permutation(2), 2: Permutation(1, 2)},</span>
-<span class="go"> {0: Permutation(2), 2: Permutation(0, 2)}]</span>
+<span class="go">[{0: (2)(0 1), 1: (2), 2: (1 2)},</span>
+<span class="go"> {0: (2), 2: (0 2)}]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1642,9 +1565,9 @@ For the algorithm and its correctness, see [2], pp.78-80.</p>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.perm_groups</span> <span class="k">import</span> <span class="n">PermutationGroup</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.permutations</span> <span class="k">import</span> <span class="n">Permutation</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">schreier_vector</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="go">[-1, None, 0, 1, None, 1, 0]</span>
 </pre></div>
@@ -1670,8 +1593,8 @@ For a proof of correctness, see [1], p.79.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">DihedralGroup</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">stabilizer</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="go">PermutationGroup([</span>
-<span class="go">    Permutation(5)(0, 4)(1, 3),</span>
-<span class="go">    Permutation(5)])</span>
+<span class="go">    (5)(0 4)(1 3),</span>
+<span class="go">    (5)])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1696,7 +1619,7 @@ in [1], pp. 87-89 and [2], pp. 55-57.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.named_groups</span> <span class="k">import</span> <span class="n">DihedralGroup</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">DihedralGroup</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">strong_gens</span>
-<span class="go">[Permutation(0, 1, 2, 3), Permutation(0, 3)(1, 2), Permutation(1, 3)]</span>
+<span class="go">[(0 1 2 3), (0 3)(1 2), (1 3)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">base</span>
 <span class="go">[0, 1]</span>
 </pre></div>
@@ -1806,7 +1729,7 @@ The degree of transitivity of <code class="docutils literal"><span class="pre">G
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.permutations</span> <span class="k">import</span> <span class="n">Permutation</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">transitivity_degree</span>
 <span class="go">3</span>
 </pre></div>

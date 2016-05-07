@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.combinatorics.permutations &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.combinatorics.permutations &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -48,16 +48,18 @@
           <div class="body" role="main">
             
   <h1>Source code for sympy.combinatorics.permutations</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">random</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
 <span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">Basic</span>
-<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">is_sequence</span>
+<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">is_sequence</span><span class="p">,</span> <span class="nb">reduce</span><span class="p">,</span> <span class="nb">range</span>
 <span class="kn">from</span> <span class="nn">sympy.utilities.iterables</span> <span class="kn">import</span> <span class="p">(</span><span class="n">flatten</span><span class="p">,</span> <span class="n">has_variety</span><span class="p">,</span> <span class="n">minlex</span><span class="p">,</span>
     <span class="n">has_dups</span><span class="p">,</span> <span class="n">runs</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">sympy.polys.polytools</span> <span class="kn">import</span> <span class="n">lcm</span>
 <span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="kn">import</span> <span class="n">zeros</span>
-<span class="kn">from</span> <span class="nn">sympy.mpmath.libmp.libintmath</span> <span class="kn">import</span> <span class="n">ifac</span>
+<span class="kn">from</span> <span class="nn">mpmath.libmp.libintmath</span> <span class="kn">import</span> <span class="n">ifac</span>
 
 
 <span class="k">def</span> <span class="nf">_af_rmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -79,7 +81,8 @@
 
 <span class="sd">    This handles the operands in reverse order compared to the ``*`` operator:</span>
 
-<span class="sd">    &gt;&gt;&gt; a = Permutation(a); b = Permutation(b)</span>
+<span class="sd">    &gt;&gt;&gt; a = Permutation(a)</span>
+<span class="sd">    &gt;&gt;&gt; b = Permutation(b)</span>
 <span class="sd">    &gt;&gt;&gt; list(a*b)</span>
 <span class="sd">    [2, 0, 1]</span>
 <span class="sd">    &gt;&gt;&gt; [b(a(i)) for i in range(3)]</span>
@@ -146,7 +149,8 @@
     <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">b</span><span class="p">]</span>
-    <span class="k">assert</span> <span class="n">m</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;String must not be empty&quot;</span><span class="p">)</span>
     <span class="n">p0</span> <span class="o">=</span> <span class="n">_af_rmuln</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">[:</span><span class="n">m</span><span class="o">//</span><span class="mi">2</span><span class="p">])</span>
     <span class="n">p1</span> <span class="o">=</span> <span class="n">_af_rmuln</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">m</span><span class="o">//</span><span class="mi">2</span><span class="p">:])</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">p0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">p1</span><span class="p">]</span>
@@ -164,9 +168,9 @@
 <span class="sd">    ========</span>
 
 <span class="sd">    &gt;&gt;&gt; from sympy.combinatorics.permutations import _af_parity</span>
-<span class="sd">    &gt;&gt;&gt; _af_parity([0,1,2,3])</span>
+<span class="sd">    &gt;&gt;&gt; _af_parity([0, 1, 2, 3])</span>
 <span class="sd">    0</span>
-<span class="sd">    &gt;&gt;&gt; _af_parity([3,2,0,1])</span>
+<span class="sd">    &gt;&gt;&gt; _af_parity([3, 2, 0, 1])</span>
 <span class="sd">    1</span>
 
 <span class="sd">    See Also</span>
@@ -221,14 +225,14 @@
 
 <span class="sd">    &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation, _af_pow</span>
 <span class="sd">    &gt;&gt;&gt; Permutation.print_cyclic = False</span>
-<span class="sd">    &gt;&gt;&gt; p = Permutation([2,0,3,1])</span>
+<span class="sd">    &gt;&gt;&gt; p = Permutation([2, 0, 3, 1])</span>
 <span class="sd">    &gt;&gt;&gt; p.order()</span>
 <span class="sd">    4</span>
 <span class="sd">    &gt;&gt;&gt; _af_pow(p._array_form, 4)</span>
 <span class="sd">    [0, 1, 2, 3]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_af_pow</span><span class="p">(</span><span class="n">_af_invert</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="o">-</span><span class="n">n</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -241,7 +245,7 @@
         <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># use binary multiplication</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
         <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">n</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
@@ -265,7 +269,7 @@
 <span class="sd">    ========</span>
 
 <span class="sd">    &gt;&gt;&gt; from sympy.combinatorics.permutations import _af_commutes_with</span>
-<span class="sd">    &gt;&gt;&gt; _af_commutes_with([1,2,0], [0,2,1])</span>
+<span class="sd">    &gt;&gt;&gt; _af_commutes_with([1, 2, 0], [0, 2, 1])</span>
 <span class="sd">    False</span>
 
 <span class="sd">    See Also</span>
@@ -281,7 +285,7 @@
 <span class="sd">    Wrapper around dict which provides the functionality of a disjoint cycle.</span>
 
 <span class="sd">    A cycle shows the rule to use to move subsets of elements to obtain</span>
-<span class="sd">    a permutation. The Cycle class is more flexible that Permutation in</span>
+<span class="sd">    a permutation. The Cycle class is more flexible than Permutation in</span>
 <span class="sd">    that 1) all elements need not be present in order to investigate how</span>
 <span class="sd">    multiple cycles act in sequence and 2) it can contain singletons:</span>
 
@@ -290,12 +294,12 @@
 <span class="sd">    A Cycle will automatically parse a cycle given as a tuple on the rhs:</span>
 
 <span class="sd">    &gt;&gt;&gt; Cycle(1, 2)(2, 3)</span>
-<span class="sd">    Cycle(1, 3, 2)</span>
+<span class="sd">    (1 3 2)</span>
 
 <span class="sd">    The identity cycle, Cycle(), can be used to start a product:</span>
 
-<span class="sd">    &gt;&gt;&gt; Cycle()(1, 2)(2,3)</span>
-<span class="sd">    Cycle(1, 3, 2)</span>
+<span class="sd">    &gt;&gt;&gt; Cycle()(1, 2)(2, 3)</span>
+<span class="sd">    (1 3 2)</span>
 
 <span class="sd">    The array form of a Cycle can be obtained by calling the list</span>
 <span class="sd">    method (or passing it to the list function) and all elements from</span>
@@ -311,7 +315,7 @@
 <span class="sd">    provide the desired size -- but the Cycle cannot be truncated to</span>
 <span class="sd">    a size smaller than the largest element that is out of place:</span>
 
-<span class="sd">    &gt;&gt;&gt; b = Cycle(2,4)(1,2)(3,1,4)(1,3)</span>
+<span class="sd">    &gt;&gt;&gt; b = Cycle(2, 4)(1, 2)(3, 1, 4)(1, 3)</span>
 <span class="sd">    &gt;&gt;&gt; b.list()</span>
 <span class="sd">    [0, 2, 1, 3, 4]</span>
 <span class="sd">    &gt;&gt;&gt; b.list(b.size + 1)</span>
@@ -323,25 +327,25 @@
 <span class="sd">    element is always shown -- as a singleton if necessary:</span>
 
 <span class="sd">    &gt;&gt;&gt; Cycle(1, 4, 10)(4, 5)</span>
-<span class="sd">    Cycle(1, 5, 4, 10)</span>
+<span class="sd">    (1 5 4 10)</span>
 <span class="sd">    &gt;&gt;&gt; Cycle(1, 2)(4)(5)(10)</span>
-<span class="sd">    Cycle(1, 2)(10)</span>
+<span class="sd">    (1 2)(10)</span>
 
 <span class="sd">    The array form can be used to instantiate a Permutation so other</span>
 <span class="sd">    properties of the permutation can be investigated:</span>
 
-<span class="sd">    &gt;&gt;&gt; Perm(Cycle(1,2)(3,4).list()).transpositions()</span>
+<span class="sd">    &gt;&gt;&gt; Perm(Cycle(1, 2)(3, 4).list()).transpositions()</span>
 <span class="sd">    [(1, 2), (3, 4)]</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    =====</span>
 
 <span class="sd">    The underlying structure of the Cycle is a dictionary and although</span>
-<span class="sd">    the __iter__ method has been redefiend to give the array form of the</span>
+<span class="sd">    the __iter__ method has been redefined to give the array form of the</span>
 <span class="sd">    cycle, the underlying dictionary items are still available with the</span>
 <span class="sd">    such methods as items():</span>
 
-<span class="sd">    &gt;&gt;&gt; Cycle(1, 2).items()</span>
+<span class="sd">    &gt;&gt;&gt; list(Cycle(1, 2).items())</span>
 <span class="sd">    [(1, 2), (2, 1)]</span>
 
 <span class="sd">    See Also</span>
@@ -363,10 +367,11 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        ========</span>
+
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Cycle as C</span>
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation as Perm</span>
 <span class="sd">        &gt;&gt;&gt; C(1, 2)(2, 3)</span>
-<span class="sd">        Cycle(1, 3, 2)</span>
+<span class="sd">        (1 3 2)</span>
 
 <span class="sd">        An instance of a Cycle will automatically parse list-like</span>
 <span class="sd">        objects and Permutations that are on the right. It is more</span>
@@ -375,13 +380,13 @@
 
 <span class="sd">        &gt;&gt;&gt; a = C(1, 2)</span>
 <span class="sd">        &gt;&gt;&gt; a(2, 3)</span>
-<span class="sd">        Cycle(1, 3, 2)</span>
+<span class="sd">        (1 3 2)</span>
 <span class="sd">        &gt;&gt;&gt; a(2, 3)(4, 5)</span>
-<span class="sd">        Cycle(1, 3, 2)(4, 5)</span>
+<span class="sd">        (1 3 2)(4 5)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">rv</span> <span class="o">=</span> <span class="n">Cycle</span><span class="p">(</span><span class="o">*</span><span class="n">other</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="p">[</span><span class="n">rv</span><span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()]):</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="p">[</span><span class="n">rv</span><span class="p">[</span><span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()]):</span>
             <span class="n">rv</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
         <span class="k">return</span> <span class="n">rv</span>
 
@@ -395,6 +400,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        ========</span>
+
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Cycle</span>
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
 <span class="sd">        &gt;&gt;&gt; Permutation.print_cyclic = False</span>
@@ -427,10 +433,10 @@
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics import Cycle</span>
 <span class="sd">        &gt;&gt;&gt; Cycle(1, 2)</span>
-<span class="sd">        Cycle(1, 2)</span>
-<span class="sd">        &gt;&gt;&gt; print _</span>
-<span class="sd">        Cycle(1, 2)</span>
-<span class="sd">        &gt;&gt;&gt; Cycle(1, 2).items()</span>
+<span class="sd">        (1 2)</span>
+<span class="sd">        &gt;&gt;&gt; print(_)</span>
+<span class="sd">        (1 2)</span>
+<span class="sd">        &gt;&gt;&gt; list(Cycle(1, 2).items())</span>
 <span class="sd">        [(1, 2), (2, 1)]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
@@ -442,14 +448,38 @@
             <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">big</span>
         <span class="k">return</span> <span class="s1">&#39;Cycle</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s</span>
 
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;We want it to be printed in a Cycle notation with no</span>
+<span class="sd">        comma in-between.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ========</span>
+
+<span class="sd">        &gt;&gt;&gt; from sympy.combinatorics import Cycle</span>
+<span class="sd">        &gt;&gt;&gt; Cycle(1, 2)</span>
+<span class="sd">        (1 2)</span>
+<span class="sd">        &gt;&gt;&gt; Cycle(1, 2, 4)(5, 6)</span>
+<span class="sd">        (1 2 4)(5 6)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;()&#39;</span>
+        <span class="n">cycles</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">cyclic_form</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cycles</span><span class="p">)</span>
+        <span class="n">big</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">big</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cycles</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">c</span><span class="p">):</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">big</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">s</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load up a Cycle instance with the values for the cycle.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        ========</span>
+
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Cycle</span>
 <span class="sd">        &gt;&gt;&gt; Cycle(1, 2, 6)</span>
-<span class="sd">        Cycle(1, 2, 6)</span>
+<span class="sd">        (1 2 6)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">:</span>
@@ -460,7 +490,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="p">))</span>
                 <span class="k">return</span>
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Cycle</span><span class="p">):</span>
-                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                     <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
                 <span class="k">return</span>
         <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">]</span>
@@ -481,7 +511,7 @@
 <span class="sd">    A permutation, alternatively known as an &#39;arrangement number&#39; or &#39;ordering&#39;</span>
 <span class="sd">    is an arrangement of the elements of an ordered list into a one-to-one</span>
 <span class="sd">    mapping with itself. The permutation of a given arrangement is given by</span>
-<span class="sd">    indicating the positions of the elements after re-arrangment [2]_. For</span>
+<span class="sd">    indicating the positions of the elements after re-arrangement [2]_. For</span>
 <span class="sd">    example, if one started with elements [x, y, a, b] (in that order) and</span>
 <span class="sd">    they were reordered as [x, y, b, a] then the permutation would be</span>
 <span class="sd">    [0, 1, 3, 2]. Notice that (in SymPy) the first element is always referred</span>
@@ -658,7 +688,7 @@
 
 <span class="sd">    &gt;&gt;&gt; Permutation.print_cyclic = True</span>
 <span class="sd">    &gt;&gt;&gt; p</span>
-<span class="sd">    Permutation(1, 2)(3, 4, 5)</span>
+<span class="sd">    (1 2)(3 4 5)</span>
 <span class="sd">    &gt;&gt;&gt; Permutation.print_cyclic = False</span>
 
 <span class="sd">    2) Regardless of the setting, a list of elements in the array for cyclic</span>
@@ -685,7 +715,7 @@
 <span class="sd">    &gt;&gt;&gt; p = Permutation([1, 0, 2, 3])</span>
 <span class="sd">    &gt;&gt;&gt; Permutation.print_cyclic = True</span>
 <span class="sd">    &gt;&gt;&gt; p</span>
-<span class="sd">    Permutation(3)(0, 1)</span>
+<span class="sd">    (3)(0 1)</span>
 <span class="sd">    &gt;&gt;&gt; Permutation.print_cyclic = False</span>
 
 <span class="sd">    The 2 was not printed but it is still there as can be seen with the</span>
@@ -734,7 +764,7 @@
 <span class="sd">    same elements, but what that rank is depends on how the permutations are</span>
 <span class="sd">    enumerated. (There are a number of different methods of doing so.) The</span>
 <span class="sd">    lexicographic rank is given by the rank method and this rank is used to</span>
-<span class="sd">    increment a partion with addition/subtraction:</span>
+<span class="sd">    increment a permutation with addition/subtraction:</span>
 
 <span class="sd">    &gt;&gt;&gt; p.rank()</span>
 <span class="sd">    6</span>
@@ -872,7 +902,7 @@
         <span class="c1">#g) (Permutation) = adjust size or return copy</span>
         <span class="n">ok</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">:</span>  <span class="c1"># a</span>
-            <span class="k">return</span> <span class="n">_af_new</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">_af_new</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)))</span>
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># c</span>
             <span class="k">return</span> <span class="n">_af_new</span><span class="p">(</span><span class="n">Cycle</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">size</span><span class="p">))</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -884,7 +914,7 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Cycle</span><span class="p">):</span>  <span class="c1"># f</span>
                 <span class="k">return</span> <span class="n">_af_new</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">size</span><span class="p">))</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  <span class="c1"># b</span>
-                <span class="k">return</span> <span class="n">_af_new</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">_af_new</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
             <span class="k">if</span> <span class="n">has_variety</span><span class="p">(</span><span class="n">is_sequence</span><span class="p">(</span><span class="n">ai</span><span class="p">)</span> <span class="k">for</span> <span class="n">ai</span> <span class="ow">in</span> <span class="n">a</span><span class="p">):</span>
                 <span class="n">ok</span> <span class="o">=</span> <span class="bp">False</span>
         <span class="k">else</span><span class="p">:</span>
@@ -936,7 +966,7 @@
             <span class="c1"># don&#39;t allow for truncation of permutation which</span>
             <span class="c1"># might split a cycle and lead to an invalid aform</span>
             <span class="c1"># but do allow the permutation size to be increased</span>
-            <span class="n">aform</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">aform</span><span class="p">),</span> <span class="n">size</span><span class="p">))</span>
+            <span class="n">aform</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">aform</span><span class="p">),</span> <span class="n">size</span><span class="p">)))</span>
         <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">aform</span><span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">Basic</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">aform</span><span class="p">)</span>
         <span class="n">obj</span><span class="o">.</span><span class="n">_array_form</span> <span class="o">=</span> <span class="n">aform</span>
@@ -982,17 +1012,41 @@
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
 <span class="sd">        &gt;&gt;&gt; Permutation.print_cyclic = False</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([[2,0], [3,1]])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([[2, 0], [3, 1]])</span>
 <span class="sd">        &gt;&gt;&gt; p.array_form</span>
 <span class="sd">        [2, 3, 0, 1]</span>
-<span class="sd">        &gt;&gt;&gt; Permutation([[2,0,3,1]]).array_form</span>
+<span class="sd">        &gt;&gt;&gt; Permutation([[2, 0, 3, 1]]).array_form</span>
 <span class="sd">        [3, 2, 0, 1]</span>
-<span class="sd">        &gt;&gt;&gt; Permutation([2,0,3,1]).array_form</span>
+<span class="sd">        &gt;&gt;&gt; Permutation([2, 0, 3, 1]).array_form</span>
 <span class="sd">        [2, 0, 3, 1]</span>
 <span class="sd">        &gt;&gt;&gt; Permutation([[1, 2], [4, 5]]).array_form</span>
 <span class="sd">        [0, 2, 1, 3, 5, 4]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_array_form</span><span class="p">[:]</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">sympy.combinatorics.permutations</span> <span class="kn">import</span> <span class="n">Permutation</span><span class="p">,</span> <span class="n">Cycle</span>
+        <span class="k">if</span> <span class="n">Permutation</span><span class="o">.</span><span class="n">print_cyclic</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s1">&#39;Permutation()&#39;</span>
+            <span class="c1"># before taking Cycle notation, see if the last element is</span>
+            <span class="c1"># a singleton and move it to the head of the string</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">Cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">__repr__</span><span class="p">()[</span><span class="nb">len</span><span class="p">(</span><span class="s1">&#39;Cycle&#39;</span><span class="p">):]</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">last</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="s1">&#39;,&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span><span class="p">[</span><span class="n">last</span><span class="p">:]:</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">last</span><span class="p">:]</span> <span class="o">+</span> <span class="n">s</span><span class="p">[:</span><span class="n">last</span><span class="p">]</span>
+            <span class="k">return</span> <span class="s1">&#39;Permutation</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">s</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">support</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">s</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="s1">&#39;Permutation(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">array_form</span><span class="p">)</span>
+                <span class="k">return</span> <span class="s1">&#39;Permutation([], size=</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+            <span class="n">trim</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">array_form</span><span class="p">[:</span><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;, size=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+            <span class="n">use</span> <span class="o">=</span> <span class="n">full</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">array_form</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">trim</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">full</span><span class="p">):</span>
+                <span class="n">use</span> <span class="o">=</span> <span class="n">trim</span>
+            <span class="k">return</span> <span class="s1">&#39;Permutation</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">use</span>
 
 <div class="viewcode-block" id="Permutation.list"><a class="viewcode-back" href="../../../modules/combinatorics/permutations.html#sympy.combinatorics.permutations.Permutation.list">[docs]</a>    <span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the permutation as an explicit list, possibly</span>
@@ -1002,6 +1056,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        ========</span>
+
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
 <span class="sd">        &gt;&gt;&gt; Permutation.print_cyclic = False</span>
 <span class="sd">        &gt;&gt;&gt; p = Permutation(2, 3)(4, 5)</span>
@@ -1023,7 +1078,7 @@
         <span class="n">rv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">array_form</span>
         <span class="k">if</span> <span class="n">size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
-                <span class="n">rv</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+                <span class="n">rv</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)))</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># find first value from rhs where rv[i] != i</span>
                 <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span>
@@ -1283,7 +1338,7 @@
 <span class="sd">        &gt;&gt;&gt; [[1, 2]]*[[2, 3]]*Permutation([]) # doctest: +SKIP</span>
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Cycle</span>
 <span class="sd">        &gt;&gt;&gt; Cycle(1, 2)(2, 3)</span>
-<span class="sd">        Cycle(1, 3, 2)</span>
+<span class="sd">        (1 3 2)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">array_form</span>
@@ -1292,7 +1347,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="p">:</span>
             <span class="n">perm</span> <span class="o">=</span> <span class="n">a</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">b</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
+            <span class="n">b</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))))</span>
             <span class="n">perm</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">):]</span>
         <span class="k">return</span> <span class="n">_af_new</span><span class="p">(</span><span class="n">perm</span><span class="p">)</span>
 
@@ -1304,11 +1359,11 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; a = Permutation([1,4,3,0,2,5])</span>
-<span class="sd">        &gt;&gt;&gt; b = Permutation([0,1,2,3,4,5])</span>
+<span class="sd">        &gt;&gt;&gt; a = Permutation([1, 4, 3, 0, 2, 5])</span>
+<span class="sd">        &gt;&gt;&gt; b = Permutation([0, 1, 2, 3, 4, 5])</span>
 <span class="sd">        &gt;&gt;&gt; a.commutes_with(b)</span>
 <span class="sd">        True</span>
-<span class="sd">        &gt;&gt;&gt; b = Permutation([2,3,5,4,1,0])</span>
+<span class="sd">        &gt;&gt;&gt; b = Permutation([2, 3, 5, 4, 1, 0])</span>
 <span class="sd">        &gt;&gt;&gt; a.commutes_with(b)</span>
 <span class="sd">        False</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1342,6 +1397,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        ========</span>
+
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics import Permutation</span>
 <span class="sd">        &gt;&gt;&gt; p = Permutation(1, 2, 9)</span>
 <span class="sd">        &gt;&gt;&gt; 2^p == p(2) == 9</span>
@@ -1377,7 +1433,7 @@
 
 <span class="sd">        The expression q^p^r is equivalent to q^(p*r):</span>
 
-<span class="sd">        &gt;&gt;&gt; r = Permutation(9)(4,6,8)</span>
+<span class="sd">        &gt;&gt;&gt; r = Permutation(9)(4, 6, 8)</span>
 <span class="sd">        &gt;&gt;&gt; q^p^r == q^(p*r)</span>
 <span class="sd">        True</span>
 
@@ -1400,9 +1456,9 @@
 <span class="sd">        in general from p^(q^r)</span>
 
 <span class="sd">        &gt;&gt;&gt; q^p^r</span>
-<span class="sd">        Permutation(9)(1, 4, 8)</span>
+<span class="sd">        (9)(1 4 8)</span>
 <span class="sd">        &gt;&gt;&gt; q^(p^r)</span>
-<span class="sd">        Permutation(9)(1, 8, 6)</span>
+<span class="sd">        (9)(1 8 6)</span>
 
 <span class="sd">        For a given r and p, both of the following are conjugates of p:</span>
 <span class="sd">        ~r*p*r and r*p*~r. But these are not necessarily the same:</span>
@@ -1446,7 +1502,7 @@
 <span class="sd">        &gt;&gt;&gt; t = p.transpositions()</span>
 <span class="sd">        &gt;&gt;&gt; t</span>
 <span class="sd">        [(0, 7), (0, 6), (0, 5), (0, 4), (1, 3), (1, 2)]</span>
-<span class="sd">        &gt;&gt;&gt; print &#39;&#39;.join(str(c) for c in t)</span>
+<span class="sd">        &gt;&gt;&gt; print(&#39;&#39;.join(str(c) for c in t))</span>
 <span class="sd">        (0, 7)(0, 6)(0, 5)(0, 4)(1, 3)(1, 2)</span>
 <span class="sd">        &gt;&gt;&gt; Permutation.rmul(*[Permutation([ti], size=p.size) for ti in t]) == p</span>
 <span class="sd">        True</span>
@@ -1481,13 +1537,13 @@
 <span class="sd">        &gt;&gt;&gt; Permutation.print_cyclic = True</span>
 
 <span class="sd">        &gt;&gt;&gt; Permutation.from_sequence(&#39;SymPy&#39;)</span>
-<span class="sd">        Permutation(4)(0, 1, 3)</span>
+<span class="sd">        (4)(0 1 3)</span>
 <span class="sd">        &gt;&gt;&gt; _(sorted(&quot;SymPy&quot;))</span>
 <span class="sd">        [&#39;S&#39;, &#39;y&#39;, &#39;m&#39;, &#39;P&#39;, &#39;y&#39;]</span>
 <span class="sd">        &gt;&gt;&gt; Permutation.from_sequence(&#39;SymPy&#39;, key=lambda x: x.lower())</span>
-<span class="sd">        Permutation(4)(0, 2)(1, 3)</span>
+<span class="sd">        (4)(0 2)(1 3)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">ic</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+        <span class="n">ic</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">)))))</span>
         <span class="k">if</span> <span class="n">key</span><span class="p">:</span>
             <span class="n">ic</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">key</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1535,7 +1591,7 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([[2,0], [3,1]])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([[2, 0], [3, 1]])</span>
 <span class="sd">        &gt;&gt;&gt; p.array_form</span>
 <span class="sd">        [2, 3, 0, 1]</span>
 <span class="sd">        &gt;&gt;&gt; [p(i) for i in range(4)]</span>
@@ -1560,7 +1616,7 @@
                 <span class="k">try</span><span class="p">:</span>
                     <span class="c1"># P([a, b, c])</span>
                     <span class="k">return</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_array_form</span><span class="p">]</span>
-                <span class="k">except</span><span class="p">:</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;unrecognized argument&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># P(1, 2, 3)</span>
@@ -1650,7 +1706,7 @@
                 <span class="n">a</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span> <span class="o">%</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span> <span class="o">%</span> <span class="n">n</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
                 <span class="n">_unrank1</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="o">//</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
 
-        <span class="n">id_perm</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">id_perm</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
         <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">%</span> <span class="n">ifac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
         <span class="n">_unrank1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">id_perm</span><span class="p">)</span>
@@ -1666,7 +1722,7 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([0,1,2,3])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([0, 1, 2, 3])</span>
 <span class="sd">        &gt;&gt;&gt; p.rank_nonlex()</span>
 <span class="sd">        23</span>
 
@@ -1765,7 +1821,7 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([0,1,2,3])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([0, 1, 2, 3])</span>
 <span class="sd">        &gt;&gt;&gt; p.cardinality</span>
 <span class="sd">        24</span>
 
@@ -1788,10 +1844,10 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([0,1,2,3])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([0, 1, 2, 3])</span>
 <span class="sd">        &gt;&gt;&gt; p.parity()</span>
 <span class="sd">        0</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([3,2,0,1])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([3, 2, 0, 1])</span>
 <span class="sd">        &gt;&gt;&gt; p.parity()</span>
 <span class="sd">        1</span>
 
@@ -1814,10 +1870,10 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([0,1,2,3])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([0, 1, 2, 3])</span>
 <span class="sd">        &gt;&gt;&gt; p.is_even</span>
 <span class="sd">        True</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([3,2,1,0])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([3, 2, 1, 0])</span>
 <span class="sd">        &gt;&gt;&gt; p.is_even</span>
 <span class="sd">        True</span>
 
@@ -1837,10 +1893,10 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([0,1,2,3])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([0, 1, 2, 3])</span>
 <span class="sd">        &gt;&gt;&gt; p.is_odd</span>
 <span class="sd">        False</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([3,2,0,1])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([3, 2, 0, 1])</span>
 <span class="sd">        &gt;&gt;&gt; p.is_odd</span>
 <span class="sd">        True</span>
 
@@ -1901,6 +1957,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        ========</span>
+
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
 <span class="sd">        &gt;&gt;&gt; p = Permutation([])</span>
 <span class="sd">        &gt;&gt;&gt; p.is_Identity</span>
@@ -1921,7 +1978,7 @@
 <span class="sd">        order</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">af</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">array_form</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="n">af</span> <span class="ow">or</span> <span class="nb">all</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">af</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="n">af</span> <span class="ow">or</span> <span class="nb">all</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">af</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
 
 <div class="viewcode-block" id="Permutation.ascents"><a class="viewcode-back" href="../../../modules/combinatorics/permutations.html#sympy.combinatorics.permutations.Permutation.ascents">[docs]</a>    <span class="k">def</span> <span class="nf">ascents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1932,7 +1989,7 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([4,0,1,3,2])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([4, 0, 1, 3, 2])</span>
 <span class="sd">        &gt;&gt;&gt; p.ascents()</span>
 <span class="sd">        [1, 2]</span>
 
@@ -1954,7 +2011,7 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([4,0,1,3,2])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([4, 0, 1, 3, 2])</span>
 <span class="sd">        &gt;&gt;&gt; p.descents()</span>
 <span class="sd">        [0, 3]</span>
 
@@ -1975,7 +2032,7 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([1,0,2,3,4])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([1, 0, 2, 3, 4])</span>
 <span class="sd">        &gt;&gt;&gt; p.max()</span>
 <span class="sd">        1</span>
 
@@ -1999,7 +2056,7 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([0,1,4,3,2])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([0, 1, 4, 3, 2])</span>
 <span class="sd">        &gt;&gt;&gt; p.min()</span>
 <span class="sd">        2</span>
 
@@ -2035,10 +2092,10 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([0,1,2,3,4,5])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([0, 1, 2, 3, 4, 5])</span>
 <span class="sd">        &gt;&gt;&gt; p.inversions()</span>
 <span class="sd">        0</span>
-<span class="sd">        &gt;&gt;&gt; Permutation([3,2,1,0]).inversions()</span>
+<span class="sd">        &gt;&gt;&gt; Permutation([3, 2, 1, 0]).inversions()</span>
 <span class="sd">        6</span>
 
 <span class="sd">        See Also</span>
@@ -2130,7 +2187,7 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([0,1,2])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([0, 1, 2])</span>
 <span class="sd">        &gt;&gt;&gt; p.inversions()</span>
 <span class="sd">        0</span>
 <span class="sd">        &gt;&gt;&gt; p.signature()</span>
@@ -2192,7 +2249,7 @@
 <span class="sd">        See Also</span>
 <span class="sd">        ========</span>
 
-<span class="sd">        min, max, suppport, cardinality, order, rank, size</span>
+<span class="sd">        min, max, support, cardinality, order, rank, size</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">support</span><span class="p">())</span></div>
@@ -2278,7 +2335,7 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([2,5,7,3,6,0,1,4,8])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([2, 5, 7, 3, 6, 0, 1, 4, 8])</span>
 <span class="sd">        &gt;&gt;&gt; p.runs()</span>
 <span class="sd">        [[2, 5, 7], [3, 6], [0, 1, 4, 8]]</span>
 <span class="sd">        &gt;&gt;&gt; q = Permutation([1,3,2,0])</span>
@@ -2313,7 +2370,7 @@
 
 <span class="sd">        &gt;&gt;&gt; p = Permutation(2)</span>
 <span class="sd">        &gt;&gt;&gt; while p:</span>
-<span class="sd">        ...     print p, p.inversion_vector(), p.rank()</span>
+<span class="sd">        ...     print(&#39;%s %s %s&#39; % (p, p.inversion_vector(), p.rank()))</span>
 <span class="sd">        ...     p = p.next_lex()</span>
 <span class="sd">        ...</span>
 <span class="sd">        Permutation([0, 1, 2]) [0, 0] 0</span>
@@ -2348,10 +2405,10 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([0,1,2,3])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([0, 1, 2, 3])</span>
 <span class="sd">        &gt;&gt;&gt; p.rank_trotterjohnson()</span>
 <span class="sd">        0</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation([0,2,1,3])</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation([0, 2, 1, 3])</span>
 <span class="sd">        &gt;&gt;&gt; p.rank_trotterjohnson()</span>
 <span class="sd">        7</span>
 
@@ -2421,7 +2478,9 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the next permutation in Trotter-Johnson order.</span>
 <span class="sd">        If self is the last permutation it returns None.</span>
-<span class="sd">        See [4] section 2.4.</span>
+<span class="sd">        See [4] section 2.4. If it is desired to generate all such</span>
+<span class="sd">        permutations, they can be generated in order more quickly</span>
+<span class="sd">        with the ``generate_bell`` function.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        ========</span>
@@ -2439,7 +2498,7 @@
 <span class="sd">        See Also</span>
 <span class="sd">        ========</span>
 
-<span class="sd">        rank_trotterjohnson, unrank_trotterjohnson</span>
+<span class="sd">        rank_trotterjohnson, unrank_trotterjohnson, sympy.utilities.iterables.generate_bell</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">array_form</span><span class="p">[:]</span>
         <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
@@ -2478,7 +2537,7 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation.josephus(3,6,1)</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation.josephus(3, 6, 1)</span>
 <span class="sd">        &gt;&gt;&gt; p</span>
 <span class="sd">        Permutation([2, 5, 3, 1, 4, 0])</span>
 <span class="sd">        &gt;&gt;&gt; p.get_precedence_matrix()</span>
@@ -2507,7 +2566,7 @@
 <span class="sd">        Computes the precedence distance between two permutations.</span>
 
 <span class="sd">        Suppose p and p&#39; represent n jobs. The precedence metric</span>
-<span class="sd">        counts the number of times a job j is prededed by job i</span>
+<span class="sd">        counts the number of times a job j is preceded by job i</span>
 <span class="sd">        in both p and p&#39;. This metric is commutative.</span>
 
 <span class="sd">        Examples</span>
@@ -2552,7 +2611,7 @@
 <span class="sd">        ========</span>
 
 <span class="sd">        &gt;&gt;&gt; from sympy.combinatorics.permutations import Permutation</span>
-<span class="sd">        &gt;&gt;&gt; p = Permutation.josephus(3,6,1)</span>
+<span class="sd">        &gt;&gt;&gt; p = Permutation.josephus(3, 6, 1)</span>
 <span class="sd">        &gt;&gt;&gt; p.get_adjacency_matrix()</span>
 <span class="sd">        Matrix([</span>
 <span class="sd">        [0, 0, 0, 0, 0, 0],</span>
@@ -2658,7 +2717,7 @@
 <span class="sd">        were selected.</span>
 
 <span class="sd">        The parameter ``s`` stops the selection process when there are ``s``</span>
-<span class="sd">        items remaining and these are selected by countinuing the selection,</span>
+<span class="sd">        items remaining and these are selected by continuing the selection,</span>
 <span class="sd">        counting by 1 rather than by ``m``.</span>
 
 <span class="sd">        Consider selecting every 3rd item from 6 until only 2 remain::</span>
@@ -2690,7 +2749,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
         <span class="n">m</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">Q</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+        <span class="n">Q</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span>
         <span class="n">perm</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">max</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">dp</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
@@ -2714,7 +2773,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">inversion</span><span class="p">)</span>
-        <span class="n">N</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
         <span class="n">perm</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
@@ -2731,7 +2790,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates a random permutation of length ``n``.</span>
 
-<span class="sd">        Uses the underlying Python psuedo-random number generator.</span>
+<span class="sd">        Uses the underlying Python pseudo-random number generator.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        ========</span>
@@ -2741,7 +2800,7 @@
 <span class="sd">        True</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">perm_array</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">perm_array</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
         <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">perm_array</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">_af_new</span><span class="p">(</span><span class="n">perm_array</span><span class="p">)</span></div>
 

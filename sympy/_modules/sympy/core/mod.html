@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.core.mod &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.core.mod &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -48,7 +48,10 @@
           <div class="body" role="main">
             
   <h1>Source code for sympy.core.mod</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">function</span> <span class="kn">import</span> <span class="n">Function</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="kn">from</span> <span class="nn">sympy.core.numbers</span> <span class="kn">import</span> <span class="n">nan</span>
+<span class="kn">from</span> <span class="nn">.function</span> <span class="kn">import</span> <span class="n">Function</span>
 
 
 <div class="viewcode-block" id="Mod"><a class="viewcode-back" href="../../../modules/core.html#sympy.core.mod.Mod">[docs]</a><span class="k">class</span> <span class="nc">Mod</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
@@ -69,7 +72,6 @@
 <span class="sd">    1</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">nargs</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
@@ -81,14 +83,24 @@
 
         <span class="k">def</span> <span class="nf">doit</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;Try to return p % q if both are numbers or +/-p is known</span>
-<span class="sd">            to be less than q.</span>
+<span class="sd">            to be less than or equal q.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
 
-            <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="n">q</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">==</span> <span class="o">-</span><span class="n">q</span> <span class="ow">or</span> <span class="n">p</span><span class="o">.</span><span class="n">is_Pow</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">exp</span><span class="o">.</span><span class="n">is_Integer</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">base</span> <span class="o">==</span> <span class="n">q</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">is_infinite</span> <span class="ow">or</span> <span class="n">q</span><span class="o">.</span><span class="n">is_infinite</span> <span class="ow">or</span> <span class="n">p</span> <span class="ow">is</span> <span class="n">nan</span> <span class="ow">or</span> <span class="n">q</span> <span class="ow">is</span> <span class="n">nan</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">nan</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">q</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">==</span> <span class="o">-</span><span class="n">q</span> <span class="ow">or</span>
+                    <span class="n">p</span><span class="o">.</span><span class="n">is_Pow</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">exp</span><span class="o">.</span><span class="n">is_Integer</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">base</span> <span class="o">==</span> <span class="n">q</span> <span class="ow">or</span>
+                    <span class="n">p</span><span class="o">.</span><span class="n">is_integer</span> <span class="ow">and</span> <span class="n">q</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">Zero</span>
 
-            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">is_Number</span> <span class="ow">and</span> <span class="n">q</span><span class="o">.</span><span class="n">is_Number</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">(</span><span class="n">p</span> <span class="o">%</span> <span class="n">q</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">q</span><span class="o">.</span><span class="n">is_Number</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">is_Number</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="p">(</span><span class="n">p</span> <span class="o">%</span> <span class="n">q</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">q</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">is_even</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">Zero</span>
+                    <span class="k">elif</span> <span class="n">p</span><span class="o">.</span><span class="n">is_odd</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="n">S</span><span class="o">.</span><span class="n">One</span>
 
             <span class="c1"># by ratio</span>
             <span class="n">r</span> <span class="o">=</span> <span class="n">p</span><span class="o">/</span><span class="n">q</span>
@@ -99,16 +111,16 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
                     <span class="n">rv</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">d</span><span class="o">*</span><span class="n">q</span>
-                    <span class="k">if</span> <span class="n">rv</span><span class="o">*</span><span class="n">q</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">rv</span><span class="o">*</span><span class="n">q</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
                         <span class="n">rv</span> <span class="o">+=</span> <span class="n">q</span>
                     <span class="k">return</span> <span class="n">rv</span>
 
-            <span class="c1"># by differencec</span>
+            <span class="c1"># by difference</span>
             <span class="n">d</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">q</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">d</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">q</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">is_negative</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">q</span><span class="o">.</span><span class="n">is_negative</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">d</span>
-                <span class="k">elif</span> <span class="p">(</span><span class="n">q</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="k">elif</span> <span class="n">q</span><span class="o">.</span><span class="n">is_positive</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">p</span>
 
         <span class="n">rv</span> <span class="o">=</span> <span class="n">doit</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
@@ -125,7 +137,7 @@
 
         <span class="c1"># extract gcd; any further simplification should be done by the user</span>
         <span class="n">G</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">G</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">S</span><span class="o">.</span><span class="n">One</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">G</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="n">gcd_terms</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="n">G</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)]</span>
         <span class="n">pwas</span><span class="p">,</span> <span class="n">qwas</span> <span class="o">=</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span>
@@ -176,7 +188,21 @@
         <span class="k">elif</span> <span class="n">G</span><span class="o">.</span><span class="n">is_Mul</span> <span class="ow">and</span> <span class="n">G</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">is_Float</span> <span class="ow">and</span> <span class="n">G</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">p</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">p</span>
             <span class="n">G</span> <span class="o">=</span> <span class="n">Mul</span><span class="o">.</span><span class="n">_from_args</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-        <span class="k">return</span> <span class="n">G</span><span class="o">*</span><span class="n">cls</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span> <span class="o">!=</span> <span class="p">(</span><span class="n">pwas</span><span class="p">,</span> <span class="n">qwas</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="n">G</span><span class="o">*</span><span class="n">cls</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span> <span class="o">!=</span> <span class="p">(</span><span class="n">pwas</span><span class="p">,</span> <span class="n">qwas</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_eval_is_integer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">sympy.core.logic</span> <span class="kn">import</span> <span class="n">fuzzy_and</span><span class="p">,</span> <span class="n">fuzzy_not</span>
+        <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span>
+        <span class="k">if</span> <span class="n">fuzzy_and</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">is_integer</span><span class="p">,</span> <span class="n">q</span><span class="o">.</span><span class="n">is_integer</span><span class="p">,</span> <span class="n">fuzzy_not</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">is_zero</span><span class="p">)]):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">_eval_is_nonnegative</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">is_positive</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">_eval_is_nonpositive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">is_negative</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span></div>
 </pre></div>
 
           </div>

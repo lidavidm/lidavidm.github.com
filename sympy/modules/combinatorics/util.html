@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Utilities &mdash; SymPy 0.7.3 documentation</title>
+    <title>Utilities &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
     <link rel="up" title="Combinatorics Module" href="index.html" />
     <link rel="next" title="Group constructors" href="group_constructs.html" />
     <link rel="prev" title="Named Groups" href="named_groups.html" />
@@ -64,24 +64,7 @@
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A list <code class="docutils literal"><span class="pre">base_ordering</span></code> such that <code class="docutils literal"><span class="pre">base_ordering[point]</span></code> is the</p>
-<p>number of <code class="docutils literal"><span class="pre">point</span></code> in the ordering.</p>
-<p>Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.named_groups</span> <span class="k">import</span> <span class="n">SymmetricGroup</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.util</span> <span class="k">import</span> <span class="n">_base_ordering</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">SymmetricGroup</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">schreier_sims</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">_base_ordering</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">degree</span><span class="p">)</span>
-</pre></div>
-</div>
-<p class="last">[0, 1, 2, 3]</p>
+<p class="last">number of <code class="docutils literal"><span class="pre">point</span></code> in the ordering.</p>
 </td>
 </tr>
 </tbody>
@@ -97,6 +80,15 @@ that are not in the base are taken in increasing order.</p>
 <p class="rubric">References</p>
 <p>[1] Holt, D., Eick, B., O&#8217;Brien, E.
 &#8220;Handbook of computational group theory&#8221;</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.named_groups</span> <span class="k">import</span> <span class="n">SymmetricGroup</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.util</span> <span class="k">import</span> <span class="n">_base_ordering</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">SymmetricGroup</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">schreier_sims</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_base_ordering</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">degree</span><span class="p">)</span>
+<span class="go">[0, 1, 2, 3]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
@@ -112,10 +104,10 @@ the function is_alt_sym from sympy.combinatorics.perm_groups.</p>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.util</span> <span class="k">import</span> <span class="n">_check_cycles_alt_sym</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.permutations</span> <span class="k">import</span> <span class="n">Permutation</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_check_cycles_alt_sym</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="go">False</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_check_cycles_alt_sym</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 <span class="go">True</span>
 </pre></div>
@@ -159,12 +151,12 @@ are defined as <span class="math">\(G^{(i)} = G_{b_1, ..., b_{i-1}}\)</span> for
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D</span> <span class="o">=</span> <span class="n">DihedralGroup</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">schreier_sims</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">strong_gens</span>
-<span class="go">[Permutation(0, 1, 2), Permutation(0, 2), Permutation(1, 2)]</span>
+<span class="go">[(0 1 2), (0 2), (1 2)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">base</span>
 <span class="go">[0, 1]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_distribute_gens_by_base</span><span class="p">(</span><span class="n">D</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">D</span><span class="o">.</span><span class="n">strong_gens</span><span class="p">)</span>
-<span class="go">[[Permutation(0, 1, 2), Permutation(0, 2), Permutation(1, 2)],</span>
-<span class="go"> [Permutation(1, 2)]]</span>
+<span class="go">[[(0 1 2), (0 2), (1 2)],</span>
+<span class="go"> [(1 2)]]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -209,12 +201,7 @@ provided, they will be calculated from the base and strong generating set.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D</span><span class="o">.</span><span class="n">schreier_sims</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_handle_precomputed_bsgs</span><span class="p">(</span><span class="n">D</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">D</span><span class="o">.</span><span class="n">strong_gens</span><span class="p">,</span>
 <span class="gp">... </span><span class="n">basic_orbits</span><span class="o">=</span><span class="n">D</span><span class="o">.</span><span class="n">basic_orbits</span><span class="p">)</span>
-<span class="go">([{0: Permutation(2), 1: Permutation(0, 1, 2), 2: Permutation(0, 2)},</span>
-<span class="go">{1: Permutation(2), 2: Permutation(1, 2)}],</span>
-<span class="go">[[0, 1, 2], [1, 2]], [[Permutation(0, 1, 2),</span>
-<span class="go">                       Permutation(0, 2),</span>
-<span class="go">                       Permutation(1, 2)],</span>
-<span class="go">                      [Permutation(1, 2)]])</span>
+<span class="go">([{0: (2), 1: (0 1 2), 2: (0 2)}, {1: (2), 2: (1 2)}], [[0, 1, 2], [1, 2]], [[(0 1 2), (0 2), (1 2)], [(1 2)]])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -233,7 +220,7 @@ transversals are returned.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>``base`` - the base</strong></p>
 <p><strong>``strong_gens_distr`` - strong generators distributed by membership in basic</strong></p>
 <p><strong>stabilizers</strong></p>
-<p><strong>``transversals_only`` - a flag swithing between returning only the</strong></p>
+<p><strong>``transversals_only`` - a flag switching between returning only the</strong></p>
 <p class="last"><strong>transversals/ both orbits and transversals</strong></p>
 </td>
 </tr>
@@ -254,9 +241,7 @@ transversals are returned.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">schreier_sims</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">strong_gens_distr</span> <span class="o">=</span> <span class="n">_distribute_gens_by_base</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">strong_gens</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_orbits_transversals_from_bsgs</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">strong_gens_distr</span><span class="p">)</span>
-<span class="go">([[0, 1, 2], [1, 2]],</span>
-<span class="go">[{0: Permutation(2), 1: Permutation(0, 1, 2), 2: Permutation(0, 2, 1)},</span>
-<span class="go">{1: Permutation(2), 2: Permutation(1, 2)}])</span>
+<span class="go">([[0, 1, 2], [1, 2]], [{0: (2), 1: (0 1 2), 2: (0 2 1)}, {1: (2), 2: (1 2)}])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -294,8 +279,6 @@ transversals are returned.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.combinatorics.testutil</span> <span class="k">import</span> <span class="n">_verify_bsgs</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">SymmetricGroup</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">base</span><span class="p">,</span> <span class="n">strong_gens</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">schreier_sims_incremental</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">strong_gens</span><span class="p">)</span>
-<span class="go">26</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">new_gens</span> <span class="o">=</span> <span class="n">_remove_gens</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">strong_gens</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">new_gens</span><span class="p">)</span>
 <span class="go">14</span>
@@ -327,7 +310,7 @@ transversal elements for the orbits <code class="docutils literal"><span class="
 <p><strong>``orbits`` - a list in which the ``i``-th entry is an orbit of ``base[i]``</strong></p>
 <p><strong>under some subgroup of the pointwise stabilizer of `</strong></p>
 <p><strong>`base[0], base[1], ..., base[i - 1]``. The groups themselves are implicit</strong></p>
-<p><strong>in this function since the only infromation we need is encoded in the orbits</strong></p>
+<p><strong>in this function since the only information we need is encoded in the orbits</strong></p>
 <p><strong>and transversals</strong></p>
 <p><strong>``transversals`` - a list of orbit transversals associated with the orbits</strong></p>
 <p class="last"><strong>``orbits``.</strong></p>
@@ -357,7 +340,7 @@ the randomized version of the Schreier-Sims algorithm.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">schreier_sims</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">Permutation</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_strip</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">basic_orbits</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">basic_transversals</span><span class="p">)</span>
-<span class="go">(Permutation(4), 5)</span>
+<span class="go">((4), 5)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -391,10 +374,10 @@ stabilizers.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span> <span class="o">=</span> <span class="n">SymmetricGroup</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">schreier_sims</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">S</span><span class="o">.</span><span class="n">strong_gens</span>
-<span class="go">[Permutation(0, 1, 2), Permutation(2)(0, 1), Permutation(1, 2)]</span>
+<span class="go">[(0 1 2), (2)(0 1), (1 2)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">strong_gens_distr</span> <span class="o">=</span> <span class="n">_distribute_gens_by_base</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">strong_gens</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_strong_gens_from_distr</span><span class="p">(</span><span class="n">strong_gens_distr</span><span class="p">)</span>
-<span class="go">[Permutation(0, 1, 2), Permutation(2)(0, 1), Permutation(1, 2)]</span>
+<span class="go">[(0 1 2), (2)(0 1), (1 2)]</span>
 </pre></div>
 </div>
 </dd></dl>

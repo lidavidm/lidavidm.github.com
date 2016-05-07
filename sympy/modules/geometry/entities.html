@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Entities &mdash; SymPy 0.7.3 documentation</title>
+    <title>Entities &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
     <link rel="up" title="Geometry Module" href="index.html" />
     <link rel="next" title="Utils" href="utils.html" />
     <link rel="prev" title="Geometry Module" href="index.html" />
@@ -57,6 +57,19 @@
 <dd><p>The base class for all geometrical entities.</p>
 <p>This class doesn&#8217;t represent any particular geometric entity, it only
 provides the implementation of some methods common to all subclasses.</p>
+<dl class="attribute">
+<dt id="sympy.geometry.entity.GeometryEntity.ambient_dimension">
+<code class="descname">ambient_dimension</code><a class="headerlink" href="#sympy.geometry.entity.GeometryEntity.ambient_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>What is the dimension of the space that the object is contained in?</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sympy.geometry.entity.GeometryEntity.bounds">
+<code class="descname">bounds</code><a class="headerlink" href="#sympy.geometry.entity.GeometryEntity.bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple (xmin, ymin, xmax, ymax) representing the bounding
+rectangle for the geometric figure.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="sympy.geometry.entity.GeometryEntity.encloses">
 <code class="descname">encloses</code><span class="sig-paren">(</span><em>o</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/geometry/entity.html#GeometryEntity.encloses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.geometry.entity.GeometryEntity.encloses" title="Permalink to this definition">¶</a></dt>
@@ -125,9 +138,9 @@ required that one of them be able to determine this.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">pi</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="o">*</span><span class="n">RegularPolygon</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="c1"># vertex on x axis</span>
-<span class="go">Triangle(Point(1, 0), Point(-1/2, sqrt(3)/2), Point(-1/2, -sqrt(3)/2))</span>
+<span class="go">Triangle(Point2D(1, 0), Point2D(-1/2, sqrt(3)/2), Point2D(-1/2, -sqrt(3)/2))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># vertex on y axis now</span>
-<span class="go">Triangle(Point(0, 1), Point(-sqrt(3)/2, -1/2), Point(sqrt(3)/2, -1/2))</span>
+<span class="go">Triangle(Point2D(0, 1), Point2D(-sqrt(3)/2, -1/2), Point2D(sqrt(3)/2, -1/2))</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -146,11 +159,11 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="o">*</span><span class="n">RegularPolygon</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span>
-<span class="go">Triangle(Point(1, 0), Point(-1/2, sqrt(3)/2), Point(-1/2, -sqrt(3)/2))</span>
+<span class="go">Triangle(Point2D(1, 0), Point2D(-1/2, sqrt(3)/2), Point2D(-1/2, -sqrt(3)/2))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="go">Triangle(Point(2, 0), Point(-1, sqrt(3)/2), Point(-1, -sqrt(3)/2))</span>
+<span class="go">Triangle(Point2D(2, 0), Point2D(-1, sqrt(3)/2), Point2D(-1, -sqrt(3)/2))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="go">Triangle(Point(2, 0), Point(-1, sqrt(3)), Point(-1, -sqrt(3)))</span>
+<span class="go">Triangle(Point2D(2, 0), Point2D(-1, sqrt(3)), Point2D(-1, -sqrt(3)))</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -167,12 +180,12 @@ object is shifted by -pt, scaled, and shifted by pt.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">RegularPolygon</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Polygon</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="o">*</span><span class="n">RegularPolygon</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span>
-<span class="go">Triangle(Point(1, 0), Point(-1/2, sqrt(3)/2), Point(-1/2, -sqrt(3)/2))</span>
+<span class="go">Triangle(Point2D(1, 0), Point2D(-1/2, sqrt(3)/2), Point2D(-1/2, -sqrt(3)/2))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="go">Triangle(Point(3, 0), Point(3/2, sqrt(3)/2), Point(3/2, -sqrt(3)/2))</span>
+<span class="go">Triangle(Point2D(3, 0), Point2D(3/2, sqrt(3)/2), Point2D(3/2, -sqrt(3)/2))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="go">Triangle(Point(3, 2), Point(3/2, sqrt(3)/2 + 2),</span>
-<span class="go">    Point(3/2, -sqrt(3)/2 + 2))</span>
+<span class="go">Triangle(Point2D(3, 2), Point2D(3/2, sqrt(3)/2 + 2),</span>
+<span class="go">    Point2D(3/2, -sqrt(3)/2 + 2))</span>
 </pre></div>
 </div>
 </dd></dl>

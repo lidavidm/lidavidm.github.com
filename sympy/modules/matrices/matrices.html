@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Matrices (linear algebra) &mdash; SymPy 0.7.3 documentation</title>
+    <title>Matrices (linear algebra) &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
     <link rel="up" title="Matrices" href="index.html" />
     <link rel="next" title="Dense Matrices" href="dense.html" />
     <link rel="prev" title="Matrices" href="index.html" />
@@ -671,7 +671,7 @@ for a general square and non-singular matrix.</p>
 the least squares solution is returned.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLdecomposition" title="sympy.matrices.matrices.MatrixBase.LDLdecomposition"><code class="xref py py-obj docutils literal"><span class="pre">LDLdecomposition</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a></p>
+<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLdecomposition" title="sympy.matrices.matrices.MatrixBase.LDLdecomposition"><code class="xref py py-obj docutils literal"><span class="pre">LDLdecomposition</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.gauss_jordan_solve" title="sympy.matrices.matrices.MatrixBase.gauss_jordan_solve"><code class="xref py py-obj docutils literal"><span class="pre">gauss_jordan_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.pinv_solve" title="sympy.matrices.matrices.MatrixBase.pinv_solve"><code class="xref py py-obj docutils literal"><span class="pre">pinv_solve</span></code></a></p>
 </div>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="k">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">eye</span>
@@ -745,10 +745,10 @@ p which is the list of the row swaps (in order).</p>
 <code class="descname">LUsolve</code><span class="sig-paren">(</span><em>rhs</em>, <em>iszerofunc=&lt;function _iszero&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.LUsolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Solve the linear system Ax = rhs for x where A = self.</p>
 <p>This is for symbolic matrices, for real or complex ones use
-sympy.mpmath.lu_solve or sympy.mpmath.qr_solve.</p>
+mpmath.lu_solve or mpmath.qr_solve.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUdecomposition" title="sympy.matrices.matrices.MatrixBase.LUdecomposition"><code class="xref py py-obj docutils literal"><span class="pre">LUdecomposition</span></code></a></p>
+<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.gauss_jordan_solve" title="sympy.matrices.matrices.MatrixBase.gauss_jordan_solve"><code class="xref py py-obj docutils literal"><span class="pre">gauss_jordan_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.pinv_solve" title="sympy.matrices.matrices.MatrixBase.pinv_solve"><code class="xref py py-obj docutils literal"><span class="pre">pinv_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUdecomposition" title="sympy.matrices.matrices.MatrixBase.LUdecomposition"><code class="xref py py-obj docutils literal"><span class="pre">LUdecomposition</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -809,10 +809,10 @@ more stable for floating-point arithmetic than the LUsolve method.
 However, LUsolve usually uses an exact arithmetic, so you don&#8217;t need
 to use QRsolve.</p>
 <p>This is mainly for educational purposes and symbolic matrices, for real
-(or complex) matrices use sympy.mpmath.qr_solve.</p>
+(or complex) matrices use mpmath.qr_solve.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRdecomposition" title="sympy.matrices.matrices.MatrixBase.QRdecomposition"><code class="xref py py-obj docutils literal"><span class="pre">QRdecomposition</span></code></a></p>
+<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.gauss_jordan_solve" title="sympy.matrices.matrices.MatrixBase.gauss_jordan_solve"><code class="xref py py-obj docutils literal"><span class="pre">gauss_jordan_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.pinv_solve" title="sympy.matrices.matrices.MatrixBase.pinv_solve"><code class="xref py py-obj docutils literal"><span class="pre">pinv_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRdecomposition" title="sympy.matrices.matrices.MatrixBase.QRdecomposition"><code class="xref py py-obj docutils literal"><span class="pre">QRdecomposition</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -843,6 +843,21 @@ to use QRsolve.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cofactorMatrix" title="sympy.matrices.matrices.MatrixBase.cofactorMatrix"><code class="xref py py-obj docutils literal"><span class="pre">cofactorMatrix</span></code></a>, <code class="xref py py-obj docutils literal"><span class="pre">transpose</span></code>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.berkowitz" title="sympy.matrices.matrices.MatrixBase.berkowitz"><code class="xref py py-obj docutils literal"><span class="pre">berkowitz</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sympy.matrices.matrices.MatrixBase.atoms">
+<code class="descname">atoms</code><span class="sig-paren">(</span><em>*types</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.atoms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.atoms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the atoms that form the current object.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="k">import</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Matrix</span><span class="p">([[</span><span class="n">x</span><span class="p">]])</span>
+<span class="go">Matrix([[x]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">.</span><span class="n">atoms</span><span class="p">()</span>
+<span class="go">set([x])</span>
+</pre></div>
 </div>
 </dd></dl>
 
@@ -1044,7 +1059,7 @@ For a non-square matrix with rows &gt; cols,
 the least squares solution is returned.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a></p>
+<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.gauss_jordan_solve" title="sympy.matrices.matrices.MatrixBase.gauss_jordan_solve"><code class="xref py py-obj docutils literal"><span class="pre">gauss_jordan_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.pinv_solve" title="sympy.matrices.matrices.MatrixBase.pinv_solve"><code class="xref py py-obj docutils literal"><span class="pre">pinv_solve</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -1112,6 +1127,34 @@ the least squares solution is returned.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="sympy.matrices.matrices.MatrixBase.columnspace">
+<code class="descname">columnspace</code><span class="sig-paren">(</span><em>simplify=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.columnspace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.columnspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list of vectors (Matrix objects) that span columnspace of self</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.nullspace" title="sympy.matrices.matrices.MatrixBase.nullspace"><code class="xref py py-obj docutils literal"><span class="pre">nullspace</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="k">import</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
+<span class="go">Matrix([</span>
+<span class="go">[ 1,  3, 0],</span>
+<span class="go">[-2, -6, 0],</span>
+<span class="go">[ 3,  9, 6]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">columnspace</span><span class="p">()</span>
+<span class="go">[Matrix([</span>
+<span class="go">[ 1],</span>
+<span class="go">[-2],</span>
+<span class="go">[ 3]]), Matrix([</span>
+<span class="go">[0],</span>
+<span class="go">[0],</span>
+<span class="go">[6]])]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="sympy.matrices.matrices.MatrixBase.condition_number">
 <code class="descname">condition_number</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.condition_number"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.condition_number" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the condition number of a matrix.</p>
@@ -1132,7 +1175,11 @@ the least squares solution is returned.</p>
 <dl class="method">
 <dt id="sympy.matrices.matrices.MatrixBase.cross">
 <code class="descname">cross</code><span class="sig-paren">(</span><em>b</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.cross"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.cross" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the cross product of <code class="docutils literal"><span class="pre">self</span></code> and <code class="docutils literal"><span class="pre">b</span></code>.</p>
+<dd><p>Return the cross product of <span class="math">\(self\)</span> and <span class="math">\(b\)</span> relaxing the condition
+of compatible dimensions: if each has 3 elements, a matrix of the
+same type and shape as <span class="math">\(self\)</span> will be returned. If <span class="math">\(b\)</span> has the same
+shape as <span class="math">\(self\)</span> then common identities for the cross product (like
+<span class="math">\(a x b = - b x a\)</span>) will hold.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.dot" title="sympy.matrices.matrices.MatrixBase.dot"><code class="xref py py-obj docutils literal"><span class="pre">dot</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.multiply" title="sympy.matrices.matrices.MatrixBase.multiply"><code class="xref py py-obj docutils literal"><span class="pre">multiply</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.multiply_elementwise" title="sympy.matrices.matrices.MatrixBase.multiply_elementwise"><code class="xref py py-obj docutils literal"><span class="pre">multiply_elementwise</span></code></a></p>
@@ -1147,7 +1194,7 @@ the least squares solution is returned.</p>
 <dt>Possible values for &#8220;method&#8221;:</dt>
 <dd>bareis ... det_bareis
 berkowitz ... berkowitz_det
-lu_decomposition ... det_LU</dd>
+det_LU ... det_LU_decomposition</dd>
 </dl>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
@@ -1194,7 +1241,7 @@ rewriting is needed on resulting formulae.</p>
 with non-zero diagonal entries.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a></p>
+<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.gauss_jordan_solve" title="sympy.matrices.matrices.MatrixBase.gauss_jordan_solve"><code class="xref py py-obj docutils literal"><span class="pre">gauss_jordan_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.pinv_solve" title="sympy.matrices.matrices.MatrixBase.pinv_solve"><code class="xref py py-obj docutils literal"><span class="pre">pinv_solve</span></code></a></p>
 </div>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="k">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">eye</span>
@@ -1364,10 +1411,6 @@ portions during the evalf step, pass a value for the <code class="docutils liter
 <dd><p>Return a submatrix by specifying a list of rows and columns.
 Negative indices can be given. All indices must be in the range
 -n &lt;= i &lt; n where n is the number of rows or columns.</p>
-<div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.submatrix" title="sympy.matrices.matrices.MatrixBase.submatrix"><code class="xref py py-obj docutils literal"><span class="pre">submatrix</span></code></a></p>
-</div>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>
@@ -1397,6 +1440,104 @@ Negative indices can be given. All indices must be in the range
 <span class="go">Matrix([</span>
 <span class="go">[2],</span>
 <span class="go">[8]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sympy.matrices.matrices.MatrixBase.free_symbols">
+<code class="descname">free_symbols</code><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.free_symbols" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the free symbols within the matrix.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="k">import</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Matrix</span><span class="p">([[</span><span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">free_symbols</span>
+<span class="go">set([x])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sympy.matrices.matrices.MatrixBase.gauss_jordan_solve">
+<code class="descname">gauss_jordan_solve</code><span class="sig-paren">(</span><em>b</em>, <em>freevar=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.gauss_jordan_solve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.gauss_jordan_solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solves Ax = b using Gauss Jordan elimination.</p>
+<p>There may be zero, one, or infinite solutions.  If one solution
+exists, it will be returned. If infinite solutions exist, it will
+be returned parametrically. If no solutions exist, It will throw
+ValueError.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>b</strong> : Matrix</p>
+<blockquote>
+<div><p>The right hand side of the equation to be solved for.  Must have
+the same number of rows as matrix A.</p>
+</div></blockquote>
+<p><strong>freevar</strong> : List</p>
+<blockquote>
+<div><p>If the system is underdetermined (e.g. A has more columns than
+rows), infinite solutions are possible, in terms of an arbitrary
+values of free variables. Then the index of the free variables
+in the solutions (column Matrix) will be returned by freevar, if
+the flag <span class="math">\(freevar\)</span> is set to <span class="math">\(True\)</span>.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>x</strong> : Matrix</p>
+<blockquote>
+<div><p>The matrix that will satisfy Ax = B.  Will have as many rows as
+matrix A has columns, and as many columns as matrix B.</p>
+</div></blockquote>
+<p><strong>params</strong> : Matrix</p>
+<blockquote class="last">
+<div><p>If the system is underdetermined (e.g. A has more columns than
+rows), infinite solutions are possible, in terms of an arbitrary
+parameters. These arbitrary parameters are returned as params
+Matrix.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.pinv" title="sympy.matrices.matrices.MatrixBase.pinv"><code class="xref py py-obj docutils literal"><span class="pre">pinv</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r384" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[R384]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Gaussian_elimination">http://en.wikipedia.org/wiki/Gaussian_elimination</a></td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sol</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">gauss_jordan_solve</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sol</span>
+<span class="go">Matrix([</span>
+<span class="go">[-2*_tau0 - 3*_tau1 + 2],</span>
+<span class="go">[                 _tau0],</span>
+<span class="go">[           2*_tau1 + 5],</span>
+<span class="go">[                 _tau1]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">params</span>
+<span class="go">Matrix([</span>
+<span class="go">[_tau0],</span>
+<span class="go">[_tau1]])</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sol</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">gauss_jordan_solve</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sol</span>
+<span class="go">Matrix([</span>
+<span class="go">[-1],</span>
+<span class="go">[ 2],</span>
+<span class="go">[ 0]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">params</span>
+<span class="go">Matrix(0, 1, [])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1478,6 +1619,31 @@ by repeated application of row_join).</p>
 <span class="go">Matrix([</span>
 <span class="go">[2, 2*y],</span>
 <span class="go">[2,   0]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sympy.matrices.matrices.MatrixBase.inv_mod">
+<code class="descname">inv_mod</code><span class="sig-paren">(</span><em>m</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.inv_mod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.inv_mod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the inverse of the matrix <span class="math">\(K\)</span> (mod <span class="math">\(m\)</span>), if it exists.</p>
+<p>Method to find the matrix inverse of <span class="math">\(K\)</span> (mod <span class="math">\(m\)</span>) implemented in this function:</p>
+<ul class="simple">
+<li>Compute <span class="math">\(\mathrm{adj}(K) = \mathrm{cof}(K)^t\)</span>, the adjoint matrix of <span class="math">\(K\)</span>.</li>
+<li>Compute <span class="math">\(r = 1/\mathrm{det}(K) \pmod m\)</span>.</li>
+<li><span class="math">\(K^{-1} = r\cdot \mathrm{adj}(K) \pmod m\)</span>.</li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">inv_mod</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">Matrix([</span>
+<span class="go">[3, 1],</span>
+<span class="go">[4, 2]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">inv_mod</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">Matrix([</span>
+<span class="go">[1, 1],</span>
+<span class="go">[0, 1]])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1653,6 +1819,35 @@ By default (if clear_subproducts==True) they will be deleted.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">is_diagonalizable</span><span class="p">()</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">is_diagonalizable</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sympy.matrices.matrices.MatrixBase.is_hermitian">
+<code class="descname">is_hermitian</code><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.is_hermitian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the matrix is Hermitian.</p>
+<p>In a Hermitian matrix element i,j is the complex conjugate of
+element j,i.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="k">import</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">I</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="n">I</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">I</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">Matrix([</span>
+<span class="go">[ 1, I],</span>
+<span class="go">[-I, 1]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">is_hermitian</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">I</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">is_hermitian</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">is_hermitian</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">I</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">is_hermitian</span>
 <span class="go">False</span>
 </pre></div>
 </div>
@@ -1914,13 +2109,16 @@ below the first subdiagonal.</p>
 <dd><p>Checks if a matrix is a zero matrix.</p>
 <p>A matrix is zero if every element is zero.  A matrix need not be square
 to be considered zero.  The empty matrix is zero by the principle of
-vacuous truth.</p>
+vacuous truth.  For a matrix that may or may not be zero (e.g.
+contains a symbol), this will be None</p>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">zeros</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">x</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">is_zero</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">is_zero</span>
@@ -1929,6 +2127,7 @@ vacuous truth.</p>
 <span class="go">False</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">is_zero</span>
 <span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span><span class="o">.</span><span class="n">is_zero</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1979,7 +2178,7 @@ vacuous truth.</p>
 This list shape Jordan matrix J.</p>
 <p>If calc_transformation is specified as False, then transformation P such that</p>
 <blockquote>
-<div>J = P^-1 * M * P</div></blockquote>
+<div><span class="math">\(J = P^{-1} \cdot M \cdot P\)</span></div></blockquote>
 <p>will not be calculated.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
@@ -1996,7 +2195,7 @@ This list shape Jordan matrix J.</p>
 <span class="gp">... </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Jcells</span><span class="p">)</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">jordan_cells</span><span class="p">()</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">P</span><span class="p">,</span> <span class="n">Jcells</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">jordan_cells</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Jcells</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="go">Matrix([</span>
 <span class="go">[2, 1],</span>
@@ -2013,16 +2212,15 @@ This list shape Jordan matrix J.</p>
 <dt id="sympy.matrices.matrices.MatrixBase.jordan_form">
 <code class="descname">jordan_form</code><span class="sig-paren">(</span><em>calc_transformation=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.jordan_form"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.jordan_form" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return Jordan form J of current matrix.</p>
-<p>If calc_transformation is specified as False, then transformation P such that</p>
+<p>Also the transformation P such that</p>
 <blockquote>
-<div>J = P^-1 * M * P</div></blockquote>
-<p>will not be calculated.</p>
+<div><span class="math">\(J = P^{-1} \cdot M \cdot P\)</span></div></blockquote>
+<p>and the jordan blocks forming J
+will be calculated.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.jordan_cells" title="sympy.matrices.matrices.MatrixBase.jordan_cells"><code class="xref py py-obj docutils literal"><span class="pre">jordan_cells</span></code></a></p>
 </div>
-<p class="rubric">Notes</p>
-<p>Calculation of transformation P is not implemented yet.</p>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span>
@@ -2030,7 +2228,7 @@ This list shape Jordan matrix J.</p>
 <span class="gp">... </span>       <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span>  <span class="mi">3</span><span class="p">],</span>
 <span class="gp">... </span>       <span class="p">[</span> <span class="mi">2</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">],</span>
 <span class="gp">... </span>       <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">5</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">J</span><span class="p">)</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">jordan_form</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">P</span><span class="p">,</span> <span class="n">J</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">jordan_form</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">J</span>
 <span class="go">Matrix([</span>
 <span class="go">[2, 1, 0, 0],</span>
@@ -2066,6 +2264,35 @@ unchanged.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="sympy.matrices.matrices.MatrixBase.left_eigenvects">
+<code class="descname">left_eigenvects</code><span class="sig-paren">(</span><em>**flags</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.left_eigenvects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.left_eigenvects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns left eigenvectors and eigenvalues.</p>
+<p>This function returns the list of triples (eigenval, multiplicity,
+basis) for the left eigenvectors. Options are the same as for
+eigenvects(), i.e. the <code class="docutils literal"><span class="pre">**flags</span></code> arguments gets passed directly to
+eigenvects().</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">eigenvects</span><span class="p">()</span>
+<span class="go">[(-1, 1, [Matrix([</span>
+<span class="go">[-1],</span>
+<span class="go">[ 1],</span>
+<span class="go">[ 0]])]), (0, 1, [Matrix([</span>
+<span class="go">[ 0],</span>
+<span class="go">[-1],</span>
+<span class="go">[ 1]])]), (2, 1, [Matrix([</span>
+<span class="go">[2/3],</span>
+<span class="go">[1/3],</span>
+<span class="go">[  1]])])]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">left_eigenvects</span><span class="p">()</span>
+<span class="go">[(-1, 1, [Matrix([[-2, 1, 1]])]), (0, 1, [Matrix([[-1, -1, 1]])]), (2,</span>
+<span class="go">1, [Matrix([[1, 1, 1]])])]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="sympy.matrices.matrices.MatrixBase.limit">
 <code class="descname">limit</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.limit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.limit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the limit of each element in the matrix.</p>
@@ -2091,7 +2318,7 @@ unchanged.</p>
 <dd><p>Solves Ax = B, where A is a lower triangular matrix.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a></p>
+<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.gauss_jordan_solve" title="sympy.matrices.matrices.MatrixBase.gauss_jordan_solve"><code class="xref py py-obj docutils literal"><span class="pre">gauss_jordan_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.pinv_solve" title="sympy.matrices.matrices.MatrixBase.pinv_solve"><code class="xref py py-obj docutils literal"><span class="pre">pinv_solve</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -2253,8 +2480,27 @@ Other norms can be specified by the ord parameter</p>
 
 <dl class="method">
 <dt id="sympy.matrices.matrices.MatrixBase.nullspace">
-<code class="descname">nullspace</code><span class="sig-paren">(</span><em>simplified=False</em>, <em>simplify=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.nullspace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.nullspace" title="Permalink to this definition">¶</a></dt>
+<code class="descname">nullspace</code><span class="sig-paren">(</span><em>simplify=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.nullspace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.nullspace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns list of vectors (Matrix objects) that span nullspace of self</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.columnspace" title="sympy.matrices.matrices.MatrixBase.columnspace"><code class="xref py py-obj docutils literal"><span class="pre">columnspace</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="k">import</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
+<span class="go">Matrix([</span>
+<span class="go">[ 1,  3, 0],</span>
+<span class="go">[-2, -6, 0],</span>
+<span class="go">[ 3,  9, 6]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">nullspace</span><span class="p">()</span>
+<span class="go">[Matrix([</span>
+<span class="go">[-3],</span>
+<span class="go">[ 1],</span>
+<span class="go">[ 0]])]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -2293,6 +2539,110 @@ Other norms can be specified by the ord parameter</p>
 <span class="go">[0, 0, 1],</span>
 <span class="go">[1, 0, 0],</span>
 <span class="go">[0, 1, 0]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sympy.matrices.matrices.MatrixBase.pinv">
+<code class="descname">pinv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.pinv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.pinv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Moore-Penrose pseudoinverse of the matrix.</p>
+<p>The Moore-Penrose pseudoinverse exists and is unique for any matrix.
+If the matrix is invertible, the pseudoinverse is the same as the
+inverse.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal"><span class="pre">inv</span></code>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.pinv_solve" title="sympy.matrices.matrices.MatrixBase.pinv_solve"><code class="xref py py-obj docutils literal"><span class="pre">pinv_solve</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r385" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[R385]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Moore-Penrose_pseudoinverse">https://en.wikipedia.org/wiki/Moore-Penrose_pseudoinverse</a></td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span><span class="o">.</span><span class="n">pinv</span><span class="p">()</span>
+<span class="go">Matrix([</span>
+<span class="go">[-17/18,  4/9],</span>
+<span class="go">[  -1/9,  1/9],</span>
+<span class="go">[ 13/18, -2/9]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sympy.matrices.matrices.MatrixBase.pinv_solve">
+<code class="descname">pinv_solve</code><span class="sig-paren">(</span><em>B</em>, <em>arbitrary_matrix=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.pinv_solve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.pinv_solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve Ax = B using the Moore-Penrose pseudoinverse.</p>
+<p>There may be zero, one, or infinite solutions.  If one solution
+exists, it will be returned.  If infinite solutions exist, one will
+be returned based on the value of arbitrary_matrix.  If no solutions
+exist, the least-squares solution is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>B</strong> : Matrix</p>
+<blockquote>
+<div><p>The right hand side of the equation to be solved for.  Must have
+the same number of rows as matrix A.</p>
+</div></blockquote>
+<p><strong>arbitrary_matrix</strong> : Matrix</p>
+<blockquote>
+<div><p>If the system is underdetermined (e.g. A has more columns than
+rows), infinite solutions are possible, in terms of an arbitrary
+matrix.  This parameter may be set to a specific matrix to use
+for that purpose; if so, it must be the same shape as x, with as
+many rows as matrix A has columns, and as many columns as matrix
+B.  If left as None, an appropriate matrix containing dummy
+symbols in the form of <code class="docutils literal"><span class="pre">wn_m</span></code> will be used, with n and m being
+row and column position of each symbol.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>x</strong> : Matrix</p>
+<blockquote class="last">
+<div><p>The matrix that will satisfy Ax = B.  Will have as many rows as
+matrix A has columns, and as many columns as matrix B.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.upper_triangular_solve" title="sympy.matrices.matrices.MatrixBase.upper_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">upper_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.gauss_jordan_solve" title="sympy.matrices.matrices.MatrixBase.gauss_jordan_solve"><code class="xref py py-obj docutils literal"><span class="pre">gauss_jordan_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.pinv" title="sympy.matrices.matrices.MatrixBase.pinv"><code class="xref py py-obj docutils literal"><span class="pre">pinv</span></code></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>This may return either exact solutions or least squares solutions.
+To determine which, check <code class="docutils literal"><span class="pre">A</span> <span class="pre">*</span> <span class="pre">A.pinv()</span> <span class="pre">*</span> <span class="pre">B</span> <span class="pre">==</span> <span class="pre">B</span></code>.  It will be
+True if exact solutions exist, and False if only a least-squares
+solution exists.  Be aware that the left hand side of that equation
+may need to be simplified to correctly compare to the right hand
+side.</p>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r386" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[R386]</a></td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Moore-Penrose_pseudoinverse#Obtaining_all_solutions_of_a_linear_system">https://en.wikipedia.org/wiki/Moore-Penrose_pseudoinverse#Obtaining_all_solutions_of_a_linear_system</a></td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">pinv_solve</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="go">Matrix([</span>
+<span class="go">[ _w0_0/6 - _w1_0/3 + _w2_0/6 - 55/18],</span>
+<span class="go">[-_w0_0/3 + 2*_w1_0/3 - _w2_0/3 + 1/9],</span>
+<span class="go">[ _w0_0/6 - _w1_0/3 + _w2_0/6 + 59/18]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">pinv_solve</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">arbitrary_matrix</span><span class="o">=</span><span class="n">Matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+<span class="go">Matrix([</span>
+<span class="go">[-55/18],</span>
+<span class="go">[   1/9],</span>
+<span class="go">[ 59/18]])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -2339,7 +2689,7 @@ Other norms can be specified by the ord parameter</p>
 
 <dl class="method">
 <dt id="sympy.matrices.matrices.MatrixBase.rank">
-<code class="descname">rank</code><span class="sig-paren">(</span><em>simplified=False</em>, <em>iszerofunc=&lt;function _iszero&gt;</em>, <em>simplify=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.rank" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rank</code><span class="sig-paren">(</span><em>iszerofunc=&lt;function _iszero&gt;</em>, <em>simplify=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the rank of a matrix</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">x</span>
@@ -2418,7 +2768,7 @@ Other norms can be specified by the ord parameter</p>
 
 <dl class="method">
 <dt id="sympy.matrices.matrices.MatrixBase.rref">
-<code class="descname">rref</code><span class="sig-paren">(</span><em>simplified=False</em>, <em>iszerofunc=&lt;function _iszero&gt;</em>, <em>simplify=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.rref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.rref" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rref</code><span class="sig-paren">(</span><em>iszerofunc=&lt;function _iszero&gt;</em>, <em>simplify=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.rref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.rref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return reduced row-echelon form of matrix and indices of pivot vars.</p>
 <p>To simplify elements before finding nonzero pivots set simplify=True
 (to use the default SymPy simplify function) or pass a custom
@@ -2548,37 +2898,6 @@ least-squares value of xy:</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sympy.matrices.matrices.MatrixBase.submatrix">
-<code class="descname">submatrix</code><span class="sig-paren">(</span><em>keys</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.submatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.submatrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a slice/submatrix of the matrix using the given slice.</p>
-<div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.extract" title="sympy.matrices.matrices.MatrixBase.extract"><code class="xref py py-obj docutils literal"><span class="pre">extract</span></code></a></p>
-</div>
-<p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">Matrix</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span>
-<span class="go">Matrix([</span>
-<span class="go">[0, 1, 2, 3],</span>
-<span class="go">[1, 2, 3, 4],</span>
-<span class="go">[2, 3, 4, 5],</span>
-<span class="go">[3, 4, 5, 6]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="go">Matrix([[1]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="mi">1</span><span class="p">]</span>
-<span class="go">Matrix([</span>
-<span class="go">[0],</span>
-<span class="go">[1]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
-<span class="go">Matrix([</span>
-<span class="go">[4, 5],</span>
-<span class="go">[5, 6]])</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
 <dt id="sympy.matrices.matrices.MatrixBase.subs">
 <code class="descname">subs</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.subs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.subs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a new matrix with subs applied to each entry.</p>
@@ -2597,10 +2916,12 @@ least-squares value of xy:</p>
 
 <dl class="method">
 <dt id="sympy.matrices.matrices.MatrixBase.table">
-<code class="descname">table</code><span class="sig-paren">(</span><em>printer</em>, <em>rowsep='\n'</em>, <em>colsep='</em>, <em>'</em>, <em>align='right'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.table" title="Permalink to this definition">¶</a></dt>
+<code class="descname">table</code><span class="sig-paren">(</span><em>printer</em>, <em>rowstart='['</em>, <em>rowend=']'</em>, <em>rowsep='\n'</em>, <em>colsep='</em>, <em>'</em>, <em>align='right'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.table" title="Permalink to this definition">¶</a></dt>
 <dd><p>String form of Matrix as a table.</p>
 <p><code class="docutils literal"><span class="pre">printer</span></code> is the printer to use for on the elements (generally
 something like StrPrinter())</p>
+<p><code class="docutils literal"><span class="pre">rowstart</span></code> is the string used to start each row (by default &#8216;[&#8216;).</p>
+<p><code class="docutils literal"><span class="pre">rowend</span></code> is the string used to end each row (by default &#8216;]&#8217;).</p>
 <p><code class="docutils literal"><span class="pre">rowsep</span></code> is the string used to separate rows (by default a newline).</p>
 <p><code class="docutils literal"><span class="pre">colsep</span></code> is the string used to separate columns (by default &#8216;, &#8216;).</p>
 <p><code class="docutils literal"><span class="pre">align</span></code> defines how the elements are aligned. Must be one of &#8216;left&#8217;,
@@ -2614,21 +2935,24 @@ same thing, respectively.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">printer</span> <span class="o">=</span> <span class="n">StrPrinter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">M</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">printer</span><span class="p">)</span>
 <span class="go">&#39;[  1, 2]\n[-33, 4]&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">M</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">printer</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">printer</span><span class="p">))</span>
 <span class="go">[  1, 2]</span>
 <span class="go">[-33, 4]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">M</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">printer</span><span class="p">,</span> <span class="n">rowsep</span><span class="o">=</span><span class="s1">&#39;,</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">printer</span><span class="p">,</span> <span class="n">rowsep</span><span class="o">=</span><span class="s1">&#39;,</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
 <span class="go">[  1, 2],</span>
 <span class="go">[-33, 4]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">M</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">printer</span><span class="p">,</span> <span class="n">rowsep</span><span class="o">=</span><span class="s1">&#39;,</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">M</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">printer</span><span class="p">,</span> <span class="n">rowsep</span><span class="o">=</span><span class="s1">&#39;,</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
 <span class="go">[[  1, 2],</span>
 <span class="go">[-33, 4]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">M</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">printer</span><span class="p">,</span> <span class="n">colsep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">printer</span><span class="p">,</span> <span class="n">colsep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
 <span class="go">[  1 2]</span>
 <span class="go">[-33 4]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">M</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">printer</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">printer</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">))</span>
 <span class="go">[ 1 , 2]</span>
 <span class="go">[-33, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">printer</span><span class="p">,</span> <span class="n">rowstart</span><span class="o">=</span><span class="s1">&#39;{&#39;</span><span class="p">,</span> <span class="n">rowend</span><span class="o">=</span><span class="s1">&#39;}&#39;</span><span class="p">))</span>
+<span class="go">{  1, 2}</span>
+<span class="go">{-33, 4}</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -2639,7 +2963,7 @@ same thing, respectively.</p>
 <dd><p>Solves Ax = B, where A is an upper triangular matrix.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a></p>
+<p class="last"><a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.lower_triangular_solve" title="sympy.matrices.matrices.MatrixBase.lower_triangular_solve"><code class="xref py py-obj docutils literal"><span class="pre">lower_triangular_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.gauss_jordan_solve" title="sympy.matrices.matrices.MatrixBase.gauss_jordan_solve"><code class="xref py py-obj docutils literal"><span class="pre">gauss_jordan_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.cholesky_solve" title="sympy.matrices.matrices.MatrixBase.cholesky_solve"><code class="xref py py-obj docutils literal"><span class="pre">cholesky_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.diagonal_solve" title="sympy.matrices.matrices.MatrixBase.diagonal_solve"><code class="xref py py-obj docutils literal"><span class="pre">diagonal_solve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LDLsolve" title="sympy.matrices.matrices.MatrixBase.LDLsolve"><code class="xref py py-obj docutils literal"><span class="pre">LDLsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.LUsolve" title="sympy.matrices.matrices.MatrixBase.LUsolve"><code class="xref py py-obj docutils literal"><span class="pre">LUsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.QRsolve" title="sympy.matrices.matrices.MatrixBase.QRsolve"><code class="xref py py-obj docutils literal"><span class="pre">QRsolve</span></code></a>, <a class="reference internal" href="#sympy.matrices.matrices.MatrixBase.pinv_solve" title="sympy.matrices.matrices.MatrixBase.pinv_solve"><code class="xref py py-obj docutils literal"><span class="pre">pinv_solve</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -2717,6 +3041,23 @@ by repeated application of col_join).</p>
 <span class="go">[0, 1],</span>
 <span class="go">[2, 0],</span>
 <span class="go">[0, 2]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sympy.matrices.matrices.MatrixBase.xreplace">
+<code class="descname">xreplace</code><span class="sig-paren">(</span><em>rule</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/matrices.html#MatrixBase.xreplace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.matrices.MatrixBase.xreplace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new matrix with xreplace applied to each entry.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="k">import</span> <span class="n">SparseMatrix</span><span class="p">,</span> <span class="n">Matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="go">Matrix([[x]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">.</span><span class="n">xreplace</span><span class="p">({</span><span class="n">x</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span>
+<span class="go">Matrix([[y]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Matrix</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="o">.</span><span class="n">xreplace</span><span class="p">({</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="p">})</span>
+<span class="go">Matrix([[x]])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -2953,7 +3294,7 @@ constraints may optionally be given.</p>
 
 <dl class="function">
 <dt id="sympy.matrices.dense.GramSchmidt">
-<code class="descclassname">sympy.matrices.dense.</code><code class="descname">GramSchmidt</code><span class="sig-paren">(</span><em>vlist</em>, <em>orthog=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/dense.html#GramSchmidt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.dense.GramSchmidt" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">sympy.matrices.dense.</code><code class="descname">GramSchmidt</code><span class="sig-paren">(</span><em>vlist</em>, <em>orthonormal=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/dense.html#GramSchmidt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.dense.GramSchmidt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply the Gram-Schmidt process to a set of vectors.</p>
 <p>see: <a class="reference external" href="http://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process">http://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process</a></p>
 </dd></dl>
@@ -3011,11 +3352,21 @@ dependent solutions and return a basis:</p>
 
 <dl class="function">
 <dt id="sympy.matrices.dense.randMatrix">
-<code class="descclassname">sympy.matrices.dense.</code><code class="descname">randMatrix</code><span class="sig-paren">(</span><em>r</em>, <em>c=None</em>, <em>min=0</em>, <em>max=99</em>, <em>seed=None</em>, <em>symmetric=False</em>, <em>percent=100</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/dense.html#randMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.dense.randMatrix" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">sympy.matrices.dense.</code><code class="descname">randMatrix</code><span class="sig-paren">(</span><em>r</em>, <em>c=None</em>, <em>min=0</em>, <em>max=99</em>, <em>seed=None</em>, <em>symmetric=False</em>, <em>percent=100</em>, <em>prng=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/dense.html#randMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.dense.randMatrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create random matrix with dimensions <code class="docutils literal"><span class="pre">r</span></code> x <code class="docutils literal"><span class="pre">c</span></code>. If <code class="docutils literal"><span class="pre">c</span></code> is omitted
 the matrix will be square. If <code class="docutils literal"><span class="pre">symmetric</span></code> is True the matrix must be
 square. If <code class="docutils literal"><span class="pre">percent</span></code> is less than 100 then only approximately the given
 percentage of elements will be non-zero.</p>
+<p>The pseudo-random number generator used to generate matrix is chosen in the
+following way.</p>
+<ul class="simple">
+<li>If <code class="docutils literal"><span class="pre">prng</span></code> is supplied, it will be used as random number generator.
+It should be an instance of <code class="xref py py-class docutils literal"><span class="pre">random.Random</span></code>, or at least have
+<code class="docutils literal"><span class="pre">randint</span></code> and <code class="docutils literal"><span class="pre">shuffle</span></code> methods with same signatures.</li>
+<li>if <code class="docutils literal"><span class="pre">prng</span></code> is not supplied but <code class="docutils literal"><span class="pre">seed</span></code> is supplied, then new
+<code class="xref py py-class docutils literal"><span class="pre">random.Random</span></code> with given <code class="docutils literal"><span class="pre">seed</span></code> will be created;</li>
+<li>otherwise, a new <code class="xref py py-class docutils literal"><span class="pre">random.Random</span></code> with default seed will be used.</li>
+</ul>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.matrices</span> <span class="k">import</span> <span class="n">randMatrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">randMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> 
@@ -3053,7 +3404,7 @@ percentage of elements will be non-zero.</p>
 <h2>Numpy Utility Functions Reference<a class="headerlink" href="#numpy-utility-functions-reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="sympy.matrices.dense.list2numpy">
-<code class="descclassname">sympy.matrices.dense.</code><code class="descname">list2numpy</code><span class="sig-paren">(</span><em>l</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/dense.html#list2numpy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.dense.list2numpy" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">sympy.matrices.dense.</code><code class="descname">list2numpy</code><span class="sig-paren">(</span><em>l</em>, <em>dtype=&lt;type 'object'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/dense.html#list2numpy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.dense.list2numpy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts python list of SymPy expressions to a NumPy array.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
@@ -3063,7 +3414,7 @@ percentage of elements will be non-zero.</p>
 
 <dl class="function">
 <dt id="sympy.matrices.dense.matrix2numpy">
-<code class="descclassname">sympy.matrices.dense.</code><code class="descname">matrix2numpy</code><span class="sig-paren">(</span><em>m</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/dense.html#matrix2numpy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.dense.matrix2numpy" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">sympy.matrices.dense.</code><code class="descname">matrix2numpy</code><span class="sig-paren">(</span><em>m</em>, <em>dtype=&lt;type 'object'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/dense.html#matrix2numpy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.dense.matrix2numpy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts SymPy&#8217;s matrix to a NumPy array.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
@@ -3073,7 +3424,7 @@ percentage of elements will be non-zero.</p>
 
 <dl class="function">
 <dt id="sympy.matrices.dense.symarray">
-<code class="descclassname">sympy.matrices.dense.</code><code class="descname">symarray</code><span class="sig-paren">(</span><em>prefix</em>, <em>shape</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/dense.html#symarray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.dense.symarray" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">sympy.matrices.dense.</code><code class="descname">symarray</code><span class="sig-paren">(</span><em>prefix</em>, <em>shape</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sympy/matrices/dense.html#symarray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.dense.symarray" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a numpy ndarray of symbols (as an object array).</p>
 <p>The created symbols are named <code class="docutils literal"><span class="pre">prefix_i1_i2_</span></code>...  You should thus provide a
 non-empty prefix if you want your symbols to be unique for different output
@@ -3087,9 +3438,13 @@ arrays, as SymPy symbols with identical names are the same object.</p>
 <div><p>A prefix prepended to the name of every symbol.</p>
 </div></blockquote>
 <p><strong>shape</strong> : int or tuple</p>
-<blockquote class="last">
+<blockquote>
 <div><p>Shape of the created array.  If an int, the array is one-dimensional; for
 more than one dimension the shape must be a tuple.</p>
+</div></blockquote>
+<p><strong>**kwargs</strong> : dict</p>
+<blockquote class="last">
+<div><p>keyword arguments passed on to Symbol</p>
 </div></blockquote>
 </td>
 </tr>
@@ -3106,11 +3461,11 @@ more than one dimension the shape must be a tuple.</p>
 provide unique prefixes:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">symarray</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">symarray</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">symarray</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">symarray</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="go">False</span>
 </pre></div>
 </div>
@@ -3131,6 +3486,11 @@ provide unique prefixes:</p>
 <span class="go"> [[a_1_0_0 a_1_0_1]</span>
 <span class="go">  [a_1_1_0 a_1_1_1]</span>
 <span class="go">  [a_1_2_0 a_1_2_1]]]</span>
+</pre></div>
+</div>
+<p>For setting assumptions of the underlying Symbols:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">is_real</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">symarray</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
+<span class="go">[True, True]</span>
 </pre></div>
 </div>
 </dd></dl>

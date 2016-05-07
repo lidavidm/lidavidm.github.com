@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Assumptions module &mdash; SymPy 0.7.3 documentation</title>
+    <title>Assumptions module &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
     <link rel="up" title="SymPy Modules Reference" href="../index.html" />
     <link rel="next" title="Ask" href="ask.html" />
     <link rel="prev" title="Plotting Module" href="../plotting.html" />
@@ -182,8 +182,8 @@ class inheriting from AskHandler:</p>
 <span class="gp">... </span>    <span class="c1"># Mersenne numbers are in the form 2**n + 1, n integer</span>
 <span class="gp">... </span>    <span class="nd">@staticmethod</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="nf">Integer</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">assumptions</span><span class="p">):</span>
-<span class="gp">... </span>        <span class="kn">import</span> <span class="nn">math</span>
-<span class="gp">... </span>        <span class="k">return</span> <span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">integer</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">expr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="gp">... </span>        <span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">log</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">integer</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">expr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">register_handler</span><span class="p">(</span><span class="s1">&#39;mersenne&#39;</span><span class="p">,</span> <span class="n">MersenneHandler</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ask</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">mersenne</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
 <span class="go">True</span>

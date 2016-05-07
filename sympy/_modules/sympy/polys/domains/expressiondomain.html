@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.polys.domains.expressiondomain &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.polys.domains.expressiondomain &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../../index.html" />
     <link rel="up" title="Module code" href="../../../index.html" />
    
   
@@ -50,19 +50,21 @@
   <h1>Source code for sympy.polys.domains.expressiondomain</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Implementation of :class:`ExpressionDomain` class. &quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
 <span class="kn">from</span> <span class="nn">sympy.polys.domains.field</span> <span class="kn">import</span> <span class="n">Field</span>
 <span class="kn">from</span> <span class="nn">sympy.polys.domains.simpledomain</span> <span class="kn">import</span> <span class="n">SimpleDomain</span>
 <span class="kn">from</span> <span class="nn">sympy.polys.domains.characteristiczero</span> <span class="kn">import</span> <span class="n">CharacteristicZero</span>
 
-<span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">sympify</span>
+<span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">sympify</span><span class="p">,</span> <span class="n">SympifyError</span>
+<span class="kn">from</span> <span class="nn">sympy.utilities</span> <span class="kn">import</span> <span class="n">public</span>
 <span class="kn">from</span> <span class="nn">sympy.polys.polyutils</span> <span class="kn">import</span> <span class="n">PicklableWithSlots</span>
-<span class="kn">from</span> <span class="nn">sympy.polys.polyerrors</span> <span class="kn">import</span> <span class="n">DomainError</span>
 
-
+<span class="nd">@public</span>
 <div class="viewcode-block" id="ExpressionDomain"><a class="viewcode-back" href="../../../../modules/polys/internals.html#sympy.polys.domains.ExpressionDomain">[docs]</a><span class="k">class</span> <span class="nc">ExpressionDomain</span><span class="p">(</span><span class="n">Field</span><span class="p">,</span> <span class="n">CharacteristicZero</span><span class="p">,</span> <span class="n">SimpleDomain</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A class for arbitrary expressions. &quot;&quot;&quot;</span>
 
-    <span class="n">is_EX</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">is_SymbolicDomain</span> <span class="o">=</span> <span class="n">is_EX</span> <span class="o">=</span> <span class="bp">True</span>
 
 <div class="viewcode-block" id="ExpressionDomain.Expression"><a class="viewcode-back" href="../../../../modules/polys/internals.html#sympy.polys.domains.ExpressionDomain.Expression">[docs]</a>    <span class="k">class</span> <span class="nc">Expression</span><span class="p">(</span><span class="n">PicklableWithSlots</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;An arbitrary expression. &quot;&quot;&quot;</span>
@@ -102,38 +104,66 @@
         <span class="k">def</span> <span class="nf">__neg__</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="o">-</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
 
+        <span class="k">def</span> <span class="nf">_to_ex</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">SympifyError</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">None</span>
+
         <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span> <span class="o">+</span> <span class="n">f</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">_to_ex</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">g</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span> <span class="o">+</span> <span class="n">g</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">NotImplemented</span>
 
         <span class="k">def</span> <span class="nf">__radd__</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">ex</span> <span class="o">+</span> <span class="n">f</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">__sub__</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">_to_ex</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">g</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span> <span class="o">-</span> <span class="n">g</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">NotImplemented</span>
 
         <span class="k">def</span> <span class="nf">__rsub__</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">ex</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">__mul__</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span><span class="o">*</span><span class="n">f</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">_to_ex</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">g</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span><span class="o">*</span><span class="n">g</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">NotImplemented</span>
 
         <span class="k">def</span> <span class="nf">__rmul__</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">ex</span><span class="o">*</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">__pow__</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span><span class="o">**</span><span class="n">n</span><span class="p">)</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">_to_ex</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">__div__</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span><span class="o">/</span><span class="n">f</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
-
-        <span class="k">def</span> <span class="nf">__rdiv__</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">ex</span><span class="o">/</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span><span class="o">**</span><span class="n">n</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">NotImplemented</span>
 
         <span class="k">def</span> <span class="nf">__truediv__</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span><span class="o">/</span><span class="n">f</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">_to_ex</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">g</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span><span class="o">/</span><span class="n">g</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">NotImplemented</span>
 
         <span class="k">def</span> <span class="nf">__rtruediv__</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">ex</span><span class="o">/</span><span class="n">f</span><span class="o">.</span><span class="n">ex</span><span class="p">)</span>
+
+        <span class="n">__div__</span> <span class="o">=</span> <span class="n">__truediv__</span>
+        <span class="n">__rdiv__</span> <span class="o">=</span> <span class="n">__rtruediv__</span>
 
         <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">ex</span> <span class="o">==</span> <span class="n">f</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">ex</span>
@@ -143,6 +173,8 @@
 
         <span class="k">def</span> <span class="nf">__nonzero__</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">ex</span> <span class="o">!=</span> <span class="mi">0</span>
+
+        <span class="n">__bool__</span> <span class="o">=</span> <span class="n">__nonzero__</span>
 
         <span class="k">def</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
             <span class="kn">from</span> <span class="nn">sympy.polys</span> <span class="kn">import</span> <span class="n">gcd</span>
@@ -189,11 +221,11 @@
         <span class="sd">&quot;&quot;&quot;Convert a GMPY ``mpq`` object to ``dtype``. &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">K1</span><span class="p">(</span><span class="n">K0</span><span class="o">.</span><span class="n">to_sympy</span><span class="p">(</span><span class="n">a</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="ExpressionDomain.from_RR_mpmath"><a class="viewcode-back" href="../../../../modules/polys/internals.html#sympy.polys.domains.ExpressionDomain.from_RR_mpmath">[docs]</a>    <span class="k">def</span> <span class="nf">from_RR_mpmath</span><span class="p">(</span><span class="n">K1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">K0</span><span class="p">):</span>
+<div class="viewcode-block" id="ExpressionDomain.from_RealField"><a class="viewcode-back" href="../../../../modules/polys/internals.html#sympy.polys.domains.ExpressionDomain.from_RealField">[docs]</a>    <span class="k">def</span> <span class="nf">from_RealField</span><span class="p">(</span><span class="n">K1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">K0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convert a mpmath ``mpf`` object to ``dtype``. &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">K1</span><span class="p">(</span><span class="n">K0</span><span class="o">.</span><span class="n">to_sympy</span><span class="p">(</span><span class="n">a</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="ExpressionDomain.from_GlobalPolynomialRing"><a class="viewcode-back" href="../../../../modules/polys/internals.html#sympy.polys.domains.ExpressionDomain.from_GlobalPolynomialRing">[docs]</a>    <span class="k">def</span> <span class="nf">from_GlobalPolynomialRing</span><span class="p">(</span><span class="n">K1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">K0</span><span class="p">):</span>
+<div class="viewcode-block" id="ExpressionDomain.from_PolynomialRing"><a class="viewcode-back" href="../../../../modules/polys/internals.html#sympy.polys.domains.ExpressionDomain.from_PolynomialRing">[docs]</a>    <span class="k">def</span> <span class="nf">from_PolynomialRing</span><span class="p">(</span><span class="n">K1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">K0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convert a ``DMP`` object to ``dtype``. &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">K1</span><span class="p">(</span><span class="n">K0</span><span class="o">.</span><span class="n">to_sympy</span><span class="p">(</span><span class="n">a</span><span class="p">))</span></div>
 

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.ntheory.factor_ &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.ntheory.factor_ &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -51,17 +51,20 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Integer factorization</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">math</span>
 
+<span class="kn">from</span> <span class="nn">.primetest</span> <span class="kn">import</span> <span class="n">isprime</span>
+<span class="kn">from</span> <span class="nn">.generate</span> <span class="kn">import</span> <span class="n">sieve</span><span class="p">,</span> <span class="n">primerange</span><span class="p">,</span> <span class="n">nextprime</span>
 <span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">sympify</span>
 <span class="kn">from</span> <span class="nn">sympy.core.evalf</span> <span class="kn">import</span> <span class="n">bitcount</span>
-<span class="kn">from</span> <span class="nn">sympy.core.numbers</span> <span class="kn">import</span> <span class="n">igcd</span><span class="p">,</span> <span class="n">oo</span><span class="p">,</span> <span class="n">Rational</span>
+<span class="kn">from</span> <span class="nn">sympy.core.logic</span> <span class="kn">import</span> <span class="n">fuzzy_and</span>
+<span class="kn">from</span> <span class="nn">sympy.core.numbers</span> <span class="kn">import</span> <span class="n">igcd</span><span class="p">,</span> <span class="n">Rational</span>
 <span class="kn">from</span> <span class="nn">sympy.core.power</span> <span class="kn">import</span> <span class="n">integer_nthroot</span><span class="p">,</span> <span class="n">Pow</span>
 <span class="kn">from</span> <span class="nn">sympy.core.mul</span> <span class="kn">import</span> <span class="n">Mul</span>
-<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">as_int</span><span class="p">,</span> <span class="n">SYMPY_INTS</span>
-<span class="kn">from</span> <span class="nn">primetest</span> <span class="kn">import</span> <span class="n">isprime</span>
-<span class="kn">from</span> <span class="nn">generate</span> <span class="kn">import</span> <span class="n">sieve</span><span class="p">,</span> <span class="n">primerange</span><span class="p">,</span> <span class="n">nextprime</span>
+<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">as_int</span><span class="p">,</span> <span class="n">SYMPY_INTS</span><span class="p">,</span> <span class="nb">range</span>
 <span class="kn">from</span> <span class="nn">sympy.core.singleton</span> <span class="kn">import</span> <span class="n">S</span>
 <span class="kn">from</span> <span class="nn">sympy.core.function</span> <span class="kn">import</span> <span class="n">Function</span>
 
@@ -93,7 +96,7 @@
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># not prime, but otherwise this causes headaches</span>
     <span class="n">facs</span> <span class="o">=</span> <span class="n">factorint</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">facs</span><span class="p">),</span> <span class="nb">max</span><span class="p">([</span><span class="n">m</span><span class="o">**</span><span class="n">facs</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">facs</span><span class="p">])</span></div>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">facs</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">m</span><span class="o">**</span><span class="n">facs</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">facs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="smoothness_p"><a class="viewcode-back" href="../../../modules/ntheory.html#sympy.ntheory.factor_.smoothness_p">[docs]</a><span class="k">def</span> <span class="nf">smoothness_p</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
@@ -103,7 +106,7 @@
 
 <span class="sd">    1. p**M is the base-p divisor of n</span>
 <span class="sd">    2. sm(p + m) is the smoothness of p + m (m = -1 by default)</span>
-<span class="sd">    3. psm(p + n) is the power smoothness of p + m</span>
+<span class="sd">    3. psm(p + m) is the power smoothness of p + m</span>
 
 <span class="sd">    The list is sorted according to smoothness (default) or by power smoothness</span>
 <span class="sd">    if power=1.</span>
@@ -122,7 +125,7 @@
 
 <span class="sd">    If visual=True then an annotated string will be returned:</span>
 
-<span class="sd">        &gt;&gt;&gt; print smoothness_p(21477639576571, visual=1)</span>
+<span class="sd">        &gt;&gt;&gt; print(smoothness_p(21477639576571, visual=1))</span>
 <span class="sd">        p**i=4410317**1 has p-1 B=1787, B-pow=1787</span>
 <span class="sd">        p**i=4869863**1 has p-1 B=2434931, B-pow=2434931</span>
 
@@ -253,7 +256,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
-            <span class="n">p</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">as_int</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">as_int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">p</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">as_int</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">as_int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">SYMPY_INTS</span><span class="p">,</span> <span class="n">Rational</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">)):</span>
             <span class="k">try</span><span class="p">:</span>
@@ -277,6 +280,8 @@
                 <span class="k">pass</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;expecting ints or fractions, got </span><span class="si">%s</span><span class="s1"> and </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
 
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;no such integer exists: multiplicity of </span><span class="si">%s</span><span class="s1"> is not-defined&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">trailing</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
@@ -434,7 +439,7 @@
 <span class="sd">    &gt;&gt;&gt; n = 16843009</span>
 <span class="sd">    &gt;&gt;&gt; F = lambda x:(2048*pow(x, 2, n) + 32767) % n</span>
 <span class="sd">    &gt;&gt;&gt; for s in range(5):</span>
-<span class="sd">    ...     print &#39;loop length = %4i; leader length = %3i&#39; % cycle_length(F, s).next()</span>
+<span class="sd">    ...     print(&#39;loop length = %4i; leader length = %3i&#39; % next(cycle_length(F, s)))</span>
 <span class="sd">    ...</span>
 <span class="sd">    loop length = 2489; leader length =  42</span>
 <span class="sd">    loop length =   78; leader length = 120</span>
@@ -448,10 +453,18 @@
 <span class="sd">    &gt;&gt;&gt; x=2</span>
 <span class="sd">    &gt;&gt;&gt; for i in range(9):</span>
 <span class="sd">    ...     x=(x**2+12)%17</span>
-<span class="sd">    ...     print x,</span>
+<span class="sd">    ...     print(x)</span>
 <span class="sd">    ...</span>
-<span class="sd">    16 13 11 14 4 11 14 4 11</span>
-<span class="sd">    &gt;&gt;&gt; cycle_length(lambda x: (x**2+12)%17, 2).next()</span>
+<span class="sd">    16</span>
+<span class="sd">    13</span>
+<span class="sd">    11</span>
+<span class="sd">    14</span>
+<span class="sd">    4</span>
+<span class="sd">    11</span>
+<span class="sd">    14</span>
+<span class="sd">    4</span>
+<span class="sd">    11</span>
+<span class="sd">    &gt;&gt;&gt; next(cycle_length(lambda x: (x**2+12)%17, 2))</span>
 <span class="sd">    (3, 2)</span>
 <span class="sd">    &gt;&gt;&gt; list(cycle_length(lambda x: (x**2+12)%17, 2, values=True))</span>
 <span class="sd">    [16, 13, 11, 14, 4]</span>
@@ -608,7 +621,7 @@
 
 <span class="sd">        &gt;&gt;&gt; from sympy.utilities import flatten</span>
 <span class="sd">        &gt;&gt;&gt; from sympy.ntheory.factor_ import smoothness_p, factorint</span>
-<span class="sd">        &gt;&gt;&gt; print smoothness_p(21477639576571, visual=1)</span>
+<span class="sd">        &gt;&gt;&gt; print(smoothness_p(21477639576571, visual=1))</span>
 <span class="sd">        p**i=4410317**1 has p-1 B=1787, B-pow=1787</span>
 <span class="sd">        p**i=4869863**1 has p-1 B=2434931, B-pow=2434931</span>
 
@@ -644,8 +657,7 @@
 
 <span class="sd">    - Richard Crandall &amp; Carl Pomerance (2005), &quot;Prime Numbers:</span>
 <span class="sd">      A Computational Perspective&quot;, Springer, 2nd edition, 236-238</span>
-<span class="sd">    - http://modular.math.washington.edu/edu/2007/spring/ent/ent-html/</span>
-<span class="sd">            node81.html</span>
+<span class="sd">    - http://modular.math.washington.edu/edu/2007/spring/ent/ent-html/node81.html</span>
 <span class="sd">    - http://www.cs.toronto.edu/~yuvalf/Factorization.pdf</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -682,7 +694,7 @@
 <span class="sd">    value of ``n`` and a flag indicating whether any factors were found.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="n">factors0</span> <span class="o">=</span> <span class="n">factors</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">factors0</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">factors</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
     <span class="n">nfactors</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">factors</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">d</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -691,7 +703,7 @@
             <span class="n">factors</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">factors</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">factors0</span><span class="p">))):</span>
-            <span class="k">print</span> <span class="n">factor_msg</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">factors</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">factor_msg</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">factors</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">factors</span><span class="p">)</span> <span class="o">!=</span> <span class="n">nfactors</span>
 
 
@@ -704,7 +716,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s1">&#39;Check for termination&#39;</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Check for termination&#39;</span><span class="p">)</span>
 
     <span class="c1"># since we&#39;ve already been factoring there is no need to do</span>
     <span class="c1"># simultaneous factoring with the power check</span>
@@ -719,7 +731,7 @@
                          <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">facs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-                <span class="k">print</span> <span class="n">factor_msg</span> <span class="o">%</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">factor_msg</span> <span class="o">%</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
             <span class="n">factors</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">exp</span><span class="o">*</span><span class="n">e</span>
         <span class="k">raise</span> <span class="ne">StopIteration</span>
 
@@ -874,9 +886,10 @@
 <span class="sd">    semi-prime factor that cannot be reduced easily:</span>
 
 <span class="sd">    &gt;&gt;&gt; from sympy.ntheory import isprime</span>
+<span class="sd">    &gt;&gt;&gt; from sympy.core.compatibility import long</span>
 <span class="sd">    &gt;&gt;&gt; a = 1407633717262338957430697921446883</span>
 <span class="sd">    &gt;&gt;&gt; f = factorint(a, limit=10000)</span>
-<span class="sd">    &gt;&gt;&gt; f == {991: 1, 202916782076162456022877024859L: 1, 7: 1}</span>
+<span class="sd">    &gt;&gt;&gt; f == {991: 1, long(202916782076162456022877024859): 1, 7: 1}</span>
 <span class="sd">    True</span>
 <span class="sd">    &gt;&gt;&gt; isprime(max(f))</span>
 <span class="sd">    False</span>
@@ -917,7 +930,7 @@
 <span class="sd">    &gt;&gt;&gt; visual = factorint(1764, visual=True); pprint(visual)</span>
 <span class="sd">     2  2  2</span>
 <span class="sd">    2 *3 *7</span>
-<span class="sd">    &gt;&gt;&gt; print factorint(visual)</span>
+<span class="sd">    &gt;&gt;&gt; print(factorint(visual))</span>
 <span class="sd">    {2: 2, 3: 2, 7: 2}</span>
 
 <span class="sd">    If you want to send a number to be factored in a partially factored form</span>
@@ -925,7 +938,7 @@
 
 <span class="sd">    &gt;&gt;&gt; factorint(factorint({4: 2, 12: 3})) # twice to toggle to dict form</span>
 <span class="sd">    {2: 10, 3: 3}</span>
-<span class="sd">    &gt;&gt;&gt; factorint(Mul(4, 12, **dict(evaluate=False)))</span>
+<span class="sd">    &gt;&gt;&gt; factorint(Mul(4, 12, evaluate=False))</span>
 <span class="sd">    {2: 4, 3: 1}</span>
 
 <span class="sd">    The table of the output logic is:</span>
@@ -954,7 +967,7 @@
 
 <span class="sd">    &gt;&gt;&gt; factors = factorint(12345678910111213141516)</span>
 <span class="sd">    &gt;&gt;&gt; for base, exp in sorted(factors.items()):</span>
-<span class="sd">    ...     print base, exp</span>
+<span class="sd">    ...     print(&#39;%s %s&#39; % (base, exp))</span>
 <span class="sd">    ...</span>
 <span class="sd">    2 2</span>
 <span class="sd">    2507191691 1</span>
@@ -986,12 +999,12 @@
                                <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">Mul</span><span class="p">):</span>
         <span class="n">factordict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span>
-                           <span class="n">n</span><span class="o">.</span><span class="n">as_powers_dict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+                           <span class="nb">list</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">as_powers_dict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">())])</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">factordict</span> <span class="o">=</span> <span class="n">n</span>
     <span class="k">if</span> <span class="n">factordict</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">Mul</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
         <span class="c1"># check it</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">factordict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">factordict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
             <span class="k">if</span> <span class="n">isprime</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
                 <span class="k">continue</span>
             <span class="n">e</span> <span class="o">=</span> <span class="n">factordict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
@@ -1012,9 +1025,9 @@
             <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">S</span><span class="o">.</span><span class="n">NegativeOne</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">Pow</span><span class="p">(</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;evaluate&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">})</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">Pow</span><span class="p">(</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
                      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">factordict</span><span class="o">.</span><span class="n">items</span><span class="p">())])</span>
-        <span class="k">return</span> <span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;evaluate&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">Mul</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">factordict</span>
 
@@ -1032,11 +1045,10 @@
         <span class="n">factors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">factors</span>
 
-    <span class="k">if</span> <span class="n">limit</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">limit</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">{}</span>
-            <span class="k">return</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">limit</span> <span class="ow">and</span> <span class="n">limit</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
     <span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
         <span class="c1"># doing this we are assured of getting a limit &gt; 2</span>
         <span class="c1"># when we have to compute it later</span>
@@ -1049,10 +1061,10 @@
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
         <span class="n">sn</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
-            <span class="k">print</span> <span class="s1">&#39;Factoring </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sn</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> \
-                  <span class="s1">&#39;..(</span><span class="si">%i</span><span class="s1"> other digits)..&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span> <span class="o">-</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="n">sn</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Factoring </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sn</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> \
+                  <span class="s1">&#39;..(</span><span class="si">%i</span><span class="s1"> other digits)..&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span> <span class="o">-</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="n">sn</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span> <span class="s1">&#39;Factoring&#39;</span><span class="p">,</span> <span class="n">n</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Factoring&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">use_trial</span><span class="p">:</span>
         <span class="c1"># this is the preliminary factorization for small factors</span>
@@ -1060,18 +1072,18 @@
         <span class="n">fail_max</span> <span class="o">=</span> <span class="mi">600</span>
         <span class="n">small</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">small</span><span class="p">,</span> <span class="n">limit</span> <span class="ow">or</span> <span class="n">small</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-            <span class="k">print</span> <span class="n">trial_int_msg</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">small</span><span class="p">,</span> <span class="n">fail_max</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">trial_int_msg</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">small</span><span class="p">,</span> <span class="n">fail_max</span><span class="p">))</span>
         <span class="n">n</span><span class="p">,</span> <span class="n">next_p</span> <span class="o">=</span> <span class="n">_factorint_small</span><span class="p">(</span><span class="n">factors</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">small</span><span class="p">,</span> <span class="n">fail_max</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">next_p</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="k">if</span> <span class="n">factors</span> <span class="ow">and</span> <span class="n">verbose</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">factors</span><span class="p">):</span>
-            <span class="k">print</span> <span class="n">factor_msg</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">factors</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">factor_msg</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">factors</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
     <span class="k">if</span> <span class="n">next_p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">factors</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-            <span class="k">print</span> <span class="n">complete_msg</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">complete_msg</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">factors</span>
 
     <span class="c1"># continue with more advanced factorization methods</span>
@@ -1082,7 +1094,7 @@
     <span class="k">try</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">limit</span> <span class="ow">and</span> <span class="n">next_p</span> <span class="o">&gt;</span> <span class="n">limit</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-                <span class="k">print</span> <span class="s1">&#39;Exceeded limit:&#39;</span><span class="p">,</span> <span class="n">limit</span>
+                <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Exceeded limit:&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span>
 
             <span class="n">_check_termination</span><span class="p">(</span><span class="n">factors</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">use_trial</span><span class="p">,</span> <span class="n">use_rho</span><span class="p">,</span> <span class="n">use_pm1</span><span class="p">,</span>
                                <span class="n">verbose</span><span class="p">)</span>
@@ -1109,7 +1121,7 @@
                 <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">if</span> <span class="n">fermat</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-                    <span class="k">print</span> <span class="n">fermat_msg</span>
+                    <span class="k">print</span><span class="p">(</span><span class="n">fermat_msg</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">limit</span><span class="p">:</span>
                     <span class="n">limit</span> <span class="o">-=</span> <span class="mi">1</span>
                 <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">[</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">]:</span>
@@ -1125,7 +1137,7 @@
 
     <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-            <span class="k">print</span> <span class="n">complete_msg</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">complete_msg</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">factors</span>
 
     <span class="c1"># these are the limits for trial division which will</span>
@@ -1146,7 +1158,7 @@
             <span class="c1"># Trial division</span>
             <span class="k">if</span> <span class="n">use_trial</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-                    <span class="k">print</span> <span class="n">trial_msg</span> <span class="o">%</span> <span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high_</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="n">trial_msg</span> <span class="o">%</span> <span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high_</span><span class="p">))</span>
                 <span class="n">ps</span> <span class="o">=</span> <span class="n">sieve</span><span class="o">.</span><span class="n">primerange</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high_</span><span class="p">)</span>
                 <span class="n">n</span><span class="p">,</span> <span class="n">found_trial</span> <span class="o">=</span> <span class="n">_trial</span><span class="p">(</span><span class="n">factors</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">ps</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">found_trial</span><span class="p">:</span>
@@ -1157,7 +1169,7 @@
 
             <span class="k">if</span> <span class="n">high</span> <span class="o">&gt;</span> <span class="n">limit</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-                    <span class="k">print</span> <span class="s1">&#39;Exceeded limit:&#39;</span><span class="p">,</span> <span class="n">limit</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Exceeded limit:&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                     <span class="n">factors</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
                 <span class="k">raise</span> <span class="ne">StopIteration</span>
@@ -1170,7 +1182,7 @@
                     <span class="c1"># Pollard p-1</span>
                     <span class="k">if</span> <span class="n">use_pm1</span><span class="p">:</span>
                         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-                            <span class="k">print</span> <span class="p">(</span><span class="n">pm1_msg</span> <span class="o">%</span> <span class="p">(</span><span class="n">high_root</span><span class="p">,</span> <span class="n">high_</span><span class="p">))</span>
+                            <span class="k">print</span><span class="p">(</span><span class="n">pm1_msg</span> <span class="o">%</span> <span class="p">(</span><span class="n">high_root</span><span class="p">,</span> <span class="n">high_</span><span class="p">))</span>
                         <span class="n">c</span> <span class="o">=</span> <span class="n">pollard_pm1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="n">high_root</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">high_</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">c</span><span class="p">:</span>
                             <span class="c1"># factor it and let _trial do the update</span>
@@ -1187,7 +1199,7 @@
                     <span class="k">if</span> <span class="n">use_rho</span><span class="p">:</span>
                         <span class="n">max_steps</span> <span class="o">=</span> <span class="n">high_root</span>
                         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-                            <span class="k">print</span> <span class="p">(</span><span class="n">rho_msg</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_steps</span><span class="p">,</span> <span class="n">high_</span><span class="p">))</span>
+                            <span class="k">print</span><span class="p">(</span><span class="n">rho_msg</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_steps</span><span class="p">,</span> <span class="n">high_</span><span class="p">))</span>
                         <span class="n">c</span> <span class="o">=</span> <span class="n">pollard_rho</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">retries</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_steps</span><span class="o">=</span><span class="n">max_steps</span><span class="p">,</span>
                                         <span class="n">seed</span><span class="o">=</span><span class="n">high_</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">c</span><span class="p">:</span>
@@ -1203,10 +1215,62 @@
 
         <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-                <span class="k">print</span> <span class="n">complete_msg</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">complete_msg</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">factors</span>
 
         <span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">high</span><span class="p">,</span> <span class="n">high</span><span class="o">*</span><span class="mi">2</span></div>
+
+
+<span class="k">def</span> <span class="nf">factorrat</span><span class="p">(</span><span class="n">rat</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">use_trial</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_rho</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_pm1</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+              <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;</span>
+<span class="sd">    Given a Rational ``r``, ``factorrat(r)`` returns a dict containing</span>
+<span class="sd">    the prime factors of ``r`` as keys and their respective multiplicities</span>
+<span class="sd">    as values. For example:</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.ntheory import factorrat</span>
+<span class="sd">    &gt;&gt;&gt; from sympy.core.symbol import S</span>
+<span class="sd">    &gt;&gt;&gt; factorrat(S(8)/9)    # 8/9 = (2**3) * (3**-2)</span>
+<span class="sd">    {2: 3, 3: -2}</span>
+<span class="sd">    &gt;&gt;&gt; factorrat(S(-1)/987)    # -1/789 = -1 * (3**-1) * (7**-1) * (47**-1)</span>
+<span class="sd">    {-1: 1, 3: -1, 7: -1, 47: -1}</span>
+
+<span class="sd">    Please see the docstring for ``factorint`` for detailed explanations</span>
+<span class="sd">    and examples of the following keywords:</span>
+
+<span class="sd">        - ``limit``: Integer limit up to which trial division is done</span>
+<span class="sd">        - ``use_trial``: Toggle use of trial division</span>
+<span class="sd">        - ``use_rho``: Toggle use of Pollard&#39;s rho method</span>
+<span class="sd">        - ``use_pm1``: Toggle use of Pollard&#39;s p-1 method</span>
+<span class="sd">        - ``verbose``: Toggle detailed printing of progress</span>
+<span class="sd">        - ``visual``: Toggle product form of output</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">factorint</span><span class="p">(</span><span class="n">rat</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">use_trial</span><span class="o">=</span><span class="n">use_trial</span><span class="p">,</span>
+                  <span class="n">use_rho</span><span class="o">=</span><span class="n">use_rho</span><span class="p">,</span> <span class="n">use_pm1</span><span class="o">=</span><span class="n">use_pm1</span><span class="p">,</span>
+                  <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">factorint</span><span class="p">(</span><span class="n">rat</span><span class="o">.</span><span class="n">q</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
+                          <span class="n">use_trial</span><span class="o">=</span><span class="n">use_trial</span><span class="p">,</span>
+                          <span class="n">use_rho</span><span class="o">=</span><span class="n">use_rho</span><span class="p">,</span>
+                          <span class="n">use_pm1</span><span class="o">=</span><span class="n">use_pm1</span><span class="p">,</span>
+                          <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="n">e</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="mi">1</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">visual</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">S</span><span class="o">.</span><span class="n">NegativeOne</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">Pow</span><span class="p">(</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">items</span><span class="p">())])</span>
+        <span class="k">return</span> <span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
 
 
 <div class="viewcode-block" id="primefactors"><a class="viewcode-back" href="../../../modules/ntheory.html#sympy.ntheory.factor_.primefactors">[docs]</a><span class="k">def</span> <span class="nf">primefactors</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
@@ -1242,7 +1306,6 @@
 <span class="sd">    divisors</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">factors</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">factorint</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
     <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">factors</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="n">f</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
     <span class="k">if</span> <span class="n">factors</span> <span class="ow">and</span> <span class="n">isprime</span><span class="p">(</span><span class="n">factors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
@@ -1261,7 +1324,7 @@
             <span class="k">yield</span> <span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">pows</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">factordict</span><span class="p">[</span><span class="n">ps</span><span class="p">[</span><span class="n">n</span><span class="p">]]):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">factordict</span><span class="p">[</span><span class="n">ps</span><span class="p">[</span><span class="n">n</span><span class="p">]]):</span>
                 <span class="n">pows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pows</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ps</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
             <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">rec_gen</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
                 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pows</span><span class="p">:</span>
@@ -1274,7 +1337,7 @@
 <div class="viewcode-block" id="divisors"><a class="viewcode-back" href="../../../modules/ntheory.html#sympy.ntheory.factor_.divisors">[docs]</a><span class="k">def</span> <span class="nf">divisors</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">r&quot;&quot;&quot;</span>
 <span class="sd">    Return all divisors of n sorted from 1..n by default.</span>
-<span class="sd">    If generator is True an unordered generator is returned.</span>
+<span class="sd">    If generator is ``True`` an unordered generator is returned.</span>
 
 <span class="sd">    The number of divisors of n can be quite large if there are many</span>
 <span class="sd">    prime factors (counting repeated factors). If only the number of</span>
@@ -1301,18 +1364,17 @@
 <span class="sd">    primefactors, factorint, divisor_count</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">as_int</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">isprime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span>
-    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">rv</span> <span class="o">=</span> <span class="n">_divisors</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">generator</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">rv</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">rv</span></div>
+    <span class="n">rv</span> <span class="o">=</span> <span class="n">_divisors</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">generator</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">rv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rv</span></div>
 
 
 <div class="viewcode-block" id="divisor_count"><a class="viewcode-back" href="../../../modules/ntheory.html#sympy.ntheory.factor_.divisor_count">[docs]</a><span class="k">def</span> <span class="nf">divisor_count</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -1346,6 +1408,173 @@
     <span class="k">return</span> <span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">v</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">factorint</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">])</span></div>
 
 
+<span class="k">def</span> <span class="nf">_udivisors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper function for udivisors which generates the unitary divisors.&quot;&quot;&quot;</span>
+
+    <span class="n">factorpows</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">**</span><span class="n">e</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">factorint</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="nb">len</span><span class="p">(</span><span class="n">factorpows</span><span class="p">)):</span>
+        <span class="n">d</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">j</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">d</span> <span class="o">*=</span> <span class="n">factorpows</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">yield</span> <span class="n">d</span>
+
+
+<div class="viewcode-block" id="udivisors"><a class="viewcode-back" href="../../../modules/ntheory.html#sympy.ntheory.factor_.udivisors">[docs]</a><span class="k">def</span> <span class="nf">udivisors</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;</span>
+<span class="sd">    Return all unitary divisors of n sorted from 1..n by default.</span>
+<span class="sd">    If generator is ``True`` an unordered generator is returned.</span>
+
+<span class="sd">    The number of unitary divisors of n can be quite large if there are many</span>
+<span class="sd">    prime factors. If only the number of unitary divisors is desired use</span>
+<span class="sd">    udivisor_count(n).</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    - http://en.wikipedia.org/wiki/Unitary_divisor</span>
+<span class="sd">    - http://mathworld.wolfram.com/UnitaryDivisor.html</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.ntheory.factor_ import udivisors, udivisor_count</span>
+<span class="sd">    &gt;&gt;&gt; udivisors(15)</span>
+<span class="sd">    [1, 3, 5, 15]</span>
+<span class="sd">    &gt;&gt;&gt; udivisor_count(15)</span>
+<span class="sd">    4</span>
+
+<span class="sd">    &gt;&gt;&gt; sorted(udivisors(120, generator=True))</span>
+<span class="sd">    [1, 3, 5, 8, 15, 24, 40, 120]</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    primefactors, factorint, divisors, divisor_count, udivisor_count</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="n">as_int</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">isprime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="n">_udivisors</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">generator</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">rv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rv</span></div>
+
+
+<div class="viewcode-block" id="udivisor_count"><a class="viewcode-back" href="../../../modules/ntheory.html#sympy.ntheory.factor_.udivisor_count">[docs]</a><span class="k">def</span> <span class="nf">udivisor_count</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the number of unitary divisors of ``n``.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    - http://mathworld.wolfram.com/UnitaryDivisorFunction.html</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.ntheory.factor_ import udivisor_count</span>
+<span class="sd">    &gt;&gt;&gt; udivisor_count(120)</span>
+<span class="sd">    8</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    factorint, divisors, udivisors, divisor_count, totient</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="mi">2</span><span class="o">**</span><span class="nb">len</span><span class="p">([</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">factorint</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">])</span></div>
+
+
+<span class="k">def</span> <span class="nf">_antidivisors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper function for antidivisors which generates the antidivisors.&quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">_divisors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">d</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">%</span> <span class="n">y</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">y</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">_divisors</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">d</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">%</span> <span class="n">d</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">d</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">_divisors</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">d</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">%</span> <span class="n">d</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">d</span>
+
+
+<div class="viewcode-block" id="antidivisors"><a class="viewcode-back" href="../../../modules/ntheory.html#sympy.ntheory.factor_.antidivisors">[docs]</a><span class="k">def</span> <span class="nf">antidivisors</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;</span>
+<span class="sd">    Return all antidivisors of n sorted from 1..n by default.</span>
+
+<span class="sd">    Antidivisors [1]_ of n are numbers that do not divide n by the largest</span>
+<span class="sd">    possible margin.  If generator is True an unordered generator is returned.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    .. [1] definition is described in http://oeis.org/A066272/a066272a.html</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.ntheory.factor_ import antidivisors</span>
+<span class="sd">    &gt;&gt;&gt; antidivisors(24)</span>
+<span class="sd">    [7, 16]</span>
+
+<span class="sd">    &gt;&gt;&gt; sorted(antidivisors(128, generator=True))</span>
+<span class="sd">    [3, 5, 15, 17, 51, 85]</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    primefactors, factorint, divisors, divisor_count, antidivisor_count</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="n">as_int</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="n">_antidivisors</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">generator</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">rv</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rv</span></div>
+
+
+<div class="viewcode-block" id="antidivisor_count"><a class="viewcode-back" href="../../../modules/ntheory.html#sympy.ntheory.factor_.antidivisor_count">[docs]</a><span class="k">def</span> <span class="nf">antidivisor_count</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the number of antidivisors [1]_ of ``n``.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    .. [1] formula from https://oeis.org/A066272</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.ntheory.factor_ import antidivisor_count</span>
+<span class="sd">    &gt;&gt;&gt; antidivisor_count(13)</span>
+<span class="sd">    4</span>
+<span class="sd">    &gt;&gt;&gt; antidivisor_count(27)</span>
+<span class="sd">    5</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    factorint, divisors, antidivisors, divisor_count, totient</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="n">as_int</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">divisor_count</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">divisor_count</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> \
+        <span class="n">divisor_count</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="n">divisor_count</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">5</span></div>
+
+
 <div class="viewcode-block" id="totient"><a class="viewcode-back" href="../../../modules/ntheory.html#sympy.ntheory.factor_.totient">[docs]</a><span class="k">class</span> <span class="nc">totient</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the Euler totient function phi(n)</span>
@@ -1369,9 +1598,240 @@
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;n must be a positive integer&quot;</span><span class="p">)</span>
             <span class="n">factors</span> <span class="o">=</span> <span class="n">factorint</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
             <span class="n">t</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">factors</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">factors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="n">t</span> <span class="o">*=</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span><span class="o">**</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">t</span></div>
+            <span class="k">return</span> <span class="n">t</span>
+
+    <span class="k">def</span> <span class="nf">_eval_is_integer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">fuzzy_and</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">is_integer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">is_positive</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="divisor_sigma"><a class="viewcode-back" href="../../../modules/ntheory.html#sympy.ntheory.factor_.divisor_sigma">[docs]</a><span class="k">class</span> <span class="nc">divisor_sigma</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the divisor function `\sigma_k(n)` for positive integer n</span>
+
+<span class="sd">    ``divisor_sigma(n, k)`` is equal to ``sum([x**k for x in divisors(n)])``</span>
+
+<span class="sd">    If n&#39;s prime factorization is:</span>
+
+<span class="sd">    .. math ::</span>
+<span class="sd">        n = \prod_{i=1}^\omega p_i^{m_i},</span>
+
+<span class="sd">    then</span>
+
+<span class="sd">    .. math ::</span>
+<span class="sd">        \sigma_k(n) = \prod_{i=1}^\omega (1+p_i^k+p_i^{2k}+\cdots</span>
+<span class="sd">        + p_i^{m_ik}).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    k : power of divisors in the sum</span>
+
+<span class="sd">        for k = 0, 1:</span>
+<span class="sd">        ``divisor_sigma(n, 0)`` is equal to ``divisor_count(n)``</span>
+<span class="sd">        ``divisor_sigma(n, 1)`` is equal to ``sum(divisors(n))``</span>
+
+<span class="sd">        Default for k is 1.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    .. [1] http://en.wikipedia.org/wiki/Divisor_function</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.ntheory import divisor_sigma</span>
+<span class="sd">    &gt;&gt;&gt; divisor_sigma(18, 0)</span>
+<span class="sd">    6</span>
+<span class="sd">    &gt;&gt;&gt; divisor_sigma(39, 1)</span>
+<span class="sd">    56</span>
+<span class="sd">    &gt;&gt;&gt; divisor_sigma(12, 2)</span>
+<span class="sd">    210</span>
+<span class="sd">    &gt;&gt;&gt; divisor_sigma(37)</span>
+<span class="sd">    38</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    divisor_count, totient, divisors, factorint</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n</span><span class="o">.</span><span class="n">is_prime</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="o">**</span><span class="n">k</span>
+        <span class="k">if</span> <span class="n">n</span><span class="o">.</span><span class="n">is_Integer</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;n must be a positive integer&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="n">p</span><span class="o">**</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="n">e</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">p</span><span class="o">**</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="mi">0</span>
+                           <span class="k">else</span> <span class="n">e</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">factorint</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span></div>
+
+
+<div class="viewcode-block" id="core"><a class="viewcode-back" href="../../../modules/ntheory.html#sympy.ntheory.factor_.core">[docs]</a><span class="k">def</span> <span class="nf">core</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate core(n,t) = `core_t(n)` of a positive integer n</span>
+
+<span class="sd">    ``core_2(n)`` is equal to the squarefree part of n</span>
+
+<span class="sd">    If n&#39;s prime factorization is:</span>
+
+<span class="sd">    .. math ::</span>
+<span class="sd">        n = \prod_{i=1}^\omega p_i^{m_i},</span>
+
+<span class="sd">    then</span>
+
+<span class="sd">    .. math ::</span>
+<span class="sd">        core_t(n) = \prod_{i=1}^\omega p_i^{m_i \mod t}.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    t : core(n,t) calculates the t-th power free part of n</span>
+
+<span class="sd">        ``core(n, 2)`` is the squarefree part of ``n``</span>
+<span class="sd">        ``core(n, 3)`` is the cubefree part of ``n``</span>
+
+<span class="sd">        Default for t is 2.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    .. [1] http://en.wikipedia.org/wiki/Square-free_integer#Squarefree_core</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.ntheory.factor_ import core</span>
+<span class="sd">    &gt;&gt;&gt; core(24, 2)</span>
+<span class="sd">    6</span>
+<span class="sd">    &gt;&gt;&gt; core(9424, 3)</span>
+<span class="sd">    1178</span>
+<span class="sd">    &gt;&gt;&gt; core(379238)</span>
+<span class="sd">    379238</span>
+<span class="sd">    &gt;&gt;&gt; core(15**11, 10)</span>
+<span class="sd">    15</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    factorint</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="n">as_int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">as_int</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;n must be a positive integer&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;t must be &gt;= 2&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">factorint</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">y</span> <span class="o">*=</span> <span class="n">p</span><span class="o">**</span><span class="p">(</span><span class="n">e</span> <span class="o">%</span> <span class="n">t</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">y</span></div>
+
+
+<div class="viewcode-block" id="digits"><a class="viewcode-back" href="../../../modules/ntheory.html#sympy.ntheory.factor_.digits">[docs]</a><span class="k">def</span> <span class="nf">digits</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a list of the digits of n in base b. The first element in the list</span>
+<span class="sd">    is b (or -b if n is negative).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.ntheory.factor_ import digits</span>
+<span class="sd">    &gt;&gt;&gt; digits(35)</span>
+<span class="sd">    [10, 3, 5]</span>
+<span class="sd">    &gt;&gt;&gt; digits(27, 2)</span>
+<span class="sd">    [2, 1, 1, 0, 1, 1]</span>
+<span class="sd">    &gt;&gt;&gt; digits(65536, 256)</span>
+<span class="sd">    [256, 1, 0, 0]</span>
+<span class="sd">    &gt;&gt;&gt; digits(-3958, 27)</span>
+<span class="sd">    [-27, 5, 11, 16]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">b</span> <span class="o">=</span> <span class="n">as_int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">as_int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;b must be &gt;= 2&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+            <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">b</span><span class="p">)</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">y</span></div>
+
+
+<div class="viewcode-block" id="udivisor_sigma"><a class="viewcode-back" href="../../../modules/ntheory.html#sympy.ntheory.factor_.udivisor_sigma">[docs]</a><span class="k">class</span> <span class="nc">udivisor_sigma</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the unitary divisor function `\sigma_k^*(n)` for positive integer n</span>
+
+<span class="sd">    ``udivisor_sigma(n, k)`` is equal to ``sum([x**k for x in udivisors(n)])``</span>
+
+<span class="sd">    If n&#39;s prime factorization is:</span>
+
+<span class="sd">    .. math ::</span>
+<span class="sd">        n = \prod_{i=1}^\omega p_i^{m_i},</span>
+
+<span class="sd">    then</span>
+
+<span class="sd">    .. math ::</span>
+<span class="sd">        \sigma_k^*(n) = \prod_{i=1}^\omega (1+ p_i^{m_ik}).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    k : power of divisors in the sum</span>
+
+<span class="sd">        for k = 0, 1:</span>
+<span class="sd">        ``udivisor_sigma(n, 0)`` is equal to ``udivisor_count(n)``</span>
+<span class="sd">        ``udivisor_sigma(n, 1)`` is equal to ``sum(udivisors(n))``</span>
+
+<span class="sd">        Default for k is 1.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    .. [1] http://mathworld.wolfram.com/UnitaryDivisorFunction.html</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.ntheory.factor_ import udivisor_sigma</span>
+<span class="sd">    &gt;&gt;&gt; udivisor_sigma(18, 0)</span>
+<span class="sd">    4</span>
+<span class="sd">    &gt;&gt;&gt; udivisor_sigma(74, 1)</span>
+<span class="sd">    114</span>
+<span class="sd">    &gt;&gt;&gt; udivisor_sigma(36, 3)</span>
+<span class="sd">    47450</span>
+<span class="sd">    &gt;&gt;&gt; udivisor_sigma(111)</span>
+<span class="sd">    152</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    divisor_count, totient, divisors, udivisors, udivisor_count, divisor_sigma,</span>
+<span class="sd">    factorint</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n</span><span class="o">.</span><span class="n">is_prime</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="o">**</span><span class="n">k</span>
+        <span class="k">if</span> <span class="n">n</span><span class="o">.</span><span class="n">is_Integer</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;n must be a positive integer&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="mi">1</span><span class="o">+</span><span class="n">p</span><span class="o">**</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">factorint</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span></div>
 </pre></div>
 
           </div>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.stats.rv_interface &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.stats.rv_interface &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -48,14 +48,17 @@
           <div class="body" role="main">
             
   <h1>Source code for sympy.stats.rv_interface</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">rv</span> <span class="kn">import</span> <span class="p">(</span><span class="n">probability</span><span class="p">,</span> <span class="n">expectation</span><span class="p">,</span> <span class="n">density</span><span class="p">,</span> <span class="n">where</span><span class="p">,</span> <span class="n">given</span><span class="p">,</span> <span class="n">pspace</span><span class="p">,</span> <span class="n">cdf</span><span class="p">,</span>
-        <span class="n">sample</span><span class="p">,</span> <span class="n">sample_iter</span><span class="p">,</span> <span class="n">random_symbols</span><span class="p">,</span> <span class="n">independent</span><span class="p">,</span> <span class="n">dependent</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">simplify</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="kn">from</span> <span class="nn">.rv</span> <span class="kn">import</span> <span class="p">(</span><span class="n">probability</span><span class="p">,</span> <span class="n">expectation</span><span class="p">,</span> <span class="n">density</span><span class="p">,</span> <span class="n">where</span><span class="p">,</span> <span class="n">given</span><span class="p">,</span> <span class="n">pspace</span><span class="p">,</span> <span class="n">cdf</span><span class="p">,</span>
+        <span class="n">sample</span><span class="p">,</span> <span class="n">sample_iter</span><span class="p">,</span> <span class="n">random_symbols</span><span class="p">,</span> <span class="n">independent</span><span class="p">,</span> <span class="n">dependent</span><span class="p">,</span>
+        <span class="n">sampling_density</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sqrt</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="s1">&#39;where&#39;</span><span class="p">,</span> <span class="s1">&#39;given&#39;</span><span class="p">,</span> <span class="s1">&#39;sample&#39;</span><span class="p">,</span> <span class="s1">&#39;cdf&#39;</span><span class="p">,</span> <span class="s1">&#39;pspace&#39;</span><span class="p">,</span>
         <span class="s1">&#39;sample_iter&#39;</span><span class="p">,</span> <span class="s1">&#39;variance&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="s1">&#39;skewness&#39;</span><span class="p">,</span> <span class="s1">&#39;covariance&#39;</span><span class="p">,</span>
         <span class="s1">&#39;dependent&#39;</span><span class="p">,</span> <span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="s1">&#39;random_symbols&#39;</span><span class="p">,</span> <span class="s1">&#39;correlation&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;moment&#39;</span><span class="p">,</span> <span class="s1">&#39;cmoment&#39;</span><span class="p">]</span>
+        <span class="s1">&#39;moment&#39;</span><span class="p">,</span> <span class="s1">&#39;cmoment&#39;</span><span class="p">,</span> <span class="s1">&#39;sampling_density&#39;</span><span class="p">]</span>
 
 
 
@@ -126,7 +129,7 @@
 <span class="n">std</span> <span class="o">=</span> <span class="n">standard_deviation</span>
 
 
-<div class="viewcode-block" id="covariance"><a class="viewcode-back" href="../../../modules/stats.html#sympy.stats.covariance">[docs]</a><span class="k">def</span> <span class="nf">covariance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">condition</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">covariance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">condition</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Covariance of two random expressions</span>
 
@@ -140,7 +143,7 @@
 <span class="sd">    &gt;&gt;&gt; from sympy.stats import Exponential, covariance</span>
 <span class="sd">    &gt;&gt;&gt; from sympy import Symbol</span>
 
-<span class="sd">    &gt;&gt;&gt; rate = Symbol(&#39;lambda&#39;, positive=True, real=True, bounded = True)</span>
+<span class="sd">    &gt;&gt;&gt; rate = Symbol(&#39;lambda&#39;, positive=True, real=True, finite=True)</span>
 <span class="sd">    &gt;&gt;&gt; X = Exponential(&#39;X&#39;, rate)</span>
 <span class="sd">    &gt;&gt;&gt; Y = Exponential(&#39;Y&#39;, rate)</span>
 
@@ -154,7 +157,7 @@
     <span class="k">return</span> <span class="n">expectation</span><span class="p">(</span>
         <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="n">expectation</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">condition</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span> <span class="o">*</span>
         <span class="p">(</span><span class="n">Y</span> <span class="o">-</span> <span class="n">expectation</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">condition</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)),</span>
-        <span class="n">condition</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="n">condition</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">correlation</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">condition</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -173,7 +176,7 @@
 <span class="sd">    &gt;&gt;&gt; from sympy.stats import Exponential, correlation</span>
 <span class="sd">    &gt;&gt;&gt; from sympy import Symbol</span>
 
-<span class="sd">    &gt;&gt;&gt; rate = Symbol(&#39;lambda&#39;, positive=True, real=True, bounded = True)</span>
+<span class="sd">    &gt;&gt;&gt; rate = Symbol(&#39;lambda&#39;, positive=True, real=True, finite=True)</span>
 <span class="sd">    &gt;&gt;&gt; X = Exponential(&#39;X&#39;, rate)</span>
 <span class="sd">    &gt;&gt;&gt; Y = Exponential(&#39;Y&#39;, rate)</span>
 
@@ -216,9 +219,10 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    ========</span>
+
 <span class="sd">    &gt;&gt;&gt; from sympy.stats import skewness, Exponential, smoment</span>
 <span class="sd">    &gt;&gt;&gt; from sympy import Symbol</span>
-<span class="sd">    &gt;&gt;&gt; rate = Symbol(&#39;lambda&#39;, positive=True, real=True, bounded = True)</span>
+<span class="sd">    &gt;&gt;&gt; rate = Symbol(&#39;lambda&#39;, positive=True, real=True, finite=True)</span>
 <span class="sd">    &gt;&gt;&gt; Y = Exponential(&#39;Y&#39;, rate)</span>
 <span class="sd">    &gt;&gt;&gt; smoment(Y, 4)</span>
 <span class="sd">    9</span>
@@ -247,7 +251,7 @@
 <span class="sd">    &gt;&gt;&gt; X = Normal(&#39;X&#39;, 0, 1)</span>
 <span class="sd">    &gt;&gt;&gt; skewness(X)</span>
 <span class="sd">    0</span>
-<span class="sd">    &gt;&gt;&gt; rate = Symbol(&#39;lambda&#39;, positive=True, real=True, bounded = True)</span>
+<span class="sd">    &gt;&gt;&gt; rate = Symbol(&#39;lambda&#39;, positive=True, real=True, finite=True)</span>
 <span class="sd">    &gt;&gt;&gt; Y = Exponential(&#39;Y&#39;, rate)</span>
 <span class="sd">    &gt;&gt;&gt; skewness(Y)</span>
 <span class="sd">    2</span>

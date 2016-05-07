@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.core.evalf &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.core.evalf &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -52,30 +52,34 @@
 <span class="sd">Adaptive numerical evaluation of SymPy expressions, using mpmath</span>
 <span class="sd">for mathematical functions.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
+
 <span class="kn">import</span> <span class="nn">math</span>
 
-<span class="kn">import</span> <span class="nn">sympy.mpmath.libmp</span> <span class="kn">as</span> <span class="nn">libmp</span>
-<span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="n">make_mpc</span><span class="p">,</span> <span class="n">make_mpf</span><span class="p">,</span> <span class="n">mp</span><span class="p">,</span> <span class="n">mpc</span><span class="p">,</span> <span class="n">mpf</span><span class="p">,</span> <span class="n">nsum</span><span class="p">,</span> <span class="n">quadts</span><span class="p">,</span> <span class="n">quadosc</span>
-<span class="kn">from</span> <span class="nn">sympy.mpmath</span> <span class="kn">import</span> <span class="n">inf</span> <span class="k">as</span> <span class="n">mpmath_inf</span>
-<span class="kn">from</span> <span class="nn">sympy.mpmath.libmp</span> <span class="kn">import</span> <span class="p">(</span><span class="n">from_int</span><span class="p">,</span> <span class="n">from_man_exp</span><span class="p">,</span> <span class="n">from_rational</span><span class="p">,</span> <span class="n">fhalf</span><span class="p">,</span>
+<span class="kn">import</span> <span class="nn">mpmath.libmp</span> <span class="kn">as</span> <span class="nn">libmp</span>
+<span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">make_mpc</span><span class="p">,</span> <span class="n">make_mpf</span><span class="p">,</span> <span class="n">mp</span><span class="p">,</span> <span class="n">mpc</span><span class="p">,</span> <span class="n">mpf</span><span class="p">,</span> <span class="n">nsum</span><span class="p">,</span> <span class="n">quadts</span><span class="p">,</span> <span class="n">quadosc</span><span class="p">,</span> <span class="n">workprec</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">mpmath</span> <span class="kn">import</span> <span class="n">inf</span> <span class="k">as</span> <span class="n">mpmath_inf</span>
+<span class="kn">from</span> <span class="nn">mpmath.libmp</span> <span class="kn">import</span> <span class="p">(</span><span class="n">from_int</span><span class="p">,</span> <span class="n">from_man_exp</span><span class="p">,</span> <span class="n">from_rational</span><span class="p">,</span> <span class="n">fhalf</span><span class="p">,</span>
         <span class="n">fnan</span><span class="p">,</span> <span class="n">fnone</span><span class="p">,</span> <span class="n">fone</span><span class="p">,</span> <span class="n">fzero</span><span class="p">,</span> <span class="n">mpf_abs</span><span class="p">,</span> <span class="n">mpf_add</span><span class="p">,</span>
         <span class="n">mpf_atan</span><span class="p">,</span> <span class="n">mpf_atan2</span><span class="p">,</span> <span class="n">mpf_cmp</span><span class="p">,</span> <span class="n">mpf_cos</span><span class="p">,</span> <span class="n">mpf_e</span><span class="p">,</span> <span class="n">mpf_exp</span><span class="p">,</span> <span class="n">mpf_log</span><span class="p">,</span> <span class="n">mpf_lt</span><span class="p">,</span>
         <span class="n">mpf_mul</span><span class="p">,</span> <span class="n">mpf_neg</span><span class="p">,</span> <span class="n">mpf_pi</span><span class="p">,</span> <span class="n">mpf_pow</span><span class="p">,</span> <span class="n">mpf_pow_int</span><span class="p">,</span> <span class="n">mpf_shift</span><span class="p">,</span> <span class="n">mpf_sin</span><span class="p">,</span>
         <span class="n">mpf_sqrt</span><span class="p">,</span> <span class="n">normalize</span><span class="p">,</span> <span class="n">round_nearest</span><span class="p">,</span> <span class="n">to_int</span><span class="p">,</span> <span class="n">to_str</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">sympy.mpmath.libmp</span> <span class="kn">import</span> <span class="n">bitcount</span> <span class="k">as</span> <span class="n">mpmath_bitcount</span>
-<span class="kn">from</span> <span class="nn">sympy.mpmath.libmp.backend</span> <span class="kn">import</span> <span class="n">MPZ</span>
-<span class="kn">from</span> <span class="nn">sympy.mpmath.libmp.libmpc</span> <span class="kn">import</span> <span class="n">_infs_nan</span>
-<span class="kn">from</span> <span class="nn">sympy.mpmath.libmp.libmpf</span> <span class="kn">import</span> <span class="n">dps_to_prec</span>
-<span class="kn">from</span> <span class="nn">sympy.mpmath.libmp.gammazeta</span> <span class="kn">import</span> <span class="n">mpf_bernoulli</span>
+<span class="kn">from</span> <span class="nn">mpmath.libmp</span> <span class="kn">import</span> <span class="n">bitcount</span> <span class="k">as</span> <span class="n">mpmath_bitcount</span>
+<span class="kn">from</span> <span class="nn">mpmath.libmp.backend</span> <span class="kn">import</span> <span class="n">MPZ</span>
+<span class="kn">from</span> <span class="nn">mpmath.libmp.libmpc</span> <span class="kn">import</span> <span class="n">_infs_nan</span>
+<span class="kn">from</span> <span class="nn">mpmath.libmp.libmpf</span> <span class="kn">import</span> <span class="n">dps_to_prec</span><span class="p">,</span> <span class="n">prec_to_dps</span>
+<span class="kn">from</span> <span class="nn">mpmath.libmp.gammazeta</span> <span class="kn">import</span> <span class="n">mpf_bernoulli</span>
 
-<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">SYMPY_INTS</span>
-<span class="kn">from</span> <span class="nn">sympify</span> <span class="kn">import</span> <span class="n">sympify</span>
-<span class="kn">from</span> <span class="nn">core</span> <span class="kn">import</span> <span class="n">C</span>
-<span class="kn">from</span> <span class="nn">singleton</span> <span class="kn">import</span> <span class="n">S</span>
-<span class="kn">from</span> <span class="nn">containers</span> <span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">.compatibility</span> <span class="kn">import</span> <span class="n">SYMPY_INTS</span><span class="p">,</span> <span class="nb">range</span>
+<span class="kn">from</span> <span class="nn">.sympify</span> <span class="kn">import</span> <span class="n">sympify</span>
+<span class="kn">from</span> <span class="nn">.singleton</span> <span class="kn">import</span> <span class="n">S</span>
+
+<span class="kn">from</span> <span class="nn">sympy.utilities.iterables</span> <span class="kn">import</span> <span class="n">is_sequence</span>
 
 <span class="n">LG10</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">rnd</span> <span class="o">=</span> <span class="n">round_nearest</span>
+
 
 <span class="k">def</span> <span class="nf">bitcount</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">mpmath_bitcount</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
@@ -155,20 +159,28 @@
     <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">pure_complex</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pure_complex</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">or_real</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return a and b if v matches a + I*b where b is not zero and</span>
-<span class="sd">    a and b are Numbers, else None.</span>
+<span class="sd">    a and b are Numbers, else None. If `or_real` is True then 0 will</span>
+<span class="sd">    be returned for `b` if `v` is a real number.</span>
 
 <span class="sd">    &gt;&gt;&gt; from sympy.core.evalf import pure_complex</span>
-<span class="sd">    &gt;&gt;&gt; from sympy import Tuple, I</span>
-<span class="sd">    &gt;&gt;&gt; a, b = Tuple(2, 3)</span>
+<span class="sd">    &gt;&gt;&gt; from sympy import sqrt, I, S</span>
+<span class="sd">    &gt;&gt;&gt; a, b, surd = S(2), S(3), sqrt(2)</span>
 <span class="sd">    &gt;&gt;&gt; pure_complex(a)</span>
+<span class="sd">    &gt;&gt;&gt; pure_complex(a, or_real=True)</span>
+<span class="sd">    (2, 0)</span>
+<span class="sd">    &gt;&gt;&gt; pure_complex(surd)</span>
 <span class="sd">    &gt;&gt;&gt; pure_complex(a + b*I)</span>
 <span class="sd">    (2, 3)</span>
 <span class="sd">    &gt;&gt;&gt; pure_complex(I)</span>
 <span class="sd">    (0, 1)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">h</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">as_coeff_Add</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">t</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">or_real</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">h</span><span class="p">,</span> <span class="n">t</span>
+        <span class="k">return</span>
     <span class="n">c</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">as_coeff_Mul</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">i</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">ImaginaryUnit</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">h</span><span class="p">,</span> <span class="n">c</span>
@@ -337,7 +349,7 @@
 
 <span class="sd">    Note: this function either gives the exact result or signals failure.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
+    <span class="kn">from</span> <span class="nn">sympy.functions.elementary.complexes</span> <span class="kn">import</span> <span class="n">re</span><span class="p">,</span> <span class="n">im</span>
     <span class="c1"># The expression is likely less than 2^30 or so</span>
     <span class="n">assumed_size</span> <span class="o">=</span> <span class="mi">30</span>
     <span class="n">ire</span><span class="p">,</span> <span class="n">iim</span><span class="p">,</span> <span class="n">ire_acc</span><span class="p">,</span> <span class="n">iim_acc</span> <span class="o">=</span> <span class="n">evalf</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">assumed_size</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
@@ -364,29 +376,53 @@
     <span class="c1"># must also calculate whether the difference to the nearest integer is</span>
     <span class="c1"># positive or negative (which may fail if very close).</span>
     <span class="k">def</span> <span class="nf">calc_part</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">nexpr</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">sympy.core.add</span> <span class="kn">import</span> <span class="n">Add</span>
         <span class="n">nint</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">to_int</span><span class="p">(</span><span class="n">nexpr</span><span class="p">,</span> <span class="n">rnd</span><span class="p">))</span>
-        <span class="n">expr</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="o">-</span><span class="n">nint</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">x_acc</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">evalf</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">check_target</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">x_acc</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">PrecisionExhausted</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">expr</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="n">PrecisionExhausted</span>
-            <span class="n">x</span> <span class="o">=</span> <span class="n">fzero</span>
-        <span class="n">nint</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">no</span><span class="o">*</span><span class="p">(</span><span class="n">mpf_cmp</span><span class="p">(</span><span class="n">x</span> <span class="ow">or</span> <span class="n">fzero</span><span class="p">,</span> <span class="n">fzero</span><span class="p">)</span> <span class="o">==</span> <span class="n">no</span><span class="p">))</span>
+        <span class="n">n</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">nexpr</span>
+        <span class="n">is_int</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_int</span><span class="p">:</span>
+            <span class="c1"># if there are subs and they all contain integer re/im parts</span>
+            <span class="c1"># then we can (hopefully) safely substitute them into the</span>
+            <span class="c1"># expression</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;subs&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">s</span><span class="p">:</span>
+                <span class="n">doit</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">as_int</span>
+                <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">as_int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="p">[</span><span class="n">as_int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">as_real_imag</span><span class="p">()]</span>
+                            <span class="k">continue</span>
+                        <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+                            <span class="n">doit</span> <span class="o">=</span> <span class="bp">False</span>
+                            <span class="k">break</span>
+                <span class="k">if</span> <span class="n">doit</span><span class="p">:</span>
+                    <span class="n">expr</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+            <span class="n">expr</span> <span class="o">=</span> <span class="n">Add</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="o">-</span><span class="n">nint</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">x_acc</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">evalf</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">check_target</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">x_acc</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">PrecisionExhausted</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">expr</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="n">PrecisionExhausted</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">fzero</span>
+            <span class="n">nint</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">no</span><span class="o">*</span><span class="p">(</span><span class="n">mpf_cmp</span><span class="p">(</span><span class="n">x</span> <span class="ow">or</span> <span class="n">fzero</span><span class="p">,</span> <span class="n">fzero</span><span class="p">)</span> <span class="o">==</span> <span class="n">no</span><span class="p">))</span>
         <span class="n">nint</span> <span class="o">=</span> <span class="n">from_int</span><span class="p">(</span><span class="n">nint</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">nint</span><span class="p">,</span> <span class="n">fastlog</span><span class="p">(</span><span class="n">nint</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span>
 
-    <span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">,</span> <span class="n">im_acc</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span>
+    <span class="n">re_</span><span class="p">,</span> <span class="n">im_</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">,</span> <span class="n">im_acc</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span>
 
     <span class="k">if</span> <span class="n">ire</span><span class="p">:</span>
-        <span class="n">re</span><span class="p">,</span> <span class="n">re_acc</span> <span class="o">=</span> <span class="n">calc_part</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">re</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span> <span class="n">ire</span><span class="p">)</span>
+        <span class="n">re_</span><span class="p">,</span> <span class="n">re_acc</span> <span class="o">=</span> <span class="n">calc_part</span><span class="p">(</span><span class="n">re</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span> <span class="n">ire</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">iim</span><span class="p">:</span>
-        <span class="n">im</span><span class="p">,</span> <span class="n">im_acc</span> <span class="o">=</span> <span class="n">calc_part</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">im</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span> <span class="n">iim</span><span class="p">)</span>
+        <span class="n">im_</span><span class="p">,</span> <span class="n">im_acc</span> <span class="o">=</span> <span class="n">calc_part</span><span class="p">(</span><span class="n">im</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span> <span class="n">iim</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">return_ints</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">to_int</span><span class="p">(</span><span class="n">re</span> <span class="ow">or</span> <span class="n">fzero</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">to_int</span><span class="p">(</span><span class="n">im</span> <span class="ow">or</span> <span class="n">fzero</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">,</span> <span class="n">im_acc</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">to_int</span><span class="p">(</span><span class="n">re_</span> <span class="ow">or</span> <span class="n">fzero</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">to_int</span><span class="p">(</span><span class="n">im_</span> <span class="ow">or</span> <span class="n">fzero</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">re_</span><span class="p">,</span> <span class="n">im_</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">,</span> <span class="n">im_acc</span>
 
 
 <span class="k">def</span> <span class="nf">evalf_ceiling</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
@@ -425,7 +461,6 @@
 
 <span class="sd">    XXX explain why this is needed and why one can&#39;t just loop using mpf_add</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">sympy.core.core</span> <span class="kn">import</span> <span class="n">C</span>
 
     <span class="n">terms</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">terms</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">iszero</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">terms</span><span class="p">:</span>
@@ -435,9 +470,10 @@
 
     <span class="c1"># see if any argument is NaN or oo and thus warrants a special return</span>
     <span class="n">special</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="kn">from</span> <span class="nn">sympy.core.numbers</span> <span class="kn">import</span> <span class="n">Float</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">terms</span><span class="p">:</span>
-        <span class="n">arg</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Float</span><span class="o">.</span><span class="n">_new</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">arg</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">NaN</span> <span class="ow">or</span> <span class="n">arg</span><span class="o">.</span><span class="n">is_unbounded</span><span class="p">:</span>
+        <span class="n">arg</span> <span class="o">=</span> <span class="n">Float</span><span class="o">.</span><span class="n">_new</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">arg</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">NaN</span> <span class="ow">or</span> <span class="n">arg</span><span class="o">.</span><span class="n">is_infinite</span><span class="p">:</span>
             <span class="n">special</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">special</span><span class="p">:</span>
         <span class="kn">from</span> <span class="nn">sympy.core.add</span> <span class="kn">import</span> <span class="n">Add</span>
@@ -483,7 +519,6 @@
     <span class="n">sum_accuracy</span> <span class="o">=</span> <span class="n">sum_exp</span> <span class="o">+</span> <span class="n">sum_bc</span> <span class="o">-</span> <span class="n">absolute_error</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">sum_sign</span><span class="p">,</span> <span class="n">sum_man</span><span class="p">,</span> <span class="n">sum_exp</span><span class="p">,</span> <span class="n">sum_bc</span><span class="p">,</span> <span class="n">target_prec</span><span class="p">,</span>
         <span class="n">rnd</span><span class="p">),</span> <span class="n">sum_accuracy</span>
-    <span class="c1">#print &quot;returning&quot;, to_str(r[0],50), r[1]</span>
     <span class="k">return</span> <span class="n">r</span>
 
 
@@ -510,7 +545,7 @@
         <span class="n">acc</span> <span class="o">=</span> <span class="n">complex_accuracy</span><span class="p">((</span><span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">,</span> <span class="n">im_acc</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">acc</span> <span class="o">&gt;=</span> <span class="n">target_prec</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;verbose&#39;</span><span class="p">):</span>
-                <span class="k">print</span> <span class="s2">&quot;ADD: wanted&quot;</span><span class="p">,</span> <span class="n">target_prec</span><span class="p">,</span> <span class="s2">&quot;accurate bits, got&quot;</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">,</span> <span class="n">im_acc</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ADD: wanted&quot;</span><span class="p">,</span> <span class="n">target_prec</span><span class="p">,</span> <span class="s2">&quot;accurate bits, got&quot;</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">,</span> <span class="n">im_acc</span><span class="p">)</span>
             <span class="k">break</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">prec</span> <span class="o">-</span> <span class="n">target_prec</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">options</span><span class="p">[</span><span class="s1">&#39;maxprec&#39;</span><span class="p">]:</span>
@@ -519,7 +554,7 @@
             <span class="n">prec</span> <span class="o">=</span> <span class="n">prec</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="mi">10</span> <span class="o">+</span> <span class="mi">2</span><span class="o">**</span><span class="n">i</span><span class="p">,</span> <span class="n">target_prec</span> <span class="o">-</span> <span class="n">acc</span><span class="p">)</span>
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;verbose&#39;</span><span class="p">):</span>
-                <span class="k">print</span> <span class="s2">&quot;ADD: restarting with prec&quot;</span><span class="p">,</span> <span class="n">prec</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ADD: restarting with prec&quot;</span><span class="p">,</span> <span class="n">prec</span><span class="p">)</span>
 
     <span class="n">options</span><span class="p">[</span><span class="s1">&#39;maxprec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">oldmaxprec</span>
     <span class="k">if</span> <span class="n">iszero</span><span class="p">(</span><span class="n">re</span><span class="p">,</span> <span class="n">scaled</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
@@ -530,8 +565,6 @@
 
 
 <span class="k">def</span> <span class="nf">evalf_mul</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
-    <span class="kn">from</span> <span class="nn">sympy.core.core</span> <span class="kn">import</span> <span class="n">C</span>
-
     <span class="n">res</span> <span class="o">=</span> <span class="n">pure_complex</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
         <span class="c1"># the only pure complex that is a mul is h*I</span>
@@ -542,12 +575,13 @@
 
     <span class="c1"># see if any argument is NaN or oo and thus warrants a special return</span>
     <span class="n">special</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="kn">from</span> <span class="nn">sympy.core.numbers</span> <span class="kn">import</span> <span class="n">Float</span>
     <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
         <span class="n">arg</span> <span class="o">=</span> <span class="n">evalf</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">continue</span>
-        <span class="n">arg</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Float</span><span class="o">.</span><span class="n">_new</span><span class="p">(</span><span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">arg</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">NaN</span> <span class="ow">or</span> <span class="n">arg</span><span class="o">.</span><span class="n">is_unbounded</span><span class="p">:</span>
+        <span class="n">arg</span> <span class="o">=</span> <span class="n">Float</span><span class="o">.</span><span class="n">_new</span><span class="p">(</span><span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">arg</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">NaN</span> <span class="ow">or</span> <span class="n">arg</span><span class="o">.</span><span class="n">is_infinite</span><span class="p">:</span>
             <span class="n">special</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">special</span><span class="p">:</span>
         <span class="kn">from</span> <span class="nn">sympy.core.mul</span> <span class="kn">import</span> <span class="n">Mul</span>
@@ -637,7 +671,7 @@
             <span class="n">re</span> <span class="o">=</span> <span class="n">mpf_add</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">use_prec</span><span class="p">)</span>
             <span class="n">im</span> <span class="o">=</span> <span class="n">mpf_add</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">use_prec</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;verbose&#39;</span><span class="p">):</span>
-            <span class="k">print</span> <span class="s2">&quot;MUL: wanted&quot;</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="s2">&quot;accurate bits, got&quot;</span><span class="p">,</span> <span class="n">acc</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;MUL: wanted&quot;</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="s2">&quot;accurate bits, got&quot;</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
         <span class="c1"># multiply by I</span>
         <span class="k">if</span> <span class="n">direction</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">re</span><span class="p">,</span> <span class="n">im</span> <span class="o">=</span> <span class="n">mpf_neg</span><span class="p">(</span><span class="n">im</span><span class="p">),</span> <span class="n">re</span>
@@ -756,9 +790,10 @@
 
 <span class="sd">    TODO: should also handle tan of complex arguments.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="n">C</span><span class="o">.</span><span class="n">cos</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span>
+    <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="n">cos</span><span class="p">:</span>
         <span class="n">func</span> <span class="o">=</span> <span class="n">mpf_cos</span>
-    <span class="k">elif</span> <span class="n">v</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="n">C</span><span class="o">.</span><span class="n">sin</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">v</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="n">sin</span><span class="p">:</span>
         <span class="n">func</span> <span class="o">=</span> <span class="n">mpf_sin</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
@@ -772,9 +807,9 @@
             <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;subs&#39;</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">evalf</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">_eval_evalf</span><span class="p">(</span><span class="n">prec</span><span class="p">),</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="n">C</span><span class="o">.</span><span class="n">cos</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="n">cos</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">fone</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span>
-        <span class="k">elif</span> <span class="n">v</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="n">C</span><span class="o">.</span><span class="n">sin</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">v</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="n">sin</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span>
@@ -799,8 +834,8 @@
         <span class="n">accuracy</span> <span class="o">=</span> <span class="p">(</span><span class="n">xprec</span> <span class="o">-</span> <span class="n">xsize</span><span class="p">)</span> <span class="o">-</span> <span class="n">gap</span>
         <span class="k">if</span> <span class="n">accuracy</span> <span class="o">&lt;</span> <span class="n">prec</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;verbose&#39;</span><span class="p">):</span>
-                <span class="k">print</span> <span class="s2">&quot;SIN/COS&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="s2">&quot;wanted&quot;</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="s2">&quot;gap&quot;</span><span class="p">,</span> <span class="n">gap</span>
-                <span class="k">print</span> <span class="n">to_str</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="s2">&quot;SIN/COS&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="s2">&quot;wanted&quot;</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="s2">&quot;gap&quot;</span><span class="p">,</span> <span class="n">gap</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">to_str</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
             <span class="k">if</span> <span class="n">xprec</span> <span class="o">&gt;</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;maxprec&#39;</span><span class="p">,</span> <span class="n">DEFAULT_MAXPREC</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">y</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="bp">None</span>
             <span class="n">xprec</span> <span class="o">+=</span> <span class="n">gap</span>
@@ -811,6 +846,10 @@
 
 
 <span class="k">def</span> <span class="nf">evalf_log</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Abs</span><span class="p">,</span> <span class="n">Add</span><span class="p">,</span> <span class="n">log</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">expr</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">doit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">evalf</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
     <span class="n">arg</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">workprec</span> <span class="o">=</span> <span class="n">prec</span> <span class="o">+</span> <span class="mi">10</span>
     <span class="n">xre</span><span class="p">,</span> <span class="n">xim</span><span class="p">,</span> <span class="n">xacc</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">evalf</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">workprec</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
@@ -818,7 +857,7 @@
     <span class="k">if</span> <span class="n">xim</span><span class="p">:</span>
         <span class="c1"># XXX: use get_abs etc instead</span>
         <span class="n">re</span> <span class="o">=</span> <span class="n">evalf_log</span><span class="p">(</span>
-            <span class="n">C</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">Abs</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+            <span class="n">log</span><span class="p">(</span><span class="n">Abs</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
         <span class="n">im</span> <span class="o">=</span> <span class="n">mpf_atan2</span><span class="p">(</span><span class="n">xim</span><span class="p">,</span> <span class="n">xre</span> <span class="ow">or</span> <span class="n">fzero</span><span class="p">,</span> <span class="n">prec</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">re</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">im</span><span class="p">,</span> <span class="n">re</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">prec</span>
 
@@ -828,10 +867,11 @@
     <span class="n">size</span> <span class="o">=</span> <span class="n">fastlog</span><span class="p">(</span><span class="n">re</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">prec</span> <span class="o">-</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="n">workprec</span><span class="p">:</span>
         <span class="c1"># We actually need to compute 1+x accurately, not x</span>
-        <span class="n">arg</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">NegativeOne</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">arg</span> <span class="o">=</span> <span class="n">Add</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">NegativeOne</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
         <span class="n">xre</span><span class="p">,</span> <span class="n">xim</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">evalf_add</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
         <span class="n">prec2</span> <span class="o">=</span> <span class="n">workprec</span> <span class="o">-</span> <span class="n">fastlog</span><span class="p">(</span><span class="n">xre</span><span class="p">)</span>
-        <span class="n">re</span> <span class="o">=</span> <span class="n">mpf_log</span><span class="p">(</span><span class="n">mpf_add</span><span class="p">(</span><span class="n">xre</span><span class="p">,</span> <span class="n">fone</span><span class="p">,</span> <span class="n">prec2</span><span class="p">),</span> <span class="n">prec</span><span class="p">,</span> <span class="n">rnd</span><span class="p">)</span>
+        <span class="c1"># xre is now x - 1 so we add 1 back here to calculate x</span>
+        <span class="n">re</span> <span class="o">=</span> <span class="n">mpf_log</span><span class="p">(</span><span class="n">mpf_abs</span><span class="p">(</span><span class="n">mpf_add</span><span class="p">(</span><span class="n">xre</span><span class="p">,</span> <span class="n">fone</span><span class="p">,</span> <span class="n">prec2</span><span class="p">)),</span> <span class="n">prec</span><span class="p">,</span> <span class="n">rnd</span><span class="p">)</span>
 
     <span class="n">re_acc</span> <span class="o">=</span> <span class="n">prec</span>
 
@@ -863,6 +903,7 @@
 
 
 <span class="k">def</span> <span class="nf">evalf_piecewise</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Integer</span>
     <span class="k">if</span> <span class="s1">&#39;subs&#39;</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
         <span class="n">expr</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">evalf_subs</span><span class="p">(</span><span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">[</span><span class="s1">&#39;subs&#39;</span><span class="p">]))</span>
         <span class="n">newopts</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -870,9 +911,9 @@
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="s1">&#39;func&#39;</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">evalf</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">newopts</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="o">==</span> <span class="nb">float</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">evalf</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">Float</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="n">prec</span><span class="p">,</span> <span class="n">newopts</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">evalf</span><span class="p">(</span><span class="n">Float</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="n">prec</span><span class="p">,</span> <span class="n">newopts</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">evalf</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="n">prec</span><span class="p">,</span> <span class="n">newopts</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">evalf</span><span class="p">(</span><span class="n">Integer</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="n">prec</span><span class="p">,</span> <span class="n">newopts</span><span class="p">)</span>
 
     <span class="c1"># We still have undefined symbols</span>
     <span class="k">raise</span> <span class="ne">NotImplementedError</span>
@@ -896,12 +937,13 @@
 
 
 <span class="k">def</span> <span class="nf">as_mpmath</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">sympy.core.numbers</span> <span class="kn">import</span> <span class="n">Infinity</span><span class="p">,</span> <span class="n">NegativeInfinity</span><span class="p">,</span> <span class="n">Zero</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">C</span><span class="o">.</span><span class="n">Zero</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Zero</span><span class="p">)</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">mpf</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">C</span><span class="o">.</span><span class="n">Infinity</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Infinity</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">mpf</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">C</span><span class="o">.</span><span class="n">NegativeInfinity</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">NegativeInfinity</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">mpf</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span>
     <span class="c1"># XXX</span>
     <span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">evalf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
@@ -913,13 +955,22 @@
 <span class="k">def</span> <span class="nf">do_integral</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
     <span class="n">func</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">xlow</span><span class="p">,</span> <span class="n">xhigh</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">orig</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">prec</span>
+    <span class="k">if</span> <span class="n">xlow</span> <span class="o">==</span> <span class="n">xhigh</span><span class="p">:</span>
+        <span class="n">xlow</span> <span class="o">=</span> <span class="n">xhigh</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">func</span><span class="o">.</span><span class="n">free_symbols</span><span class="p">:</span>
+        <span class="c1"># only the difference in limits matters in this case</span>
+        <span class="c1"># so if there is a symbol in common that will cancel</span>
+        <span class="c1"># out when taking the difference, then use that</span>
+        <span class="c1"># difference</span>
+        <span class="k">if</span> <span class="n">xhigh</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">&amp;</span> <span class="n">xlow</span><span class="o">.</span><span class="n">free_symbols</span><span class="p">:</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="n">xhigh</span> <span class="o">-</span> <span class="n">xlow</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">diff</span><span class="o">.</span><span class="n">free_symbols</span><span class="p">:</span>
+                <span class="n">xlow</span><span class="p">,</span> <span class="n">xhigh</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">diff</span>
 
     <span class="n">oldmaxprec</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;maxprec&#39;</span><span class="p">,</span> <span class="n">DEFAULT_MAXPREC</span><span class="p">)</span>
     <span class="n">options</span><span class="p">[</span><span class="s1">&#39;maxprec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">oldmaxprec</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">prec</span><span class="p">)</span>
 
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">mp</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="n">prec</span> <span class="o">+</span> <span class="mi">5</span>
+    <span class="k">with</span> <span class="n">workprec</span><span class="p">(</span><span class="n">prec</span> <span class="o">+</span> <span class="mi">5</span><span class="p">):</span>
         <span class="n">xlow</span> <span class="o">=</span> <span class="n">as_mpmath</span><span class="p">(</span><span class="n">xlow</span><span class="p">,</span> <span class="n">prec</span> <span class="o">+</span> <span class="mi">15</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
         <span class="n">xhigh</span> <span class="o">=</span> <span class="n">as_mpmath</span><span class="p">(</span><span class="n">xhigh</span><span class="p">,</span> <span class="n">prec</span> <span class="o">+</span> <span class="mi">15</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
@@ -928,6 +979,8 @@
         <span class="c1"># Note that this accuracy is inaccurate, since it fails</span>
         <span class="c1"># to account for the variable quadrature weights,</span>
         <span class="c1"># but it is better than nothing</span>
+
+        <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">Wild</span>
 
         <span class="n">have_part</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">]</span>
         <span class="n">max_real_term</span> <span class="o">=</span> <span class="p">[</span><span class="n">MINUS_INF</span><span class="p">]</span>
@@ -947,12 +1000,12 @@
             <span class="k">return</span> <span class="n">mpf</span><span class="p">(</span><span class="n">re</span> <span class="ow">or</span> <span class="n">fzero</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;quad&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;osc&#39;</span><span class="p">:</span>
-            <span class="n">A</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Wild</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
-            <span class="n">B</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Wild</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
-            <span class="n">D</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Wild</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
-            <span class="n">m</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">D</span><span class="p">)</span>
+            <span class="n">A</span> <span class="o">=</span> <span class="n">Wild</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+            <span class="n">B</span> <span class="o">=</span> <span class="n">Wild</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+            <span class="n">D</span> <span class="o">=</span> <span class="n">Wild</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">D</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">m</span><span class="p">:</span>
-                <span class="n">m</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">D</span><span class="p">)</span>
+                <span class="n">m</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">D</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">m</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;An integrand of the form sin(A*x+B)*f(x) &quot;</span>
                   <span class="s2">&quot;or cos(A*x+B)*f(x) is required for oscillatory quadrature&quot;</span><span class="p">)</span>
@@ -964,9 +1017,7 @@
             <span class="n">result</span><span class="p">,</span> <span class="n">quadrature_error</span> <span class="o">=</span> <span class="n">quadts</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="n">xlow</span><span class="p">,</span> <span class="n">xhigh</span><span class="p">],</span> <span class="n">error</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">quadrature_error</span> <span class="o">=</span> <span class="n">fastlog</span><span class="p">(</span><span class="n">quadrature_error</span><span class="o">.</span><span class="n">_mpf_</span><span class="p">)</span>
 
-    <span class="k">finally</span><span class="p">:</span>
-        <span class="n">options</span><span class="p">[</span><span class="s1">&#39;maxprec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">oldmaxprec</span>
-        <span class="n">mp</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="n">orig</span>
+    <span class="n">options</span><span class="p">[</span><span class="s1">&#39;maxprec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">oldmaxprec</span>
 
     <span class="k">if</span> <span class="n">have_part</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
         <span class="n">re</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">_mpf_</span>
@@ -1005,13 +1056,21 @@
     <span class="n">maxprec</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;maxprec&#39;</span><span class="p">,</span> <span class="n">INF</span><span class="p">)</span>
     <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">do_integral</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">workprec</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-        <span class="c1"># if a scaled_zero comes back accuracy will compute to -1</span>
-        <span class="c1"># which will cause workprec to increment by 1</span>
         <span class="n">accuracy</span> <span class="o">=</span> <span class="n">complex_accuracy</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">accuracy</span> <span class="o">&gt;=</span> <span class="n">prec</span> <span class="ow">or</span> <span class="n">workprec</span> <span class="o">&gt;=</span> <span class="n">maxprec</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">result</span>
-        <span class="n">workprec</span> <span class="o">+=</span> <span class="n">prec</span> <span class="o">-</span> <span class="nb">max</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">**</span><span class="n">i</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">accuracy</span> <span class="o">&gt;=</span> <span class="n">prec</span><span class="p">:</span>  <span class="c1"># achieved desired precision</span>
+            <span class="k">break</span>
+        <span class="k">if</span> <span class="n">workprec</span> <span class="o">&gt;=</span> <span class="n">maxprec</span><span class="p">:</span>  <span class="c1"># can&#39;t increase accuracy any more</span>
+            <span class="k">break</span>
+        <span class="k">if</span> <span class="n">accuracy</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># maybe the answer really is zero and maybe we just haven&#39;t increased</span>
+            <span class="c1"># the precision enough. So increase by doubling to not take too long</span>
+            <span class="c1"># to get to maxprec.</span>
+            <span class="n">workprec</span> <span class="o">*=</span> <span class="mi">2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">workprec</span> <span class="o">+=</span> <span class="nb">max</span><span class="p">(</span><span class="n">prec</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">workprec</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">workprec</span><span class="p">,</span> <span class="n">maxprec</span><span class="p">)</span>
         <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">result</span>
 
 
 <span class="k">def</span> <span class="nf">check_convergence</span><span class="p">(</span><span class="n">numer</span><span class="p">,</span> <span class="n">denom</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
@@ -1034,8 +1093,9 @@
 <span class="sd">        &lt;= 1 for polynomial divergence of rate n**(-h)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">npol</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span><span class="n">numer</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    <span class="n">dpol</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span><span class="n">denom</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Poly</span>
+    <span class="n">npol</span> <span class="o">=</span> <span class="n">Poly</span><span class="p">(</span><span class="n">numer</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">dpol</span> <span class="o">=</span> <span class="n">Poly</span><span class="p">(</span><span class="n">denom</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">npol</span><span class="o">.</span><span class="n">degree</span><span class="p">()</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">dpol</span><span class="o">.</span><span class="n">degree</span><span class="p">()</span>
     <span class="n">rate</span> <span class="o">=</span> <span class="n">q</span> <span class="o">-</span> <span class="n">p</span>
@@ -1058,7 +1118,10 @@
 <span class="sd">    quotient between successive terms must be a quotient of integer</span>
 <span class="sd">    polynomials.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">hypersimp</span><span class="p">,</span> <span class="n">lambdify</span>
+    <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Float</span><span class="p">,</span> <span class="n">hypersimp</span><span class="p">,</span> <span class="n">lambdify</span>
+
+    <span class="k">if</span> <span class="n">prec</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;does not support inf prec&#39;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">start</span><span class="p">:</span>
         <span class="n">expr</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="n">start</span><span class="p">)</span>
@@ -1075,9 +1138,12 @@
     <span class="k">if</span> <span class="n">h</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Sum diverges like (n!)^</span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="o">-</span><span class="n">h</span><span class="p">))</span>
 
+    <span class="n">term</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">term</span><span class="o">.</span><span class="n">is_Rational</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Non rational term functionality is not implemented.&quot;</span><span class="p">)</span>
+
     <span class="c1"># Direct summation if geometric or faster</span>
     <span class="k">if</span> <span class="n">h</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="p">(</span><span class="n">h</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">term</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="n">term</span> <span class="o">=</span> <span class="p">(</span><span class="n">MPZ</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">p</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">prec</span><span class="p">)</span> <span class="o">//</span> <span class="n">term</span><span class="o">.</span><span class="n">q</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">term</span>
         <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1094,33 +1160,52 @@
         <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">alt</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Sum diverges like n^</span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="o">-</span><span class="n">p</span><span class="p">))</span>
         <span class="c1"># We have polynomial convergence: use Richardson extrapolation</span>
-        <span class="c1"># Need to use at least quad precision because a lot of cancellation</span>
-        <span class="c1"># might occur in the extrapolation process</span>
-        <span class="n">prec2</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">prec</span>
-        <span class="n">term</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">term</span> <span class="o">=</span> <span class="p">(</span><span class="n">MPZ</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">p</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">prec2</span><span class="p">)</span> <span class="o">//</span> <span class="n">term</span><span class="o">.</span><span class="n">q</span>
+        <span class="n">vold</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">ndig</span> <span class="o">=</span> <span class="n">prec_to_dps</span><span class="p">(</span><span class="n">prec</span><span class="p">)</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="c1"># Need to use at least quad precision because a lot of cancellation</span>
+            <span class="c1"># might occur in the extrapolation process; we check the answer to</span>
+            <span class="c1"># make sure that the desired precision has been reached, too.</span>
+            <span class="n">prec2</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">prec</span>
+            <span class="n">term0</span> <span class="o">=</span> <span class="p">(</span><span class="n">MPZ</span><span class="p">(</span><span class="n">term</span><span class="o">.</span><span class="n">p</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">prec2</span><span class="p">)</span> <span class="o">//</span> <span class="n">term</span><span class="o">.</span><span class="n">q</span>
 
-        <span class="k">def</span> <span class="nf">summand</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">_term</span><span class="o">=</span><span class="p">[</span><span class="n">term</span><span class="p">]):</span>
-            <span class="k">if</span> <span class="n">k</span><span class="p">:</span>
-                <span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-                <span class="n">_term</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="n">MPZ</span><span class="p">(</span><span class="n">func1</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-                <span class="n">_term</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//=</span> <span class="n">MPZ</span><span class="p">(</span><span class="n">func2</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-            <span class="k">return</span> <span class="n">make_mpf</span><span class="p">(</span><span class="n">from_man_exp</span><span class="p">(</span><span class="n">_term</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="n">prec2</span><span class="p">))</span>
+            <span class="k">def</span> <span class="nf">summand</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">_term</span><span class="o">=</span><span class="p">[</span><span class="n">term0</span><span class="p">]):</span>
+                <span class="k">if</span> <span class="n">k</span><span class="p">:</span>
+                    <span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+                    <span class="n">_term</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="n">MPZ</span><span class="p">(</span><span class="n">func1</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+                    <span class="n">_term</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//=</span> <span class="n">MPZ</span><span class="p">(</span><span class="n">func2</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">make_mpf</span><span class="p">(</span><span class="n">from_man_exp</span><span class="p">(</span><span class="n">_term</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="n">prec2</span><span class="p">))</span>
 
-        <span class="n">orig</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">prec</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">mp</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="n">prec</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">nsum</span><span class="p">(</span><span class="n">summand</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">mpmath_inf</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;richardson&#39;</span><span class="p">)</span>
-        <span class="k">finally</span><span class="p">:</span>
-            <span class="n">mp</span><span class="o">.</span><span class="n">prec</span> <span class="o">=</span> <span class="n">orig</span>
+            <span class="k">with</span> <span class="n">workprec</span><span class="p">(</span><span class="n">prec</span><span class="p">):</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">nsum</span><span class="p">(</span><span class="n">summand</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">mpmath_inf</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;richardson&#39;</span><span class="p">)</span>
+            <span class="n">vf</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">ndig</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">vold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">vold</span> <span class="o">==</span> <span class="n">vf</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">prec</span> <span class="o">+=</span> <span class="n">prec</span>  <span class="c1"># double precision each time</span>
+            <span class="n">vold</span> <span class="o">=</span> <span class="n">vf</span>
+
         <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="n">_mpf_</span>
 
 
+<span class="k">def</span> <span class="nf">evalf_prod</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Sum</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">((</span><span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">is_Integer</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">expr</span><span class="o">.</span><span class="n">limits</span><span class="p">):</span>
+        <span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">,</span> <span class="n">im_acc</span> <span class="o">=</span> <span class="n">evalf</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">doit</span><span class="p">(),</span> <span class="n">prec</span><span class="o">=</span><span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">,</span> <span class="n">im_acc</span> <span class="o">=</span> <span class="n">evalf</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">rewrite</span><span class="p">(</span><span class="n">Sum</span><span class="p">),</span> <span class="n">prec</span><span class="o">=</span><span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">,</span> <span class="n">im_acc</span>
+
+
 <span class="k">def</span> <span class="nf">evalf_sum</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Float</span>
+    <span class="k">if</span> <span class="s1">&#39;subs&#39;</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
+        <span class="n">expr</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;subs&#39;</span><span class="p">])</span>
     <span class="n">func</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">function</span>
     <span class="n">limits</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">limits</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">limits</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="n">S</span><span class="o">.</span><span class="n">Zero</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">mpf</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span>
     <span class="n">prec2</span> <span class="o">=</span> <span class="n">prec</span> <span class="o">+</span> <span class="mi">10</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">limits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1134,7 +1219,7 @@
         <span class="k">return</span> <span class="n">v</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">prec</span><span class="p">,</span> <span class="n">delta</span><span class="p">),</span> <span class="bp">None</span>
     <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
         <span class="c1"># Euler-Maclaurin summation for general series</span>
-        <span class="n">eps</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Float</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">prec</span><span class="p">)</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">prec</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
             <span class="n">m</span> <span class="o">=</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">i</span> <span class="o">*</span> <span class="n">prec</span>
             <span class="n">s</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">euler_maclaurin</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span>
@@ -1143,11 +1228,7 @@
             <span class="k">if</span> <span class="n">err</span> <span class="o">&lt;=</span> <span class="n">eps</span><span class="p">:</span>
                 <span class="k">break</span>
         <span class="n">err</span> <span class="o">=</span> <span class="n">fastlog</span><span class="p">(</span><span class="n">evalf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">err</span><span class="p">),</span> <span class="mi">20</span><span class="p">,</span> <span class="n">options</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">,</span> <span class="n">im_acc</span> <span class="o">=</span> <span class="n">evalf</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">prec2</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>  <span class="c1"># issue 3174</span>
-            <span class="c1"># when should it try subs if they are in options?</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">,</span> <span class="n">im_acc</span> <span class="o">=</span> <span class="n">evalf</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">prec2</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">re_acc</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">re_acc</span> <span class="o">=</span> <span class="o">-</span><span class="n">err</span>
         <span class="k">if</span> <span class="n">im_acc</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
@@ -1171,11 +1252,11 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;_cache&#39;</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
             <span class="n">options</span><span class="p">[</span><span class="s1">&#39;_cache&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">cache</span> <span class="o">=</span> <span class="n">options</span><span class="p">[</span><span class="s1">&#39;_cache&#39;</span><span class="p">]</span>
-        <span class="n">cached</span><span class="p">,</span> <span class="n">cached_prec</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">MINUS_INF</span><span class="p">))</span>
+        <span class="n">cached</span><span class="p">,</span> <span class="n">cached_prec</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">MINUS_INF</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">cached_prec</span> <span class="o">&gt;=</span> <span class="n">prec</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">cached</span>
         <span class="n">v</span> <span class="o">=</span> <span class="n">evalf</span><span class="p">(</span><span class="n">sympify</span><span class="p">(</span><span class="n">val</span><span class="p">),</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-        <span class="n">cache</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">prec</span><span class="p">)</span>
+        <span class="n">cache</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">prec</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">v</span>
 
 <span class="n">evalf_table</span> <span class="o">=</span> <span class="bp">None</span>
@@ -1183,45 +1264,60 @@
 
 <span class="k">def</span> <span class="nf">_create_evalf_table</span><span class="p">():</span>
     <span class="k">global</span> <span class="n">evalf_table</span>
+    <span class="kn">from</span> <span class="nn">sympy.functions.combinatorial.numbers</span> <span class="kn">import</span> <span class="n">bernoulli</span>
+    <span class="kn">from</span> <span class="nn">sympy.concrete.products</span> <span class="kn">import</span> <span class="n">Product</span>
+    <span class="kn">from</span> <span class="nn">sympy.concrete.summations</span> <span class="kn">import</span> <span class="n">Sum</span>
+    <span class="kn">from</span> <span class="nn">sympy.core.add</span> <span class="kn">import</span> <span class="n">Add</span>
+    <span class="kn">from</span> <span class="nn">sympy.core.mul</span> <span class="kn">import</span> <span class="n">Mul</span>
+    <span class="kn">from</span> <span class="nn">sympy.core.numbers</span> <span class="kn">import</span> <span class="n">Exp1</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Half</span><span class="p">,</span> <span class="n">ImaginaryUnit</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">NaN</span><span class="p">,</span> <span class="n">NegativeOne</span><span class="p">,</span> <span class="n">One</span><span class="p">,</span> <span class="n">Pi</span><span class="p">,</span> <span class="n">Rational</span><span class="p">,</span> <span class="n">Zero</span>
+    <span class="kn">from</span> <span class="nn">sympy.core.power</span> <span class="kn">import</span> <span class="n">Pow</span>
+    <span class="kn">from</span> <span class="nn">sympy.core.symbol</span> <span class="kn">import</span> <span class="n">Dummy</span><span class="p">,</span> <span class="n">Symbol</span>
+    <span class="kn">from</span> <span class="nn">sympy.functions.elementary.complexes</span> <span class="kn">import</span> <span class="n">Abs</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">re</span>
+    <span class="kn">from</span> <span class="nn">sympy.functions.elementary.exponential</span> <span class="kn">import</span> <span class="n">exp</span><span class="p">,</span> <span class="n">log</span>
+    <span class="kn">from</span> <span class="nn">sympy.functions.elementary.integers</span> <span class="kn">import</span> <span class="n">ceiling</span><span class="p">,</span> <span class="n">floor</span>
+    <span class="kn">from</span> <span class="nn">sympy.functions.elementary.piecewise</span> <span class="kn">import</span> <span class="n">Piecewise</span>
+    <span class="kn">from</span> <span class="nn">sympy.functions.elementary.trigonometric</span> <span class="kn">import</span> <span class="n">atan</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span>
+    <span class="kn">from</span> <span class="nn">sympy.integrals.integrals</span> <span class="kn">import</span> <span class="n">Integral</span>
     <span class="n">evalf_table</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Symbol</span><span class="p">:</span> <span class="n">evalf_symbol</span><span class="p">,</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Dummy</span><span class="p">:</span> <span class="n">evalf_symbol</span><span class="p">,</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Float</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">_mpf_</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Rational</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">from_rational</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">q</span><span class="p">,</span> <span class="n">prec</span><span class="p">),</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Integer</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">from_int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">prec</span><span class="p">),</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Zero</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">One</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">fone</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Half</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">fhalf</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Pi</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">mpf_pi</span><span class="p">(</span><span class="n">prec</span><span class="p">),</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Exp1</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">mpf_e</span><span class="p">(</span><span class="n">prec</span><span class="p">),</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">ImaginaryUnit</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">fone</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">),</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">NegativeOne</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">fnone</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">NaN</span> <span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">fnan</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+        <span class="n">Symbol</span><span class="p">:</span> <span class="n">evalf_symbol</span><span class="p">,</span>
+        <span class="n">Dummy</span><span class="p">:</span> <span class="n">evalf_symbol</span><span class="p">,</span>
+        <span class="n">Float</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">_mpf_</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+        <span class="n">Rational</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">from_rational</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">q</span><span class="p">,</span> <span class="n">prec</span><span class="p">),</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+        <span class="n">Integer</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">from_int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">prec</span><span class="p">),</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+        <span class="n">Zero</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+        <span class="n">One</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">fone</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+        <span class="n">Half</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">fhalf</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+        <span class="n">Pi</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">mpf_pi</span><span class="p">(</span><span class="n">prec</span><span class="p">),</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+        <span class="n">Exp1</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">mpf_e</span><span class="p">(</span><span class="n">prec</span><span class="p">),</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+        <span class="n">ImaginaryUnit</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">fone</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">),</span>
+        <span class="n">NegativeOne</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">fnone</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+        <span class="n">NaN</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">(</span><span class="n">fnan</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
 
-        <span class="n">C</span><span class="o">.</span><span class="n">exp</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">evalf_pow</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">Pow</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">Exp1</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-        <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">),</span>
+        <span class="n">exp</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">evalf_pow</span><span class="p">(</span>
+            <span class="n">Pow</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">Exp1</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">evaluate</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span> <span class="n">prec</span><span class="p">,</span> <span class="n">options</span><span class="p">),</span>
 
-        <span class="n">C</span><span class="o">.</span><span class="n">cos</span><span class="p">:</span> <span class="n">evalf_trig</span><span class="p">,</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">sin</span><span class="p">:</span> <span class="n">evalf_trig</span><span class="p">,</span>
+        <span class="n">cos</span><span class="p">:</span> <span class="n">evalf_trig</span><span class="p">,</span>
+        <span class="n">sin</span><span class="p">:</span> <span class="n">evalf_trig</span><span class="p">,</span>
 
-        <span class="n">C</span><span class="o">.</span><span class="n">Add</span><span class="p">:</span> <span class="n">evalf_add</span><span class="p">,</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Mul</span><span class="p">:</span> <span class="n">evalf_mul</span><span class="p">,</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Pow</span><span class="p">:</span> <span class="n">evalf_pow</span><span class="p">,</span>
+        <span class="n">Add</span><span class="p">:</span> <span class="n">evalf_add</span><span class="p">,</span>
+        <span class="n">Mul</span><span class="p">:</span> <span class="n">evalf_mul</span><span class="p">,</span>
+        <span class="n">Pow</span><span class="p">:</span> <span class="n">evalf_pow</span><span class="p">,</span>
 
-        <span class="n">C</span><span class="o">.</span><span class="n">log</span><span class="p">:</span> <span class="n">evalf_log</span><span class="p">,</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">atan</span><span class="p">:</span> <span class="n">evalf_atan</span><span class="p">,</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Abs</span><span class="p">:</span> <span class="n">evalf_abs</span><span class="p">,</span>
+        <span class="n">log</span><span class="p">:</span> <span class="n">evalf_log</span><span class="p">,</span>
+        <span class="n">atan</span><span class="p">:</span> <span class="n">evalf_atan</span><span class="p">,</span>
+        <span class="n">Abs</span><span class="p">:</span> <span class="n">evalf_abs</span><span class="p">,</span>
 
-        <span class="n">C</span><span class="o">.</span><span class="n">re</span><span class="p">:</span> <span class="n">evalf_re</span><span class="p">,</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">im</span><span class="p">:</span> <span class="n">evalf_im</span><span class="p">,</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">floor</span><span class="p">:</span> <span class="n">evalf_floor</span><span class="p">,</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">ceiling</span><span class="p">:</span> <span class="n">evalf_ceiling</span><span class="p">,</span>
+        <span class="n">re</span><span class="p">:</span> <span class="n">evalf_re</span><span class="p">,</span>
+        <span class="n">im</span><span class="p">:</span> <span class="n">evalf_im</span><span class="p">,</span>
+        <span class="n">floor</span><span class="p">:</span> <span class="n">evalf_floor</span><span class="p">,</span>
+        <span class="n">ceiling</span><span class="p">:</span> <span class="n">evalf_ceiling</span><span class="p">,</span>
 
-        <span class="n">C</span><span class="o">.</span><span class="n">Integral</span><span class="p">:</span> <span class="n">evalf_integral</span><span class="p">,</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Sum</span><span class="p">:</span> <span class="n">evalf_sum</span><span class="p">,</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">Piecewise</span><span class="p">:</span> <span class="n">evalf_piecewise</span><span class="p">,</span>
+        <span class="n">Integral</span><span class="p">:</span> <span class="n">evalf_integral</span><span class="p">,</span>
+        <span class="n">Sum</span><span class="p">:</span> <span class="n">evalf_sum</span><span class="p">,</span>
+        <span class="n">Product</span><span class="p">:</span> <span class="n">evalf_prod</span><span class="p">,</span>
+        <span class="n">Piecewise</span><span class="p">:</span> <span class="n">evalf_piecewise</span><span class="p">,</span>
 
-        <span class="n">C</span><span class="o">.</span><span class="n">bernoulli</span><span class="p">:</span> <span class="n">evalf_bernoulli</span><span class="p">,</span>
+        <span class="n">bernoulli</span><span class="p">:</span> <span class="n">evalf_bernoulli</span><span class="p">,</span>
     <span class="p">}</span>
 
 
@@ -1254,10 +1350,10 @@
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span>
     <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;verbose&quot;</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s2">&quot;### input&quot;</span><span class="p">,</span> <span class="n">x</span>
-        <span class="k">print</span> <span class="s2">&quot;### output&quot;</span><span class="p">,</span> <span class="n">to_str</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">fzero</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-        <span class="k">print</span> <span class="s2">&quot;### raw&quot;</span><span class="p">,</span> <span class="n">r</span>  <span class="c1"># r[0], r[2]</span>
-        <span class="k">print</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;### input&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;### output&quot;</span><span class="p">,</span> <span class="n">to_str</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">fzero</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;### raw&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="c1"># r[0], r[2]</span>
+        <span class="k">print</span><span class="p">()</span>
     <span class="n">chop</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;chop&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">chop</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">chop</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
@@ -1287,7 +1383,8 @@
 
 <span class="sd">            subs=&lt;dict&gt;</span>
 <span class="sd">                Substitute numerical values for symbols, e.g.</span>
-<span class="sd">                subs={x:3, y:1+pi}.</span>
+<span class="sd">                subs={x:3, y:1+pi}. The substitutions must be given as a</span>
+<span class="sd">                dictionary.</span>
 
 <span class="sd">            maxn=&lt;integer&gt;</span>
 <span class="sd">                Allow a maximum temporary working precision of maxn digits</span>
@@ -1311,8 +1408,14 @@
 <span class="sd">                Print debug information (default=False)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Number</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="mi">15</span>
+
+        <span class="k">if</span> <span class="n">subs</span> <span class="ow">and</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">subs</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;subs must be given as a dictionary&#39;</span><span class="p">)</span>
+
         <span class="c1"># for sake of sage that doesn&#39;t like evalf(1)</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">C</span><span class="o">.</span><span class="n">Number</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Number</span><span class="p">):</span>
             <span class="kn">from</span> <span class="nn">sympy.core.expr</span> <span class="kn">import</span> <span class="n">_mag</span>
             <span class="n">rv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">subs</span><span class="p">,</span> <span class="n">maxn</span><span class="p">,</span> <span class="n">chop</span><span class="p">,</span> <span class="n">strict</span><span class="p">,</span> <span class="n">quad</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
             <span class="n">m</span> <span class="o">=</span> <span class="n">_mag</span><span class="p">(</span><span class="n">rv</span><span class="p">)</span>
@@ -1344,14 +1447,12 @@
         <span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">,</span> <span class="n">im_acc</span> <span class="o">=</span> <span class="n">result</span>
         <span class="k">if</span> <span class="n">re</span><span class="p">:</span>
             <span class="n">p</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">prec</span><span class="p">,</span> <span class="n">re_acc</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="c1">#re = mpf_pos(re, p, rnd)</span>
-            <span class="n">re</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Float</span><span class="o">.</span><span class="n">_new</span><span class="p">(</span><span class="n">re</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+            <span class="n">re</span> <span class="o">=</span> <span class="n">Float</span><span class="o">.</span><span class="n">_new</span><span class="p">(</span><span class="n">re</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">re</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">Zero</span>
         <span class="k">if</span> <span class="n">im</span><span class="p">:</span>
             <span class="n">p</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">prec</span><span class="p">,</span> <span class="n">im_acc</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="c1">#im = mpf_pos(im, p, rnd)</span>
-            <span class="n">im</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">Float</span><span class="o">.</span><span class="n">_new</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+            <span class="n">im</span> <span class="o">=</span> <span class="n">Float</span><span class="o">.</span><span class="n">_new</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">re</span> <span class="o">+</span> <span class="n">im</span><span class="o">*</span><span class="n">S</span><span class="o">.</span><span class="n">ImaginaryUnit</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">re</span>

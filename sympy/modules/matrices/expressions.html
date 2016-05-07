@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Matrix Expressions &mdash; SymPy 0.7.3 documentation</title>
+    <title>Matrix Expressions &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
     <link rel="up" title="Matrices" href="index.html" />
     <link rel="next" title="Polynomials Manipulation Module" href="../polys/index.html" />
     <link rel="prev" title="Immutable Matrices" href="immutablematrices.html" />
@@ -76,14 +76,16 @@
 <dl class="class">
 <dt id="sympy.matrices.expressions.MatrixExpr">
 <em class="property">class </em><code class="descclassname">sympy.matrices.expressions.</code><code class="descname">MatrixExpr</code><a class="reference internal" href="../../_modules/sympy/matrices/expressions/matexpr.html#MatrixExpr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.matrices.expressions.MatrixExpr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Matrix Expression Class
-Matrix Expressions subclass SymPy Expr&#8217;s so that
-MatAdd inherits from Add
-MatMul inherits from Mul
-MatPow inherits from Pow</p>
-<p>They use _op_priority to gain control with binary operations (+, <em>, -, *</em>)
-are used</p>
-<p>They implement operations specific to Matrix Algebra.</p>
+<dd><p>Superclass for Matrix Expressions</p>
+<p>MatrixExprs represent abstract matrices, linear transformations represented
+within a particular basis.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">MatrixSymbol</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">MatrixSymbol</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">MatrixSymbol</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">I</span> <span class="o">*</span> <span class="n">A</span> <span class="o">*</span> <span class="n">y</span>
+</pre></div>
+</div>
 <p class="rubric">Attributes</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -181,7 +183,7 @@ can be included in Matrix Expressions</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(3, 4)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">B</span> <span class="o">+</span> <span class="n">Identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="go">2*A*B + I</span>
+<span class="go">I + 2*A*B</span>
 </pre></div>
 </div>
 <p class="rubric">Attributes</p>
@@ -456,19 +458,19 @@ a Matrix Expression</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="n">MatrixSymbol</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">m</span> <span class="p">,</span><span class="n">m</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Z</span> <span class="o">=</span> <span class="n">MatrixSymbol</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">BlockMatrix</span><span class="p">([[</span><span class="n">X</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="n">ZeroMatrix</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">),</span> <span class="n">Y</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">B</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 <span class="go">Matrix([</span>
 <span class="go">[X, Z],</span>
 <span class="go">[0, Y]])</span>
 </pre></div>
 </div>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">BlockMatrix</span><span class="p">([[</span><span class="n">Identity</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">Z</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">C</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
 <span class="go">Matrix([[I, Z]])</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">block_collapse</span><span class="p">(</span><span class="n">C</span><span class="o">*</span><span class="n">B</span><span class="p">)</span>
-<span class="go">Matrix([[X, Z + Z*Y]])</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">block_collapse</span><span class="p">(</span><span class="n">C</span><span class="o">*</span><span class="n">B</span><span class="p">))</span>
+<span class="go">Matrix([[X, Z*Y + Z]])</span>
 </pre></div>
 </div>
 <dl class="method">
@@ -522,19 +524,19 @@ a Matrix Expression</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="n">MatrixSymbol</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="n">m</span> <span class="p">,</span><span class="n">m</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Z</span> <span class="o">=</span> <span class="n">MatrixSymbol</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">BlockMatrix</span><span class="p">([[</span><span class="n">X</span><span class="p">,</span> <span class="n">Z</span><span class="p">],</span> <span class="p">[</span><span class="n">ZeroMatrix</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">Y</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">B</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 <span class="go">Matrix([</span>
 <span class="go">[X, Z],</span>
 <span class="go">[0, Y]])</span>
 </pre></div>
 </div>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">BlockMatrix</span><span class="p">([[</span><span class="n">Identity</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">Z</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">C</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
 <span class="go">Matrix([[I, Z]])</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">block_collapse</span><span class="p">(</span><span class="n">C</span><span class="o">*</span><span class="n">B</span><span class="p">)</span>
-<span class="go">Matrix([[X, Z + Z*Y]])</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">block_collapse</span><span class="p">(</span><span class="n">C</span><span class="o">*</span><span class="n">B</span><span class="p">))</span>
+<span class="go">Matrix([[X, Z*Y + Z]])</span>
 </pre></div>
 </div>
 </dd></dl>

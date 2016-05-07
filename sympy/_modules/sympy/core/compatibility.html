@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.core.compatibility &mdash; SymPy 0.7.3 documentation</title>
+    <title>sympy.core.compatibility &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -53,11 +53,183 @@
 <span class="sd">we support. Also some functions that are needed SymPy-wide and are located</span>
 <span class="sd">here for easy import.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">with_statement</span>
-
+<span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">sympy.external</span> <span class="kn">import</span> <span class="n">import_module</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Python 2 and Python 3 compatible imports</span>
+
+<span class="sd">String and Unicode compatible changes:</span>
+<span class="sd">    * `unicode()` removed in Python 3, import `unicode` for Python 2/3</span>
+<span class="sd">      compatible function</span>
+<span class="sd">    * `unichr()` removed in Python 3, import `unichr` for Python 2/3 compatible</span>
+<span class="sd">      function</span>
+<span class="sd">    * Use `u()` for escaped unicode sequences (e.g. u&#39;\u2020&#39; -&gt; u(&#39;\u2020&#39;))</span>
+<span class="sd">    * Use `u_decode()` to decode utf-8 formatted unicode strings</span>
+<span class="sd">    * `string_types` gives str in Python 3, unicode and str in Python 2,</span>
+<span class="sd">      equivalent to basestring</span>
+
+<span class="sd">Integer related changes:</span>
+<span class="sd">    * `long()` removed in Python 3, import `long` for Python 2/3 compatible</span>
+<span class="sd">      function</span>
+<span class="sd">    * `integer_types` gives int in Python 3, int and long in Python 2</span>
+
+<span class="sd">Types related changes:</span>
+<span class="sd">    * `class_types` gives type in Python 3, type and ClassType in Python 2</span>
+
+<span class="sd">Renamed function attributes:</span>
+<span class="sd">    * Python 2 `.func_code`, Python 3 `.__func__`, access with</span>
+<span class="sd">      `get_function_code()`</span>
+<span class="sd">    * Python 2 `.func_globals`, Python 3 `.__globals__`, access with</span>
+<span class="sd">      `get_function_globals()`</span>
+<span class="sd">    * Python 2 `.func_name`, Python 3 `.__name__`, access with</span>
+<span class="sd">      `get_function_name()`</span>
+
+<span class="sd">Moved modules:</span>
+<span class="sd">    * `reduce()`</span>
+<span class="sd">    * `StringIO()`</span>
+<span class="sd">    * `cStringIO()` (same as `StingIO()` in Python 3)</span>
+<span class="sd">    * Python 2 `__builtins__`, access with Python 3 name, `builtins`</span>
+
+<span class="sd">Iterator/list changes:</span>
+<span class="sd">    * `xrange` removed in Python 3, import `xrange` for Python 2/3 compatible</span>
+<span class="sd">      iterator version of range</span>
+
+<span class="sd">exec:</span>
+<span class="sd">    * Use `exec_()`, with parameters `exec_(code, globs=None, locs=None)`</span>
+
+<span class="sd">Metaclasses:</span>
+<span class="sd">    * Use `with_metaclass()`, examples below</span>
+<span class="sd">        * Define class `Foo` with metaclass `Meta`, and no parent:</span>
+<span class="sd">            class Foo(with_metaclass(Meta)):</span>
+<span class="sd">                pass</span>
+<span class="sd">        * Define class `Foo` with metaclass `Meta` and parent class `Bar`:</span>
+<span class="sd">            class Foo(with_metaclass(Meta, Bar)):</span>
+<span class="sd">                pass</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">PY3</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2</span>
+
+<span class="k">if</span> <span class="n">PY3</span><span class="p">:</span>
+    <span class="n">class_types</span> <span class="o">=</span> <span class="nb">type</span><span class="p">,</span>
+    <span class="n">integer_types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">,)</span>
+    <span class="n">string_types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">,)</span>
+    <span class="nb">long</span> <span class="o">=</span> <span class="nb">int</span>
+
+    <span class="c1"># String / unicode compatibility</span>
+    <span class="nb">unicode</span> <span class="o">=</span> <span class="nb">str</span>
+    <span class="nb">unichr</span> <span class="o">=</span> <span class="nb">chr</span>
+    <span class="k">def</span> <span class="nf">u</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">def</span> <span class="nf">u_decode</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span>
+
+    <span class="n">Iterator</span> <span class="o">=</span> <span class="nb">object</span>
+
+    <span class="c1"># Moved definitions</span>
+    <span class="n">get_function_code</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s2">&quot;__code__&quot;</span><span class="p">)</span>
+    <span class="n">get_function_globals</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s2">&quot;__globals__&quot;</span><span class="p">)</span>
+    <span class="n">get_function_name</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s2">&quot;__name__&quot;</span><span class="p">)</span>
+
+    <span class="kn">import</span> <span class="nn">builtins</span>
+    <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
+    <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+    <span class="n">cStringIO</span> <span class="o">=</span> <span class="n">StringIO</span>
+
+    <span class="n">exec_</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">builtins</span><span class="p">,</span> <span class="s2">&quot;exec&quot;</span><span class="p">)</span>
+
+    <span class="nb">range</span><span class="o">=</span><span class="nb">range</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">codecs</span>
+    <span class="kn">import</span> <span class="nn">types</span>
+
+    <span class="n">class_types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">ClassType</span><span class="p">)</span>
+    <span class="n">integer_types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">long</span><span class="p">)</span>
+    <span class="n">string_types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">unicode</span><span class="p">)</span>
+    <span class="nb">long</span> <span class="o">=</span> <span class="nb">long</span>
+
+    <span class="c1"># String / unicode compatibility</span>
+    <span class="nb">unicode</span> <span class="o">=</span> <span class="nb">unicode</span>
+    <span class="nb">unichr</span> <span class="o">=</span> <span class="nb">unichr</span>
+    <span class="k">def</span> <span class="nf">u</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">codecs</span><span class="o">.</span><span class="n">unicode_escape_decode</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">u_decode</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Iterator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="c1"># Moved definitions</span>
+    <span class="n">get_function_code</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s2">&quot;func_code&quot;</span><span class="p">)</span>
+    <span class="n">get_function_globals</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s2">&quot;func_globals&quot;</span><span class="p">)</span>
+    <span class="n">get_function_name</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s2">&quot;func_name&quot;</span><span class="p">)</span>
+
+    <span class="kn">import</span> <span class="nn">__builtin__</span> <span class="kn">as</span> <span class="nn">builtins</span>
+    <span class="nb">reduce</span> <span class="o">=</span> <span class="nb">reduce</span>
+    <span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+    <span class="kn">from</span> <span class="nn">cStringIO</span> <span class="kn">import</span> <span class="n">StringIO</span> <span class="k">as</span> <span class="n">cStringIO</span>
+
+    <span class="k">def</span> <span class="nf">exec_</span><span class="p">(</span><span class="n">_code_</span><span class="p">,</span> <span class="n">_globs_</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">_locs_</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Execute code in a namespace.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">_globs_</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">frame</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">_getframe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">_globs_</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_globals</span>
+            <span class="k">if</span> <span class="n">_locs_</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">_locs_</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_locals</span>
+            <span class="k">del</span> <span class="n">frame</span>
+        <span class="k">elif</span> <span class="n">_locs_</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">_locs_</span> <span class="o">=</span> <span class="n">_globs_</span>
+        <span class="k">exec</span><span class="p">(</span><span class="s2">&quot;exec _code_ in _globs_, _locs_&quot;</span><span class="p">)</span>
+    <span class="nb">range</span><span class="o">=</span><span class="nb">xrange</span>
+
+<span class="k">def</span> <span class="nf">with_metaclass</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="o">*</span><span class="n">bases</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a base class with a metaclass.</span>
+
+<span class="sd">    For example, if you have the metaclass</span>
+
+<span class="sd">    &gt;&gt;&gt; class Meta(type):</span>
+<span class="sd">    ...     pass</span>
+
+<span class="sd">    Use this as the metaclass by doing</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.core.compatibility import with_metaclass</span>
+<span class="sd">    &gt;&gt;&gt; class MyClass(with_metaclass(Meta, object)):</span>
+<span class="sd">    ...     pass</span>
+
+<span class="sd">    This is equivalent to the Python 2::</span>
+
+<span class="sd">        class MyClass(object):</span>
+<span class="sd">            __metaclass__ = Meta</span>
+
+<span class="sd">    or Python 3::</span>
+
+<span class="sd">        class MyClass(object, metaclass=Meta):</span>
+<span class="sd">            pass</span>
+
+<span class="sd">    That is, the first argument is the metaclass, and the remaining arguments</span>
+<span class="sd">    are the base classes. Note that if the base class is just ``object``, you</span>
+<span class="sd">    may omit it.</span>
+
+<span class="sd">    &gt;&gt;&gt; MyClass.__mro__</span>
+<span class="sd">    (&lt;class &#39;MyClass&#39;&gt;, &lt;... &#39;object&#39;&gt;)</span>
+<span class="sd">    &gt;&gt;&gt; type(MyClass)</span>
+<span class="sd">    &lt;class &#39;Meta&#39;&gt;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># This requires a bit of explanation: the basic idea is to make a dummy</span>
+    <span class="c1"># metaclass for one level of class instantiation that replaces itself with</span>
+    <span class="c1"># the actual metaclass.</span>
+    <span class="c1"># Code copied from the &#39;six&#39; library.</span>
+    <span class="k">class</span> <span class="nc">metaclass</span><span class="p">(</span><span class="n">meta</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">this_bases</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">meta</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">type</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">metaclass</span><span class="p">,</span> <span class="s2">&quot;NewBase&quot;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})</span>
 
 
 <span class="c1"># These are in here because telling if something is an iterable just by calling</span>
@@ -65,15 +237,33 @@
 <span class="c1"># particular, hasattr(str, &quot;__iter__&quot;) is False in Python 2 and True in Python 3.</span>
 <span class="c1"># I think putting them here also makes it easier to use them in the core.</span>
 
+<span class="k">class</span> <span class="nc">NotIterable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Use this as mixin when creating a class which is not supposed to return</span>
+<span class="sd">    true when iterable() is called on its instances. I.e. avoid infinite loop</span>
+<span class="sd">    when calling e.g. list() on the instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
 
-<div class="viewcode-block" id="iterable"><a class="viewcode-back" href="../../../modules/core.html#sympy.core.compatibility.iterable">[docs]</a><span class="k">def</span> <span class="nf">iterable</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">(</span><span class="nb">basestring</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
+<div class="viewcode-block" id="iterable"><a class="viewcode-back" href="../../../modules/core.html#sympy.core.compatibility.iterable">[docs]</a><span class="k">def</span> <span class="nf">iterable</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">(</span><span class="n">string_types</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">NotIterable</span><span class="p">)):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return a boolean indicating whether ``i`` is SymPy iterable.</span>
+<span class="sd">    True also indicates that the iterator is finite, i.e. you e.g.</span>
+<span class="sd">    call list(...) on the instance.</span>
 
 <span class="sd">    When SymPy is working with iterables, it is almost always assuming</span>
 <span class="sd">    that the iterable is not a string or a mapping, so those are excluded</span>
 <span class="sd">    by default. If you want a pure Python definition, make exclude=None. To</span>
 <span class="sd">    exclude multiple items, pass them as a tuple.</span>
+
+<span class="sd">    You can also set the _iterable attribute to True or False on your class,</span>
+<span class="sd">    which will override the checks here, including the exclude test.</span>
+
+<span class="sd">    As a rule of thumb, some SymPy functions use this to check if they should</span>
+<span class="sd">    recursively map over an object. If an object is technically iterable in</span>
+<span class="sd">    the Python sense but does not desire this behavior (e.g., because its</span>
+<span class="sd">    iteration is not finite, or because iteration might induce an unwanted</span>
+<span class="sd">    computation), it should disable it by setting the _iterable attribute to False.</span>
 
 <span class="sd">    See also: is_sequence</span>
 
@@ -84,7 +274,7 @@
 <span class="sd">    &gt;&gt;&gt; from sympy import Tuple</span>
 <span class="sd">    &gt;&gt;&gt; things = [[1], (1,), set([1]), Tuple(1), (j for j in [1, 2]), {1:2}, &#39;1&#39;, 1]</span>
 <span class="sd">    &gt;&gt;&gt; for i in things:</span>
-<span class="sd">    ...     print iterable(i), type(i)</span>
+<span class="sd">    ...     print(&#39;%s %s&#39; % (iterable(i), type(i)))</span>
 <span class="sd">    True &lt;... &#39;list&#39;&gt;</span>
 <span class="sd">    True &lt;... &#39;tuple&#39;&gt;</span>
 <span class="sd">    True &lt;... &#39;set&#39;&gt;</span>
@@ -102,6 +292,8 @@
 <span class="sd">    False</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;_iterable&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">i</span><span class="o">.</span><span class="n">_iterable</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="nb">iter</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
@@ -150,191 +342,51 @@
             <span class="nb">bool</span><span class="p">(</span><span class="n">include</span><span class="p">)</span> <span class="ow">and</span>
             <span class="nb">isinstance</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">include</span><span class="p">))</span></div>
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Wrapping some imports in try/except statements to allow the same code to</span>
-<span class="sd">be used in Python 3+ as well.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">cmp_to_key</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span> <span class="c1"># &lt;= Python 2.6</span>
+    <span class="k">def</span> <span class="nf">cmp_to_key</span><span class="p">(</span><span class="n">mycmp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert a cmp= function into a key= function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">class</span> <span class="nc">K</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+            <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span>
+
+            <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">mycmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span>
+
+            <span class="k">def</span> <span class="nf">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">mycmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+            <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">mycmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+            <span class="k">def</span> <span class="nf">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">mycmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span>
+
+            <span class="k">def</span> <span class="nf">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">mycmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+
+            <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">mycmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">K</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="nb">callable</span> <span class="o">=</span> <span class="nb">callable</span>
-<span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">collections</span>
+    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">zip_longest</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span> <span class="c1"># &lt;= Python 2.7</span>
+    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">izip_longest</span> <span class="k">as</span> <span class="n">zip_longest</span>
 
-    <span class="k">def</span> <span class="nf">callable</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Callable</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
+    <span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">maketrans</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="nb">reduce</span> <span class="o">=</span> <span class="nb">reduce</span>
+    <span class="n">maketrans</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span>
 
-
-<span class="k">def</span> <span class="nf">cmp_to_key</span><span class="p">(</span><span class="n">mycmp</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Convert a cmp= function into a key= function</span>
-
-<span class="sd">    This code is included in Python 2.7 and 3.2 in functools.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">class</span> <span class="nc">K</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span>
-
-        <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">mycmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span>
-
-        <span class="k">def</span> <span class="nf">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">mycmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-
-        <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">mycmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
-
-        <span class="k">def</span> <span class="nf">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">mycmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span>
-
-        <span class="k">def</span> <span class="nf">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">mycmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span>
-
-        <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">mycmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
-    <span class="k">return</span> <span class="n">K</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">__builtin__</span>
-    <span class="nb">cmp</span> <span class="o">=</span> <span class="n">__builtin__</span><span class="o">.</span><span class="n">cmp</span>
-<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">cmp</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># Python 2.5</span>
-    <span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Cartesian product of input iterables.</span>
-
-<span class="sd">        Equivalent to nested for-loops in a generator expression. For example,</span>
-<span class="sd">        cartes(A, B) returns the same as ((x,y) for x in A for y in B).</span>
-
-<span class="sd">        The nested loops cycle like an odometer with the rightmost element</span>
-<span class="sd">        advancing on every iteration. This pattern creates a lexicographic</span>
-<span class="sd">        ordering so that if the input&#39;s iterables are sorted, the product</span>
-<span class="sd">        tuples are emitted in sorted order.</span>
-
-<span class="sd">        To compute the product of an iterable with itself, specify the number</span>
-<span class="sd">        of repetitions with the optional repeat keyword argument. For example,</span>
-<span class="sd">        product(A, repeat=4) means the same as product(A, A, A, A).</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        ========</span>
-
-<span class="sd">        &gt;&gt;&gt; from sympy.utilities.iterables import cartes</span>
-<span class="sd">        &gt;&gt;&gt; [&#39;&#39;.join(p) for p in list(cartes(&#39;ABC&#39;, &#39;xy&#39;))]</span>
-<span class="sd">        [&#39;Ax&#39;, &#39;Ay&#39;, &#39;Bx&#39;, &#39;By&#39;, &#39;Cx&#39;, &#39;Cy&#39;]</span>
-<span class="sd">        &gt;&gt;&gt; list(cartes(range(2), repeat=2))</span>
-<span class="sd">        [(0, 0), (0, 1), (1, 0), (1, 1)]</span>
-
-<span class="sd">        See Also</span>
-<span class="sd">        ========</span>
-<span class="sd">        variations</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">pools</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="o">*</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;repeat&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">[[]]</span>
-        <span class="k">for</span> <span class="n">pool</span> <span class="ow">in</span> <span class="n">pools</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">result</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">pool</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">prod</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">prod</span><span class="p">)</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">permutations</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># Python 2.5</span>
-    <span class="k">def</span> <span class="nf">permutations</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return successive r length permutations of elements in the iterable.</span>
-
-<span class="sd">        If r is not specified or is None, then r defaults to the length of</span>
-<span class="sd">        the iterable and all possible full-length permutations are generated.</span>
-
-<span class="sd">        Permutations are emitted in lexicographic sort order. So, if the input</span>
-<span class="sd">        iterable is sorted, the permutation tuples will be produced in sorted</span>
-<span class="sd">        order.</span>
-
-<span class="sd">        Elements are treated as unique based on their position, not on their</span>
-<span class="sd">        value. So if the input elements are unique, there will be no repeat</span>
-<span class="sd">        values in each permutation.</span>
-
-<span class="sd">        Examples;</span>
-<span class="sd">        &gt;&gt;&gt; from sympy.core.compatibility import permutations</span>
-<span class="sd">        &gt;&gt;&gt; [&#39;&#39;.join(p) for p in list(permutations(&#39;ABC&#39;, 2))]</span>
-<span class="sd">        [&#39;AB&#39;, &#39;AC&#39;, &#39;BA&#39;, &#39;BC&#39;, &#39;CA&#39;, &#39;CB&#39;]</span>
-<span class="sd">        &gt;&gt;&gt; list(permutations(range(3)))</span>
-<span class="sd">        [(0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0)]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">pool</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">n</span> <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">r</span>
-        <span class="k">if</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="n">indices</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-        <span class="n">cycles</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">r</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">yield</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">pool</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">[:</span><span class="n">r</span><span class="p">])</span>
-        <span class="k">while</span> <span class="n">n</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">)):</span>
-                <span class="n">cycles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
-                <span class="k">if</span> <span class="n">cycles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
-                    <span class="n">cycles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">i</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">j</span> <span class="o">=</span> <span class="n">cycles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                    <span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">indices</span><span class="p">[</span><span class="o">-</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="o">-</span><span class="n">j</span><span class="p">],</span> <span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                    <span class="k">yield</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">pool</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">[:</span><span class="n">r</span><span class="p">])</span>
-                    <span class="k">break</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span><span class="p">,</span> <span class="n">combinations_with_replacement</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># &lt; python 2.6</span>
-    <span class="k">def</span> <span class="nf">combinations</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return r length subsequences of elements from the input iterable.</span>
-
-<span class="sd">        Combinations are emitted in lexicographic sort order. So, if the</span>
-<span class="sd">        input iterable is sorted, the combination tuples will be produced</span>
-<span class="sd">        in sorted order.</span>
-
-<span class="sd">        Elements are treated as unique based on their position, not on their</span>
-<span class="sd">        value. So if the input elements are unique, there will be no repeat</span>
-<span class="sd">        values in each combination.</span>
-
-<span class="sd">        See also: combinations_with_replacement</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        ========</span>
-
-<span class="sd">        &gt;&gt;&gt; from sympy.core.compatibility import combinations</span>
-<span class="sd">        &gt;&gt;&gt; list(combinations(&#39;ABC&#39;, 2))</span>
-<span class="sd">        [(&#39;A&#39;, &#39;B&#39;), (&#39;A&#39;, &#39;C&#39;), (&#39;B&#39;, &#39;C&#39;)]</span>
-<span class="sd">        &gt;&gt;&gt; list(combinations(range(4), 3))</span>
-<span class="sd">        [(0, 1, 2), (0, 1, 3), (0, 2, 3), (1, 2, 3)]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">pool</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="n">indices</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-        <span class="k">yield</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">pool</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">)</span>
-        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">)):</span>
-                <span class="k">if</span> <span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n</span> <span class="o">-</span> <span class="n">r</span><span class="p">:</span>
-                    <span class="k">break</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span>
-            <span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
-                <span class="n">indices</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="k">yield</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">pool</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">)</span>
-
+    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations_with_replacement</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># &lt;= Python 2.6</span>
     <span class="k">def</span> <span class="nf">combinations_with_replacement</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return r length subsequences of elements from the input iterable</span>
 <span class="sd">        allowing individual elements to be repeated more than once.</span>
@@ -370,224 +422,6 @@
                 <span class="k">return</span>
             <span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span> <span class="o">=</span> <span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
             <span class="k">yield</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">pool</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">set_intersection</span><span class="p">(</span><span class="o">*</span><span class="n">sets</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return the intersection of all the given sets.</span>
-
-<span class="sd">    As of Python 2.6 you can write ``set.intersection(*sets)``.</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    ========</span>
-
-<span class="sd">    &gt;&gt;&gt; from sympy.core.compatibility import set_intersection</span>
-<span class="sd">    &gt;&gt;&gt; set_intersection(set([1, 2]), set([2, 3]))</span>
-<span class="sd">    set([2])</span>
-<span class="sd">    &gt;&gt;&gt; set_intersection()</span>
-<span class="sd">    set()</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">sets</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">set</span><span class="p">()</span>
-    <span class="n">rv</span> <span class="o">=</span> <span class="n">sets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">:</span>
-        <span class="n">rv</span> <span class="o">&amp;=</span> <span class="n">s</span>
-    <span class="k">return</span> <span class="n">rv</span>
-
-
-<span class="k">def</span> <span class="nf">set_union</span><span class="p">(</span><span class="o">*</span><span class="n">sets</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return the union of all the given sets.</span>
-
-<span class="sd">    As of Python 2.6 you can write ``set.union(*sets)``.</span>
-
-<span class="sd">    &gt;&gt;&gt; from sympy.core.compatibility import set_union</span>
-<span class="sd">    &gt;&gt;&gt; set_union(set([1, 2]), set([2, 3]))</span>
-<span class="sd">    set([1, 2, 3])</span>
-<span class="sd">    &gt;&gt;&gt; set_union()</span>
-<span class="sd">    set()</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">rv</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">:</span>
-        <span class="n">rv</span> <span class="o">|=</span> <span class="n">s</span>
-    <span class="k">return</span> <span class="n">rv</span>
-
-
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="c1"># code from http://code.activestate.com/recipes/500261-named-tuples/</span>
-    <span class="c1"># PSF license</span>
-    <span class="c1"># code is Copyright 2007-2013 Raymond Hettinger</span>
-    <span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span> <span class="k">as</span> <span class="n">_itemgetter</span>
-    <span class="kn">from</span> <span class="nn">keyword</span> <span class="kn">import</span> <span class="n">iskeyword</span> <span class="k">as</span> <span class="n">_iskeyword</span>
-    <span class="kn">import</span> <span class="nn">sys</span> <span class="kn">as</span> <span class="nn">_sys</span>
-
-    <span class="c1"># For some reason, doctest will test namedtuple&#39;s docstring if we simply</span>
-    <span class="c1"># have a def namedtuple() here</span>
-    <span class="k">def</span> <span class="nf">_namedtuple</span><span class="p">(</span><span class="n">typename</span><span class="p">,</span> <span class="n">field_names</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">rename</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field_names</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
-            <span class="n">field_names</span> <span class="o">=</span> <span class="n">field_names</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-        <span class="n">field_names</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">field_names</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">rename</span><span class="p">:</span>
-            <span class="n">names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">field_names</span><span class="p">)</span>
-            <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
-                <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">min</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">isalnum</span><span class="p">()</span> <span class="ow">or</span> <span class="n">c</span><span class="o">==</span><span class="s1">&#39;_&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">name</span><span class="p">)</span> <span class="ow">or</span> <span class="n">_iskeyword</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-                    <span class="ow">or</span> <span class="ow">not</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="ow">or</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
-                    <span class="ow">or</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">):</span>
-                        <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span>
-                <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-            <span class="n">field_names</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="n">typename</span><span class="p">,)</span> <span class="o">+</span> <span class="n">field_names</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">min</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">isalnum</span><span class="p">()</span> <span class="ow">or</span> <span class="n">c</span><span class="o">==</span><span class="s1">&#39;_&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">name</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Type names and field names can only contain&#39;</span>
-                                 <span class="s1">&#39; alphanumeric characters and underscores: </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">_iskeyword</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Type names and field names cannot be a&#39;</span>
-                                 <span class="s1">&#39; keyword: </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Type names and field names cannot start&#39;</span>
-                                 <span class="s1">&#39; with a number: </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
-        <span class="n">seen_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">field_names</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">rename</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Field names cannot start with an&#39;</span>
-                                 <span class="s1">&#39; underscore: </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">seen_names</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Encountered duplicate field name: </span><span class="si">%r</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
-            <span class="n">seen_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-
-        <span class="c1"># Create and fill-in the class template</span>
-        <span class="n">numfields</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">field_names</span><span class="p">)</span>
-        <span class="n">argtxt</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">field_names</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">reprtxt</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">=</span><span class="si">%%</span><span class="s1">r&#39;</span> <span class="o">%</span> <span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">field_names</span><span class="p">)</span>
-        <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;class </span><span class="si">%(typename)s</span><span class="s1">(tuple):</span>
-<span class="s1">    &#39;</span><span class="si">%(typename)s</span><span class="s1">(</span><span class="si">%(argtxt)s</span><span class="s1">)&#39; </span><span class="se">\n</span><span class="s1"></span>
-<span class="s1">    __slots__ = () </span><span class="se">\n</span><span class="s1"></span>
-<span class="s1">    _fields = </span><span class="si">%(field_names)r</span><span class="s1"> </span><span class="se">\n</span><span class="s1"></span>
-<span class="s1">    def __new__(_cls, </span><span class="si">%(argtxt)s</span><span class="s1">):</span>
-<span class="s1">        return _tuple.__new__(_cls, (</span><span class="si">%(argtxt)s</span><span class="s1">)) </span><span class="se">\n</span><span class="s1"></span>
-<span class="s1">    @classmethod</span>
-<span class="s1">    def _make(cls, iterable, new=tuple.__new__, len=len):</span>
-<span class="s1">        &#39;Make a new </span><span class="si">%(typename)s</span><span class="s1"> object from a sequence or iterable&#39;</span>
-<span class="s1">        result = new(cls, iterable)</span>
-<span class="s1">        if len(result) != </span><span class="si">%(numfields)d</span><span class="s1">:</span>
-<span class="s1">            raise TypeError(&#39;Expected </span><span class="si">%(numfields)d</span><span class="s1"> arguments, got </span><span class="si">%%</span><span class="s1">d&#39; </span><span class="si">%%</span><span class="s1"> len(result))</span>
-<span class="s1">        return result </span><span class="se">\n</span><span class="s1"></span>
-<span class="s1">    def __repr__(self):</span>
-<span class="s1">        return &#39;</span><span class="si">%(typename)s</span><span class="s1">(</span><span class="si">%(reprtxt)s</span><span class="s1">)&#39; </span><span class="si">%%</span><span class="s1"> self </span><span class="se">\n</span><span class="s1"></span>
-<span class="s1">    def _asdict(self):</span>
-<span class="s1">        &#39;Return a new dict which maps field names to their values&#39;</span>
-<span class="s1">        return dict(zip(self._fields, self)) </span><span class="se">\n</span><span class="s1"></span>
-<span class="s1">    def _replace(_self, **kwds):</span>
-<span class="s1">        &#39;Return a new </span><span class="si">%(typename)s</span><span class="s1"> object replacing specified fields with new values&#39;</span>
-<span class="s1">        result = _self._make(map(kwds.pop, </span><span class="si">%(field_names)r</span><span class="s1">, _self))</span>
-<span class="s1">        if kwds:</span>
-<span class="s1">            raise ValueError(&#39;Got unexpected field names: </span><span class="si">%%</span><span class="s1">r&#39; </span><span class="si">%%</span><span class="s1"> kwds.keys())</span>
-<span class="s1">        return result </span><span class="se">\n</span><span class="s1"></span>
-<span class="s1">    def __getnewargs__(self):</span>
-<span class="s1">        return tuple(self) </span><span class="se">\n\n</span><span class="s1">&#39;&#39;&#39;</span> <span class="o">%</span> <span class="nb">locals</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">field_names</span><span class="p">):</span>
-            <span class="n">template</span> <span class="o">+=</span> <span class="s1">&#39;    </span><span class="si">%s</span><span class="s1"> = _property(_itemgetter(</span><span class="si">%d</span><span class="s1">))</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-            <span class="k">print</span> <span class="n">template</span>
-
-        <span class="c1"># Execute the template string in a temporary namespace</span>
-        <span class="n">namespace</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">_itemgetter</span><span class="o">=</span><span class="n">_itemgetter</span><span class="p">,</span> <span class="n">__name__</span><span class="o">=</span><span class="s1">&#39;namedtuple_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">typename</span><span class="p">,</span>
-                         <span class="n">_property</span><span class="o">=</span><span class="nb">property</span><span class="p">,</span> <span class="n">_tuple</span><span class="o">=</span><span class="nb">tuple</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">exec</span> <span class="n">template</span> <span class="ow">in</span> <span class="n">namespace</span>
-        <span class="k">except</span> <span class="ne">SyntaxError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">SyntaxError</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">message</span> <span class="o">+</span> <span class="s1">&#39;:</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">template</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">namespace</span><span class="p">[</span><span class="n">typename</span><span class="p">]</span>
-
-        <span class="c1"># For pickling to work, the __module__ variable needs to be set to the frame</span>
-        <span class="c1"># where the named tuple is created.  Bypass this step in enviroments where</span>
-        <span class="c1"># sys._getframe is not defined (Jython for example) or sys._getframe is not</span>
-        <span class="c1"># defined for arguments greater than 0 (IronPython).</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">result</span><span class="o">.</span><span class="n">__module__</span> <span class="o">=</span> <span class="n">_sys</span><span class="o">.</span><span class="n">_getframe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">f_globals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__name__&#39;</span><span class="p">,</span> <span class="s1">&#39;__main__&#39;</span><span class="p">)</span>
-        <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
-            <span class="k">pass</span>
-
-        <span class="k">return</span> <span class="n">result</span>
-
-    <span class="n">namedtuple</span> <span class="o">=</span> <span class="n">_namedtuple</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="nb">bin</span> <span class="o">=</span> <span class="nb">bin</span>
-<span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>  <span class="c1"># Python 2.5</span>
-    <span class="k">def</span> <span class="nf">bin</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        bin(number) -&gt; string</span>
-
-<span class="sd">        Stringifies an int or long in base 2.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="nb">bin</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
-        <span class="k">while</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;01&#39;</span><span class="p">[</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">])</span>
-            <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
-            <span class="k">pass</span>
-        <span class="k">return</span> <span class="s1">&#39;0b&#39;</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">out</span><span class="p">))</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="nb">next</span> <span class="o">=</span> <span class="nb">next</span>
-<span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>  <span class="c1"># Python 2.5</span>
-    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        next(iterator[, default])</span>
-
-<span class="sd">        Return the next item from the iterator. If default is given and the</span>
-<span class="sd">        iterator is exhausted, it is returned instead of raising StopIteration.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-            <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Expected 1 or 2 arguments, got </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">__builtin__</span> <span class="kn">import</span> <span class="nb">bin</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># Python 2.5</span>
-    <span class="n">_hexDict</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="s1">&#39;0000&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="s1">&#39;0001&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span> <span class="s1">&#39;0010&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span> <span class="s1">&#39;0011&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">:</span> <span class="s1">&#39;0100&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">:</span> <span class="s1">&#39;0101&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;6&#39;</span><span class="p">:</span> <span class="s1">&#39;0110&#39;</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">:</span> <span class="s1">&#39;0111&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">:</span> <span class="s1">&#39;1000&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">:</span> <span class="s1">&#39;1001&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;1010&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="s1">&#39;1011&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;1100&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="s1">&#39;1101&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;1110&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="s1">&#39;1111&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">}</span>
-
-    <span class="k">def</span> <span class="nf">bin</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the equivalent to Python 2.6&#39;s bin function.</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        ========</span>
-
-<span class="sd">        &gt;&gt;&gt; from sympy.core.compatibility import bin</span>
-<span class="sd">        &gt;&gt;&gt; bin(-123)</span>
-<span class="sd">        &#39;-0b1111011&#39;</span>
-<span class="sd">        &gt;&gt;&gt; bin(0) # this is the only time a 0 will be to the right of &#39;b&#39;</span>
-<span class="sd">        &#39;0b0&#39;</span>
-
-<span class="sd">        See Also</span>
-<span class="sd">        ========</span>
-<span class="sd">        sympy.physics.quantum.shor.arr</span>
-
-<span class="sd">        Modified from http://code.activestate.com/recipes/576847/</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># =========================================================</span>
-        <span class="c1"># create hex of int, remove &#39;0x&#39;. now for each hex char,</span>
-        <span class="c1"># look up binary string, append in list and join at the end.</span>
-        <span class="c1"># =========================================================</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s1">&#39;-</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">bin</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s1">&#39;0b</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">_hexDict</span><span class="p">[</span><span class="n">hstr</span><span class="p">]</span> <span class="k">for</span> <span class="n">hstr</span> <span class="ow">in</span> <span class="nb">hex</span><span class="p">(</span><span class="n">n</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-                                  <span class="p">])</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="as_int"><a class="viewcode-back" href="../../../modules/core.html#sympy.core.compatibility.as_int">[docs]</a><span class="k">def</span> <span class="nf">as_int</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -644,11 +478,11 @@
 <span class="sd">    Examples</span>
 <span class="sd">    ========</span>
 
-<span class="sd">    &gt;&gt;&gt; from sympy import S, I, default_sort_key</span>
+<span class="sd">    &gt;&gt;&gt; from sympy import S, I, default_sort_key, sin, cos, sqrt</span>
 <span class="sd">    &gt;&gt;&gt; from sympy.core.function import UndefinedFunction</span>
 <span class="sd">    &gt;&gt;&gt; from sympy.abc import x</span>
 
-<span class="sd">    The following are eqivalent ways of getting the key for an object:</span>
+<span class="sd">    The following are equivalent ways of getting the key for an object:</span>
 
 <span class="sd">    &gt;&gt;&gt; x.sort_key() == default_sort_key(x)</span>
 <span class="sd">    True</span>
@@ -722,21 +556,31 @@
 <span class="sd">    The order of terms obtained when using these keys is the order that would</span>
 <span class="sd">    be obtained if those terms were *factors* in a product.</span>
 
+<span class="sd">    Although it is useful for quickly putting expressions in canonical order,</span>
+<span class="sd">    it does not sort expressions based on their complexity defined by the</span>
+<span class="sd">    number of operations, power of variables and others:</span>
+
+<span class="sd">    &gt;&gt;&gt; sorted([sin(x)*cos(x), sin(x)], key=default_sort_key)</span>
+<span class="sd">    [sin(x)*cos(x), sin(x)]</span>
+<span class="sd">    &gt;&gt;&gt; sorted([x, x**2, sqrt(x), x**3], key=default_sort_key)</span>
+<span class="sd">    [sqrt(x), x, x**2, x**3]</span>
+
 <span class="sd">    See Also</span>
 <span class="sd">    ========</span>
 
-<span class="sd">    sympy.core.expr.as_ordered_factors, sympy.core.expr.as_ordered_terms</span>
+<span class="sd">    ordered, sympy.core.expr.as_ordered_factors, sympy.core.expr.as_ordered_terms</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">S</span><span class="p">,</span> <span class="n">Basic</span>
-    <span class="kn">from</span> <span class="nn">sympy.core.sympify</span> <span class="kn">import</span> <span class="n">sympify</span><span class="p">,</span> <span class="n">SympifyError</span>
-    <span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="n">iterable</span>
+    <span class="kn">from</span> <span class="nn">.singleton</span> <span class="kn">import</span> <span class="n">S</span>
+    <span class="kn">from</span> <span class="nn">.basic</span> <span class="kn">import</span> <span class="n">Basic</span>
+    <span class="kn">from</span> <span class="nn">.sympify</span> <span class="kn">import</span> <span class="n">sympify</span><span class="p">,</span> <span class="n">SympifyError</span>
+    <span class="kn">from</span> <span class="nn">.compatibility</span> <span class="kn">import</span> <span class="n">iterable</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Basic</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">item</span><span class="o">.</span><span class="n">sort_key</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">iterable</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="nb">basestring</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">iterable</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">string_types</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="n">args</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
             <span class="n">unordered</span> <span class="o">=</span> <span class="bp">True</span>
@@ -756,7 +600,7 @@
 
         <span class="n">cls_index</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">string_types</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">item</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">SympifyError</span><span class="p">:</span>
@@ -778,32 +622,36 @@
 <span class="k">def</span> <span class="nf">_nodes</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A helper for ordered() which returns the node count of ``e`` which</span>
-<span class="sd">    for Basic object is the number of Basic nodes in the expression tree</span>
-<span class="sd">    but for other object is 1 (unless the object is an iterable or dict</span>
+<span class="sd">    for Basic objects is the number of Basic nodes in the expression tree</span>
+<span class="sd">    but for other objects is 1 (unless the object is an iterable or dict</span>
 <span class="sd">    for which the sum of nodes is returned).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">basic</span> <span class="kn">import</span> <span class="n">Basic</span>
+    <span class="kn">from</span> <span class="nn">.basic</span> <span class="kn">import</span> <span class="n">Basic</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">Basic</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">e</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">Basic</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">iterable</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">_nodes</span><span class="p">(</span><span class="n">ei</span><span class="p">)</span> <span class="k">for</span> <span class="n">ei</span> <span class="ow">in</span> <span class="n">e</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">_nodes</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="n">_nodes</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">iteritems</span><span class="p">())</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">_nodes</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="n">_nodes</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">1</span>
 
 
 <span class="k">def</span> <span class="nf">ordered</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return an iterator of the seq where keys are used to break ties.</span>
-<span class="sd">    Two default keys will be applied after and provided unless ``default``</span>
-<span class="sd">    is False. The two keys are _nodes and default_sort_key which will</span>
-<span class="sd">    place smaller expressions before larger ones (in terms of Basic nodes)</span>
-<span class="sd">    and where there are ties, they will be broken by the default_sort_key.</span>
+    <span class="sd">&quot;&quot;&quot;Return an iterator of the seq where keys are used to break ties in</span>
+<span class="sd">    a conservative fashion: if, after applying a key, there are no ties</span>
+<span class="sd">    then no other keys will be computed.</span>
+
+<span class="sd">    Two default keys will be applied if 1) keys are not provided or 2) the</span>
+<span class="sd">    given keys don&#39;t resolve all ties (but only if `default` is True). The</span>
+<span class="sd">    two keys are `_nodes` (which places smaller expressions before large) and</span>
+<span class="sd">    `default_sort_key` which (if the `sort_key` for an object is defined</span>
+<span class="sd">    properly) should resolve any ties.</span>
 
 <span class="sd">    If ``warn`` is True then an error will be raised if there were no</span>
 <span class="sd">    keys remaining to break ties. This can be used if it was expected that</span>
-<span class="sd">    there should be no ties.</span>
+<span class="sd">    there should be no ties between items that are not identical.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    ========</span>
@@ -875,7 +723,6 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
             <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">keys</span><span class="p">]</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
-
         <span class="n">f</span> <span class="o">=</span> <span class="n">keys</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
             <span class="n">d</span><span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
@@ -892,16 +739,14 @@
                 <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">ordered</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="p">(</span><span class="n">_nodes</span><span class="p">,</span> <span class="n">default_sort_key</span><span class="p">,),</span>
                                <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="n">warn</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">warn</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;not enough keys to break ties&#39;</span><span class="p">)</span>
+                <span class="kn">from</span> <span class="nn">sympy.utilities.iterables</span> <span class="kn">import</span> <span class="n">uniq</span>
+                <span class="n">u</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">uniq</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s1">&#39;not enough keys to break ties: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">u</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
             <span class="k">yield</span> <span class="n">v</span>
         <span class="n">d</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="nb">next</span> <span class="o">=</span> <span class="nb">next</span>
-<span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
 
 <span class="c1"># If HAS_GMPY is 0, no supported version of gmpy is available. Otherwise,</span>
 <span class="c1"># HAS_GMPY contains the major version number of gmpy; i.e. 1 for gmpy, and</span>
@@ -909,7 +754,7 @@
 
 <span class="c1"># Versions of gmpy prior to 1.03 do not work correctly with int(largempz)</span>
 <span class="c1"># For example, int(gmpy.mpz(2**256)) would raise OverflowError.</span>
-<span class="c1"># See issue 1881.</span>
+<span class="c1"># See issue 4980.</span>
 
 <span class="c1"># Minimum version of gmpy changed to 1.13 to allow a single code base to also</span>
 <span class="c1"># work with gmpy2.</span>
@@ -953,37 +798,208 @@
     <span class="n">GROUND_TYPES</span> <span class="o">=</span> <span class="s1">&#39;python&#39;</span>
 
 <span class="c1"># SYMPY_INTS is a tuple containing the base types for valid integer types.</span>
-
-<span class="kn">import</span> <span class="nn">sys</span>
-
-<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="n">SYMPY_INTS</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">long</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">SYMPY_INTS</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">,)</span>
+<span class="n">SYMPY_INTS</span> <span class="o">=</span> <span class="n">integer_types</span>
 
 <span class="k">if</span> <span class="n">GROUND_TYPES</span> <span class="o">==</span> <span class="s1">&#39;gmpy&#39;</span><span class="p">:</span>
     <span class="n">SYMPY_INTS</span> <span class="o">+=</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">gmpy</span><span class="o">.</span><span class="n">mpz</span><span class="p">(</span><span class="mi">0</span><span class="p">)),)</span>
 
-<span class="c1"># check_output() is new in python 2.7</span>
+<span class="c1"># check_output() is new in Python 2.7</span>
 <span class="kn">import</span> <span class="nn">os</span>
+
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">CalledProcessError</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span>
-    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_call</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span> <span class="c1"># &lt;= Python 2.6</span>
+        <span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">CalledProcessError</span><span class="p">,</span> <span class="n">check_call</span>
         <span class="k">def</span> <span class="nf">check_output</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">devnull</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
                 <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;stdout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fh</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">check_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-                <span class="k">except</span> <span class="n">CalledProcessError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
-                    <span class="n">e</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;program output is not available for &quot;</span>
-                                <span class="s2">&quot;python 2.5.x and 2.6.x&quot;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">e</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;program output is not available for Python 2.6.x&quot;</span><span class="p">)</span>
                     <span class="k">raise</span> <span class="n">e</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="c1"># running on platform like App Engine, no subprocess at all</span>
     <span class="k">pass</span>
+
+
+<span class="c1"># lru_cache compatible with py2.6-&gt;py3.2 copied directly from</span>
+<span class="c1">#   http://code.activestate.com/</span>
+<span class="c1">#   recipes/578078-py26-and-py30-backport-of-python-33s-lru-cache/</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">update_wrapper</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">RLock</span>
+
+<span class="n">_CacheInfo</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;CacheInfo&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;hits&quot;</span><span class="p">,</span> <span class="s2">&quot;misses&quot;</span><span class="p">,</span> <span class="s2">&quot;maxsize&quot;</span><span class="p">,</span> <span class="s2">&quot;currsize&quot;</span><span class="p">])</span>
+
+<span class="k">class</span> <span class="nc">_HashedSeq</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="s1">&#39;hashvalue&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tup</span><span class="p">,</span> <span class="nb">hash</span><span class="o">=</span><span class="nb">hash</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">tup</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hashvalue</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hashvalue</span>
+
+<span class="k">def</span> <span class="nf">_make_key</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwds</span><span class="p">,</span> <span class="n">typed</span><span class="p">,</span>
+             <span class="n">kwd_mark</span> <span class="o">=</span> <span class="p">(</span><span class="nb">object</span><span class="p">(),),</span>
+             <span class="n">fasttypes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">frozenset</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">None</span><span class="p">))),</span>
+             <span class="nb">sorted</span><span class="o">=</span><span class="nb">sorted</span><span class="p">,</span> <span class="nb">tuple</span><span class="o">=</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">type</span><span class="p">,</span> <span class="nb">len</span><span class="o">=</span><span class="nb">len</span><span class="p">):</span>
+    <span class="s1">&#39;Make a cache key from optionally typed positional and keyword arguments&#39;</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="k">if</span> <span class="n">kwds</span><span class="p">:</span>
+        <span class="n">sorted_items</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+        <span class="n">key</span> <span class="o">+=</span> <span class="n">kwd_mark</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sorted_items</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">+=</span> <span class="n">item</span>
+    <span class="k">if</span> <span class="n">typed</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">+=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">args</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">kwds</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">+=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sorted_items</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">in</span> <span class="n">fasttypes</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">_HashedSeq</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">typed</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Least-recently-used cache decorator.</span>
+
+<span class="sd">    If *maxsize* is set to None, the LRU features are disabled and the cache</span>
+<span class="sd">    can grow without bound.</span>
+
+<span class="sd">    If *typed* is True, arguments of different types will be cached separately.</span>
+<span class="sd">    For example, f(3.0) and f(3) will be treated as distinct calls with</span>
+<span class="sd">    distinct results.</span>
+
+<span class="sd">    Arguments to the cached function must be hashable.</span>
+
+<span class="sd">    View the cache statistics named tuple (hits, misses, maxsize, currsize) with</span>
+<span class="sd">    f.cache_info().  Clear the cache and statistics with f.cache_clear().</span>
+<span class="sd">    Access the underlying function with f.__wrapped__.</span>
+
+<span class="sd">    See:  http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Users should only access the lru_cache through its public API:</span>
+    <span class="c1">#       cache_info, cache_clear, and f.__wrapped__</span>
+    <span class="c1"># The internals of the lru_cache are encapsulated for thread safety and</span>
+    <span class="c1"># to allow the implementation to change (including a possible C version).</span>
+
+    <span class="k">def</span> <span class="nf">decorating_function</span><span class="p">(</span><span class="n">user_function</span><span class="p">):</span>
+
+        <span class="n">cache</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>                  <span class="c1"># make statistics updateable non-locally</span>
+        <span class="n">HITS</span><span class="p">,</span> <span class="n">MISSES</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>             <span class="c1"># names for the stats fields</span>
+        <span class="n">make_key</span> <span class="o">=</span> <span class="n">_make_key</span>
+        <span class="n">cache_get</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span>           <span class="c1"># bound method to lookup key or return None</span>
+        <span class="n">_len</span> <span class="o">=</span> <span class="nb">len</span>                      <span class="c1"># localize the global len() function</span>
+        <span class="n">lock</span> <span class="o">=</span> <span class="n">RLock</span><span class="p">()</span>                  <span class="c1"># because linkedlist updates aren&#39;t threadsafe</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="p">[]</span>                       <span class="c1"># root of the circular doubly linked list</span>
+        <span class="n">root</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">[</span><span class="n">root</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span>      <span class="c1"># initialize by pointing to self</span>
+        <span class="n">nonlocal_root</span> <span class="o">=</span> <span class="p">[</span><span class="n">root</span><span class="p">]</span>                  <span class="c1"># make updateable non-locally</span>
+        <span class="n">PREV</span><span class="p">,</span> <span class="n">NEXT</span><span class="p">,</span> <span class="n">KEY</span><span class="p">,</span> <span class="n">RESULT</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>    <span class="c1"># names for the link fields</span>
+
+        <span class="k">if</span> <span class="n">maxsize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+                <span class="c1"># no caching, just do a statistics update after a successful call</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">user_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+                <span class="n">stats</span><span class="p">[</span><span class="n">MISSES</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">return</span> <span class="n">result</span>
+
+        <span class="k">elif</span> <span class="n">maxsize</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+
+            <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+                <span class="c1"># simple caching without ordering or size limit</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">make_key</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwds</span><span class="p">,</span> <span class="n">typed</span><span class="p">)</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">cache_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span>   <span class="c1"># root used here as a unique not-found sentinel</span>
+                <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+                    <span class="n">stats</span><span class="p">[</span><span class="n">HITS</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">return</span> <span class="n">result</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">user_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+                <span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+                <span class="n">stats</span><span class="p">[</span><span class="n">MISSES</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">return</span> <span class="n">result</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+                <span class="c1"># size limited caching that tracks accesses by recency</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="n">make_key</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwds</span><span class="p">,</span> <span class="n">typed</span><span class="p">)</span> <span class="k">if</span> <span class="n">kwds</span> <span class="ow">or</span> <span class="n">typed</span> <span class="k">else</span> <span class="n">args</span>
+                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                    <span class="n">stats</span><span class="p">[</span><span class="n">MISSES</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">return</span> <span class="n">user_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+                <span class="k">with</span> <span class="n">lock</span><span class="p">:</span>
+                    <span class="n">link</span> <span class="o">=</span> <span class="n">cache_get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">link</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="c1"># record recent use of the key by moving it to the front of the list</span>
+                        <span class="n">root</span><span class="p">,</span> <span class="o">=</span> <span class="n">nonlocal_root</span>
+                        <span class="n">link_prev</span><span class="p">,</span> <span class="n">link_next</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">link</span>
+                        <span class="n">link_prev</span><span class="p">[</span><span class="n">NEXT</span><span class="p">]</span> <span class="o">=</span> <span class="n">link_next</span>
+                        <span class="n">link_next</span><span class="p">[</span><span class="n">PREV</span><span class="p">]</span> <span class="o">=</span> <span class="n">link_prev</span>
+                        <span class="n">last</span> <span class="o">=</span> <span class="n">root</span><span class="p">[</span><span class="n">PREV</span><span class="p">]</span>
+                        <span class="n">last</span><span class="p">[</span><span class="n">NEXT</span><span class="p">]</span> <span class="o">=</span> <span class="n">root</span><span class="p">[</span><span class="n">PREV</span><span class="p">]</span> <span class="o">=</span> <span class="n">link</span>
+                        <span class="n">link</span><span class="p">[</span><span class="n">PREV</span><span class="p">]</span> <span class="o">=</span> <span class="n">last</span>
+                        <span class="n">link</span><span class="p">[</span><span class="n">NEXT</span><span class="p">]</span> <span class="o">=</span> <span class="n">root</span>
+                        <span class="n">stats</span><span class="p">[</span><span class="n">HITS</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="k">return</span> <span class="n">result</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">user_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+                <span class="k">with</span> <span class="n">lock</span><span class="p">:</span>
+                    <span class="n">root</span><span class="p">,</span> <span class="o">=</span> <span class="n">nonlocal_root</span>
+                    <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
+                        <span class="c1"># getting here means that this same key was added to the</span>
+                        <span class="c1"># cache while the lock was released.  since the link</span>
+                        <span class="c1"># update is already done, we need only return the</span>
+                        <span class="c1"># computed result and update the count of misses.</span>
+                        <span class="k">pass</span>
+                    <span class="k">elif</span> <span class="n">_len</span><span class="p">(</span><span class="n">cache</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">maxsize</span><span class="p">:</span>
+                        <span class="c1"># use the old root to store the new key and result</span>
+                        <span class="n">oldroot</span> <span class="o">=</span> <span class="n">root</span>
+                        <span class="n">oldroot</span><span class="p">[</span><span class="n">KEY</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+                        <span class="n">oldroot</span><span class="p">[</span><span class="n">RESULT</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+                        <span class="c1"># empty the oldest link and make it the new root</span>
+                        <span class="n">root</span> <span class="o">=</span> <span class="n">nonlocal_root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">oldroot</span><span class="p">[</span><span class="n">NEXT</span><span class="p">]</span>
+                        <span class="n">oldkey</span> <span class="o">=</span> <span class="n">root</span><span class="p">[</span><span class="n">KEY</span><span class="p">]</span>
+                        <span class="n">oldvalue</span> <span class="o">=</span> <span class="n">root</span><span class="p">[</span><span class="n">RESULT</span><span class="p">]</span>
+                        <span class="n">root</span><span class="p">[</span><span class="n">KEY</span><span class="p">]</span> <span class="o">=</span> <span class="n">root</span><span class="p">[</span><span class="n">RESULT</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+                        <span class="c1"># now update the cache dictionary for the new links</span>
+                        <span class="k">del</span> <span class="n">cache</span><span class="p">[</span><span class="n">oldkey</span><span class="p">]</span>
+                        <span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">oldroot</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># put result in a new link at the front of the list</span>
+                        <span class="n">last</span> <span class="o">=</span> <span class="n">root</span><span class="p">[</span><span class="n">PREV</span><span class="p">]</span>
+                        <span class="n">link</span> <span class="o">=</span> <span class="p">[</span><span class="n">last</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">result</span><span class="p">]</span>
+                        <span class="n">last</span><span class="p">[</span><span class="n">NEXT</span><span class="p">]</span> <span class="o">=</span> <span class="n">root</span><span class="p">[</span><span class="n">PREV</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">link</span>
+                    <span class="n">stats</span><span class="p">[</span><span class="n">MISSES</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">return</span> <span class="n">result</span>
+
+        <span class="k">def</span> <span class="nf">cache_info</span><span class="p">():</span>
+            <span class="sd">&quot;&quot;&quot;Report cache statistics&quot;&quot;&quot;</span>
+            <span class="k">with</span> <span class="n">lock</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">_CacheInfo</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="n">HITS</span><span class="p">],</span> <span class="n">stats</span><span class="p">[</span><span class="n">MISSES</span><span class="p">],</span> <span class="n">maxsize</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cache</span><span class="p">))</span>
+
+        <span class="k">def</span> <span class="nf">cache_clear</span><span class="p">():</span>
+            <span class="sd">&quot;&quot;&quot;Clear the cache and cache statistics&quot;&quot;&quot;</span>
+            <span class="k">with</span> <span class="n">lock</span><span class="p">:</span>
+                <span class="n">cache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="n">root</span> <span class="o">=</span> <span class="n">nonlocal_root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">root</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">[</span><span class="n">root</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span>
+                <span class="n">stats</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">wrapper</span><span class="o">.</span><span class="n">__wrapped__</span> <span class="o">=</span> <span class="n">user_function</span>
+        <span class="n">wrapper</span><span class="o">.</span><span class="n">cache_info</span> <span class="o">=</span> <span class="n">cache_info</span>
+        <span class="n">wrapper</span><span class="o">.</span><span class="n">cache_clear</span> <span class="o">=</span> <span class="n">cache_clear</span>
+        <span class="k">return</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="n">user_function</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">decorating_function</span>
+<span class="c1">### End of backported lru_cache</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+    <span class="c1"># 3.2 has an lru_cache with an incompatible API</span>
+    <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
 </pre></div>
 
           </div>

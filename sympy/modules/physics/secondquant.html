@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Second Quantization &mdash; SymPy 0.7.3 documentation</title>
+    <title>Second Quantization &mdash; SymPy 1.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7.3',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -33,7 +33,7 @@
     <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 0.7.3 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
     <link rel="up" title="Physics Module" href="index.html" />
     <link rel="next" title="Wigner Symbols" href="wigner.html" />
     <link rel="prev" title="Quantum Harmonic Oscillator in 3-D" href="sho.html" />
@@ -116,10 +116,10 @@ not equal or it returns <span class="math">\(1\)</span> if <span class="math">\(
 <p class="last"><a class="reference internal" href="#sympy.physics.secondquant.KroneckerDelta.eval" title="sympy.physics.secondquant.KroneckerDelta.eval"><code class="xref py py-obj docutils literal"><span class="pre">eval</span></code></a>, <a class="reference internal" href="../functions/special.html#sympy.functions.special.delta_functions.DiracDelta" title="sympy.functions.special.delta_functions.DiracDelta"><code class="xref py py-obj docutils literal"><span class="pre">sympy.functions.special.delta_functions.DiracDelta</span></code></a></p>
 </div>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r228" rules="none">
+<table class="docutils citation" frame="void" id="r426" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R228]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Kronecker_delta">http://en.wikipedia.org/wiki/Kronecker_delta</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[R426]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Kronecker_delta">http://en.wikipedia.org/wiki/Kronecker_delta</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -1031,7 +1031,7 @@ in its arguments.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">textwrap</span> <span class="k">import</span> <span class="n">fill</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">Dummy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="p">,</span><span class="n">q</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;p,q&#39;</span><span class="p">,</span> <span class="n">cls</span><span class="o">=</span><span class="n">Dummy</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">fill</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">NO</span><span class="p">(</span><span class="n">Fd</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">q</span><span class="p">))</span><span class="o">.</span><span class="n">doit</span><span class="p">()))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">fill</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">NO</span><span class="p">(</span><span class="n">Fd</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">q</span><span class="p">))</span><span class="o">.</span><span class="n">doit</span><span class="p">())))</span>
 <span class="go">KroneckerDelta(_a, _p)*KroneckerDelta(_a,</span>
 <span class="go">_q)*CreateFermion(_a)*AnnihilateFermion(_a) + KroneckerDelta(_a,</span>
 <span class="go">_p)*KroneckerDelta(_i, _q)*CreateFermion(_a)*AnnihilateFermion(_i) -</span>
