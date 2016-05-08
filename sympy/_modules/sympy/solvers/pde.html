@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.solvers.pde &mdash; SymPy 1.0 documentation</title>
+    <title>sympy.solvers.pde &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -84,10 +84,10 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
 
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations_with_replacement</span>
 <span class="kn">from</span> <span class="nn">sympy.simplify</span> <span class="kn">import</span> <span class="n">simplify</span>
 <span class="kn">from</span> <span class="nn">sympy.core</span> <span class="kn">import</span> <span class="n">Add</span><span class="p">,</span> <span class="n">S</span>
-<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="p">(</span><span class="nb">reduce</span><span class="p">,</span> <span class="n">combinations_with_replacement</span><span class="p">,</span>
-    <span class="n">is_sequence</span><span class="p">,</span> <span class="nb">range</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="p">(</span><span class="nb">reduce</span><span class="p">,</span> <span class="n">is_sequence</span><span class="p">,</span> <span class="nb">range</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">sympy.core.function</span> <span class="kn">import</span> <span class="n">Function</span><span class="p">,</span> <span class="n">expand</span><span class="p">,</span> <span class="n">AppliedUndef</span><span class="p">,</span> <span class="n">Subs</span>
 <span class="kn">from</span> <span class="nn">sympy.core.relational</span> <span class="kn">import</span> <span class="n">Equality</span><span class="p">,</span> <span class="n">Eq</span>
 <span class="kn">from</span> <span class="nn">sympy.core.symbol</span> <span class="kn">import</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">Wild</span><span class="p">,</span> <span class="n">symbols</span>
@@ -802,7 +802,7 @@
         <span class="c1"># The PDE reduces to b*(u.diff(x)) + d*u = e, which is a linear ODE in x</span>
         <span class="n">plode</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">b</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">e</span>
         <span class="n">sol</span> <span class="o">=</span> <span class="n">dsolve</span><span class="p">(</span><span class="n">plode</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="n">syms</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="n">plode</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="nb">set</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
+        <span class="n">syms</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="n">plode</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="p">{</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">}</span>
         <span class="n">rhs</span> <span class="o">=</span> <span class="n">_simplify_variable_coeff</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">rhs</span><span class="p">,</span> <span class="n">syms</span><span class="p">,</span> <span class="n">solvefun</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Eq</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">rhs</span><span class="p">)</span>
 
@@ -811,7 +811,7 @@
         <span class="c1"># The PDE reduces to c*(u.diff(y)) + d*u = e, which is a linear ODE in y</span>
         <span class="n">plode</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="n">e</span>
         <span class="n">sol</span> <span class="o">=</span> <span class="n">dsolve</span><span class="p">(</span><span class="n">plode</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
-        <span class="n">syms</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="n">plode</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="nb">set</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
+        <span class="n">syms</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="n">plode</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="p">{</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">}</span>
         <span class="n">rhs</span> <span class="o">=</span> <span class="n">_simplify_variable_coeff</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">rhs</span><span class="p">,</span> <span class="n">syms</span><span class="p">,</span> <span class="n">solvefun</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Eq</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">rhs</span><span class="p">)</span>
 
@@ -820,7 +820,7 @@
     <span class="n">sol</span> <span class="o">=</span> <span class="n">dsolve</span><span class="p">(</span><span class="n">dummy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">h</span><span class="p">,</span> <span class="n">dummy</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
         <span class="n">sol</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">solsym</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="n">h</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="nb">set</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
+    <span class="n">solsym</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="n">h</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="p">{</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">}</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">solsym</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">solsym</span> <span class="o">=</span> <span class="n">solsym</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
         <span class="n">etat</span> <span class="o">=</span> <span class="p">(</span><span class="n">solve</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span> <span class="n">solsym</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">dummy</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>
@@ -829,7 +829,7 @@
         <span class="n">final</span> <span class="o">=</span> <span class="p">(</span><span class="n">dsolve</span><span class="p">(</span><span class="n">deq</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">hint</span><span class="o">=</span><span class="s1">&#39;1st_linear&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">rhs</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="n">final</span> <span class="o">=</span> <span class="n">final</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">finsyms</span> <span class="o">=</span> <span class="n">final</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="n">deq</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="nb">set</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
+        <span class="n">finsyms</span> <span class="o">=</span> <span class="n">final</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="n">deq</span><span class="o">.</span><span class="n">free_symbols</span> <span class="o">-</span> <span class="p">{</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">}</span>
         <span class="n">rhs</span> <span class="o">=</span> <span class="n">_simplify_variable_coeff</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">finsyms</span><span class="p">,</span> <span class="n">solvefun</span><span class="p">,</span> <span class="n">etat</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Eq</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">rhs</span><span class="p">)</span>
 

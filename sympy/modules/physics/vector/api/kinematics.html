@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Kinematics (Docstrings) &mdash; SymPy 1.0 documentation</title>
+    <title>Kinematics (Docstrings) &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../../../../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../../../../index.html" />
     <link rel="up" title="The Physics Vector Module" href="../index.html" />
     <link rel="next" title="Printing (Docstrings)" href="printing.html" />
     <link rel="prev" title="Essential Classes" href="classes.html" />
@@ -204,6 +204,51 @@ frame N.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="n">ReferenceFrame</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">P1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="s1">&#39;P1&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">P2</span> <span class="o">=</span> <span class="n">P1</span><span class="o">.</span><span class="n">locatenew</span><span class="p">(</span><span class="s1">&#39;P2&#39;</span><span class="p">,</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">N</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sympy.physics.vector.point.Point.partial_velocity">
+<code class="descname">partial_velocity</code><span class="sig-paren">(</span><em>frame</em>, <em>*gen_speeds</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sympy/physics/vector/point.html#Point.partial_velocity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.physics.vector.point.Point.partial_velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the partial velocities of the linear velocity vector of this
+point in the given frame with respect to one or more provided
+generalized speeds.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>frame</strong> : ReferenceFrame</p>
+<blockquote>
+<div><p>The frame with which the velocity is defined in.</p>
+</div></blockquote>
+<p><strong>gen_speeds</strong> : functions of time</p>
+<blockquote>
+<div><p>The generalized speeds.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>partial_velocities</strong> : tuple of Vector</p>
+<blockquote class="last">
+<div><p>The partial velocity vectors corresponding to the provided
+generalized speeds.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.physics.vector</span> <span class="k">import</span> <span class="n">ReferenceFrame</span><span class="p">,</span> <span class="n">Point</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.physics.vector</span> <span class="k">import</span> <span class="n">dynamicsymbols</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="n">ReferenceFrame</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ReferenceFrame</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u1</span><span class="p">,</span> <span class="n">u2</span> <span class="o">=</span> <span class="n">dynamicsymbols</span><span class="p">(</span><span class="s1">&#39;u1, u2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">set_vel</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">u1</span> <span class="o">*</span> <span class="n">N</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">u2</span> <span class="o">*</span> <span class="n">A</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">partial_velocity</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">u1</span><span class="p">)</span>
+<span class="go">N.x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">partial_velocity</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="n">u2</span><span class="p">)</span>
+<span class="go">(N.x, A.y)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -500,11 +545,10 @@ Quaternion only</p>
 
 <dl class="function">
 <dt id="sympy.physics.vector.functions.partial_velocity">
-<code class="descclassname">sympy.physics.vector.functions.</code><code class="descname">partial_velocity</code><span class="sig-paren">(</span><em>vel_list</em>, <em>u_list</em>, <em>frame</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sympy/physics/vector/functions.html#partial_velocity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.physics.vector.functions.partial_velocity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of partial velocities.</p>
-<p>For a list of velocity or angular velocity vectors the partial derivatives
-with respect to the supplied generalized speeds are computed, in the
-specified ReferenceFrame.</p>
+<code class="descclassname">sympy.physics.vector.functions.</code><code class="descname">partial_velocity</code><span class="sig-paren">(</span><em>vel_vecs</em>, <em>gen_speeds</em>, <em>frame</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sympy/physics/vector/functions.html#partial_velocity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.physics.vector.functions.partial_velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of partial velocities with respect to the provided
+generalized speeds in the given reference frame for each of the supplied
+velocity vectors.</p>
 <p>The output is a list of lists. The outer list has a number of elements
 equal to the number of supplied velocity vectors. The inner lists are, for
 each velocity vector, the partial derivatives of that velocity vector with
@@ -513,17 +557,18 @@ respect to the generalized speeds supplied.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vel_list</strong> : list</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>vel_vecs</strong> : iterable</p>
 <blockquote>
-<div><p>List of velocities of Point&#8217;s and angular velocities of ReferenceFrame&#8217;s</p>
+<div><p>An iterable of velocity vectors (angular or linear).</p>
 </div></blockquote>
-<p><strong>u_list</strong> : list</p>
+<p><strong>gen_speeds</strong> : iterable</p>
 <blockquote>
-<div><p>List of independent generalized speeds.</p>
+<div><p>An iterable of generalized speeds.</p>
 </div></blockquote>
 <p><strong>frame</strong> : ReferenceFrame</p>
 <blockquote class="last">
-<div><p>The ReferenceFrame the partial derivatives are going to be taken in.</p>
+<div><p>The reference frame that the partial derivatives are going to be taken
+in.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -537,9 +582,9 @@ respect to the generalized speeds supplied.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="n">ReferenceFrame</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">P</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">P</span><span class="o">.</span><span class="n">set_vel</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">u</span> <span class="o">*</span> <span class="n">N</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vel_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">P</span><span class="o">.</span><span class="n">vel</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">u_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">u</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">partial_velocity</span><span class="p">(</span><span class="n">vel_list</span><span class="p">,</span> <span class="n">u_list</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vel_vecs</span> <span class="o">=</span> <span class="p">[</span><span class="n">P</span><span class="o">.</span><span class="n">vel</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gen_speeds</span> <span class="o">=</span> <span class="p">[</span><span class="n">u</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">partial_velocity</span><span class="p">(</span><span class="n">vel_vecs</span><span class="p">,</span> <span class="n">gen_speeds</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
 <span class="go">[[N.x]]</span>
 </pre></div>
 </div>

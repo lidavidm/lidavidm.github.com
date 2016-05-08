@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.printing.pretty.pretty_symbology &mdash; SymPy 1.0 documentation</title>
+    <title>sympy.printing.pretty.pretty_symbology &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../../../../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../../../../index.html" />
     <link rel="up" title="Module code" href="../../../index.html" />
    
   
@@ -170,14 +170,14 @@
 <span class="n">greek_letters</span><span class="p">[</span><span class="n">greek_letters</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;lambda&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="s1">&#39;lamda&#39;</span>
 
 <span class="c1"># {}  greek letter -&gt; (g,G)</span>
-<span class="n">greek_unicode</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">l</span><span class="p">,</span> <span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="n">l</span><span class="p">),</span> <span class="n">G</span><span class="p">(</span><span class="n">l</span><span class="p">)))</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">greek_letters</span><span class="p">])</span>
+<span class="n">greek_unicode</span> <span class="o">=</span> <span class="p">{</span><span class="n">l</span><span class="p">:</span> <span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="n">l</span><span class="p">),</span> <span class="n">G</span><span class="p">(</span><span class="n">l</span><span class="p">))</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">greek_letters</span><span class="p">}</span>
 <span class="n">greek_unicode</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">L</span><span class="p">,</span> <span class="n">g</span><span class="p">(</span><span class="n">L</span><span class="p">))</span> <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">greek_letters</span><span class="p">)</span>
 <span class="n">greek_unicode</span><span class="o">.</span><span class="n">update</span><span class="p">((</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">G</span><span class="p">(</span><span class="n">L</span><span class="p">))</span> <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="n">greek_letters</span><span class="p">)</span>
 
 <span class="c1"># aliases</span>
 <span class="n">greek_unicode</span><span class="p">[</span><span class="s1">&#39;lambda&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">greek_unicode</span><span class="p">[</span><span class="s1">&#39;lamda&#39;</span><span class="p">]</span>
 <span class="n">greek_unicode</span><span class="p">[</span><span class="s1">&#39;Lambda&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">greek_unicode</span><span class="p">[</span><span class="s1">&#39;Lamda&#39;</span><span class="p">]</span>
-<span class="n">greek_unicode</span><span class="p">[</span><span class="s1">&#39;varsigma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{GREEK SMALL LETTER FINAL SIGMA}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">greek_unicode</span><span class="p">[</span><span class="s1">&#39;varsigma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">u&#39;</span><span class="se">\N{GREEK SMALL LETTER FINAL SIGMA}</span><span class="s1">&#39;</span>
 
 <span class="n">digit_2txt</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;0&#39;</span><span class="p">:</span>    <span class="s1">&#39;ZERO&#39;</span><span class="p">,</span>
@@ -245,21 +245,21 @@
 <span class="c1"># TODO: Make brackets adjust to height of contents</span>
 <span class="n">modifier_dict</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1"># Accents</span>
-    <span class="s1">&#39;mathring&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{COMBINING RING ABOVE}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;ddddot&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{COMBINING DIAERESIS}\N{COMBINING DIAERESIS}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;dddot&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{COMBINING DIAERESIS}\N{COMBINING DOT ABOVE}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;ddot&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{COMBINING DIAERESIS}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;dot&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{COMBINING DOT ABOVE}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;check&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{COMBINING CARON}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;breve&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{COMBINING BREVE}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;acute&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{COMBINING ACUTE ACCENT}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;grave&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{COMBINING GRAVE ACCENT}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;tilde&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{COMBINING TILDE}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;hat&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{COMBINING CIRCUMFLEX ACCENT}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;bar&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{COMBINING OVERLINE}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;vec&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{COMBINING RIGHT ARROW ABOVE}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;prime&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{PRIME}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;prm&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{PRIME}</span><span class="s1">&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;mathring&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{COMBINING RING ABOVE}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ddddot&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{COMBINING DIAERESIS}\N{COMBINING DIAERESIS}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dddot&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{COMBINING DIAERESIS}\N{COMBINING DOT ABOVE}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ddot&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{COMBINING DIAERESIS}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dot&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{COMBINING DOT ABOVE}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;check&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{COMBINING CARON}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;breve&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{COMBINING BREVE}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;acute&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{COMBINING ACUTE ACCENT}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;grave&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{COMBINING GRAVE ACCENT}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tilde&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{COMBINING TILDE}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;hat&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{COMBINING CIRCUMFLEX ACCENT}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;bar&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{COMBINING OVERLINE}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;vec&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{COMBINING RIGHT ARROW ABOVE}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;prime&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{PRIME}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;prm&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{PRIME}</span><span class="s1">&#39;</span><span class="p">,</span>
     <span class="c1"># # Faces -- these are here for some compatibility with latex printing</span>
     <span class="c1"># &#39;bold&#39;: lambda s: s,</span>
     <span class="c1"># &#39;bm&#39;: lambda s: s,</span>
@@ -267,10 +267,10 @@
     <span class="c1"># &#39;scr&#39;: lambda s: s,</span>
     <span class="c1"># &#39;frak&#39;: lambda s: s,</span>
     <span class="c1"># Brackets</span>
-    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{DOUBLE VERTICAL LINE}</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{DOUBLE VERTICAL LINE}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;avg&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{MATHEMATICAL LEFT ANGLE BRACKET}</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{MATHEMATICAL RIGHT ANGLE BRACKET}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;abs&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{VERTICAL LINE}</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{VERTICAL LINE}</span><span class="s1">&#39;</span><span class="p">),</span>
-    <span class="s1">&#39;mag&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{VERTICAL LINE}</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="n">u</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{VERTICAL LINE}</span><span class="s1">&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="s1">u&#39;</span><span class="se">\N{DOUBLE VERTICAL LINE}</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{DOUBLE VERTICAL LINE}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;avg&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="s1">u&#39;</span><span class="se">\N{MATHEMATICAL LEFT ANGLE BRACKET}</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{MATHEMATICAL RIGHT ANGLE BRACKET}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;abs&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="s1">u&#39;</span><span class="se">\N{VERTICAL LINE}</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{VERTICAL LINE}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;mag&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="s1">u&#39;</span><span class="se">\N{VERTICAL LINE}</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="s1">u&#39;</span><span class="se">\N{VERTICAL LINE}</span><span class="s1">&#39;</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="c1"># VERTICAL OBJECTS</span>

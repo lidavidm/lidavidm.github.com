@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.simplify.simplify &mdash; SymPy 1.0 documentation</title>
+    <title>sympy.simplify.simplify &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -59,7 +59,7 @@
 <span class="kn">from</span> <span class="nn">sympy.core.compatibility</span> <span class="kn">import</span> <span class="p">(</span><span class="n">iterable</span><span class="p">,</span>
     <span class="n">ordered</span><span class="p">,</span> <span class="nb">range</span><span class="p">,</span> <span class="n">as_int</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">sympy.core.numbers</span> <span class="kn">import</span> <span class="n">Float</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">Rational</span><span class="p">,</span> <span class="n">Integer</span>
-<span class="kn">from</span> <span class="nn">sympy.core.function</span> <span class="kn">import</span> <span class="n">expand_log</span><span class="p">,</span> <span class="n">count_ops</span><span class="p">,</span> <span class="n">_mexpand</span>
+<span class="kn">from</span> <span class="nn">sympy.core.function</span> <span class="kn">import</span> <span class="n">expand_log</span><span class="p">,</span> <span class="n">count_ops</span><span class="p">,</span> <span class="n">_mexpand</span><span class="p">,</span> <span class="n">_coeff_isneg</span>
 <span class="kn">from</span> <span class="nn">sympy.core.rules</span> <span class="kn">import</span> <span class="n">Transform</span>
 <span class="kn">from</span> <span class="nn">sympy.core.evaluate</span> <span class="kn">import</span> <span class="n">global_evaluate</span>
 <span class="kn">from</span> <span class="nn">sympy.functions</span> <span class="kn">import</span> <span class="p">(</span>
@@ -302,12 +302,12 @@
             <span class="n">reps</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">posify</span><span class="p">(</span><span class="n">s</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">eq</span><span class="p">):</span>
             <span class="n">eq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">reps</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">eq</span><span class="p">),</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reps</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">eq</span><span class="p">),</span> <span class="p">{</span><span class="n">r</span><span class="p">:</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reps</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
     <span class="n">reps</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">s</span><span class="p">,</span> <span class="n">Dummy</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
                  <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">eq</span><span class="o">.</span><span class="n">free_symbols</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">is_positive</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">])</span>
     <span class="n">eq</span> <span class="o">=</span> <span class="n">eq</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">reps</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">eq</span><span class="p">,</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reps</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span></div>
+    <span class="k">return</span> <span class="n">eq</span><span class="p">,</span> <span class="p">{</span><span class="n">r</span><span class="p">:</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reps</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
 
 
 <div class="viewcode-block" id="hypersimp"><a class="viewcode-back" href="../../../modules/simplify/simplify.html#sympy.simplify.simplify.hypersimp">[docs]</a><span class="k">def</span> <span class="nf">hypersimp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
@@ -427,7 +427,7 @@
     <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">is_Add</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">e</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">signsimp</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">evaluate</span><span class="p">:</span>
-        <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">xreplace</span><span class="p">(</span><span class="nb">dict</span><span class="p">([(</span><span class="n">m</span><span class="p">,</span> <span class="o">-</span><span class="p">(</span><span class="o">-</span><span class="n">m</span><span class="p">))</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">atoms</span><span class="p">(</span><span class="n">Mul</span><span class="p">)</span> <span class="k">if</span> <span class="o">-</span><span class="p">(</span><span class="o">-</span><span class="n">m</span><span class="p">)</span> <span class="o">!=</span> <span class="n">m</span><span class="p">]))</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">xreplace</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="o">-</span><span class="p">(</span><span class="o">-</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">atoms</span><span class="p">(</span><span class="n">Mul</span><span class="p">)</span> <span class="k">if</span> <span class="o">-</span><span class="p">(</span><span class="o">-</span><span class="n">m</span><span class="p">)</span> <span class="o">!=</span> <span class="n">m</span><span class="p">})</span>
     <span class="k">return</span> <span class="n">e</span>
 
 
@@ -1307,6 +1307,53 @@
                     <span class="n">r</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">reps</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
     <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">reps</span><span class="p">,</span> <span class="n">simultaneous</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">clear_coefficients</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">rhs</span><span class="o">=</span><span class="n">S</span><span class="o">.</span><span class="n">Zero</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return `p, r` where `p` is the expression obtained when Rational</span>
+<span class="sd">    additive and multiplicative coefficients of `expr` have been stripped</span>
+<span class="sd">    away in a naive fashion (i.e. without simplification). The operations</span>
+<span class="sd">    needed to remove the coefficients will be applied to `rhs` and returned</span>
+<span class="sd">    as `r`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    ========</span>
+
+<span class="sd">    &gt;&gt;&gt; from sympy.simplify.simplify import clear_coefficients</span>
+<span class="sd">    &gt;&gt;&gt; from sympy.abc import x, y</span>
+<span class="sd">    &gt;&gt;&gt; from sympy import Dummy</span>
+<span class="sd">    &gt;&gt;&gt; expr = 4*y*(6*x + 3)</span>
+<span class="sd">    &gt;&gt;&gt; clear_coefficients(expr - 2)</span>
+<span class="sd">    (y*(2*x + 1), 1/6)</span>
+
+<span class="sd">    When solving 2 or more expressions like `expr = a`,</span>
+<span class="sd">    `expr = b`, etc..., it is advantageous to provide a Dummy symbol</span>
+<span class="sd">    for `rhs` and  simply replace it with `a`, `b`, etc... in `r`.</span>
+
+<span class="sd">    &gt;&gt;&gt; rhs = Dummy(&#39;rhs&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; clear_coefficients(expr, rhs)</span>
+<span class="sd">    (y*(2*x + 1), _rhs/12)</span>
+<span class="sd">    &gt;&gt;&gt; _[1].subs(rhs, 2)</span>
+<span class="sd">    1/6</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">was</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">free</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">free_symbols</span>
+    <span class="k">if</span> <span class="n">expr</span><span class="o">.</span><span class="n">is_Rational</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">Zero</span><span class="p">,</span> <span class="n">rhs</span> <span class="o">-</span> <span class="n">expr</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">expr</span> <span class="ow">and</span> <span class="n">was</span> <span class="o">!=</span> <span class="n">expr</span><span class="p">:</span>
+        <span class="n">was</span> <span class="o">=</span> <span class="n">expr</span>
+        <span class="n">m</span><span class="p">,</span> <span class="n">expr</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">expr</span><span class="o">.</span><span class="n">as_content_primitive</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">free</span> <span class="k">else</span>
+            <span class="n">factor_terms</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span><span class="o">.</span><span class="n">as_coeff_Mul</span><span class="p">(</span><span class="n">rational</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+        <span class="n">rhs</span> <span class="o">/=</span> <span class="n">m</span>
+        <span class="n">c</span><span class="p">,</span> <span class="n">expr</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">as_coeff_Add</span><span class="p">(</span><span class="n">rational</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">rhs</span> <span class="o">-=</span> <span class="n">c</span>
+    <span class="n">expr</span> <span class="o">=</span> <span class="n">signsimp</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">evaluate</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">_coeff_isneg</span><span class="p">(</span><span class="n">expr</span><span class="p">):</span>
+        <span class="n">expr</span> <span class="o">=</span> <span class="o">-</span><span class="n">expr</span>
+        <span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">rhs</span>
+    <span class="k">return</span> <span class="n">expr</span><span class="p">,</span> <span class="n">rhs</span>
 </pre></div>
 
           </div>

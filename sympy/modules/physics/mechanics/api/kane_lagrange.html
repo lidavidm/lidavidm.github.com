@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Kane’s Method &amp; Lagrange’s Method (Docstrings) &mdash; SymPy 1.0 documentation</title>
+    <title>Kane’s Method &amp; Lagrange’s Method (Docstrings) &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../../../../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../../../../index.html" />
     <link rel="up" title="Classical Mechanics" href="../index.html" />
     <link rel="next" title="Linearization (Docstrings)" href="linearize.html" />
     <link rel="prev" title="Masses, Inertias &amp; Particles, RigidBodys (Docstrings)" href="part_bod.html" />
@@ -106,7 +106,7 @@ the forcing terms, for E.o.M. in the form: [MM] udot = forcing, where MM is
 the mass matrix, udot is a vector of the time derivatives of the
 generalized speeds, and forcing is a vector representing &#8220;forcing&#8221; terms.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">KM</span> <span class="o">=</span> <span class="n">KanesMethod</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">q_ind</span><span class="o">=</span><span class="p">[</span><span class="n">q</span><span class="p">],</span> <span class="n">u_ind</span><span class="o">=</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">kd_eqs</span><span class="o">=</span><span class="n">kd</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">fr</span><span class="p">,</span> <span class="n">frstar</span><span class="p">)</span> <span class="o">=</span> <span class="n">KM</span><span class="o">.</span><span class="n">kanes_equations</span><span class="p">(</span><span class="n">FL</span><span class="p">,</span> <span class="n">BL</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">fr</span><span class="p">,</span> <span class="n">frstar</span><span class="p">)</span> <span class="o">=</span> <span class="n">KM</span><span class="o">.</span><span class="n">kanes_equations</span><span class="p">(</span><span class="n">BL</span><span class="p">,</span> <span class="n">FL</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">MM</span> <span class="o">=</span> <span class="n">KM</span><span class="o">.</span><span class="n">mass_matrix</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">forcing</span> <span class="o">=</span> <span class="n">KM</span><span class="o">.</span><span class="n">forcing</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rhs</span> <span class="o">=</span> <span class="n">MM</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span> <span class="o">*</span> <span class="n">forcing</span>
@@ -175,7 +175,7 @@ differential equations.</p>
 
 <dl class="method">
 <dt id="sympy.physics.mechanics.kane.KanesMethod.kanes_equations">
-<code class="descname">kanes_equations</code><span class="sig-paren">(</span><em>FL</em>, <em>BL</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sympy/physics/mechanics/kane.html#KanesMethod.kanes_equations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.physics.mechanics.kane.KanesMethod.kanes_equations" title="Permalink to this definition">¶</a></dt>
+<code class="descname">kanes_equations</code><span class="sig-paren">(</span><em>bodies</em>, <em>loads=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sympy/physics/mechanics/kane.html#KanesMethod.kanes_equations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.physics.mechanics.kane.KanesMethod.kanes_equations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method to form Kane&#8217;s equations, Fr + Fr* = 0.</p>
 <p>Returns (Fr, Fr*). In the case where auxiliary generalized speeds are
 present (say, s auxiliary speeds, o generalized speeds, and m motion
@@ -187,14 +187,17 @@ equations can be accessed with the auxiliary_eqs().</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>FL</strong> : list</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>bodies</strong> : iterable</p>
 <blockquote>
-<div><p>Takes in a list of (Point, Vector) or (ReferenceFrame, Vector)
-tuples which represent the force at a point or torque on a frame.</p>
+<div><p>An iterable of all RigidBody&#8217;s and Particle&#8217;s in the system.
+A system must have at least one body.</p>
 </div></blockquote>
-<p><strong>BL</strong> : list</p>
+<p><strong>loads</strong> : iterable</p>
 <blockquote class="last">
-<div><p>A list of all RigidBody&#8217;s and Particle&#8217;s in the system.</p>
+<div><p>Takes in an iterable of (Particle, Vector) or (ReferenceFrame, Vector)
+tuples which represent the force at a point or torque on a frame.
+Must be either a non-empty iterable of tuples or None which corresponds
+to a system with no constraints.</p>
 </div></blockquote>
 </td>
 </tr>

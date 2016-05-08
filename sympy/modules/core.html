@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>SymPy Core &mdash; SymPy 1.0 documentation</title>
+    <title>SymPy Core &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../index.html" />
     <link rel="up" title="SymPy Modules Reference" href="index.html" />
     <link rel="next" title="Combinatorics Module" href="combinatorics/index.html" />
     <link rel="prev" title="SymPy Modules Reference" href="index.html" />
@@ -303,12 +303,12 @@ of transcendental numbers <a class="footnote-reference" href="#id13" id="id7">[1
 <dd>object value cannot be represented exactly by Rational, see <a class="reference internal" href="#r52" id="id8">[R52]</a>.</dd>
 <dt id="term-finite">finite</dt>
 <dt id="term-infinite">infinite</dt>
-<dd>object absolute value is bounded (is value is
-arbitrarily large).  See <a class="reference internal" href="#r54" id="id9">[R54]</a>, <a class="reference internal" href="#r55" id="id10">[R55]</a>, <a class="reference internal" href="#r56" id="id11">[R56]</a>.</dd>
+<dd>object absolute value is bounded (arbitrarily large).
+See <a class="reference internal" href="#r54" id="id9">[R54]</a>, <a class="reference internal" href="#r55" id="id10">[R55]</a>, <a class="reference internal" href="#r56" id="id11">[R56]</a>.</dd>
 <dt id="term-negative">negative</dt>
 <dt id="term-nonnegative">nonnegative</dt>
-<dd>object can have only negative (only
-nonnegative) values <a class="reference internal" href="#r48" id="id12">[R48]</a>.</dd>
+<dd>object can have only negative (nonnegative)
+values <a class="reference internal" href="#r48" id="id12">[R48]</a>.</dd>
 <dt id="term-positive">positive</dt>
 <dt id="term-nonpositive">nonpositive</dt>
 <dd>object can have only positive (only
@@ -1372,7 +1372,7 @@ setting <code class="docutils literal"><span class="pre">warn</span></code> to F
 
 <dl class="method">
 <dt id="sympy.core.expr.Expr.as_coeff_Add">
-<code class="descname">as_coeff_Add</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/core/expr.html#Expr.as_coeff_Add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.core.expr.Expr.as_coeff_Add" title="Permalink to this definition">¶</a></dt>
+<code class="descname">as_coeff_Add</code><span class="sig-paren">(</span><em>rational=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/core/expr.html#Expr.as_coeff_Add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.core.expr.Expr.as_coeff_Add" title="Permalink to this definition">¶</a></dt>
 <dd><p>Efficiently extract the coefficient of a summation.</p>
 </dd></dl>
 
@@ -3007,7 +3007,7 @@ there is no limit on their size) are represented by the Rational class.</p>
 </div>
 <dl class="method">
 <dt id="sympy.core.numbers.Number.as_coeff_Add">
-<code class="descname">as_coeff_Add</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/core/numbers.html#Number.as_coeff_Add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.core.numbers.Number.as_coeff_Add" title="Permalink to this definition">¶</a></dt>
+<code class="descname">as_coeff_Add</code><span class="sig-paren">(</span><em>rational=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/core/numbers.html#Number.as_coeff_Add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.core.numbers.Number.as_coeff_Add" title="Permalink to this definition">¶</a></dt>
 <dd><p>Efficiently extract the coefficient of a summation.</p>
 </dd></dl>
 
@@ -3292,6 +3292,18 @@ is needed when using them in expressions:</p>
 </pre></div>
 </div>
 <dl class="method">
+<dt id="sympy.core.numbers.Rational.as_coeff_Add">
+<code class="descname">as_coeff_Add</code><span class="sig-paren">(</span><em>rational=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/core/numbers.html#Rational.as_coeff_Add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.core.numbers.Rational.as_coeff_Add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Efficiently extract the coefficient of a summation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sympy.core.numbers.Rational.as_coeff_Mul">
+<code class="descname">as_coeff_Mul</code><span class="sig-paren">(</span><em>rational=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/core/numbers.html#Rational.as_coeff_Mul"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.core.numbers.Rational.as_coeff_Mul" title="Permalink to this definition">¶</a></dt>
+<dd><p>Efficiently extract the coefficient of a product.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="sympy.core.numbers.Rational.as_content_primitive">
 <code class="descname">as_content_primitive</code><span class="sig-paren">(</span><em>radical=False</em>, <em>clear=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/core/numbers.html#Rational.as_content_primitive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.core.numbers.Rational.as_content_primitive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the tuple (R, self/R) where R is the positive Rational
@@ -3433,6 +3445,12 @@ divide == False ... return nan</p>
 <span class="go">zoo</span>
 </pre></div>
 </div>
+<dl class="method">
+<dt id="sympy.core.numbers.Zero.as_coeff_Mul">
+<code class="descname">as_coeff_Mul</code><span class="sig-paren">(</span><em>rational=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/core/numbers.html#Zero.as_coeff_Mul"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.core.numbers.Zero.as_coeff_Mul" title="Permalink to this definition">¶</a></dt>
+<dd><p>Efficiently extract the coefficient of a summation.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -4105,11 +4123,23 @@ extracted from self.</p>
 <dd><p>Return a tuple containing x = floor(y**(1/n))
 and a boolean indicating whether the result is exact (that is,
 whether x**n == y).</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal"><span class="pre">sympy.ntheory.primetest.is_square</span></code></p>
+</div>
+<p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">integer_nthroot</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">integer_nthroot</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">integer_nthroot</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="go">(4, True)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">integer_nthroot</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">integer_nthroot</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="go">(5, False)</span>
+</pre></div>
+</div>
+<p>To simply determine if a number is a perfect square, the is_square
+function should be used:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory.primetest</span> <span class="k">import</span> <span class="n">is_square</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_square</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span>
+<span class="go">False</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -4302,7 +4332,7 @@ sensitive.</p>
 <em class="property">class </em><code class="descclassname">sympy.core.add.</code><code class="descname">Add</code><a class="reference internal" href="../_modules/sympy/core/add.html#Add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.core.add.Add" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="sympy.core.add.Add.as_coeff_Add">
-<code class="descname">as_coeff_Add</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/core/add.html#Add.as_coeff_Add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.core.add.Add.as_coeff_Add" title="Permalink to this definition">¶</a></dt>
+<code class="descname">as_coeff_Add</code><span class="sig-paren">(</span><em>rational=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/core/add.html#Add.as_coeff_Add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.core.add.Add.as_coeff_Add" title="Permalink to this definition">¶</a></dt>
 <dd><p>Efficiently extract the coefficient of a summation.</p>
 </dd></dl>
 
@@ -7035,7 +7065,7 @@ are Symbols. Queries automatically sympify args so the following work:</p>
 <h3>iterable<a class="headerlink" href="#iterable" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="sympy.core.compatibility.iterable">
-<code class="descclassname">sympy.core.compatibility.</code><code class="descname">iterable</code><span class="sig-paren">(</span><em>i</em>, <em>exclude=((&lt;type 'str'&gt;</em>, <em>&lt;type 'unicode'&gt;)</em>, <em>&lt;type 'dict'&gt;</em>, <em>&lt;class sympy.core.compatibility.NotIterable at 0x7fb32cdfed50&gt;)</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/core/compatibility.html#iterable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.core.compatibility.iterable" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">sympy.core.compatibility.</code><code class="descname">iterable</code><span class="sig-paren">(</span><em>i</em>, <em>exclude=((&lt;type 'str'&gt;</em>, <em>&lt;type 'unicode'&gt;)</em>, <em>&lt;type 'dict'&gt;</em>, <em>&lt;class sympy.core.compatibility.NotIterable at 0x7eff7b1d6600&gt;)</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/core/compatibility.html#iterable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.core.compatibility.iterable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a boolean indicating whether <code class="docutils literal"><span class="pre">i</span></code> is SymPy iterable.
 True also indicates that the iterator is finite, i.e. you e.g.
 call list(...) on the instance.</p>

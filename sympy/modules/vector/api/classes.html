@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Essential Classes in sympy.vector (doctrings) &mdash; SymPy 1.0 documentation</title>
+    <title>Essential Classes in sympy.vector (doctrings) &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../../../index.html" />
     <link rel="up" title="Vector Module" href="../index.html" />
     <link rel="next" title="Orienter classes (docstrings)" href="orienterclasses.html" />
     <link rel="prev" title="General examples of usage" href="../examples.html" />
@@ -465,7 +465,7 @@ the position wrt its origin is returned.</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.vector</span> <span class="k">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">CoordSysCartesian</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.vector</span> <span class="k">import</span> <span class="n">CoordSysCartesian</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">N</span> <span class="o">=</span> <span class="n">CoordSysCartesian</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">N1</span> <span class="o">=</span> <span class="n">N</span><span class="o">.</span><span class="n">locate_new</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">N</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">N</span><span class="o">.</span><span class="n">position_wrt</span><span class="p">(</span><span class="n">N1</span><span class="p">)</span>
@@ -764,16 +764,17 @@ specified coordinate system.</p>
 <em class="property">class </em><code class="descclassname">sympy.vector.dyadic.</code><code class="descname">Dyadic</code><a class="reference internal" href="../../../_modules/sympy/vector/dyadic.html#Dyadic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.vector.dyadic.Dyadic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Super class for all Dyadic-classes.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r532" rules="none">
+<table class="docutils citation" frame="void" id="r537" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[R532]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Dyadic_tensor">http://en.wikipedia.org/wiki/Dyadic_tensor</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[R537]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Dyadic_tensor">http://en.wikipedia.org/wiki/Dyadic_tensor</a></td></tr>
 </tbody>
 </table>
-<table class="docutils citation" frame="void" id="r533" rules="none">
+<table class="docutils citation" frame="void" id="r538" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[R533]</a></td><td>Kane, T., Levinson, D. Dynamics Theory and Applications. 1985 McGraw-Hill</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[R538]</a></td><td>Kane, T., Levinson, D. Dynamics Theory and Applications. 1985
+McGraw-Hill</td></tr>
 </tbody>
 </table>
 <dl class="attribute">
@@ -927,7 +928,8 @@ Derivative instances</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">CoordSysCartesian</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">x</span><span class="o">*</span><span class="n">C</span><span class="o">.</span><span class="n">y</span><span class="o">*</span><span class="n">C</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">i</span> <span class="o">+</span> <span class="n">C</span><span class="o">.</span><span class="n">j</span> <span class="o">+</span> <span class="n">C</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">.</span><span class="n">delop</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">doit</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="go">(-C.x*C.y + C.x*C.z)*C.i + (C.x*C.y - C.y*C.z)*C.j + (-C.x*C.z + C.y*C.z)*C.k</span>
+<span class="go">(-C.x*C.y + C.x*C.z)*C.i + (C.x*C.y - C.y*C.z)*C.j +</span>
+<span class="go">    (-C.x*C.z + C.y*C.z)*C.k</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">delop</span> <span class="o">^</span> <span class="n">C</span><span class="o">.</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">doit</span><span class="p">()</span>
 <span class="go">0</span>
 </pre></div>
@@ -996,7 +998,8 @@ Derivative instances</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.vector</span> <span class="k">import</span> <span class="n">CoordSysCartesian</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">CoordSysCartesian</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">.</span><span class="n">delop</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
-<span class="go">(Derivative(9, C.x))*C.i + (Derivative(9, C.y))*C.j + (Derivative(9, C.z))*C.k</span>
+<span class="go">(Derivative(9, C.x))*C.i + (Derivative(9, C.y))*C.j +</span>
+<span class="go">    (Derivative(9, C.z))*C.k</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">C</span><span class="o">.</span><span class="n">delop</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">x</span><span class="o">*</span><span class="n">C</span><span class="o">.</span><span class="n">y</span><span class="o">*</span><span class="n">C</span><span class="o">.</span><span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">doit</span><span class="p">()</span>
 <span class="go">C.y*C.z*C.i + C.x*C.z*C.j + C.x*C.y*C.k</span>
 </pre></div>

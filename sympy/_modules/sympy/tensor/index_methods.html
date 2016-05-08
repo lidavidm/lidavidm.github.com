@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.tensor.index_methods &mdash; SymPy 1.0 documentation</title>
+    <title>sympy.tensor.index_methods &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -288,7 +288,7 @@
     <span class="k">elif</span> <span class="n">expr</span><span class="o">.</span><span class="n">is_Atom</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">set</span><span class="p">(),</span> <span class="p">{}</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">Idx</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">set</span><span class="p">([</span><span class="n">expr</span><span class="p">]),</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">expr</span><span class="p">},</span> <span class="p">{}</span>
 
     <span class="c1"># recurse via specialized functions</span>
     <span class="k">else</span><span class="p">:</span>
@@ -423,12 +423,12 @@
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">Indexed</span><span class="p">):</span>
         <span class="n">junk</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="n">_remove_repeated</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">indices</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="n">key</span> <span class="ow">or</span> <span class="bp">None</span><span class="p">:</span> <span class="nb">set</span><span class="p">([</span><span class="n">expr</span><span class="p">])}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">key</span> <span class="ow">or</span> <span class="bp">None</span><span class="p">:</span> <span class="p">{</span><span class="n">expr</span><span class="p">}}</span>
     <span class="k">elif</span> <span class="n">expr</span><span class="o">.</span><span class="n">is_Atom</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">{</span><span class="bp">None</span><span class="p">:</span> <span class="nb">set</span><span class="p">([</span><span class="n">expr</span><span class="p">])}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="bp">None</span><span class="p">:</span> <span class="p">{</span><span class="n">expr</span><span class="p">}}</span>
     <span class="k">elif</span> <span class="n">expr</span><span class="o">.</span><span class="n">is_Mul</span><span class="p">:</span>
         <span class="n">junk</span><span class="p">,</span> <span class="n">junk</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="n">_get_indices_Mul</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">return_dummies</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span> <span class="ow">or</span> <span class="bp">None</span><span class="p">:</span> <span class="nb">set</span><span class="p">([</span><span class="n">expr</span><span class="p">])}</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span> <span class="ow">or</span> <span class="bp">None</span><span class="p">:</span> <span class="p">{</span><span class="n">expr</span><span class="p">}}</span>
         <span class="c1"># recurse on every factor</span>
         <span class="n">nested</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">fac</span> <span class="ow">in</span> <span class="n">expr</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
@@ -449,7 +449,7 @@
         <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dbase</span><span class="p">,</span> <span class="n">dexp</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">None</span> <span class="ow">in</span> <span class="n">d</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
                 <span class="n">dicts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="bp">None</span><span class="p">:</span> <span class="nb">set</span><span class="p">([</span><span class="n">expr</span><span class="p">])}</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="bp">None</span><span class="p">:</span> <span class="p">{</span><span class="n">expr</span><span class="p">}}</span>
         <span class="k">if</span> <span class="n">dicts</span><span class="p">:</span>
             <span class="n">result</span><span class="p">[</span><span class="n">expr</span><span class="p">]</span> <span class="o">=</span> <span class="n">dicts</span>
         <span class="k">return</span> <span class="n">result</span>
@@ -481,14 +481,14 @@
             <span class="n">deep</span> <span class="o">=</span> <span class="n">get_contraction_structure</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">None</span> <span class="ow">in</span> <span class="n">deep</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">deep</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
                 <span class="n">deeplist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">deep</span><span class="p">)</span>
-        <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="bp">None</span><span class="p">:</span> <span class="nb">set</span><span class="p">([</span><span class="n">expr</span><span class="p">])}</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="bp">None</span><span class="p">:</span> <span class="p">{</span><span class="n">expr</span><span class="p">}}</span>
         <span class="k">if</span> <span class="n">deeplist</span><span class="p">:</span>
             <span class="n">d</span><span class="p">[</span><span class="n">expr</span><span class="p">]</span> <span class="o">=</span> <span class="n">deeplist</span>
         <span class="k">return</span> <span class="n">d</span>
 
     <span class="c1"># this test is expensive, so it should be at the end</span>
     <span class="k">elif</span> <span class="ow">not</span> <span class="n">expr</span><span class="o">.</span><span class="n">has</span><span class="p">(</span><span class="n">Indexed</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span><span class="bp">None</span><span class="p">:</span> <span class="nb">set</span><span class="p">([</span><span class="n">expr</span><span class="p">])}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="bp">None</span><span class="p">:</span> <span class="p">{</span><span class="n">expr</span><span class="p">}}</span>
     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
         <span class="s2">&quot;FIXME: No specialized handling of type </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span></div>
 </pre></div>

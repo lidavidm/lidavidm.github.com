@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Parsing input &mdash; SymPy 1.0 documentation</title>
+    <title>Parsing input &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../index.html" />
     <link rel="up" title="SymPy Modules Reference" href="index.html" />
     <link rel="next" title="Calculus" href="calculus/index.html" />
     <link rel="prev" title="Timing Utilities" href="utilities/timeutils.html" />
@@ -55,7 +55,7 @@
 <h2>Parsing Functions Reference<a class="headerlink" href="#parsing-functions-reference" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="sympy.parsing.sympy_parser.parse_expr">
-<code class="descclassname">sympy.parsing.sympy_parser.</code><code class="descname">parse_expr</code><span class="sig-paren">(</span><em>s</em>, <em>local_dict=None</em>, <em>transformations=(&lt;function lambda_notation at 0x7fb3261efe60&gt;</em>, <em>&lt;function auto_symbol at 0x7fb3261efcf8&gt;</em>, <em>&lt;function auto_number at 0x7fb3261efa28&gt;</em>, <em>&lt;function factorial_notation at 0x7fb3261efde8&gt;)</em>, <em>global_dict=None</em>, <em>evaluate=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/parsing/sympy_parser.html#parse_expr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.parsing.sympy_parser.parse_expr" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">sympy.parsing.sympy_parser.</code><code class="descname">parse_expr</code><span class="sig-paren">(</span><em>s</em>, <em>local_dict=None</em>, <em>transformations=(&lt;function lambda_notation at 0x7eff7290e938&gt;</em>, <em>&lt;function auto_symbol at 0x7eff7290e1b8&gt;</em>, <em>&lt;function auto_number at 0x7eff7290e6e0&gt;</em>, <em>&lt;function factorial_notation at 0x7eff7290e9b0&gt;)</em>, <em>global_dict=None</em>, <em>evaluate=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/parsing/sympy_parser.html#parse_expr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.parsing.sympy_parser.parse_expr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts the string <code class="docutils literal"><span class="pre">s</span></code> to a SymPy expression, in <code class="docutils literal"><span class="pre">local_dict</span></code></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -251,7 +251,7 @@ be used by passing a list of functions to <code class="xref py py-func docutils 
 applied in the order given.</p>
 <dl class="data">
 <dt id="sympy.parsing.sympy_parser.standard_transformations">
-<code class="descclassname">sympy.parsing.sympy_parser.</code><code class="descname">standard_transformations</code><em class="property"> = (&lt;function lambda_notation at 0x7fb3261efe60&gt;, &lt;function auto_symbol at 0x7fb3261efcf8&gt;, &lt;function auto_number at 0x7fb3261efa28&gt;, &lt;function factorial_notation at 0x7fb3261efde8&gt;)</em><a class="headerlink" href="#sympy.parsing.sympy_parser.standard_transformations" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">sympy.parsing.sympy_parser.</code><code class="descname">standard_transformations</code><em class="property"> = (&lt;function lambda_notation at 0x7eff7290e938&gt;, &lt;function auto_symbol at 0x7eff7290e1b8&gt;, &lt;function auto_number at 0x7eff7290e6e0&gt;, &lt;function factorial_notation at 0x7eff7290e9b0&gt;)</em><a class="headerlink" href="#sympy.parsing.sympy_parser.standard_transformations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standard transformations for <code class="xref py py-func docutils literal"><span class="pre">parse_expr()</span></code>.
 Inserts calls to <code class="xref py py-class docutils literal"><span class="pre">Symbol</span></code>, <code class="xref py py-class docutils literal"><span class="pre">Integer</span></code>, and other SymPy
 datatypes and allows the use of standard factorial notation (e.g. <code class="docutils literal"><span class="pre">x!</span></code>).</p>

@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Printing (Docstrings) &mdash; SymPy 1.0 documentation</title>
+    <title>Printing (Docstrings) &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../../../../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../../../../index.html" />
     <link rel="up" title="The Physics Vector Module" href="../index.html" />
     <link rel="next" title="Essential Functions (Docstrings)" href="functions.html" />
     <link rel="prev" title="Kinematics (Docstrings)" href="kinematics.html" />
@@ -55,7 +55,7 @@
 <h2>init_printing<a class="headerlink" href="#init-printing" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="sympy.physics.vector.printing.init_printing">
-<code class="descclassname">sympy.physics.vector.printing.</code><code class="descname">init_printing</code><span class="sig-paren">(</span><em>pretty_print=True</em>, <em>order=None</em>, <em>use_unicode=None</em>, <em>use_latex=None</em>, <em>wrap_line=None</em>, <em>num_columns=None</em>, <em>no_global=False</em>, <em>ip=None</em>, <em>euler=False</em>, <em>forecolor='Black'</em>, <em>backcolor='Transparent'</em>, <em>fontsize='10pt'</em>, <em>latex_mode='equation*'</em>, <em>print_builtin=True</em>, <em>str_printer=None</em>, <em>pretty_printer=None</em>, <em>latex_printer=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sympy/interactive/printing.html#init_printing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.physics.vector.printing.init_printing" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">sympy.physics.vector.printing.</code><code class="descname">init_printing</code><span class="sig-paren">(</span><em>pretty_print=True</em>, <em>order=None</em>, <em>use_unicode=None</em>, <em>use_latex=None</em>, <em>wrap_line=None</em>, <em>num_columns=None</em>, <em>no_global=False</em>, <em>ip=None</em>, <em>euler=False</em>, <em>forecolor='Black'</em>, <em>backcolor='Transparent'</em>, <em>fontsize='10pt'</em>, <em>latex_mode='equation*'</em>, <em>print_builtin=True</em>, <em>str_printer=None</em>, <em>pretty_printer=None</em>, <em>latex_printer=None</em>, <em>**settings</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sympy/interactive/printing.html#init_printing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.physics.vector.printing.init_printing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes pretty-printer depending on the environment.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -153,8 +153,7 @@ sympy.printing.sstrrepr().</p>
 </div></blockquote>
 <p><strong>latex_printer: function, optional, default=None</strong></p>
 <blockquote class="last">
-<div><p>A custom LaTeX printer. This should mimic sympy.printing.latex()
-This should mimic sympy.printing.latex().</p>
+<div><p>A custom LaTeX printer. This should mimic sympy.printing.latex().</p>
 </div></blockquote>
 </td>
 </tr>

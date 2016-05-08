@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Number Theory &mdash; SymPy 1.0 documentation</title>
+    <title>Number Theory &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../index.html" />
     <link rel="up" title="SymPy Modules Reference" href="index.html" />
     <link rel="next" title="Basic Cryptography Module" href="crypto.html" />
     <link rel="prev" title="Tensor Canonicalization" href="combinatorics/tensor_can.html" />
@@ -146,8 +146,21 @@ it to an integer then an n error will be raised.</p>
 <dt id="sympy.ntheory.generate.prime">
 <code class="descclassname">sympy.ntheory.generate.</code><code class="descname">prime</code><span class="sig-paren">(</span><em>nth</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/generate.html#prime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.generate.prime" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the nth prime, with the primes indexed as prime(1) = 2,
-prime(2) = 3, etc.... The nth prime is approximately n*log(n) and
-can never be larger than 2**n.</p>
+prime(2) = 3, etc.... The nth prime is approximately n*log(n).</p>
+<p>Logarithmic integral of x is a pretty nice approximation for number of
+primes &lt;= x, i.e.
+li(x) ~ pi(x)
+In fact, for the numbers we are concerned about( x&lt;1e11 ),
+li(x) - pi(x) &lt; 50000</p>
+<p>Also,
+li(x) &gt; pi(x) can be safely assumed for the numbers which
+can be evaluated by this function.</p>
+<p>Here, we find the least integer m such that li(m) &gt; n using binary search.
+Now pi(m-1) &lt; li(m-1) &lt;= n,</p>
+<p>We find pi(m - 1) using primepi function.</p>
+<p>Starting from m, we have to find n - pi(m-1) more primes.</p>
+<p>For the inputs this implementation can handle, we will have to test
+primality for at max about 10**5 numbers, to get our answer.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <dl class="last docutils">
@@ -161,7 +174,9 @@ can never be larger than 2**n.</p>
 </div>
 <p class="rubric">References</p>
 <ul class="simple">
-<li><a class="reference external" href="http://primes.utm.edu/glossary/xpage/BertrandsPostulate.html">http://primes.utm.edu/glossary/xpage/BertrandsPostulate.html</a></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Prime_number_theorem#Table_of_.CF.80.28x.29.2C_x_.2F_log_x.2C_and_li.28x.29">https://en.wikipedia.org/wiki/Prime_number_theorem#Table_of_.CF.80.28x.29.2C_x_.2F_log_x.2C_and_li.28x.29</a></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Prime_number_theorem#Approximations_for_the_nth_prime_number">https://en.wikipedia.org/wiki/Prime_number_theorem#Approximations_for_the_nth_prime_number</a></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Skewes%27_number">https://en.wikipedia.org/wiki/Skewes%27_number</a></li>
 </ul>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">prime</span>
@@ -169,6 +184,8 @@ can never be larger than 2**n.</p>
 <span class="go">29</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">prime</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">prime</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+<span class="go">1299709</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -178,6 +195,42 @@ can never be larger than 2**n.</p>
 <code class="descclassname">sympy.ntheory.generate.</code><code class="descname">primepi</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/generate.html#primepi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.generate.primepi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the value of the prime counting function pi(n) = the number
 of prime numbers less than or equal to n.</p>
+<p>Algorithm Description:</p>
+<p>In sieve method, we remove all multiples of prime p
+except p itself.</p>
+<p>Let phi(i,j) be the number of integers 2 &lt;= k &lt;= i
+which remain after sieving from primes less than
+or equal to j.
+Clearly, pi(n) = phi(n, sqrt(n))</p>
+<p>If j is not a prime,
+phi(i,j) = phi(i, j - 1)</p>
+<p>if j is a prime,
+We remove all numbers(except j) whose
+smallest prime factor is j.</p>
+<p>Let x= j*a be such a number, where 2 &lt;= a&lt;= i / j
+Now, after sieving from primes &lt;= j - 1,
+a must remain
+(because x, and hence a has no prime factor &lt;= j - 1)
+Clearly, there are phi(i / j, j - 1) such a
+which remain on sieving from primes &lt;= j - 1</p>
+<p>Now, if a is a prime less than equal to j - 1,
+x= j*a has smallest prime factor = a, and
+has already been removed(by sieving from a).
+So, we don&#8217;t need to remove it again.
+(Note: there will be pi(j - 1) such x)</p>
+<p>Thus, number of x, that will be removed are:
+phi(i / j, j - 1) - phi(j - 1, j - 1)
+(Note that pi(j - 1) = phi(j - 1, j - 1))</p>
+<p>=&gt; phi(i,j) = phi(i, j - 1) - phi(i / j, j - 1) + phi(j - 1, j - 1)</p>
+<p>So,following recursion is used and implemented as dp:</p>
+<p>phi(a, b) = phi(a, b - 1), if b is not a prime
+phi(a, b) = phi(a, b-1)-phi(a / b, b-1) + phi(b-1, b-1), if b is prime</p>
+<p>Clearly a is always of the form floor(n / k),
+which can take at most 2*sqrt(n) values.
+Two arrays arr1,arr2 are maintained
+arr1[i] = phi(i, j),
+arr2[i] = phi(n // i, j)</p>
+<p>Finally the answer is arr2[1]</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <dl class="last docutils">
@@ -1332,7 +1385,7 @@ possible margin.  If generator is True an unordered generator is returned.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#sympy.ntheory.factor_.factorint" title="sympy.ntheory.factor_.factorint"><code class="xref py py-obj docutils literal"><span class="pre">factorint</span></code></a></p>
+<p class="last"><a class="reference internal" href="#sympy.ntheory.factor_.factorint" title="sympy.ntheory.factor_.factorint"><code class="xref py py-obj docutils literal"><span class="pre">factorint</span></code></a>, <a class="reference internal" href="solvers/diophantine.html#sympy.solvers.diophantine.square_factor" title="sympy.solvers.diophantine.square_factor"><code class="xref py py-obj docutils literal"><span class="pre">sympy.solvers.diophantine.square_factor</span></code></a></p>
 </div>
 <p class="rubric">References</p>
 <table class="docutils citation" frame="void" id="r391" rules="none">
@@ -1610,10 +1663,15 @@ precomputed to save memory and time.</p>
 <code class="descclassname">sympy.ntheory.partitions_.</code><code class="descname">npartitions</code><span class="sig-paren">(</span><em>n</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/partitions_.html#npartitions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.partitions_.npartitions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the partition function P(n), i.e. the number of ways that
 n can be written as a sum of positive integers.</p>
-<p>P(n) is computed using the Hardy-Ramanujan-Rademacher formula,
-described e.g. at <a class="reference external" href="http://mathworld.wolfram.com/PartitionFunctionP.html">http://mathworld.wolfram.com/PartitionFunctionP.html</a></p>
-<p>The correctness of this implementation has been tested for 10**n
-up to n = 8.</p>
+<p>P(n) is computed using the Hardy-Ramanujan-Rademacher formula <a class="reference internal" href="#r392" id="id8">[R392]</a>.</p>
+<p>The correctness of this implementation has been tested through 10**10.</p>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="r392" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R392]</td><td><em>(<a class="fn-backref" href="#id8">1</a>, <a class="fn-backref" href="#id9">2</a>)</em> <a class="reference external" href="http://mathworld.wolfram.com/PartitionFunctionP.html">http://mathworld.wolfram.com/PartitionFunctionP.html</a></td></tr>
+</tbody>
+</table>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory</span> <span class="k">import</span> <span class="n">npartitions</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">npartitions</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
@@ -1647,16 +1705,16 @@ A Computational Perspective&#8221;, Springer, 2nd edition, 135-138</li>
 <dl class="function">
 <dt id="sympy.ntheory.primetest.isprime">
 <code class="descclassname">sympy.ntheory.primetest.</code><code class="descname">isprime</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/primetest.html#isprime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.primetest.isprime" title="Permalink to this definition">¶</a></dt>
-<dd><p>Test if n is a prime number (True) or not (False). For n &lt; 10**16 the
-answer is accurate; greater n values have a small probability of actually
+<dd><p>Test if n is a prime number (True) or not (False). For n &lt; 2^64 the
+answer is definitive; larger n values have a small probability of actually
 being pseudoprimes.</p>
-<p>Negative primes (e.g. -2) are not considered prime.</p>
-<p>The function first looks for trivial factors, and if none is found,
-performs a safe Miller-Rabin strong pseudoprime test with bases
-that are known to prove a number prime. Finally, a general Miller-Rabin
-test is done with the first k bases which will report a pseudoprime as a
-prime with an error of about 4**-k. The current value of k is 46 so the
-error is about 2 x 10**-28.</p>
+<p>Negative numbers (e.g. -2) are not considered prime.</p>
+<p>The first step is looking for trivial factors, which if found enables
+a quick return.  For small numbers, a set of deterministic Miller-Rabin
+tests are performed with bases that are known to have no counterexamples
+in their range.  Finally if the number is larger than 2^64, a strong
+BPSW test is performed.  While this is a probable prime test and we
+believe counterexamples exist, there are no known counterexamples.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <dl class="last docutils">
@@ -1668,6 +1726,13 @@ error is about 2 x 10**-28.</p>
 <dd>Return the nth prime</dd>
 </dl>
 </div>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><a class="reference external" href="http://en.wikipedia.org/wiki/Strong_pseudoprime">http://en.wikipedia.org/wiki/Strong_pseudoprime</a></li>
+<li>&#8220;Lucas Pseudoprimes&#8221;, Baillie and Wagstaff, 1980.
+<a class="reference external" href="http://mpqs.free.fr/LucasPseudoprimes.pdf">http://mpqs.free.fr/LucasPseudoprimes.pdf</a></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Baillie-PSW_primality_test">https://en.wikipedia.org/wiki/Baillie-PSW_primality_test</a></li>
+</ul>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.ntheory</span> <span class="k">import</span> <span class="n">isprime</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">isprime</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
@@ -1959,10 +2024,10 @@ Rational and negative elements may be present in the expansion.</p>
 <code class="descclassname">sympy.ntheory.continued_fraction.</code><code class="descname">continued_fraction_iterator</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/continued_fraction.html#continued_fraction_iterator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.continued_fraction.continued_fraction_iterator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return continued fraction expansion of x as iterator.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r392" rules="none">
+<table class="docutils citation" frame="void" id="r393" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[R392]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Continued_fraction">http://en.wikipedia.org/wiki/Continued_fraction</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id10">[R393]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Continued_fraction">http://en.wikipedia.org/wiki/Continued_fraction</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -2027,16 +2092,16 @@ with repeating block as the last term of this list.</p>
 <p class="last"><a class="reference internal" href="#sympy.ntheory.continued_fraction.continued_fraction_iterator" title="sympy.ntheory.continued_fraction.continued_fraction_iterator"><code class="xref py py-obj docutils literal"><span class="pre">continued_fraction_iterator</span></code></a>, <a class="reference internal" href="#sympy.ntheory.continued_fraction.continued_fraction_reduce" title="sympy.ntheory.continued_fraction.continued_fraction_reduce"><code class="xref py py-obj docutils literal"><span class="pre">continued_fraction_reduce</span></code></a></p>
 </div>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r393" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[R393]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Periodic_continued_fraction">http://en.wikipedia.org/wiki/Periodic_continued_fraction</a></td></tr>
-</tbody>
-</table>
 <table class="docutils citation" frame="void" id="r394" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id10">[R394]</a></td><td>K. Rosen. Elementary Number theory and its applications.
+<tr><td class="label"><a class="fn-backref" href="#id11">[R394]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Periodic_continued_fraction">http://en.wikipedia.org/wiki/Periodic_continued_fraction</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r395" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id12">[R395]</a></td><td>K. Rosen. Elementary Number theory and its applications.
 Addison-Wesley, 3 Sub edition, pages 379-381, January 1992.</td></tr>
 </tbody>
 </table>
@@ -2128,16 +2193,16 @@ concrete realization with Möbius Function model).</p>
 </tbody>
 </table>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r395" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[R395]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/M%C3%B6bius_function">http://en.wikipedia.org/wiki/M%C3%B6bius_function</a></td></tr>
-</tbody>
-</table>
 <table class="docutils citation" frame="void" id="r396" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id12">[R396]</a></td><td>Thomas Koshy &#8220;Elementary Number Theory with Applications&#8221;</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id13">[R396]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/M%C3%B6bius_function">http://en.wikipedia.org/wiki/M%C3%B6bius_function</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r397" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id14">[R397]</a></td><td>Thomas Koshy &#8220;Elementary Number Theory with Applications&#8221;</td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
@@ -2158,7 +2223,7 @@ concrete realization with Möbius Function model).</p>
 <dt id="sympy.ntheory.egyptian_fraction.egyptian_fraction">
 <code class="descclassname">sympy.ntheory.egyptian_fraction.</code><code class="descname">egyptian_fraction</code><span class="sig-paren">(</span><em>r</em>, <em>algorithm='Greedy'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sympy/ntheory/egyptian_fraction.html#egyptian_fraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.ntheory.egyptian_fraction.egyptian_fraction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the list of denominators of an Egyptian fraction
-expansion <a class="reference internal" href="#r397" id="id13">[R397]</a> of the said rational <span class="math">\(r\)</span>.</p>
+expansion <a class="reference internal" href="#r398" id="id15">[R398]</a> of the said rational <span class="math">\(r\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -2183,7 +2248,7 @@ expansion <a class="reference internal" href="#r397" id="id13">[R397]</a> of the
 <p>Currently the following algorithms are supported:</p>
 <ol class="arabic">
 <li><p class="first">Greedy Algorithm</p>
-<p>Also called the Fibonacci-Sylvester algorithm <a class="reference internal" href="#r398" id="id14">[R398]</a>.
+<p>Also called the Fibonacci-Sylvester algorithm <a class="reference internal" href="#r399" id="id16">[R399]</a>.
 At each step, extract the largest unit fraction less
 than the target and replace the target with the remainder.</p>
 <p>It has some distinct properties:</p>
@@ -2201,17 +2266,17 @@ singly-exponential growth.</li>
 <li><p class="first">Graham Jewett Algorithm</p>
 <p>The algorithm suggested by the result of Graham and Jewett.
 Note that this has a tendency to blow up: the length of the
-resulting expansion is always <code class="docutils literal"><span class="pre">2**(x/gcd(x,</span> <span class="pre">y))</span> <span class="pre">-</span> <span class="pre">1</span></code>.  See <a class="reference internal" href="#r399" id="id15">[R399]</a>.</p>
+resulting expansion is always <code class="docutils literal"><span class="pre">2**(x/gcd(x,</span> <span class="pre">y))</span> <span class="pre">-</span> <span class="pre">1</span></code>.  See <a class="reference internal" href="#r400" id="id17">[R400]</a>.</p>
 </li>
 <li><p class="first">Takenouchi Algorithm</p>
 <p>The algorithm suggested by Takenouchi (1921).
 Differs from the Graham-Jewett algorithm only in the handling
-of duplicates.  See <a class="reference internal" href="#r399" id="id16">[R399]</a>.</p>
+of duplicates.  See <a class="reference internal" href="#r400" id="id18">[R400]</a>.</p>
 </li>
 <li><p class="first">Golomb&#8217;s Algorithm</p>
 <p>A method given by Golumb (1962), using modular arithmetic and
 inverses.  It yields the same results as a method using continued
-fractions proposed by Bleicher (1972).  See <a class="reference internal" href="#r400" id="id17">[R400]</a>.</p>
+fractions proposed by Bleicher (1972).  See <a class="reference internal" href="#r401" id="id19">[R401]</a>.</p>
 </li>
 </ol>
 <p>If the given rational is greater than or equal to 1, a greedy algorithm
@@ -2226,28 +2291,28 @@ remainder of 31/420, which yields [14, 420] by the Greedy algorithm.
 The result of egyptian_fraction(Rational(8, 3), &#8220;Golomb&#8221;) is [1, 2, 3,
 4, 5, 6, 7, 14, 574, 2788, 6460, 11590, 33062, 113820], and so on.</p>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="r397" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[R397]</td><td><em>(<a class="fn-backref" href="#id13">1</a>, <a class="fn-backref" href="#id18">2</a>)</em> <a class="reference external" href="http://en.wikipedia.org/wiki/Egyptian_fraction">http://en.wikipedia.org/wiki/Egyptian_fraction</a></td></tr>
-</tbody>
-</table>
 <table class="docutils citation" frame="void" id="r398" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R398]</td><td><em>(<a class="fn-backref" href="#id14">1</a>, <a class="fn-backref" href="#id19">2</a>)</em> <a class="reference external" href="https://en.wikipedia.org/wiki/Greedy_algorithm_for_Egyptian_fractions">https://en.wikipedia.org/wiki/Greedy_algorithm_for_Egyptian_fractions</a></td></tr>
+<tr><td class="label">[R398]</td><td><em>(<a class="fn-backref" href="#id15">1</a>, <a class="fn-backref" href="#id20">2</a>)</em> <a class="reference external" href="http://en.wikipedia.org/wiki/Egyptian_fraction">http://en.wikipedia.org/wiki/Egyptian_fraction</a></td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="r399" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R399]</td><td><em>(<a class="fn-backref" href="#id15">1</a>, <a class="fn-backref" href="#id16">2</a>, <a class="fn-backref" href="#id20">3</a>)</em> <a class="reference external" href="http://www.ics.uci.edu/~eppstein/numth/egypt/conflict.html">http://www.ics.uci.edu/~eppstein/numth/egypt/conflict.html</a></td></tr>
+<tr><td class="label">[R399]</td><td><em>(<a class="fn-backref" href="#id16">1</a>, <a class="fn-backref" href="#id21">2</a>)</em> <a class="reference external" href="https://en.wikipedia.org/wiki/Greedy_algorithm_for_Egyptian_fractions">https://en.wikipedia.org/wiki/Greedy_algorithm_for_Egyptian_fractions</a></td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="r400" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[R400]</td><td><em>(<a class="fn-backref" href="#id17">1</a>, <a class="fn-backref" href="#id21">2</a>)</em> <a class="reference external" href="http://ami.ektf.hu/uploads/papers/finalpdf/AMI_42_from129to134.pdf">http://ami.ektf.hu/uploads/papers/finalpdf/AMI_42_from129to134.pdf</a></td></tr>
+<tr><td class="label">[R400]</td><td><em>(<a class="fn-backref" href="#id17">1</a>, <a class="fn-backref" href="#id18">2</a>, <a class="fn-backref" href="#id22">3</a>)</em> <a class="reference external" href="http://www.ics.uci.edu/~eppstein/numth/egypt/conflict.html">http://www.ics.uci.edu/~eppstein/numth/egypt/conflict.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="r401" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[R401]</td><td><em>(<a class="fn-backref" href="#id19">1</a>, <a class="fn-backref" href="#id23">2</a>)</em> <a class="reference external" href="http://ami.ektf.hu/uploads/papers/finalpdf/AMI_42_from129to134.pdf">http://ami.ektf.hu/uploads/papers/finalpdf/AMI_42_from129to134.pdf</a></td></tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>

@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.crypto.crypto &mdash; SymPy 1.0 documentation</title>
+    <title>sympy.crypto.crypto &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -606,7 +606,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">msg</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">_prep</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">symbols</span><span class="p">)</span>
-    <span class="nb">map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="p">)])</span>
+    <span class="nb">map</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="p">)}</span>
     <span class="n">key</span> <span class="o">=</span> <span class="p">[</span><span class="nb">map</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">key</span><span class="p">]</span>
     <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
     <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
@@ -631,7 +631,7 @@
 <span class="sd">    &#39;MEETMEONMONDAY&#39;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">msg</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">_prep</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">symbols</span><span class="p">)</span>
-    <span class="nb">map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="p">)])</span>
+    <span class="nb">map</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="p">)}</span>
     <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>   <span class="c1"># normally, 26</span>
     <span class="n">K</span> <span class="o">=</span> <span class="p">[</span><span class="nb">map</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">key</span><span class="p">]</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
@@ -713,7 +713,7 @@
     <span class="k">assert</span> <span class="n">key</span><span class="o">.</span><span class="n">is_square</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">pad</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
     <span class="n">msg</span><span class="p">,</span> <span class="n">pad</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">_prep</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">pad</span><span class="p">,</span> <span class="n">symbols</span><span class="p">)</span>
-    <span class="nb">map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="p">)])</span>
+    <span class="nb">map</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="p">)}</span>
     <span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="nb">map</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">]</span>
     <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">cols</span>
@@ -776,7 +776,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="n">key</span><span class="o">.</span><span class="n">is_square</span>
     <span class="n">msg</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">A</span> <span class="o">=</span> <span class="n">_prep</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">symbols</span><span class="p">)</span>
-    <span class="nb">map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="p">)])</span>
+    <span class="nb">map</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="p">)}</span>
     <span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="nb">map</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">]</span>
     <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">cols</span>
@@ -839,7 +839,7 @@
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">long_key</span><span class="p">)])</span>
     <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">row_col</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">])</span>
     <span class="n">rc</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">c</span>
-    <span class="n">ch</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">i</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span> <span class="k">for</span> <span class="n">ch</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">row_col</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+    <span class="n">ch</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">ch</span> <span class="k">for</span> <span class="n">ch</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">row_col</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
     <span class="n">rv</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">ch</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rc</span><span class="p">[::</span><span class="mi">2</span><span class="p">],</span> <span class="n">rc</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])))</span>
     <span class="k">return</span> <span class="n">rv</span></div>
 
@@ -931,7 +931,7 @@
     <span class="n">rc</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">msg</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">row_col</span><span class="p">[</span><span class="n">c</span><span class="p">]]</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
     <span class="n">rc</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">rc</span><span class="p">[:</span><span class="n">n</span><span class="p">],</span> <span class="n">rc</span><span class="p">[</span><span class="n">n</span><span class="p">:]))</span>
-    <span class="n">ch</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">i</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span> <span class="k">for</span> <span class="n">ch</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">row_col</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+    <span class="n">ch</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">ch</span> <span class="k">for</span> <span class="n">ch</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">row_col</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
     <span class="n">rv</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">ch</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rc</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">rv</span></div>
 
@@ -1462,7 +1462,7 @@
     <span class="s2">&quot;-...-&quot;</span><span class="p">:</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="s2">&quot;.-.-.&quot;</span><span class="p">:</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span>
     <span class="s2">&quot;-..-.&quot;</span><span class="p">:</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;.--.-.&quot;</span><span class="p">:</span> <span class="s2">&quot;@&quot;</span><span class="p">,</span>
     <span class="s2">&quot;...-..-&quot;</span><span class="p">:</span> <span class="s2">&quot;$&quot;</span><span class="p">,</span> <span class="s2">&quot;-.-.--&quot;</span><span class="p">:</span> <span class="s2">&quot;!&quot;</span><span class="p">}</span>
-<span class="n">char_morse</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">v</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">morse_char</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+<span class="n">char_morse</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">morse_char</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
 
 <div class="viewcode-block" id="encode_morse"><a class="viewcode-back" href="../../../modules/crypto.html#sympy.crypto.crypto.encode_morse">[docs]</a><span class="k">def</span> <span class="nf">encode_morse</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="n">mapping</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>

@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.vector.functions &mdash; SymPy 1.0 documentation</title>
+    <title>sympy.vector.functions &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -114,10 +114,10 @@
         <span class="k">if</span> <span class="n">system2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;system2 should not be provided for </span><span class="se">\</span>
 <span class="s2">                                Vectors&quot;</span><span class="p">)</span>
-        <span class="c1">#Given expr is a Vector</span>
+        <span class="c1"># Given expr is a Vector</span>
         <span class="k">if</span> <span class="n">variables</span><span class="p">:</span>
-            <span class="c1">#If variables attribute is True, substitute</span>
-            <span class="c1">#the coordinate variables in the Vector</span>
+            <span class="c1"># If variables attribute is True, substitute</span>
+            <span class="c1"># the coordinate variables in the Vector</span>
             <span class="n">system_list</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">expr</span><span class="o">.</span><span class="n">atoms</span><span class="p">(</span><span class="n">BaseScalar</span><span class="p">,</span> <span class="n">BaseVector</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">system</span> <span class="o">!=</span> <span class="n">system</span><span class="p">:</span>
@@ -127,7 +127,7 @@
             <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">system_list</span><span class="p">:</span>
                 <span class="n">subs_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">scalar_map</span><span class="p">(</span><span class="n">system</span><span class="p">))</span>
             <span class="n">expr</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">subs_dict</span><span class="p">)</span>
-        <span class="c1">#Re-express in this coordinate system</span>
+        <span class="c1"># Re-express in this coordinate system</span>
         <span class="n">outvec</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">zero</span>
         <span class="n">parts</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">separate</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">parts</span><span class="p">:</span>
@@ -158,10 +158,10 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;system2 should not be provided for </span><span class="se">\</span>
 <span class="s2">                                Vectors&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">variables</span><span class="p">:</span>
-            <span class="c1">#Given expr is a scalar field</span>
+            <span class="c1"># Given expr is a scalar field</span>
             <span class="n">system_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([])</span>
             <span class="n">expr</span> <span class="o">=</span> <span class="n">sympify</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
-            <span class="c1">#Subsitute all the coordinate variables</span>
+            <span class="c1"># Subsitute all the coordinate variables</span>
             <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">expr</span><span class="o">.</span><span class="n">atoms</span><span class="p">(</span><span class="n">BaseScalar</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">system</span> <span class="o">!=</span> <span class="n">system</span><span class="p">:</span>
                     <span class="n">system_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">system</span><span class="p">)</span>
@@ -288,9 +288,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1">#Field is conservative irrespective of system</span>
-    <span class="c1">#Take the first coordinate system in the result of the</span>
-    <span class="c1">#separate method of Vector</span>
+    <span class="c1"># Field is conservative irrespective of system</span>
+    <span class="c1"># Take the first coordinate system in the result of the</span>
+    <span class="c1"># separate method of Vector</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">Vector</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;field should be a Vector&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">field</span> <span class="o">==</span> <span class="n">Vector</span><span class="o">.</span><span class="n">zero</span><span class="p">:</span>
@@ -322,9 +322,9 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1">#Field is solenoidal irrespective of system</span>
-    <span class="c1">#Take the first coordinate system in the result of the</span>
-    <span class="c1">#separate method in Vector</span>
+    <span class="c1"># Field is solenoidal irrespective of system</span>
+    <span class="c1"># Take the first coordinate system in the result of the</span>
+    <span class="c1"># separate method in Vector</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">Vector</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;field should be a Vector&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">field</span> <span class="o">==</span> <span class="n">Vector</span><span class="o">.</span><span class="n">zero</span><span class="p">:</span>
@@ -363,19 +363,19 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1">#Check whether field is conservative</span>
+    <span class="c1"># Check whether field is conservative</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_conservative</span><span class="p">(</span><span class="n">field</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Field is not conservative&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">field</span> <span class="o">==</span> <span class="n">Vector</span><span class="o">.</span><span class="n">zero</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">S</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="c1">#Express the field exntirely in coord_sys</span>
-    <span class="c1">#Subsitute coordinate variables also</span>
+    <span class="c1"># Express the field exntirely in coord_sys</span>
+    <span class="c1"># Subsitute coordinate variables also</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">coord_sys</span><span class="p">,</span> <span class="n">CoordSysCartesian</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;coord_sys must be a CoordSysCartesian&quot;</span><span class="p">)</span>
     <span class="n">field</span> <span class="o">=</span> <span class="n">express</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">coord_sys</span><span class="p">,</span> <span class="n">variables</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">dimensions</span> <span class="o">=</span> <span class="n">coord_sys</span><span class="o">.</span><span class="n">base_vectors</span><span class="p">()</span>
     <span class="n">scalars</span> <span class="o">=</span> <span class="n">coord_sys</span><span class="o">.</span><span class="n">base_scalars</span><span class="p">()</span>
-    <span class="c1">#Calculate scalar potential function</span>
+    <span class="c1"># Calculate scalar potential function</span>
     <span class="n">temp_function</span> <span class="o">=</span> <span class="n">integrate</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dimensions</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">scalars</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dim</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dimensions</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
         <span class="n">partial_diff</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">temp_function</span><span class="p">,</span> <span class="n">scalars</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
@@ -432,18 +432,18 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">coord_sys</span><span class="p">,</span> <span class="n">CoordSysCartesian</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;coord_sys must be a CoordSysCartesian&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="c1">#Get the scalar potential function</span>
+        <span class="c1"># Get the scalar potential function</span>
         <span class="n">scalar_fn</span> <span class="o">=</span> <span class="n">scalar_potential</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">coord_sys</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="c1">#Field is a scalar</span>
+        <span class="c1"># Field is a scalar</span>
         <span class="n">scalar_fn</span> <span class="o">=</span> <span class="n">field</span>
-    <span class="c1">#Express positions in required coordinate system</span>
+    <span class="c1"># Express positions in required coordinate system</span>
     <span class="n">origin</span> <span class="o">=</span> <span class="n">coord_sys</span><span class="o">.</span><span class="n">origin</span>
     <span class="n">position1</span> <span class="o">=</span> <span class="n">express</span><span class="p">(</span><span class="n">point1</span><span class="o">.</span><span class="n">position_wrt</span><span class="p">(</span><span class="n">origin</span><span class="p">),</span> <span class="n">coord_sys</span><span class="p">,</span>
                         <span class="n">variables</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">position2</span> <span class="o">=</span> <span class="n">express</span><span class="p">(</span><span class="n">point2</span><span class="o">.</span><span class="n">position_wrt</span><span class="p">(</span><span class="n">origin</span><span class="p">),</span> <span class="n">coord_sys</span><span class="p">,</span>
                         <span class="n">variables</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="c1">#Get the two positions as substitution dicts for coordinate variables</span>
+    <span class="c1"># Get the two positions as substitution dicts for coordinate variables</span>
     <span class="n">subs_dict1</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">subs_dict2</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">scalars</span> <span class="o">=</span> <span class="n">coord_sys</span><span class="o">.</span><span class="n">base_scalars</span><span class="p">()</span>
@@ -524,6 +524,7 @@
         <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">index</span><span class="p">,</span> <span class="n">from_path</span>
 
+
 <span class="k">def</span> <span class="nf">orthogonalize</span><span class="p">(</span><span class="o">*</span><span class="n">vlist</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Takes a sequence of independent vectors and orthogonalizes them</span>
@@ -536,7 +537,8 @@
 <span class="sd">    vlist : sequence of independent vectors to be made orthogonal.</span>
 
 <span class="sd">    orthonormal : Optional parameter</span>
-<span class="sd">                  Set to True if the the vectors returned should be orthonormal.</span>
+<span class="sd">                  Set to True if the the vectors returned should be</span>
+<span class="sd">                  orthonormal.</span>
 <span class="sd">                  Default: False</span>
 
 <span class="sd">    Examples</span>
@@ -568,7 +570,8 @@
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
             <span class="n">term</span> <span class="o">-=</span> <span class="n">ortho_vlist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">projection</span><span class="p">(</span><span class="n">vlist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
         <span class="c1"># TODO : The following line introduces a performance issue</span>
-        <span class="c1"># and needs to be changed once a good solution for issue #10279 is found.</span>
+        <span class="c1"># and needs to be changed once a good solution for issue #10279 is</span>
+        <span class="c1"># found.</span>
         <span class="k">if</span> <span class="n">simplify</span><span class="p">(</span><span class="n">term</span><span class="p">)</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">Vector</span><span class="o">.</span><span class="n">zero</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Vector set not linearly independent&quot;</span><span class="p">)</span>
         <span class="n">ortho_vlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>

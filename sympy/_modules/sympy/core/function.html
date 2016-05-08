@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.core.function &mdash; SymPy 1.0 documentation</title>
+    <title>sympy.core.function &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -186,6 +186,22 @@
         <span class="k">elif</span> <span class="n">nargs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">nargs</span> <span class="o">=</span> <span class="p">(</span><span class="n">as_int</span><span class="p">(</span><span class="n">nargs</span><span class="p">),)</span>
         <span class="n">cls</span><span class="o">.</span><span class="n">_nargs</span> <span class="o">=</span> <span class="n">nargs</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">__signature__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Allow Python 3&#39;s inspect.signature to give a useful signature for</span>
+<span class="sd">        Function subclasses.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Python 3 only, but backports (like the one in IPython) still might</span>
+        <span class="c1"># call this.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">signature</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+        <span class="c1"># TODO: Look at nargs</span>
+        <span class="k">return</span> <span class="n">signature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">nargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -516,7 +532,7 @@
         <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">KeyError</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">Float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_imp_</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">),</span> <span class="n">prec</span><span class="p">)</span>
-            <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
                 <span class="k">return</span>
 
         <span class="c1"># Convert all args to mpf or mpc</span>
@@ -1593,7 +1609,7 @@
             <span class="n">p</span> <span class="o">=</span> <span class="n">CustomStrPrinter</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">doprint</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
         <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">s_pts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">p</span><span class="p">,</span> <span class="n">Symbol</span><span class="p">(</span><span class="n">pre</span> <span class="o">+</span> <span class="n">mystr</span><span class="p">(</span><span class="n">p</span><span class="p">)))</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pts</span><span class="p">])</span>
+            <span class="n">s_pts</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span> <span class="n">Symbol</span><span class="p">(</span><span class="n">pre</span> <span class="o">+</span> <span class="n">mystr</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pts</span><span class="p">}</span>
             <span class="n">reps</span> <span class="o">=</span> <span class="p">[(</span><span class="n">v</span><span class="p">,</span> <span class="n">s_pts</span><span class="p">[</span><span class="n">p</span><span class="p">])</span>
                 <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">point</span><span class="p">)]</span>
             <span class="c1"># if any underscore-preppended symbol is already a free symbol</span>
@@ -2529,14 +2545,14 @@
     <span class="c1"># watch out for RootOf instances that don&#39;t like to have</span>
     <span class="c1"># their exponents replaced with Dummies and also sometimes have</span>
     <span class="c1"># problems with evaluating at low precision (issue 6393)</span>
-    <span class="n">rv</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">xreplace</span><span class="p">(</span><span class="nb">dict</span><span class="p">([(</span><span class="n">ro</span><span class="p">,</span> <span class="n">ro</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="k">for</span> <span class="n">ro</span> <span class="ow">in</span> <span class="n">rv</span><span class="o">.</span><span class="n">atoms</span><span class="p">(</span><span class="n">RootOf</span><span class="p">)]))</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">xreplace</span><span class="p">({</span><span class="n">ro</span><span class="p">:</span> <span class="n">ro</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">ro</span> <span class="ow">in</span> <span class="n">rv</span><span class="o">.</span><span class="n">atoms</span><span class="p">(</span><span class="n">RootOf</span><span class="p">)})</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">exponent</span><span class="p">:</span>
         <span class="n">reps</span> <span class="o">=</span> <span class="p">[(</span><span class="n">p</span><span class="p">,</span> <span class="n">Pow</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">Dummy</span><span class="p">()))</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">rv</span><span class="o">.</span><span class="n">atoms</span><span class="p">(</span><span class="n">Pow</span><span class="p">)]</span>
         <span class="n">rv</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">xreplace</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">reps</span><span class="p">))</span>
     <span class="n">rv</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">exponent</span><span class="p">:</span>
-        <span class="n">rv</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">xreplace</span><span class="p">(</span><span class="nb">dict</span><span class="p">([(</span><span class="n">d</span><span class="o">.</span><span class="n">exp</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">exp</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">reps</span><span class="p">]))</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">xreplace</span><span class="p">({</span><span class="n">d</span><span class="o">.</span><span class="n">exp</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">exp</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">reps</span><span class="p">})</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># Pow._eval_evalf special cases Integer exponents so if</span>
         <span class="c1"># exponent is suppose to be handled we have to do so here</span>

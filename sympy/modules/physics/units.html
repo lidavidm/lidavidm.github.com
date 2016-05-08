@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Units &mdash; SymPy 1.0 documentation</title>
+    <title>Units &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../../index.html" />
     <link rel="up" title="Physics Module" href="index.html" />
     <link rel="next" title="High energy physics" href="hep/index.html" />
     <link rel="prev" title="Wigner Symbols" href="wigner.html" />
@@ -157,7 +157,7 @@ divide a real-world mass (like grams) by the atomic mass unit (amu) you
 will obtain Avogadro&#8217;s number. To obtain the answer in moles you
 should divide by the unit <code class="docutils literal"><span class="pre">avogadro</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">grams</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">amu</span>
-<span class="go">602214179000000000000000</span>
+<span class="go">602214085700000000000000</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">avogadro</span>
 <span class="go">mol</span>
 </pre></div>
@@ -174,11 +174,13 @@ number of moles in 1 kg of water might be calculated as:</p>
 <code class="docutils literal"><span class="pre">avogadro_constant</span></code>. (<code class="docutils literal"><span class="pre">avogadro</span></code> is a shorthand for the dimensional
 quantity.)</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">avogadro_number</span>
-<span class="go">602214179000000000000000</span>
+<span class="go">602214085700000000000000</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">avogadro_constant</span>
-<span class="go">602214179000000000000000/mol</span>
+<span class="go">602214085700000000000000/mol</span>
 </pre></div>
 </div>
+<p>Values of constants are recommended by Committee on Data for Science and
+Technology (CODATA) as of 2014. See more at <a class="reference external" href="http://arxiv.org/pdf/1507.07956.pdf">http://arxiv.org/pdf/1507.07956.pdf</a></p>
 <dl class="class">
 <dt id="sympy.physics.units.Unit">
 <em class="property">class </em><code class="descclassname">sympy.physics.units.</code><code class="descname">Unit</code><a class="reference internal" href="../../_modules/sympy/physics/units.html#Unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sympy.physics.units.Unit" title="Permalink to this definition">¶</a></dt>

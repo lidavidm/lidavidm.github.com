@@ -6,18 +6,18 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>sympy.polys.rings &mdash; SymPy 1.0 documentation</title>
+    <title>sympy.polys.rings &mdash; SymPy 1.0.1.dev documentation</title>
     
     <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
-    <link rel="stylesheet" href="http://95.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-core.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.css" type="text/css" />
+    <link rel="stylesheet" href="http://96.sympy-live-tests.appspot.com/static/live-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '1.0',
+        VERSION:     '1.0.1.dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,14 +26,14 @@
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/utilities.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/external/classy.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-core.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
-    <script type="text/javascript" src="http://95.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/utilities.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/external/classy.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-core.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-autocomplete.js"></script>
+    <script type="text/javascript" src="http://96.sympy-live-tests.appspot.com/static/live-sphinx.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
     <link rel="shortcut icon" href="../../../_static/sympy-notailtext-favicon.ico"/>
-    <link rel="top" title="SymPy 1.0 documentation" href="../../../index.html" />
+    <link rel="top" title="SymPy 1.0.1.dev documentation" href="../../../index.html" />
     <link rel="up" title="Module code" href="../../index.html" />
    
   
@@ -644,7 +644,7 @@
 
     <span class="k">def</span> <span class="nf">as_expr_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">to_sympy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">to_sympy</span>
-        <span class="k">return</span> <span class="nb">dict</span><span class="p">([</span> <span class="p">(</span><span class="n">monom</span><span class="p">,</span> <span class="n">to_sympy</span><span class="p">(</span><span class="n">coeff</span><span class="p">))</span> <span class="k">for</span> <span class="n">monom</span><span class="p">,</span> <span class="n">coeff</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterterms</span><span class="p">()</span> <span class="p">])</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">monom</span><span class="p">:</span> <span class="n">to_sympy</span><span class="p">(</span><span class="n">coeff</span><span class="p">)</span> <span class="k">for</span> <span class="n">monom</span><span class="p">,</span> <span class="n">coeff</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterterms</span><span class="p">()}</span>
 
     <span class="k">def</span> <span class="nf">clear_denoms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">domain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="o">.</span><span class="n">domain</span>
@@ -808,6 +808,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">printer</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ring</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">zero</span><span class="p">)</span>
         <span class="n">prec_add</span> <span class="o">=</span> <span class="n">precedence</span><span class="p">[</span><span class="s2">&quot;Add&quot;</span><span class="p">]</span>
+        <span class="n">prec_mul</span> <span class="o">=</span> <span class="n">precedence</span><span class="p">[</span><span class="s2">&quot;Mul&quot;</span><span class="p">]</span>
         <span class="n">prec_atom</span> <span class="o">=</span> <span class="n">precedence</span><span class="p">[</span><span class="s2">&quot;Atom&quot;</span><span class="p">]</span>
         <span class="n">ring</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring</span>
         <span class="n">symbols</span> <span class="o">=</span> <span class="n">ring</span><span class="o">.</span><span class="n">symbols</span>
@@ -826,7 +827,7 @@
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">positive</span><span class="p">:</span>
                     <span class="n">coeff</span> <span class="o">=</span> <span class="o">-</span><span class="n">coeff</span>
                 <span class="k">if</span> <span class="n">coeff</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">scoeff</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">parenthesize</span><span class="p">(</span><span class="n">coeff</span><span class="p">,</span> <span class="n">prec_add</span><span class="p">)</span>
+                    <span class="n">scoeff</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">parenthesize</span><span class="p">(</span><span class="n">coeff</span><span class="p">,</span> <span class="n">prec_mul</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">scoeff</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
             <span class="n">sexpv</span> <span class="o">=</span> <span class="p">[]</span>
@@ -834,10 +835,10 @@
                 <span class="n">exp</span> <span class="o">=</span> <span class="n">expv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">exp</span><span class="p">:</span>
                     <span class="k">continue</span>
-                <span class="n">symbol</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">parenthesize</span><span class="p">(</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">prec_atom</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">symbol</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">parenthesize</span><span class="p">(</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">prec_atom</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">exp</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">exp</span> <span class="o">!=</span> <span class="nb">int</span><span class="p">(</span><span class="n">exp</span><span class="p">)</span> <span class="ow">or</span> <span class="n">exp</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-                        <span class="n">sexp</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">parenthesize</span><span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="n">prec_atom</span><span class="p">)</span>
+                        <span class="n">sexp</span> <span class="o">=</span> <span class="n">printer</span><span class="o">.</span><span class="n">parenthesize</span><span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="n">prec_atom</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">sexp</span> <span class="o">=</span> <span class="n">exp</span>
                     <span class="n">sexpv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exp_pattern</span> <span class="o">%</span> <span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="n">sexp</span><span class="p">))</span>
